@@ -1,4 +1,7 @@
 {
-    "extends": ["plugin:prettier/recommended", "react-app", "eslint:recommended"],
-    "plugins": ["react"]
+  "extends": ["plugin:prettier/recommended", "react-app", "eslint:recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
+}
