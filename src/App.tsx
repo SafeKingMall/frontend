@@ -25,16 +25,16 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/carts' element={<Carts />} />
         <Route path='/edit' element={<Edit />} />
-        <Route path='/editsignin' element={<EditSignIn />} />
-        <Route path='/editsignup' element={<EditSignUp />} />
+        <Route path='/editsign-in' element={<EditSignIn />} />
+        <Route path='/editsign-up' element={<EditSignUp />} />
         <Route path='/itemdetail' element={<ItemDetail />} />
         <Route path='/itemlist' element={<ItemList />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/qna' element={<QnA />} />
-        <Route path='/signin' element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
       </Routes>
     </div>
   );
