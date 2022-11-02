@@ -16,7 +16,11 @@ import {
   QnA,
   SignIn,
   SignUp,
+  MyPageAc,
+  MyPagePw,
+  MyPageWd,
 } from './pages';
+import { MyPageMenu } from './components/user/MyPageMenu';
 
 function App() {
   return (
@@ -30,12 +34,16 @@ function App() {
         <Route path='/itemdetail' element={<ItemDetail />} />
         <Route path='/itemlist' element={<ItemList />} />
         <Route path='/mypage' element={<MyPage />} />
+        <Route path='/mypage-ac' element={<MyPageAc />} />
+        <Route path='/mypage-pw' element={<MyPagePw />} />
+        <Route path='/mypage-wd' element={<MyPageWd />} />
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/qna' element={<QnA />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>
+      <MyPageMenu />
     </div>
   );
 }
