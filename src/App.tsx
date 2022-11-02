@@ -20,7 +20,6 @@ import {
   MyPagePw,
   MyPageWd,
 } from './pages';
-import { MyPageMenu } from './components/user/MyPageMenu';
 
 function App() {
   return (
@@ -43,7 +42,6 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>
-      <MyPageMenu />
     </div>
   );
 }
