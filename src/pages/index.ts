@@ -1,7 +1,7 @@
 export { Carts } from './Carts';
 export { Edit } from './Edit';
-export { EditSignIn } from './EditSignIn';
-export { EditSignUp } from './EditSignUp';
+export { AdminSignIn } from './AdminSignIn';
+export { AdminSignUp } from './AdminSignUp';
 export { ItemDetail } from './ItemDetail';
 export { ItemList } from './ItemList';
 export { MainPage } from './MainPage';

@@ -6,8 +6,8 @@ import {
   MyPage,
   Carts,
   Edit,
-  EditSignIn,
-  EditSignUp,
+  AdminSignIn,
+  AdminSignUp,
   ItemDetail,
   ItemList,
   MainPage,
@@ -28,8 +28,8 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/carts' element={<Carts />} />
         <Route path='/edit' element={<Edit />} />
-        <Route path='/editsign-in' element={<EditSignIn />} />
-        <Route path='/editsign-up' element={<EditSignUp />} />
+        <Route path='/adminsign-in' element={<AdminSignIn />} />
+        <Route path='/adminsign-up' element={<AdminSignUp />} />
         <Route path='/itemdetail' element={<ItemDetail />} />
         <Route path='/itemlist' element={<ItemList />} />
         <Route path='/mypage' element={<MyPage />} />
