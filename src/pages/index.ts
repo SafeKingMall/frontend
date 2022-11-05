@@ -1,14 +1,11 @@
 export { Carts } from './Carts';
 export { Edit } from './Edit';
-export { AdminSignIn } from './AdminSignIn';
-export { AdminSignUp } from './AdminSignUp';
+export { EditSignIn } from './EditSignIn';
+export { EditSignUp } from './EditSignUp';
 export { ItemDetail } from './ItemDetail';
 export { ItemList } from './ItemList';
 export { MainPage } from './MainPage';
 export { MyPage } from './MyPage';
-export { MyPageAc } from './MyPageAc';
-export { MyPagePw } from './MyPagePw';
-export { MyPageWd } from './MyPageWd';
 export { OrderOk } from './OrderOk';
 export { Orders } from './Orders';
 export { QnA } from './QnA';
