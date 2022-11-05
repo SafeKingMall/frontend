@@ -1,0 +1,47 @@
+.wrapper {
+  background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.userInput {
+  background-color: #eee;
+  width: 541px;
+  height: 195px;
+}
+.idWrap {
+}
+.inputForm {
+  border: none;
+}
+.password {
+}
+.btn {
+  width: 543px;
+  height: 90px;
+  border-radius: 80px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 400;
+}
+.navigate {
+}
+.span {
+  cursor: pointer;
+}
+.social {
+  display: flex;
+  flex-direction: column;
+}
+.google,
+.kakao {
+  width: 541px;
+  height: 64px;
+  border-radius: 80px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
