@@ -1,5 +1,6 @@
 import React from 'react';
+import * as Y from './style';
 
 export const MainPage = () => {
-  return <div>MainPage22</div>;
+  return <Y.MainpageContainer>MainPage22</Y.MainpageContainer>;
 };
