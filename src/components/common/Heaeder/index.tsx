@@ -13,7 +13,7 @@ export const Header = () => {
             <Link to='/'>안전왕 정복</Link>
           </S.MenuList>
           <S.MenuList>
-            <Link to='/itemlist'>예방상품 리스트</Link>
+            <Link to='/itemlist-serious'>예방상품 리스트</Link>
           </S.MenuList>
           <S.MenuList>
             <Link to='/qna'>문의하기</Link>

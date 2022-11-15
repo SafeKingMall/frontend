@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { MyPageMenu } from '../../components';
+import { MyPageMenu } from '../../../components';
 
 export const MyPagePw = () => {
   const test = () => {
