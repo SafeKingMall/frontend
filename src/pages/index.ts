@@ -1,7 +1,7 @@
 export { Carts } from './Carts';
-export { EditMember } from './Edit/EditMember';
-export { EditItem } from './Edit/EditItem';
-export { EditOrder } from './Edit/EditOrder';
+export { AdminMember } from './Admin/AdminMember';
+export { AdminItem } from './Admin/AdminItem';
+export { AdminOrder } from './Admin/AdminOrder';
 export { AdminSignIn } from './Admin/AdminSignIn';
 export { AdminSignUp } from './Admin/AdminSignUp';
 export { ItemDetail } from './ItemDetail';
