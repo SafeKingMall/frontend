@@ -26,6 +26,7 @@ ul {
 }
 input {
   border: none;
+  :focus {outline: none}
 }
 
 `;
