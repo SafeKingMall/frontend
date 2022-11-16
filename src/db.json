@@ -1,0 +1,226 @@
+{
+  "users": [
+    {
+      "email": "abc@abc.com",
+      "password": "$2a$10$iZCXLfbcfReBvaD67oanyeUloNOgdvW5Cl0F1SK7coZDxLHo2/Np2",
+      "id": 1
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$ezgwpneE1JwvToFjIQGL0un4CklbNczcCEUfekvUbIRzuZ8xIEa7a",
+      "id": 2
+    }
+  ],
+  "content": [
+    {
+      "itemId": 1,
+      "name": "안전화1",
+      "price": 90000,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 2,
+      "name": "안전화2",
+      "price": 100000,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 3,
+      "name": "코팅장갑",
+      "price": 1000,
+      "categoryName": "화재사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 4,
+      "name": "일반장갑",
+      "price": 800,
+      "categoryName": "화재사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 5,
+      "name": "축압식 분말 소화기 (1.5kg)",
+      "price": 13900,
+      "categoryName": "누출사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 6,
+      "name": "축압식 분말 소화기 (3.3kg)",
+      "price": 20900,
+      "categoryName": "누출사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 7,
+      "name": "소화기 위치표시 스티커",
+      "price": 9900,
+      "categoryName": "누출사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 8,
+      "name": "4인치 디스크 그라인더",
+      "price": 29900,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 9,
+      "name": "열풍기 (2000W)",
+      "price": 29900,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 10,
+      "name": "LED 유선 작업등",
+      "price": 16900,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 11,
+      "name": "9구 LED 라이트",
+      "price": 4390,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 12,
+      "name": "LED 헤드 랜턴",
+      "price": 4990,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 13,
+      "name": "LED 헤드 랜턴2",
+      "price": null,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 14,
+      "name": "LED 헤드 랜턴3",
+      "price": null,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 15,
+      "name": "LED 헤드 랜턴4",
+      "price": null,
+      "categoryName": "화재사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 16,
+      "name": "LED 헤드 랜턴5",
+      "price": null,
+      "categoryName": "화재사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 17,
+      "name": "LED 헤드 랜턴6",
+      "price": null,
+      "categoryName": "누출사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 18,
+      "name": "LED 헤드 랜턴7",
+      "price": 2500,
+      "categoryName": "누출사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 19,
+      "name": "LED 헤드 랜턴8",
+      "price": 4780,
+      "categoryName": "누출안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 20,
+      "name": "LED 헤드 랜턴9",
+      "price": 4500,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 21,
+      "name": "LED 헤드 랜턴10",
+      "price": 3200,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 22,
+      "name": "LED 헤드 랜턴11",
+      "price": 3000,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 23,
+      "name": "LED 헤드 랜턴12",
+      "price": 6500,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 24,
+      "name": "LED 헤드 랜턴13",
+      "price": 6000,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 25,
+      "name": "LED 헤드 랜턴14",
+      "price": null,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 26,
+      "name": "LED 헤드 랜턴15",
+      "price": null,
+      "categoryName": "화재사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 27,
+      "name": "LED 헤드 랜턴16",
+      "price": null,
+      "categoryName": "누출안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 28,
+      "name": "LED 헤드 랜턴17",
+      "price": null,
+      "categoryName": "해양사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 29,
+      "name": "LED 헤드 랜턴18",
+      "price": null,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 30,
+      "name": "LED 헤드 랜턴19",
+      "price": 199999999,
+      "categoryName": "안전사고예방",
+      "description": "상품상세설명 블라블라"
+    }
+  ]
+}
