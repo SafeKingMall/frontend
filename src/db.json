@@ -221,6 +221,48 @@
       "price": 199999999,
       "categoryName": "안전사고예방",
       "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 31,
+      "name": "LED 헤드 랜턴20",
+      "price": 4800,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 32,
+      "name": "LED 헤드 랜턴21",
+      "price": 5200,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 33,
+      "name": "LED 헤드 랜턴22",
+      "price": 7900,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 34,
+      "name": "LED 헤드 랜턴23",
+      "price": 8320,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 35,
+      "name": "LED 헤드 랜턴24",
+      "price": 90000,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
+    },
+    {
+      "itemId": 36,
+      "name": "LED 헤드 랜턴25",
+      "price": 12000,
+      "categoryName": "중대사고예방",
+      "description": "상품상세설명 블라블라"
     }
   ]
 }
