@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import {
   MyPage,
   Carts,
-  EditItem,
-  EditMember,
-  EditOrder,
+  AdminItem,
+  AdminMember,
+  AdminOrder,
   AdminSignIn,
   AdminSignUp,
   ItemDetail,
@@ -30,9 +30,9 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/carts' element={<Carts />} />
-        <Route path='/edit-member' element={<EditMember />} />
-        <Route path='/edit-item' element={<EditItem />} />
-        <Route path='/edit-order' element={<EditOrder />} />
+        <Route path='/admin-member' element={<AdminMember />} />
+        <Route path='/admin-item' element={<AdminItem />} />
+        <Route path='/admin-order' element={<AdminOrder />} />
         <Route path='/adminsign-in' element={<AdminSignIn />} />
         <Route path='/adminsign-up' element={<AdminSignUp />} />
         <Route path='/itemdetail' element={<ItemDetail />} />
