@@ -84,20 +84,20 @@ export const InputWrapper = styled.div`
     position: absolute;
     left: 14.9rem;
     top: 3.4rem;
-    width: 1px;
+    width: 0.1rem;
     background-color: pink;
-    width: 1px;
-    height: 24px;
+    width: 0.1rem;
+    height: 2.4rem;
   }
   &::after {
     content: '';
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 1px;
+    width: 0.1rem;
     background-color: pink;
     width: 69.3rem;
-    height: 1px;
+    height: 0.1rem;
   }
 `;
 export const BtnWrapper = styled.div`
@@ -107,7 +107,7 @@ export const BtnWrapper = styled.div`
 `;
 export const Btn = styled.button`
   background-color: #fff;
-  border: 1px solid #000;
+  border: 0.1rem solid #000;
   border-radius: 10rem;
   width: 33.6rem;
   height: 8.8rem;
