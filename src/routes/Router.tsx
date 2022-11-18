@@ -24,6 +24,7 @@ import {
   SignUp1,
   SignUp2,
   SignUp3,
+  SignUp4,
 } from '../pages';
 // 페이지내 메뉴가 있을 경우 케밥케이스사용(mypage-edit)
 const Router = () => {
@@ -54,6 +55,7 @@ const Router = () => {
         <Route path='/sign-up1' element={<SignUp1 />} />
         <Route path='/sign-up2' element={<SignUp2 />} />
         <Route path='/sign-up3' element={<SignUp3 />} />
+        <Route path='/sign-up4' element={<SignUp4 />} />
       </Routes>
     </div>
   );
