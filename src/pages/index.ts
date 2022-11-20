@@ -19,4 +19,7 @@ export { Orders } from './Orders';
 export { Notice } from './Notice';
 export { QnA } from './QnA';
 export { SignIn } from './SignIn';
-export { SignUp } from './SignUp';
+export { SignUp1 } from './SignUp/SignUp1';
+export { SignUp2 } from './SignUp/SignUp2';
+export { SignUp3 } from './SignUp/SignUp3';
+export { SignUp4 } from './SignUp/SignUp4';
