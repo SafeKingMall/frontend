@@ -75,3 +75,42 @@ export const PurchaseBtn = styled(Btn)`
   border: 1px solid ${(props) => props.theme.palette.green};
   color: ${(props) => props.theme.palette.green};
 `;
+export const DesContainer = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.common.flexCenter};
+  overflow: hidden;
+  align-items: flex-start;
+  position: relative;
+`;
+export const Description = styled.div`
+  width: 86rem;
+  height: 300rem;
+  background-color: #f8f7bc;
+`;
+export const DesGradation = styled.div`
+  width: 86rem;
+  height: 16rem;
+  position: absolute;
+  background: linear-gradient(#ffffff 0%, rgba(255, 255, 255, 0) 100%, #ffffff 100%);
+  bottom: 0;
+  transform: rotate(180deg);
+`;
+export const ShowDesBtnContainer = styled.div`
+  width: 100%;
+  height: 8.1rem;
+  ${({ theme }) => theme.common.flexCenter};
+  margin-top: 3.6rem;
+  margin-bottom: 20.1rem;
+`;
+export const ShowDesBtn = styled.div`
+  width: 23.9rem;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 3.12rem;
+  font-weight: 400;
+  color: #000000;
+  cursor: pointer;
+`;

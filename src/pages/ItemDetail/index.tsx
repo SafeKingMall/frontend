@@ -1,24 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { Nav } from '../../components/item/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AiOutlineDown } from 'react-icons/ai';
 
 export const ItemDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  let itemNav = document.querySelector('#item-nav') as HTMLElement | null;
-  let itemNavTop = 470;
-  if (itemNav !== null) {
-    itemNavTop = itemNav.offsetTop;
+  const [desHeight, setDesHeight] = useState(0);
+  const [desToggle, setDesToggle] = useState(false);
+  const [itemNavTop, setItemNavTop] = useState(0);
+  let purchaseBtn = <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>;
+  if (state.data.price === null) {
+    purchaseBtn = <S.PurchaseBtn>견적서 요청</S.PurchaseBtn>;
   }
   useEffect(() => {
+    if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
+      setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
+    } else {
+      setDesHeight(1836);
+      setDesToggle(true);
+    }
+  }, []);
+  useEffect(() => {
+    setItemNavTop((document.querySelector('#item-nav') as HTMLElement).offsetTop);
     window.scrollTo({
       top: itemNavTop,
       behavior: 'smooth',
     });
-  });
+  }, [itemNavTop]);
   const moveOders = () => {
     navigate('/orders');
+  };
+  const desEvent = () => {
+    setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
+    setDesToggle(false);
   };
   return (
     <S.Container>
@@ -41,16 +57,28 @@ export const ItemDetail = () => {
                 {state.data.price
                   ? state.data.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') +
                     '원'
-                  : '금액표시없음'}
+                  : '관리자 문의'}
               </S.Price>
             </S.PriceArea>
             <S.BtnArea>
               <S.BasketBtn>장바구니</S.BasketBtn>
-              <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>
+              {purchaseBtn}
             </S.BtnArea>
           </S.ItemTextArea>
         </S.DetailArea>
       </S.DetailContainer>
+      <S.DesContainer style={{ height: desHeight }}>
+        <S.Description id='description'>
+          <div style={{ fontSize: '3rem' }}>{state.data.description}</div>
+        </S.Description>
+        <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
+      </S.DesContainer>
+      <S.ShowDesBtnContainer>
+        <S.ShowDesBtn style={{ display: desToggle ? 'flex' : 'none' }} onClick={() => desEvent()}>
+          <span>상세페이지 더보기</span>
+          <AiOutlineDown style={{ width: 28, height: 24 }} />
+        </S.ShowDesBtn>
+      </S.ShowDesBtnContainer>
     </S.Container>
   );
 };
