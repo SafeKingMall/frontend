@@ -14,7 +14,7 @@ export const DetailArea = styled.div`
   width: 144rem;
   height: 78rem;
   margin-top: 8.3rem;
-  border-bottom: 1px solid #000000;
+  border-bottom: 0.1rem solid #000000;
   display: flex;
   flex-diretion: row;
   margin-bottom: 17.6rem;
@@ -72,7 +72,7 @@ export const BasketBtn = styled(Btn)`
 `;
 export const PurchaseBtn = styled(Btn)`
   background-color: #ffffff;
-  border: 1px solid ${(props) => props.theme.palette.green};
+  border: 0.1rem solid ${(props) => props.theme.palette.green};
   color: ${(props) => props.theme.palette.green};
 `;
 export const DesContainer = styled.div`

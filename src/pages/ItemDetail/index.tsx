@@ -67,14 +67,14 @@ export const ItemDetail = () => {
           </S.ItemTextArea>
         </S.DetailArea>
       </S.DetailContainer>
-      <S.DesContainer style={{ height: desHeight }}>
+      <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
         <S.Description id='description'>
           <div style={{ fontSize: '3rem' }}>{state.data.description}</div>
         </S.Description>
         <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
       </S.DesContainer>
-      <S.ShowDesBtnContainer>
-        <S.ShowDesBtn style={{ display: desToggle ? 'flex' : 'none' }} onClick={() => desEvent()}>
+      <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
+        <S.ShowDesBtn onClick={() => desEvent()}>
           <span>상세페이지 더보기</span>
           <AiOutlineDown style={{ width: 28, height: 24 }} />
         </S.ShowDesBtn>
