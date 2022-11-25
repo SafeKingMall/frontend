@@ -18,6 +18,15 @@ button {
 a {
   text-decoration: none;
 }
+/* a:hover,  */
+a:focus{
+  color: #000;
+}
+a:link, a:active, a:visited{
+  color: #000; 
+  text-decoration: none; 
+  border: 0px;
+}
 ul {
     list-style-type: none;
     margin-block-start: 0;
