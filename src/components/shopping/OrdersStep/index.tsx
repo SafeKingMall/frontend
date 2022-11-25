@@ -6,6 +6,10 @@ import { GoCreditCard } from 'react-icons/go';
 export const OrdersStep = (props: any) => {
   const greenColor = '#289951';
   const whiteColor = '#ffffff';
+  const curStepText = {
+    color: greenColor,
+    fontWeight: 700,
+  };
   return (
     <S.Container>
       <S.StepContainer>
@@ -35,28 +39,13 @@ export const OrdersStep = (props: any) => {
           </S.StepIconBox>
         </S.StepIconContainer>
         <S.StepTextContainer>
-          <S.StepText
-            style={{
-              color: props.stepTitle === '장바구니' ? greenColor : '',
-              fontWeight: props.stepTitle === '장바구니' ? 700 : '',
-            }}
-          >
+          <S.StepText style={props.stepTitle === '장바구니' ? curStepText : {}}>
             장바구니
           </S.StepText>
-          <S.StepText
-            style={{
-              color: props.stepTitle === '주문·결제' ? greenColor : '',
-              fontWeight: props.stepTitle === '주문·결제' ? 700 : '',
-            }}
-          >
+          <S.StepText style={props.stepTitle === '주문·결제' ? curStepText : {}}>
             주문·결제
           </S.StepText>
-          <S.StepText
-            style={{
-              color: props.stepTitle === '주문완료' ? greenColor : '',
-              fontWeight: props.stepTitle === '주문완료' ? 700 : '',
-            }}
-          >
+          <S.StepText style={props.stepTitle === '주문완료' ? curStepText : {}}>
             주문완료
           </S.StepText>
         </S.StepTextContainer>
