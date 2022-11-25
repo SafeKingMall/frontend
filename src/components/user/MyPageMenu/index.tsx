@@ -1,27 +1,40 @@
+/* eslint-disable */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './MyPageMenu.module.css';
+import { NavLink } from 'react-router-dom';
+import * as S from './style';
 
 export const MyPageMenu = () => {
+  const activeStyle = {
+    color: '#289951',
+    fontWeight: 700,
+  };
   return (
     <div>
-      <div className={styles.wrapper}>
-        <div className={styles.top}>마이페이지</div>
-        <ul className={styles.menus}>
+      <S.Wrapper>
+        <div>마이페이지</div>
+        <ul>
           <li>
-            <Link to='/mypage'>내 정보 설정</Link>
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage'>
+              내 정보
+            </NavLink>
           </li>
           <li>
-            <Link to='/mypage-ac'>계정 설정</Link>
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-od'>
+              주문내역
+            </NavLink>
           </li>
           <li>
-            <Link to='/mypage-pw'>비밀번호 변경</Link>
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-pw'>
+              비밀번호 변경
+            </NavLink>
           </li>
           <li>
-            <Link to='/mypage-wd'>회원 탈퇴</Link>
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-wd'>
+              회원 탈퇴
+            </NavLink>
           </li>
         </ul>
-      </div>
+      </S.Wrapper>
     </div>
   );
 };
