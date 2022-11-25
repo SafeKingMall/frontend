@@ -14,6 +14,7 @@ export { MainPage } from './MainPage';
 export { MyPage } from './MyPage';
 export { MyPagePw } from './MyPage/MyPagePw';
 export { MyPageWd } from './MyPage/MyPageWd';
+export { MyPageOd } from './MyPage/MyPageOd';
 export { OrderOk } from './OrderOk';
 export { Orders } from './Orders';
 export { Notice } from './Notice';
