@@ -18,6 +18,7 @@ export { OrderOk } from './OrderOk';
 export { Orders } from './Orders';
 export { Notice } from './Notice';
 export { QnA } from './QnA';
+export { QnApw } from './QnA/QnApw';
 export { SignIn } from './SignIn';
 export { SignUp1 } from './SignUp/SignUp1';
 export { SignUp2 } from './SignUp/SignUp2';
