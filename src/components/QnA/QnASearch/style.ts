@@ -17,7 +17,7 @@ export const Select = styled.select`
   margin-right: 0.8rem;
   width: 12.5rem;
   height: 4rem;
-  border: 1px solid #ddd;
+  border: 0.1rem solid #ddd;
   font-size: 1.2rem;
   padding: 0 0.8rem;
   font-weight: 400;
@@ -35,4 +35,14 @@ export const SearchBar = styled.input`
   border: 1px solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
+`;
+
+export const Searchbutton = styled.button`
+  width: 4rem;
+  height: 4rem;
+  background-color: #289951;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

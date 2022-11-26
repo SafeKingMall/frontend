@@ -9,10 +9,15 @@ import { useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 export const QnA = () => {
-  const data = db.QnAcontent;
+  const data1 = db.QnAcontent;
+  const data = [...data1].reverse();
   const navigate = useNavigate();
   const numberColor = '#289951';
   const numbertxtColor = 'white';
+  const totalColor = {
+    backgroundColor: numberColor,
+    color: numbertxtColor,
+  };
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -41,10 +46,7 @@ export const QnA = () => {
           key={number}
           id={number}
           onClick={handleClick}
-          style={{
-            backgroundColor: number === currentPage ? numberColor : '',
-            color: number === currentPage ? numbertxtColor : '',
-          }}
+          style={number === currentPage ? totalColor : {}}
         >
           {number}
         </S.Paging2>

@@ -32,18 +32,30 @@ export const QnAtitle = styled.div`
   margin-top: 2.4rem;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.darkgreen};
   align-items: end;
-  justify-content: space-between;
-  padding-top: 2.4rem;
-  padding-bottom: 2.4rem;
-  padding-right: 5rem;
-  padding-left: 5.4rem;
+  //   justify-content: space-between;
+  padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
   border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
   border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
   font-size: 2.4rem;
+  div {
+    &:nth-child(1) {
+      flex-grow: 3;
+    }
+    &:nth-child(2) {
+      flex-grow: 3;
+    }
+    &:nth-child(3) {
+      flex-grow: 2.5;
+    }
+    &:nth-child(4) {
+      flex-grow: 0;
+    }
+  }
 `;
 
 export const Banner = styled.div`
@@ -85,8 +97,7 @@ export const Paging2 = styled.li`
   cursor: pointer;
   font-size: 1.7rem;
   color: ${({ theme }) => theme.palette.txtgray};
-  &:active,
-  &:focus {
+  &:active {
     background-color: ${({ theme }) => theme.palette.green};
     cursor: pointer;
     color: white;
