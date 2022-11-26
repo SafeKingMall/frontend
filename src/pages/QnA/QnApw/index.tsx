@@ -8,7 +8,7 @@ export const QnApw = () => {
   return (
     <div>
       <div>
-        <S.Banner>QnA</S.Banner>
+        <S.Banner>QnApw</S.Banner>
       </div>
       <S.Wrapper>
         <S.Pwbox>
