@@ -264,5 +264,86 @@
       "categoryName": "중대사고예방",
       "description": "상품상세설명 블라블라"
     }
+  ],
+
+  "QnAcontent": [
+    {
+      "itemQuestionId": "1",
+      "title": "상품 QNA 타이틀입니다.1",
+      "createDate": "2022-11-13 23:23:59.847240",
+      "memberId": "test1"
+    },
+    {
+      "itemQuestionId": "2",
+      "title": "상품 QNA 타이틀입니다.2",
+      "createDate": "2022-11-14 23:23:59.847240",
+      "memberId": "test2"
+    },
+    {
+      "itemQuestionId": "3",
+      "title": "상품 QNA 타이틀입니다.3",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test3"
+    },
+    {
+      "itemQuestionId": "4",
+      "title": "상품 QNA 타이틀입니다.4",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test4"
+    },
+    {
+      "itemQuestionId": "5",
+      "title": "상품 QNA 타이틀입니다.5",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test5"
+    },
+    {
+      "itemQuestionId": "6",
+      "title": "상품 QNA 타이틀입니다.6",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test6"
+    },
+    {
+      "itemQuestionId": "7",
+      "title": "상품 QNA 타이틀입니다.7",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test7"
+    },
+    {
+      "itemQuestionId": "8",
+      "title": "상품 QNA 타이틀입니다.8",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test8"
+    },
+    {
+      "itemQuestionId": "9",
+      "title": "상품 QNA 타이틀입니다.9",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test9"
+    },
+    {
+      "itemQuestionId": "10",
+      "title": "상품 QNA 타이틀입니다.10",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test10"
+    },
+    {
+      "itemQuestionId": "11",
+      "title": "상품 QNA 타이틀입니다.3",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test11"
+    },
+    {
+      "itemQuestionId": "12",
+      "title": "상품 QNA 타이틀입니다.12",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test12"
+    },
+    {
+      "itemQuestionId": "13",
+      "title": "상품 QNA 타이틀입니다.13",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "test13"
+    }
   ]
 }
