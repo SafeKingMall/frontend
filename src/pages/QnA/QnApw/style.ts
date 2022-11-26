@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  background-color: #289951;
+  background-color: ${({ theme }) => theme.palette.green};
   height: 47rem;
   position: relative;
   font-size: 10rem;
