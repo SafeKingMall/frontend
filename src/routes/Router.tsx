@@ -20,6 +20,7 @@ import {
   Orders,
   Notice,
   QnA,
+  QnApw,
   SignIn,
   SignUp1,
   SignUp2,
@@ -53,6 +54,7 @@ const Router = () => {
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
         <Route path='/qna' element={<QnA />} />
+        <Route path='/qna-pw' element={<QnApw />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up1' element={<SignUp1 />} />
         <Route path='/sign-up2' element={<SignUp2 />} />
