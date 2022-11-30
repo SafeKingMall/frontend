@@ -19,7 +19,7 @@ export const QnAwr = () => {
     setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
   };
 
-  const lala =
+  const attachfile =
     selectedImages &&
     selectedImages.map((image: any) => {
       return (
@@ -62,7 +62,7 @@ export const QnAwr = () => {
             <td>
               <S.tablediv>
                 {selectedImages.length !== 0 ? (
-                  <div>{lala}</div>
+                  <div>{attachfile}</div>
                 ) : (
                   <S.notdownload>파일을 첨부할 수 있습니다.</S.notdownload>
                 )}
