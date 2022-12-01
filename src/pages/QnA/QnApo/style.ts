@@ -23,10 +23,7 @@ export const QnAButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
   margin: 14.8rem 0rem 0rem 131rem;
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
-  padding-right: 4.3rem;
-  padding-left: 4.3rem;
+  padding: 1.8rem 4.3rem;
   font-size: 2.4rem;
   align-items: center;
 `;

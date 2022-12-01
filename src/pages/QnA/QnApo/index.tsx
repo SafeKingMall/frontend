@@ -50,7 +50,7 @@ export const QnApo = () => {
   return (
     <div>
       <div>
-        <S.Banner>QnApw</S.Banner>
+        <S.Banner>QnApo</S.Banner>
       </div>
       <S.Wrapper>
         <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>
