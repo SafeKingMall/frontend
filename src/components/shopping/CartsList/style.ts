@@ -109,7 +109,7 @@ export const ItemTextArea = styled.div`
   justify-content: center;
 `;
 export const CategoryText = styled.p`
-  font-size: 16px;
+  font-size: 1.6rem;
   margin-bottom: 0.8rem;
 `;
 export const ItemNameText = styled.p`
