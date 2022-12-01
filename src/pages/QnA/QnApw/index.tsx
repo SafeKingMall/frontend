@@ -2,9 +2,13 @@ import React from 'react';
 import * as S from './style';
 import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export const QnApw = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const data = state.data;
+
   return (
     <div>
       <div>
@@ -17,7 +21,7 @@ export const QnApw = () => {
         </S.Pwbox>
         <S.QnAbox>
           <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => navigate('/qna-po')}>목록</S.QnAButton2>
+          <S.QnAButton2 onClick={() => navigate('/qna-po', { state: data })}>목록</S.QnAButton2>
         </S.QnAbox>
       </S.Wrapper>
       <Footer />

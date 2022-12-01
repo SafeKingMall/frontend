@@ -35,7 +35,7 @@ export const QnAwr = () => {
   return (
     <div>
       <div>
-        <S.Banner>QnApw</S.Banner>
+        <S.Banner>QnAwr</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>

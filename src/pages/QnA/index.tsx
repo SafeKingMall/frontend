@@ -88,7 +88,7 @@ export const QnA = () => {
           <div>등록일</div>
         </S.QnAtitle>
         <QnAList data={data} currentItems={currentItems} />
-        <S.QnAButton onClick={() => navigate('/qna-pw')}>글쓰기</S.QnAButton>
+        <S.QnAButton onClick={() => navigate('/qna-wr')}>글쓰기</S.QnAButton>
         <S.pageNumbers>
           <S.lipageNumbers>
             <S.buttonpageNumbers
