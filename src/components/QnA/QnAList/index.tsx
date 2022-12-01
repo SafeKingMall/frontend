@@ -1,9 +1,17 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 export const QnAList = (props: any) => {
   let currentItems = props.currentItems;
   const navigate = useNavigate();
+  const moveQnApw = (item: any) => {
+    navigate('/qna-pw', {
+      state: {
+        data: item,
+      },
+    });
+  };
 
   const RegistDate = (day: any) => {
     const date = new Date(day);
@@ -19,7 +27,7 @@ export const QnAList = (props: any) => {
       <ul>
         {data.map((el: any, index: any) => {
           return (
-            <S.Container key={index} onClick={() => navigate('/qna-pw')}>
+            <S.Container key={index} onClick={() => moveQnApw(el)}>
               <div>{el.itemQuestionId}</div>
               <div>{el.title}</div>
               <div>{el.memberId}</div>
