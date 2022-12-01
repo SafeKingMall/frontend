@@ -44,13 +44,13 @@ export const QnAtitle = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 3;
+      flex-grow: 2.1;
     }
     &:nth-child(2) {
-      flex-grow: 3;
+      flex-grow: 2.7;
     }
     &:nth-child(3) {
-      flex-grow: 2.5;
+      flex-grow: 2;
     }
     &:nth-child(4) {
       flex-grow: 0;
@@ -108,6 +108,7 @@ export const pageNumbers = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
+  margin-bottom: 12rem;
 `;
 
 export const lipageNumbers = styled.li`

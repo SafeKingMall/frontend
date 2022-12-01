@@ -1,6 +1,7 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 // import { useEffect } from 'react';
+import { TfiLock } from 'react-icons/tfi';
 
 export const QnAList = (props: any) => {
   let currentItems = props.currentItems;
@@ -29,7 +30,10 @@ export const QnAList = (props: any) => {
           return (
             <S.Container key={index} onClick={() => moveQnApw(el)}>
               <div>{el.itemQuestionId}</div>
-              <div>{el.title}</div>
+              <div>
+                <ul>{el.title}</ul>
+                <TfiLock color='#D9D9D9' />
+              </div>
               <div>{el.memberId}</div>
               <div>{RegistDate(el.createDate)}</div>
             </S.Container>
