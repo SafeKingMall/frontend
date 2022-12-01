@@ -265,85 +265,265 @@
       "description": "상품상세설명 블라블라"
     }
   ],
-
   "QnAcontent": [
     {
       "itemQuestionId": "1",
       "title": "상품 QNA 타이틀입니다.1",
       "createDate": "2022-11-13 23:23:59.847240",
-      "memberId": "test1"
+      "memberId": "test1",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "1",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin",
+          "contents": "답변이 들어갑니다."
+        },
+        {
+          "itemAnswerId": "2",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin22",
+          "contents": "답변이 들어갑니다.2"
+        }
+      ]
     },
     {
       "itemQuestionId": "2",
       "title": "상품 QNA 타이틀입니다.2",
       "createDate": "2022-11-14 23:23:59.847240",
-      "memberId": "test2"
+      "memberId": "test2",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "3",
       "title": "상품 QNA 타이틀입니다.3",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test3"
+      "memberId": "test3",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "4",
       "title": "상품 QNA 타이틀입니다.4",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test4"
+      "memberId": "test4",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "5",
       "title": "상품 QNA 타이틀입니다.5",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test5"
+      "memberId": "test5",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "6",
       "title": "상품 QNA 타이틀입니다.6",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test6"
+      "memberId": "test6",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "7",
       "title": "상품 QNA 타이틀입니다.7",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test7"
+      "memberId": "test7",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "8",
       "title": "상품 QNA 타이틀입니다.8",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test8"
+      "memberId": "test8",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "9",
       "title": "상품 QNA 타이틀입니다.9",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test9"
+      "memberId": "test9",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "10",
       "title": "상품 QNA 타이틀입니다.10",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test10"
+      "memberId": "test10",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "11",
       "title": "상품 QNA 타이틀입니다.3",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test11"
+      "memberId": "test11",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "12",
       "title": "상품 QNA 타이틀입니다.12",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test12"
+      "memberId": "test12",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
     },
     {
       "itemQuestionId": "13",
       "title": "상품 QNA 타이틀입니다.13",
       "createDate": "2022-11-15 23:23:59.847240",
-      "memberId": "test13"
+      "memberId": "test13",
+      "contents": "상품 질문이 들어갑니다. <b>에디터형식<b>",
+      "answer": [
+        {
+          "itemAnswerId": "3",
+          "createDate": "2022-11-14 23:23:59.847240",
+          "adminId": "admin3",
+          "contents": "답변이 들어갑니다.3"
+        }
+      ]
+    }
+  ],
+  "attachcontent": [
+    {
+      "id": "1",
+      "bbsId": "1",
+      "type": "qna",
+      "fileUrl": "/file/notice/",
+      "fileName": "abfddd1.png",
+      "orgFileName": "오류내용1.png",
+      "createDate": "2022-11-13 23:23:59.847240",
+      "memberId": "admin"
+    },
+    {
+      "id": "2",
+      "bbsId": "1",
+      "type": "qna",
+      "fileUrl": "/file/notice/",
+      "fileName": "abfddd2.png",
+      "orgFileName": "오류내용2.png",
+      "createDate": "2022-11-13 23:23:59.847240",
+      "memberId": "admin"
+    },
+    {
+      "id": "3",
+      "bbsId": "1",
+      "type": "qna",
+      "fileUrl": "/file/notice/",
+      "fileName": "abfddd3.png",
+      "orgFileName": "오류내용3.png",
+      "createDate": "2022-11-13 23:23:59.847240",
+      "memberId": "admin"
+    }
+  ],
+  "noticecontents": [
+    {
+      "id": "1",
+      "title": "공지사항 타이틀입니다.1",
+      "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
+      "memberId": "admin",
+      "createDate": "2022-11-29 22:34:25.193169",
+      "lastModifiedDate": "2022-11-29 22:34:25.193169"
+    },
+    {
+      "id": "2",
+      "title": "공지사항 타이틀입니다.2",
+      "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
+      "createDate": "2022-11-14 23:23:59.847240",
+      "lastModifiedDate": "2022-11-29 22:34:25.193169",
+      "memberId": "admin"
+    },
+    {
+      "id": "3",
+      "title": "공지사항 타이틀입니다.3",
+      "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
+      "lastModifiedDate": "2022-11-29 22:34:25.193169",
+      "createDate": "2022-11-15 23:23:59.847240",
+      "memberId": "admin"
     }
   ]
 }
