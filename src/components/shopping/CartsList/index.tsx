@@ -143,7 +143,6 @@ export const CartsList = (props: any) => {
                   <S.CountInput
                     id={item.itemId}
                     type='text'
-                    onWheel={(e) => (e.target as HTMLElement).blur()}
                     onChange={(e) => countInput(e.target.value, idx)}
                     onBlur={(e) => countInputBlur(e.target.value, idx)}
                     value={countList[idx]}
