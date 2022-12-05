@@ -19,6 +19,8 @@ import {
   OrderOk,
   Orders,
   Notice,
+  Noticewr,
+  Noticepo,
   QnA,
   QnApw,
   QnApo,
@@ -55,6 +57,8 @@ const Router = () => {
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
+        <Route path='/notice-wr' element={<Noticewr />} />
+        <Route path='/notice-po' element={<Noticepo />} />
         <Route path='/qna' element={<QnA />} />
         <Route path='/qna-pw' element={<QnApw />} />
         <Route path='/qna-po' element={<QnApo />} />
