@@ -13,18 +13,20 @@ export const Noticewr = () => {
       </div>
       <S.Wrapper>
         <S.Table>
-          <tr>
-            <td>제목</td>
-            <td>
-              <S.tableinput placeholder='제목을 입력해주세요.' />
-            </td>
-          </tr>
-          <tr>
-            <td>내용</td>
-            <td>
-              <S.tabletextarea placeholder='내용을 입력해주세요.' />
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>제목</td>
+              <td>
+                <S.tableinput placeholder='제목을 입력해주세요.' />
+              </td>
+            </tr>
+            <tr>
+              <td>내용</td>
+              <td>
+                <S.tabletextarea placeholder='내용을 입력해주세요.' />
+              </td>
+            </tr>
+          </tbody>
         </S.Table>
         <S.Noticebox>
           <S.NoticeButton onClick={() => navigate('/notice')}>취소</S.NoticeButton>

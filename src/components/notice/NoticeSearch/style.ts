@@ -32,7 +32,7 @@ export const SearchBar = styled.input`
   padding-right: 5.6rem;
   font-size: 1.2rem;
   background-color: #fefefe;
-  border: 1px solid #ddd;
+  border: 0.1rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
 `;

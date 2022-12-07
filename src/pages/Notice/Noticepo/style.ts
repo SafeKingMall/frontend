@@ -106,7 +106,7 @@ export const Table = styled.table`
     width: 72rem;
     height: 15.9rem;
     &:first-child {
-      border-right: 1px solid ${({ theme }) => theme.palette.txtgray};
+      border-right: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
     }
     &:last-child {
       text-align: right;

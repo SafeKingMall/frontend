@@ -54,36 +54,38 @@ export const Noticepo = () => {
           </S.Content>
           <S.Nextpage>
             <S.Table>
-              <tr>
-                <td>
-                  {chagenumber - 1 === 0 ? (
-                    <S.Notpage2>이전글이 없습니다.</S.Notpage2>
-                  ) : (
-                    <div onClick={() => moveNoticepo(nextdata2)}>
-                      <S.firstdiv>
-                        <AiOutlineLeft size={15} />
-                        <div>이전글</div>
-                      </S.firstdiv>
-                      <S.Nexttitle>{nextdata2.title}</S.Nexttitle>
-                      <S.Datedata>{Datefun(nextdata2)}</S.Datedata>
-                    </div>
-                  )}
-                </td>
-                <td>
-                  {nextdata1.length === chagenumber ? (
-                    <S.Notpage>다음글이 없습니다.</S.Notpage>
-                  ) : (
-                    <S.Seconddiv onClick={() => moveNoticepo(nextdata3)}>
-                      <S.firstdiv>
-                        <div>다음글</div>
-                        <AiOutlineRight size={15} />
-                      </S.firstdiv>
-                      <S.Nexttitle>{nextdata3.title}</S.Nexttitle>
-                      <S.Datedata>{Datefun(nextdata3)}</S.Datedata>
-                    </S.Seconddiv>
-                  )}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>
+                    {chagenumber - 1 === 0 ? (
+                      <S.Notpage2>이전글이 없습니다.</S.Notpage2>
+                    ) : (
+                      <div onClick={() => moveNoticepo(nextdata2)}>
+                        <S.firstdiv>
+                          <AiOutlineLeft size={15} />
+                          <div>이전글</div>
+                        </S.firstdiv>
+                        <S.Nexttitle>{nextdata2.title}</S.Nexttitle>
+                        <S.Datedata>{Datefun(nextdata2)}</S.Datedata>
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    {nextdata1.length === chagenumber ? (
+                      <S.Notpage>다음글이 없습니다.</S.Notpage>
+                    ) : (
+                      <S.Seconddiv onClick={() => moveNoticepo(nextdata3)}>
+                        <S.firstdiv>
+                          <div>다음글</div>
+                          <AiOutlineRight size={15} />
+                        </S.firstdiv>
+                        <S.Nexttitle>{nextdata3.title}</S.Nexttitle>
+                        <S.Datedata>{Datefun(nextdata3)}</S.Datedata>
+                      </S.Seconddiv>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
             </S.Table>
           </S.Nextpage>
 
