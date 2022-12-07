@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export const Searchhook = (props: any) => {
+export const Searchcompo = (props: any) => {
   const searchlist = props.searchlist;
 
   const Optionlist = (searchlist: any) => {

@@ -4,8 +4,8 @@ import db from '../../db.json';
 import { NoticeList } from '../../components/notice/NoticeList';
 import { Footer } from '../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
-import { Pagination } from '../../components/hook/pagination';
-import { Searchhook } from '../../components/hook/Searchhook';
+import { Pagination } from '../../components/often/pagination';
+import { Searchcompo } from '../../components/often/Searchcompo';
 
 export const Notice = () => {
   const data1 = db.noticecontents;
@@ -26,7 +26,7 @@ export const Notice = () => {
         <S.Banner>Notice</S.Banner>
       </div>
       <S.Wrapper>
-        <Searchhook searchlist={searchlist} />
+        <Searchcompo searchlist={searchlist} />
         <S.Noticetitle>
           <div>No</div>
           <div>제목</div>

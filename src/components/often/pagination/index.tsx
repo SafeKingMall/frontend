@@ -34,6 +34,7 @@ export const Pagination = (props: any) => {
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
   useEffect(() => {
     parentFunction(currentItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderPageNumbers = pages.map((number: any) => {
