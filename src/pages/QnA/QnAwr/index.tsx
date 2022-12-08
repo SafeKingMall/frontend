@@ -39,44 +39,46 @@ export const QnAwr = () => {
       </div>
       <S.Wrapper>
         <S.Table>
-          <tr>
-            <td>제목</td>
-            <td>
-              <S.tableinput placeholder='제목을 입력해주세요.' />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호</td>
-            <td>
-              <S.tableinput placeholder='비밀번호를 입력해주세요.' />
-            </td>
-          </tr>
-          <tr>
-            <td>내용</td>
-            <td>
-              <S.tabletextarea placeholder='내용을 입력해주세요.' />
-            </td>
-          </tr>
-          <tr>
-            <td>첨부파일</td>
-            <td>
-              <S.tablediv>
-                {selectedImages.length !== 0 ? (
-                  <div>{attachfile}</div>
-                ) : (
-                  <S.notdownload>파일을 첨부할 수 있습니다.</S.notdownload>
-                )}
-                <S.changebutton>업로드</S.changebutton>
-                <input
-                  type='file'
-                  name='images'
-                  onChange={onSelectFile}
-                  multiple
-                  accept='.png, .jpg, .pdf, .hwp,image/*'
-                />
-              </S.tablediv>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>제목</td>
+              <td>
+                <S.tableinput placeholder='제목을 입력해주세요.' />
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <S.tableinput placeholder='비밀번호를 입력해주세요.' />
+              </td>
+            </tr>
+            <tr>
+              <td>내용</td>
+              <td>
+                <S.tabletextarea placeholder='내용을 입력해주세요.' />
+              </td>
+            </tr>
+            <tr>
+              <td>첨부파일</td>
+              <td>
+                <S.tablediv>
+                  {selectedImages.length !== 0 ? (
+                    <div>{attachfile}</div>
+                  ) : (
+                    <S.notdownload>파일을 첨부할 수 있습니다.</S.notdownload>
+                  )}
+                  <S.changebutton>업로드</S.changebutton>
+                  <input
+                    type='file'
+                    name='images'
+                    onChange={onSelectFile}
+                    multiple
+                    accept='.png, .jpg, .pdf, .hwp,image/*'
+                  />
+                </S.tablediv>
+              </td>
+            </tr>
+          </tbody>
         </S.Table>
         <S.QnAbox>
           <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>

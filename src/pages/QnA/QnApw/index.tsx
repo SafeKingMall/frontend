@@ -21,7 +21,7 @@ export const QnApw = () => {
         </S.Pwbox>
         <S.QnAbox>
           <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => navigate('/qna-po', { state: data })}>목록</S.QnAButton2>
+          <S.QnAButton2 onClick={() => navigate('/qna-po', { state: data })}>확인</S.QnAButton2>
         </S.QnAbox>
       </S.Wrapper>
       <Footer />
