@@ -67,11 +67,11 @@ export const QnApo = () => {
           </S.Content>
           <S.Titlediv3>댓글</S.Titlediv3>
           <div>{data.answer !== undefined ? answer2(comment) : ''}</div>
-          <S.comment>
+          <S.Comment>
             <div>댓글쓰기</div>
             <S.Comemntinput placeholder='댓글을 입력해주세요.' />
             <S.QnAButton2>등록</S.QnAButton2>
-          </S.comment>
+          </S.Comment>
         </S.Pobox>
       </S.Wrapper>
       <Footer />

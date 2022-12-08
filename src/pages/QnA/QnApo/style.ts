@@ -153,7 +153,7 @@ export const QnAButton2 = styled.button`
   border: none;
 `;
 
-export const comment = styled.div`
+export const Comment = styled.div`
   div {
     padding: 4.8rem 1rem 1.6rem 1rem;
     font-size: 3.2rem;

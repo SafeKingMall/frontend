@@ -54,7 +54,7 @@ export const Table = styled.table`
   }
 `;
 
-export const tableinput = styled.input`
+export const Tableinput = styled.input`
   width: 118.4rem;
   heith: 8rem;
   font-size: 3.2rem;
@@ -67,7 +67,7 @@ export const tableinput = styled.input`
   }
 `;
 
-export const changebutton = styled.button`
+export const Changebutton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
   font-size: 2.4rem;
@@ -84,7 +84,7 @@ export const changebutton = styled.button`
   border: none;
 `;
 
-export const tablediv = styled.div`
+export const Tablediv = styled.div`
   width: 118.4rem;
   heith: 8rem;
   font-size: 3.2rem;
@@ -105,12 +105,12 @@ export const tablediv = styled.div`
   }
 `;
 
-export const notdownload = styled.div`
+export const Notdownload = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
   font-size: 2.4rem;
 `;
 
-export const tabletextarea = styled.textarea`
+export const Tabletextarea = styled.textarea`
   width: 118.4rem;
   min-height: 53.8rem;
   margin-left: 1.2rem;
@@ -151,7 +151,7 @@ export const QnAbox = styled.div`
   margin-left: 116rem;
 `;
 
-export const divlala = styled.div`
+export const Divlala = styled.div`
   justify-content: center;
   display: flex;
   button {

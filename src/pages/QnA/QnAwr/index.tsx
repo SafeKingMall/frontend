@@ -23,12 +23,12 @@ export const QnAwr = () => {
     selectedImages &&
     selectedImages.map((image: any) => {
       return (
-        <S.divlala key={image}>
+        <S.Divlala key={image}>
           <div>{image}</div>
           <button onClick={() => setSelectedImages(selectedImages.filter((e) => e !== image))}>
             <VscClose size='30' />
           </button>
-        </S.divlala>
+        </S.Divlala>
       );
     });
 
@@ -43,31 +43,31 @@ export const QnAwr = () => {
             <tr>
               <td>제목</td>
               <td>
-                <S.tableinput placeholder='제목을 입력해주세요.' />
+                <S.Tableinput placeholder='제목을 입력해주세요.' />
               </td>
             </tr>
             <tr>
               <td>비밀번호</td>
               <td>
-                <S.tableinput placeholder='비밀번호를 입력해주세요.' />
+                <S.Tableinput placeholder='비밀번호를 입력해주세요.' />
               </td>
             </tr>
             <tr>
               <td>내용</td>
               <td>
-                <S.tabletextarea placeholder='내용을 입력해주세요.' />
+                <S.Tabletextarea placeholder='내용을 입력해주세요.' />
               </td>
             </tr>
             <tr>
               <td>첨부파일</td>
               <td>
-                <S.tablediv>
+                <S.Tablediv>
                   {selectedImages.length !== 0 ? (
                     <div>{attachfile}</div>
                   ) : (
-                    <S.notdownload>파일을 첨부할 수 있습니다.</S.notdownload>
+                    <S.Notdownload>파일을 첨부할 수 있습니다.</S.Notdownload>
                   )}
-                  <S.changebutton>업로드</S.changebutton>
+                  <S.Changebutton>업로드</S.Changebutton>
                   <input
                     type='file'
                     name='images'
@@ -75,7 +75,7 @@ export const QnAwr = () => {
                     multiple
                     accept='.png, .jpg, .pdf, .hwp,image/*'
                   />
-                </S.tablediv>
+                </S.Tablediv>
               </td>
             </tr>
           </tbody>
