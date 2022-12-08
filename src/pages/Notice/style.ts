@@ -11,10 +11,7 @@ export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
   margin: 2.4rem 2.4rem 2.4rem 131rem;
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
-  padding-right: 4.3rem;
-  padding-left: 4.3rem;
+  padding: 1.8rem 4.3rem;
   font-size: 1.5rem;
   align-items: center;
 `;
