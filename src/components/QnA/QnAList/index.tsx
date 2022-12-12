@@ -1,10 +1,8 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
-// import { useEffect } from 'react';
 import { TfiLock } from 'react-icons/tfi';
 
 export const QnAList = (props: any) => {
-  let currentItems = props.currentItems;
   const navigate = useNavigate();
   const moveQnApw = (item: any) => {
     navigate('/qna-pw', {
@@ -43,5 +41,5 @@ export const QnAList = (props: any) => {
     );
   };
 
-  return <S.Wrapper>{QnAdataList2(currentItems)}</S.Wrapper>;
+  return <S.Wrapper>{QnAdataList2(props.currentItems)}</S.Wrapper>;
 };
