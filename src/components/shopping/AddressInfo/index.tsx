@@ -11,8 +11,6 @@ export const AddressInfo = (props: any) => {
   const [selectValue, setSelectValue] = useState('');
   const [directToggle, setDirectToggle] = useState(false);
   const [isOpenPost, setIsOpenPost] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   const openModal = () => {
     setIsOpenPost(true);
@@ -85,18 +83,6 @@ export const AddressInfo = (props: any) => {
       setSelectValue('');
     }
   }, [addRadio, userData]);
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeEvent);
-  });
-
-  const resizeEvent = () => {
-    setWindowWidth(window.innerWidth);
-    setWindowHeight(window.innerHeight);
-  };
-
-  console.log(windowWidth);
-  console.log(windowHeight);
 
   const postCodeStyle: CSSObject = {
     width: '500px',
@@ -244,12 +230,8 @@ export const AddressInfo = (props: any) => {
         </S.AddInputContainer>
       </S.AddContainer>
       {isOpenPost && (
-        <S.DaumPostBackground
-          onClick={() => closeModal()}
-          // style={{ width: windowWidth, height: windowHeight }}
-        >
+        <S.DaumPostBackground onClick={() => closeModal()}>
           <S.DaumPostDiv>
-            {/* <S.DaumPostTopArea></S.DaumPostTopArea> */}
             <DaumPostcode style={postCodeStyle} autoClose={false} onComplete={onCompletePost} />
           </S.DaumPostDiv>
         </S.DaumPostBackground>

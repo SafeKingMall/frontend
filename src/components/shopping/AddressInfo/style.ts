@@ -162,11 +162,3 @@ export const DaumPostDiv = styled.div`
   transform: translate(-50%, -50%);
   background-color: '#ffffff';
 `;
-export const DaumPostTopArea = styled.div`
-  width: 50rem;
-  height: 4rem;
-  background-color: #ffffff;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  border-top-left-radius: 1.5rem;
-  border-top-right-radius: 1.5rem;
-`;
