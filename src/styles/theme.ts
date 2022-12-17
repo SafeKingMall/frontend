@@ -5,6 +5,7 @@ const palette = {
   txt: '#212121',
   txtblack: '#333333',
   txtgray: '#999999',
+  lightgray: '#efeff1',
 };
 const common = {
   flexCenter: `
