@@ -43,7 +43,7 @@ export const OrdersStep = (props: any) => {
             장바구니
           </S.StepText>
           <S.StepText style={props.stepTitle === '주문·결제' ? curStepText : {}}>
-            주문·결제
+            주문/결제
           </S.StepText>
           <S.StepText style={props.stepTitle === '주문완료' ? curStepText : {}}>
             주문완료
