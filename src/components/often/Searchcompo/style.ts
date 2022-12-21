@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -37,7 +46,7 @@ export const SearchBar = styled.input`
   outline: none;
 `;
 
-export const Searchbutton = styled.button`
+export const SearchButton = styled.button`
   width: 4rem;
   height: 4rem;
   background-color: #289951;
