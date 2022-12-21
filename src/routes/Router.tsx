@@ -19,12 +19,12 @@ import {
   OrderOk,
   Orders,
   Notice,
-  Noticewr,
-  Noticepo,
+  NoticeWr,
+  NoticePo,
   QnA,
-  QnApw,
-  QnApo,
-  QnAwr,
+  QnAPw,
+  QnAPo,
+  QnAWr,
   SignIn,
   SignUp1,
   SignUp2,
@@ -57,12 +57,12 @@ const Router = () => {
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
-        <Route path='/notice-wr' element={<Noticewr />} />
-        <Route path='/notice-po' element={<Noticepo />} />
+        <Route path='/notice-wr' element={<NoticeWr />} />
+        <Route path='/notice-po' element={<NoticePo />} />
         <Route path='/qna' element={<QnA />} />
-        <Route path='/qna-pw' element={<QnApw />} />
-        <Route path='/qna-po' element={<QnApo />} />
-        <Route path='/qna-wr' element={<QnAwr />} />
+        <Route path='/qna-pw' element={<QnAPw />} />
+        <Route path='/qna-po' element={<QnAPo />} />
+        <Route path='/qna-wr' element={<QnAWr />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up1' element={<SignUp1 />} />
         <Route path='/sign-up2' element={<SignUp2 />} />
