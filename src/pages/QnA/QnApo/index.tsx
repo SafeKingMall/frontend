@@ -6,7 +6,7 @@ import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
-export const QnApo = () => {
+export const QnAPo = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const data = state;
@@ -14,7 +14,7 @@ export const QnApo = () => {
   const comment = data.answer?.map((el: any) => {
     return el;
   });
-  const RegistDate = (day: any) => {
+  const registDate = (day: any) => {
     const today = new Date(day);
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
@@ -32,13 +32,13 @@ export const QnApo = () => {
         {al.map((al: any, index: any) => {
           return (
             <div key={index}>
-              <S.Titlediv2>
+              <S.TitleDiv2>
                 <div>
                   <div>{al.adminId}</div>
                   <HiOutlineChatBubbleOvalLeftEllipsis />
                 </div>
-                <div>{RegistDate(al.createDate)}</div>
-              </S.Titlediv2>
+                <div>{registDate(al.createDate)}</div>
+              </S.TitleDiv2>
               <S.Content2>{al.contents}</S.Content2>
             </div>
           );
@@ -54,25 +54,25 @@ export const QnApo = () => {
       </div>
       <S.Wrapper>
         <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>
-        <S.Pobox>
-          <S.Titlediv>
+        <S.PoBox>
+          <S.TitleDiv>
             <div>
               <div>{data.title}</div>
               <TfiLock color='#D9D9D9' />
             </div>
             <div>작성자 : {data.memberId}</div>
-          </S.Titlediv>
+          </S.TitleDiv>
           <S.Content>
             <div>{data.contents}</div>
           </S.Content>
-          <S.Titlediv3>댓글</S.Titlediv3>
+          <S.TitleDiv3>댓글</S.TitleDiv3>
           <div>{data.answer !== undefined ? answer2(comment) : ''}</div>
-          <S.comment>
+          <S.Comment>
             <div>댓글쓰기</div>
-            <S.Comemntinput placeholder='댓글을 입력해주세요.' />
+            <S.ComemntInput placeholder='댓글을 입력해주세요.' />
             <S.QnAButton2>등록</S.QnAButton2>
-          </S.comment>
-        </S.Pobox>
+          </S.Comment>
+        </S.PoBox>
       </S.Wrapper>
       <Footer />
     </div>

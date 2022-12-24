@@ -17,16 +17,17 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
-export const QnAButton = styled.button`
+export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
   margin: 14.8rem 0rem 0rem 131rem;
-  padding: 1.8rem 4.3rem;
+  width: 13rem;
+  height: 7rem;
   font-size: 2.4rem;
   align-items: center;
 `;
 
-export const Pobox = styled.div`
+export const PoBox = styled.div`
   width: 144rem;
   margin-top: 2.4rem;
   margin-bottom: 12rem;
@@ -35,7 +36,7 @@ export const Pobox = styled.div`
   border-bottom: 0.11rem solid ${({ theme }) => theme.palette.txtgray};
 `;
 
-export const Titlediv = styled.div`
+export const TitleDiv = styled.div`
   text-align: center;
   display: flex;
   width: 144rem;
@@ -59,14 +60,14 @@ export const Content = styled.div`
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
 `;
 
-export const Nextpage = styled.div`
+export const NextPage = styled.div`
   display: flex;
   justify-content: space-between;
   color: ${({ theme }) => theme.palette.txtgray};
   padding-left: 1rem;
   padding-right: 1rem;
 `;
-export const Seconddiv = styled.div`
+export const SecondDiv = styled.div`
   text-align: right;
   div {
     &:first-child {
@@ -75,12 +76,12 @@ export const Seconddiv = styled.div`
   }
 `;
 
-export const Nexttitle = styled.div`
+export const NextTitle = styled.div`
   font-size: 3.2rem;
   padding-bottom: 1.6rem;
 `;
 
-export const firstdiv = styled.div`
+export const FirstDiv = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.6rem;
@@ -88,15 +89,15 @@ export const firstdiv = styled.div`
   padding-top: 2.4rem;
 `;
 
-export const Datedata = styled.div`
+export const DateData = styled.div`
   padding-bottom: 2.4rem;
 `;
 
-export const Notpage = styled.div`
+export const NotPage = styled.div`
   font-size: 3.2rem;
 `;
 
-export const Notpage2 = styled.div`
+export const NotPage2 = styled.div`
   font-size: 3.2rem;
 `;
 

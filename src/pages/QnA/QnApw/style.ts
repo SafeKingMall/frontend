@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const QnApwinput = styled.input`
+export const QnApwInput = styled.input`
   justify-content: center;
   width: 46rem;
   height: 6.4rem;
@@ -27,7 +27,7 @@ export const QnApwinput = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
 `;
 
-export const Pwbox = styled.div`
+export const PwBox = styled.div`
   position: absolute;
   width: 144rem;
   height: 30rem;
@@ -44,7 +44,7 @@ export const Pwbox = styled.div`
   }
 `;
 
-export const QnAbox = styled.div`
+export const QnABox = styled.div`
   margin-top: 65rem;
   margin-bottom: 16rem;
 `;

@@ -55,7 +55,7 @@ export const Table = styled.table`
   }
 `;
 
-export const tableinput = styled.input`
+export const TableInput = styled.input`
   width: 118.4rem;
   heith: 8rem;
   font-size: 3.2rem;
@@ -68,7 +68,7 @@ export const tableinput = styled.input`
   }
 `;
 
-export const tabletextarea = styled.textarea`
+export const TableTextarea = styled.textarea`
   width: 118.4rem;
   min-height: 53.8rem;
   margin: 1.2rem;
@@ -103,8 +103,9 @@ export const NoticeButton2 = styled.button`
   align-items: center;
 `;
 
-export const Noticebox = styled.div`
+export const NoticeBox = styled.div`
   margin-top: 1.2rem;
   margin-bottom: 16rem;
   margin-left: 116rem;
+  width: 30rem;
 `;

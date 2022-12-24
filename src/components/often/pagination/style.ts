@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const pageNumbers = styled.ul`
+export const PageNumbers = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
   margin-bottom: 12rem;
 `;
 
-export const lipageNumbers = styled.li`
+export const LiPageNumbers = styled.li`
   padding: 1rem;
   cursor: pointer;
   &:active {
@@ -15,7 +15,7 @@ export const lipageNumbers = styled.li`
   }
 `;
 
-export const buttonpageNumbers = styled.button`
+export const ButtonPageNumbers = styled.button`
   background-color: transparent;
   border: none;
   font-size: 1.5rem;

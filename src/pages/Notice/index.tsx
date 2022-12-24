@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import db from '../../db.json';
 import { NoticeList } from '../../components/notice/NoticeList';
 import { Footer } from '../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
-import { Pagination } from '../../components/often/pagination';
-import { Searchcompo } from '../../components/often/Searchcompo';
 
 export const Notice = () => {
-  const data1 = db.noticecontents;
-  const data = [...data1].reverse();
   const navigate = useNavigate();
+  const data1 = db.noticecontents;
+  // const [error, setError] = useState(null);
+  // const [loaded, setLoaded] = useState(false);
+  // const [data2, setData2] = useState([])
+  // console.log(data2)
+  const data = [...data1].reverse();
 
-  const [currentItems, setCurrentItems] = useState([]);
+  // useEffect(()=>{
 
-  const parentFunction = (x: any) => {
-    return setCurrentItems(x);
-  };
+  //   axios.get('').then((res)=>{
+  //     setData2(res.data)
+  //   console.log(res.data)
+  //   setLoaded(true);
 
-  const searchlist = ['제목', '작성일'];
+  //   }).catch((err)=>{
+  //     console.log(err)
+  //     setLoaded(true);
+  //     setError(error);
+  //   })
+  // },[])
 
   return (
     <div>
@@ -26,15 +34,12 @@ export const Notice = () => {
         <S.Banner>Notice</S.Banner>
       </div>
       <S.Wrapper>
-        <Searchcompo searchlist={searchlist} />
-        <S.Noticetitle>
-          <div>No</div>
-          <div>제목</div>
-          <div>등록일</div>
-        </S.Noticetitle>
-        <NoticeList data={data} currentItems={currentItems} />
+        <NoticeList
+          // loaded={loaded}
+          // error={error}
+          data={data}
+        />
         <S.NoticeButton onClick={() => navigate('/notice-wr')}>글쓰기</S.NoticeButton>
-        <Pagination data={data} parentFunction={parentFunction} />
       </S.Wrapper>
       <Footer />
     </div>

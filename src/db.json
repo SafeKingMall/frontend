@@ -506,22 +506,23 @@
       "id": "1",
       "title": "공지사항 타이틀입니다.1",
       "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
-      "memberId": "admin",
+      "lastModifiedDate": "2022-11-29 22:34:25.193169",
       "createDate": "2022-11-15 22:34:25.193169",
-      "lastModifiedDate": "2022-11-29 22:34:25.193169"
+      "memberId": "admin"
     },
     {
       "id": "2",
       "title": "공지사항 타이틀입니다.2",
       "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
-      "createDate": "2022-11-14 23:23:59.847240",
-      "lastModifiedDate": "2022-11-16 22:34:25.193169",
+      "lastModifiedDate": "2022-11-13 22:34:25.193169",
+      "createDate": "2022-11-11 23:23:59.847240",
       "memberId": "admin"
     },
     {
       "id": "3",
       "title": "공지사항 타이틀입니다.3",
       "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
+      "lastModifiedDate": "2022-11-16 22:34:25.193169",
       "createDate": "2022-11-15 23:23:59.847240",
       "memberId": "admin"
     },
@@ -529,7 +530,7 @@
       "id": "4",
       "title": "공지사항 타이틀입니다.4",
       "contents": "공지사항내용이 들어갑니다.<br><b>강조내용<b>",
-      "lastModifiedDate": "2022-11-29 22:34:25.193169",
+      "lastModifiedDate": "2022-11-19 22:34:25.193169",
       "createDate": "2022-11-15 23:23:59.847240",
       "memberId": "admin"
     },
