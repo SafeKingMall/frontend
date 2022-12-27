@@ -20,6 +20,7 @@ export const BannerText = styled.span`
 export const NavArea = styled.div`
   height: 8.8rem;
   width: 100%;
+  min-weight: 144rem;
   display: flex;
   justify-content: center;
   border-bottom: 0.1rem solid ${(props) => props.theme.palette.txtblack};

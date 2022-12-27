@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  min-width: 144rem;
 `;
 export const DetailContainer = styled.div`
   width: 100%;
@@ -113,4 +114,71 @@ export const ShowDesBtn = styled.div`
   font-weight: 400;
   color: #000000;
   cursor: pointer;
+`;
+export const CountBoxArea = styled.div`
+  width: 66rem;
+  height: 8rem;
+  background-color: ${({ theme }) => theme.palette.lightgray};
+  position: absolute;
+  bottom: 22.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const CountText = styled.p`
+  position: absolute;
+  left: 5.1rem;
+  font-size: 2rem;
+  font-weight: 500;
+`;
+export const CountBox = styled.div`
+  position: absolute;
+  right: 4rem;
+  height: 4.8rem;
+  width: 18.4rem;
+  background-color: #ffffff;
+`;
+export const CountBtn = styled.button`
+  width: 4.8rem;
+  height: 100%;
+  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  color: #000000;
+  font-size: 2rem;
+  font-weight: 400;
+`;
+export const CountInput = styled.input`
+  width: 8.8rem;
+  height: 100%;
+  border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;
+export const TotalPriceArea = styled.div`
+  width: 66rem;
+  height: 12rem;
+  position: absolute;
+  bottom: 10.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+export const TotalPriceTitle = styled.span`
+  font-size: 3rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.palette.txt};
+  margin-right: 8.6rem;
+`;
+export const TotalPrice = styled(TotalPriceTitle)`
+  font-weight: 700;
+  margin-right: 0;
 `;
