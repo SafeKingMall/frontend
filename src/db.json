@@ -614,5 +614,223 @@
       "createDate": "2022-11-15 23:23:59.847240",
       "memberId": "admin"
     }
+  ],
+  "orders": [
+    {
+      "id": 6,
+      "status": "CANCEL",
+      "price": 70000,
+      "date": "2022-12-24T11:11:11",
+      "orderItem_count": 3,
+      "orderItem": {
+        "id": 2,
+        "name": "삼각대"
+      },
+      "payment": {
+        "status": "CANCEL"
+      },
+      "member": {
+        "name": "조세호"
+      },
+      "delivery": {
+        "receiver": "조세호",
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "id": 5,
+      "status": "CANCEL",
+      "price": 70000,
+      "date": "2022-12-24T11:11:11",
+      "orderItem_count": 3,
+      "orderItem": {
+        "id": 2,
+        "name": "삼각대"
+      },
+      "payment": {
+        "status": "CANCEL"
+      },
+      "member": {
+        "name": "조세호"
+      },
+      "delivery": {
+        "receiver": "조세호",
+        "status": "COMPLETE"
+      }
+    },
+
+    {
+      "id": 4,
+      "status": "CANCEL",
+      "price": 70000,
+      "date": "2022-12-24T11:11:11",
+      "orderItem_count": 3,
+      "orderItem": {
+        "id": 2,
+        "name": "삼각대"
+      },
+      "payment": {
+        "status": "CANCEL"
+      },
+      "member": {
+        "name": "조세호"
+      },
+      "delivery": {
+        "receiver": "조세호",
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "id": 3,
+      "status": "COMPLETE",
+      "price": 50000,
+      "date": "2022-12-25T11:11:11",
+      "orderItem_count": 5,
+      "orderItem": {
+        "id": 1,
+        "name": "안전모"
+      },
+      "payment": {
+        "status": "COMPLETE"
+      },
+      "member": {
+        "name": "아이유"
+      },
+      "delivery": {
+        "receiver": "아이유",
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "id": 2,
+      "status": "CANCEL",
+      "price": 70000,
+      "date": "2022-12-24T11:11:11",
+      "orderItem_count": 3,
+      "orderItem": {
+        "id": 2,
+        "name": "삼각대"
+      },
+      "payment": {
+        "status": "CANCEL"
+      },
+      "member": {
+        "name": "조세호"
+      },
+      "delivery": {
+        "receiver": "조세호",
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "id": 1,
+      "status": "CANCEL",
+      "price": 10000,
+      "date": "2022-12-23T11:11:11",
+      "orderItem_count": 1,
+      "orderItem": {
+        "id": 3,
+        "name": "안전 조끼"
+      },
+      "payment": {
+        "status": "CANCELING"
+      },
+      "member": {
+        "name": "유재석"
+      },
+      "delivery": {
+        "receiver": "조세호",
+        "status": "COMPLETE"
+      }
+    }
+  ],
+  "orderdetail": [
+    {
+      "message": "주문관리 상세 조회 성공",
+      "order": {
+        "id": 1,
+        "status": "CANCEL",
+        "price": 90000,
+        "memo": "납기일 맞춰주세요.",
+        "date": "2022-12-25T11:11:11",
+        "admin_memo": "주문 수정, 재고 부족으로 고객과 통화 후 주문수량 수정함.",
+        "orderItems": [
+          {
+            "id": 1,
+            "name": "안전모",
+            "count": 1,
+            "price": 10000
+          },
+          {
+            "id": 2,
+            "name": "소화기(소)",
+            "count": 2,
+            "price": 25000
+          },
+          {
+            "id": 3,
+            "name": "삼각대",
+            "count": 1,
+            "price": 10000
+          }
+        ],
+        "delivery": {
+          "id": 1,
+          "status": "IN_DELIVERY",
+          "receiver": "홍길동",
+          "phone_number": "01012341234",
+          "address": "제주도 애월읍 55-1",
+          "memo": "문앞에 놓아주세요.",
+          "invoice_number": "241664056970",
+          "price": 2500,
+          "company": "롯데택배"
+        },
+        "payment": {
+          "status": "COMPLETE",
+          "name": "홍길동",
+          "company": "현대카드",
+          "means": "카드",
+          "business_number": "524-86-01528",
+          "price": 90000
+        }
+      }
+    }
+  ],
+  "categorycontent": [
+    {
+      "id": 5,
+      "name": "안전사고예방",
+      "createDate": "2022-12-11T14:06:19.727242",
+      "lastModifiedDate": "2022-12-11T14:06:19.727242",
+      "sort": 5
+    },
+    {
+      "id": 4,
+      "name": "해양사고예방",
+      "createDate": "2022-12-11T14:06:19.726242",
+      "lastModifiedDate": "2022-12-11T14:06:19.726242",
+      "sort": 4
+    },
+    {
+      "id": 3,
+      "name": "누출사고예방",
+      "createDate": "2022-12-11T14:06:19.726242",
+      "lastModifiedDate": "2022-12-11T14:06:19.726242",
+      "sort": 3
+    },
+    {
+      "id": 2,
+      "name": "화재사고예방",
+      "createDate": "2022-12-11T14:06:19.725242",
+      "lastModifiedDate": "2022-12-11T14:06:19.725242",
+      "sort": 2
+    },
+    {
+      "id": 1,
+      "name": "중대사고예방",
+      "createDate": "2022-12-11T14:06:19.721243",
+      "lastModifiedDate": "2022-12-11T14:06:19.721243",
+      "sort": 1
+    }
   ]
 }

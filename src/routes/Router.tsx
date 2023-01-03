@@ -5,8 +5,8 @@ import {
   AdminItem,
   AdminMember,
   AdminOrder,
-  AdminSignIn,
-  AdminSignUp,
+  AdminOrderDe,
+  AdminCategory,
   ItemDetail,
   ItemListSerious,
   ItemListFire,
@@ -42,8 +42,8 @@ const Router = () => {
         <Route path='/admin-member' element={<AdminMember />} />
         <Route path='/admin-item' element={<AdminItem />} />
         <Route path='/admin-order' element={<AdminOrder />} />
-        <Route path='/adminsign-in' element={<AdminSignIn />} />
-        <Route path='/adminsign-up' element={<AdminSignUp />} />
+        <Route path='/admin-order-de' element={<AdminOrderDe />} />
+        <Route path='/admin-category' element={<AdminCategory />} />
         <Route path='/itemdetail' element={<ItemDetail />} />
         <Route path='/itemlist-serious' element={<ItemListSerious />} />
         <Route path='/itemlist-fire' element={<ItemListFire />} />
