@@ -1,13 +1,8 @@
 import React from 'react';
 import * as S from './style';
-import { useEffect } from 'react';
 
 export const EditMenu = () => {
   const location = window.location.pathname;
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
 
   const numberColor = '#289951';
 
