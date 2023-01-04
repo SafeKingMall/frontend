@@ -5,6 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineDown } from 'react-icons/ai';
 import axios from 'axios';
 
+const SEARCH_CATEGORY_LIST = process.env.REACT_APP_SEARCH_CATEGORY_LIST;
+const SEARCH_ITEM = process.env.REACT_APP_SEARCH_ITEM;
+
 export const ItemDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -39,8 +42,8 @@ export const ItemDetail = () => {
     const getData = async () => {
       await axios
         .all([
-          axios.get('http://safekingmall.ml/api/v1/category/list'),
-          axios.get('http://safekingmall.ml/api/v1/item/' + state.itemId),
+          axios({ method: 'get', url: SEARCH_CATEGORY_LIST }),
+          axios({ method: 'get', url: SEARCH_ITEM + state.itemId }),
         ])
         .then(
           axios.spread((res1, res2) => {

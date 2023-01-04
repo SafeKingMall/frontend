@@ -5,13 +5,16 @@ import axios from 'axios';
 import { List } from '../../../components/item/List';
 import { Search } from '../../../components/item/Search';
 
+const SEARCH_CATEGORY_LIST = process.env.REACT_APP_SEARCH_CATEGORY_LIST;
+const SEARCH_ITEM_LIST = process.env.REACT_APP_SEARCH_ITEM_LIST;
+
 export const ItemList1 = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [selectNav, setSelectNav] = useState('');
   const [itemList, setItemList] = useState([]);
   // useEffect(() => {
   //   const getData = async () => {
-  //     await axios.get('http://safekingmall.ml/api/v1/category/list').then((res) => {
+  //     await axios({ method: 'get', url: SEARCH_CATEGORY_LIST }).then((res) => {
   //       res.data.content.sort((a: any, b: any) => {
   //         return a.sort - b.sort;
   //       });
@@ -21,12 +24,13 @@ export const ItemList1 = () => {
   //   };
   //   getData();
   // }, []);
+
   useEffect(() => {
     const getData = async () => {
       await axios
         .all([
-          axios.get('http://safekingmall.ml/api/v1/category/list'),
-          axios.get('http://safekingmall.ml/api/v1/item/list'),
+          axios({ method: 'get', url: SEARCH_CATEGORY_LIST }),
+          axios({ method: 'get', url: SEARCH_ITEM_LIST }),
         ])
         .then(
           axios.spread((res1, res2) => {
