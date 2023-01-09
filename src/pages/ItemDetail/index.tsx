@@ -5,9 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineDown } from 'react-icons/ai';
 import axios from 'axios';
 
-const SEARCH_CATEGORY_LIST = process.env.REACT_APP_SEARCH_CATEGORY_LIST;
-const SEARCH_ITEM = process.env.REACT_APP_SEARCH_ITEM;
-
 export const ItemDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -42,8 +39,11 @@ export const ItemDetail = () => {
     const getData = async () => {
       await axios
         .all([
-          axios({ method: 'get', url: SEARCH_CATEGORY_LIST }),
-          axios({ method: 'get', url: SEARCH_ITEM + state.itemId }),
+          axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
+          }),
+          axios({ method: 'get', url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}` }),
         ])
         .then(
           axios.spread((res1, res2) => {
@@ -99,7 +99,7 @@ export const ItemDetail = () => {
       <S.DetailContainer>
         <S.DetailArea>
           <img
-            src={itemData === '' ? '' : 'http://safekingmall.ml' + itemData.fileName}
+            src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
             width='700'
             height='700'
             alt={itemData.name}
