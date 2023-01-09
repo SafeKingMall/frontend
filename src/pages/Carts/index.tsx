@@ -20,7 +20,7 @@ export const Carts = () => {
     }
   };
   useEffect(() => {
-    const postData = async () => {
+    const getData = async () => {
       let jwt;
       await axios({
         method: 'post',
@@ -43,7 +43,7 @@ export const Carts = () => {
         setResultList(res.data.content);
       });
     };
-    postData();
+    getData();
   }, []);
   const itemInCart =
     data.length === 0 ? (
