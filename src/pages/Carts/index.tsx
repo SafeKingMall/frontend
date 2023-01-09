@@ -1,45 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { CartsList } from '../../components/shopping/CartsList';
 import { TotalPrice } from '../../components/shopping/TotalPrice';
 import { NoCartsItem } from '../../components/shopping/NoCartsItem';
-
-//테스트 데이터
-const data: any = [
-  {
-    itemId: 1,
-    name: '안전화1',
-    price: 90000,
-    categoryName: '중대사고예방',
-    description: '상품상세설명 블라블라',
-    count: 1,
-  },
-  {
-    itemId: 3,
-    name: '코팅장갑',
-    price: 1000,
-    categoryName: '화재사고예방',
-    description: '상품상세설명 블라블라',
-    count: 2,
-  },
-  {
-    itemId: 5,
-    name: '축압식 분말 소화기 (1.5kg)',
-    price: 13900,
-    categoryName: '누출사고예방',
-    description: '상품상세설명 블라블라',
-    count: 1,
-  },
-];
-
-// const data: any = [];
+import axios from 'axios';
 
 export const Carts = () => {
   const stepTitle = '장바구니';
   const navigate = useNavigate();
-  const [resultList, setResultList] = useState(data);
+  const [resultList, setResultList] = useState<any>('');
+  const [data, setData] = useState<any>('');
   const selectPurchase = () => {
     if (resultList.length === 0) {
       alert('선택상품이 없습니다.');
@@ -47,6 +19,32 @@ export const Carts = () => {
       navigate('/Orders');
     }
   };
+  useEffect(() => {
+    const getData = async () => {
+      let jwt;
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_BASE_URL}/login`,
+        data: {
+          username: 'testUser1',
+          password: 'testUser1*',
+        },
+      }).then((res) => {
+        jwt = res.headers.authorization;
+      });
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_BASE_URL}/user/cart`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setData(res.data.content);
+        setResultList(res.data.content);
+      });
+    };
+    getData();
+  }, []);
   const itemInCart =
     data.length === 0 ? (
       <S.Container>

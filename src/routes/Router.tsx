@@ -5,7 +5,7 @@ import {
   AdminItem,
   AdminMember,
   AdminOrder,
-  AdminOrderDe,
+  // AdminOrderDe,
   AdminCategory,
   ItemDetail,
   ItemList1,
@@ -44,7 +44,7 @@ const Router = () => {
         <Route path='/admin-member' element={<AdminMember />} />
         <Route path='/admin-item' element={<AdminItem />} />
         <Route path='/admin-order' element={<AdminOrder />} />
-        <Route path='/admin-order-de' element={<AdminOrderDe />} />
+        {/* <Route path='/admin-order-de' element={<AdminOrderDe />} /> */}
         <Route path='/admin-category' element={<AdminCategory />} />
         <Route path='/itemdetail' element={<ItemDetail />} />
         <Route path='/itemlist-1' element={<ItemList1 />} />
