@@ -24,7 +24,7 @@ export const Carts = () => {
       let jwt;
       await axios({
         method: 'post',
-        url: `${process.env.REACT_APP_BASE_URL}/login`,
+        url: `${process.env.REACT_APP_API_URL}/login`,
         data: {
           username: 'testUser1',
           password: 'testUser1*',
@@ -34,7 +34,7 @@ export const Carts = () => {
       });
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_BASE_URL}/user/cart`,
+        url: `${process.env.REACT_APP_API_URL}/user/cart`,
         headers: {
           Authorization: jwt,
         },

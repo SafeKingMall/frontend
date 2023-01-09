@@ -20,7 +20,7 @@ export const List = (props: any) => {
           return (
             <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
               <img
-                src={'http://safekingmall.ml' + item.fileName}
+                src={process.env.REACT_APP_BASE_URL + item.fileName}
                 width='336'
                 height='336'
                 alt={item.name}
