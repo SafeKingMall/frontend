@@ -10,9 +10,15 @@ export const ItemArea = styled.div`
   height: 100%;
   width: 144rem;
   margin-top: 4rem;
+  // margin-bottom: 10.4rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+export const ScrollDiv = styled.div`
+  height: 10.4rem;
+  width: 100%;
+  ${({ theme }) => theme.common.flexCenter};
 `;
 export const ItemContainer = styled.div`
   cursor: pointer;

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const List = (props: any) => {
-  let itemList = props.itemList;
+  const itemList = props.itemList;
+  const setItemList = props.setItemList;
+  const reqData = props.reqData;
+  const page = props.page;
+  const setPage = props.setPage;
+  const totalPages = props.totalPages;
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const moveDetail = (item: any) => {
     navigate('/itemDetail', {
@@ -12,6 +19,31 @@ export const List = (props: any) => {
       },
     });
   };
+
+  const onScroll = () => {
+    if (page < totalPages) {
+      pageUp();
+    } else return;
+  };
+
+  const pageUp = async () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && !loading) {
+      setLoading(true);
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=${page}&${reqData}`,
+      }).then((res) => {
+        setItemList([...itemList, ...res.data.content]);
+      });
+      setPage(page + 1);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  });
 
   return (
     <S.Container>
@@ -36,6 +68,7 @@ export const List = (props: any) => {
             </S.ItemContainer>
           );
         })}
+        <S.ScrollDiv />
       </S.ItemArea>
     </S.Container>
   );

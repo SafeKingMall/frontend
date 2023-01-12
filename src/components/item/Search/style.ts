@@ -24,6 +24,7 @@ export const Select = styled.select`
   background-color: #fefefe;
   color: #686868;
   outline: none;
+  cursor: pointer;
 `;
 export const SearchBar = styled.input`
   width: 24rem;
@@ -35,4 +36,13 @@ export const SearchBar = styled.input`
   border: 0.1rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
+`;
+export const SearchBtn = styled.button`
+  width: 4rem;
+  height: 4rem;
+  background-color: ${({ theme }) => theme.palette.green};
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -4,42 +4,57 @@ import { Nav } from '../../../components/item/Nav';
 import axios from 'axios';
 import { List } from '../../../components/item/List';
 import { Search } from '../../../components/item/Search';
+import { Header } from '../../../components/common/Heaeder';
+import { Footer } from '../../../components/common/Footer';
 
 export const ItemList3 = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [selectNav, setSelectNav] = useState('');
   const [itemList, setItemList] = useState([]);
+  const [sort, setSort] = useState(`sort=createDate,desc&sort=name,asc`);
+  const [searchItem, setSearchItem] = useState('');
+  const [reqData, setReqData] = useState(``);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
   useEffect(() => {
     const getData = async () => {
-      await axios
-        .all([
-          axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
-          }),
-          axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/item/list?size=20&page=1&sort=id,desc`,
-          }),
-        ])
-        .then(
-          axios.spread((res1, res2) => {
-            setCategoryList(res1.data.content);
-            setSelectNav(res1.data.content[2].name);
-            setItemList(
-              res2.data.content.filter((el: any) => el.categoryName === res1.data.content[2].name),
-            );
-          }),
-        );
+      let categoryName: string = '';
+      setPage(1);
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
+      }).then((res) => {
+        categoryName = res.data.content[2].name;
+        setCategoryList(res.data.content);
+        setSelectNav(categoryName);
+      });
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=0&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
+      }).then((res) => {
+        setItemList(res.data.content);
+        setReqData(`${sort}&categoryName=${categoryName}&itemName=${searchItem}`);
+        setTotalPages(res.data.totalPages);
+      });
     };
     getData();
-  }, []);
+  }, [sort, selectNav, searchItem]);
 
   return (
     <S.Container>
+      <Header />
       <Nav categoryList={categoryList} selectNav={selectNav} />
-      <Search />
-      <List itemList={itemList} />
+      <Search setSort={setSort} setSearchItem={setSearchItem} />
+      <List
+        itemList={itemList}
+        setItemList={setItemList}
+        reqData={reqData}
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />
+      <Footer />
     </S.Container>
   );
 };
