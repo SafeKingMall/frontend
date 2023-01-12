@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import * as S from './style';
 import { MyPageMenu } from '../../components';
@@ -5,39 +6,50 @@ import { MyPageMenu } from '../../components';
 export const MyPage = () => {
   return (
     <S.Container>
-      <MyPageMenu />
+      <div style={{ marginTop: 190 }}>
+        <MyPageMenu />
+      </div>
       <S.Wrapper>
         <S.Top>내 정보</S.Top>
-        <S.MyWrapper>
-          <S.MyText>기본정보(필수)</S.MyText>
-        </S.MyWrapper>
-        <S.Test>
-          <S.MyList>
-            <S.MyListSub>이름</S.MyListSub>
-            <S.MyListCon>name</S.MyListCon>
-          </S.MyList>
-          <S.MyList>
-            <S.MyListSub>연락처</S.MyListSub>
-            <S.MyListCon>010-1234-5678</S.MyListCon>
-          </S.MyList>
-        </S.Test>
-        <S.Test>
-          <S.MyList>
-            <S.MyListSub>아이디</S.MyListSub>
-            <S.MyListCon>ididididididid</S.MyListCon>
-          </S.MyList>
-          <S.MyList>
-            <S.MyListSub>생년월일</S.MyListSub>
-            <S.MyListCon>2022년 2월 22일</S.MyListCon>
-          </S.MyList>
-        </S.Test>
-        <S.Tests>
-          <S.MyLists>
-            <S.MyListSubs>주소</S.MyListSubs>
-            <S.MyListCon>name</S.MyListCon>
-          </S.MyLists>
-        </S.Tests>
-        <S.MyBtn>주소찾기</S.MyBtn>
+        <S.BasicWrap>
+          <S.Mid>기본정보</S.Mid>
+          <div>
+            <label>이름</label>
+            <input placeholder='어쩌고저쩌고' />
+          </div>
+          <div>
+            <label>아이디</label>
+            <input />
+          </div>
+          <div>
+            <label>생년월일</label>
+            <input />
+          </div>
+        </S.BasicWrap>
+
+        <S.BasicWrap>
+          <S.Mid>회원정보</S.Mid>
+          <div>
+            <label>대표자명</label>
+            <input />
+          </div>
+          <div>
+            <label>연락처</label>
+            <input />
+          </div>
+          <div>
+            <label>사업자등록번호</label>
+            <input />
+          </div>
+          <div>
+            <label>법인등록번호</label>
+            <input />
+          </div>
+        </S.BasicWrap>
+        <S.BtnWrap>
+          <button>취소</button>
+          <button>수정하기</button>
+        </S.BtnWrap>
       </S.Wrapper>
     </S.Container>
   );

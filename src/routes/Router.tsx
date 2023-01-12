@@ -16,6 +16,7 @@ import {
   MainPage,
   MyPagePw,
   MyPageWd,
+  MyPageOd,
   OrderOk,
   Orders,
   Notice,
@@ -25,7 +26,6 @@ import {
   SignUp2,
   SignUp3,
   SignUp4,
-  MyPageOd,
 } from '../pages';
 // 페이지내 메뉴가 있을 경우 케밥케이스사용(mypage-edit)
 const Router = () => {

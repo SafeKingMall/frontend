@@ -5,89 +5,97 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   background-color: #f7f7f7;
-  width: 866px;
-  height: 581px;
-  margin-left: 20px;
+  width: 105.6rem;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
 `;
 export const Top = styled.div`
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 39px;
-  border-bottom: 1px solid #000;
-  margin-bottom: 44px;
-  padding: 32px 0 14px 32px;
+  margin: 10rem 0 8.8rem 0;
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 4.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-export const MyWrapper = styled.div`
-  margin-left: 32px;
-  margin-bottom: 30px;
+export const BasicWrap = styled.div`
+  background-color: mistyrose;
+  > div {
+    margin-bottom: 1.6rem;
+    background-color: pink;
+    > label {
+      display: inline-block;
+      text-align: center;
+      width: 25.6rem;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 2.4rem;
+    }
+    > input {
+      width: 73.6rem;
+      height: 6.4rem;
+      border: 0.1rem solid #efeff1;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 2.4rem;
+      padding: 2rem 4rem;
+    }
+  }
 `;
-export const MyText = styled.div`
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29px;
-  margin-bottom: 10px;
-`;
-export const MyList = styled.div`
-  /* background-color: pink; */
-  width: 332px;
-  height: 64px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 18px;
+export const Mid = styled.h1`
+  margin-bottom: 4rem;
+  width: 105.6rem;
+  padding-left: 2rem;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
   position: relative;
-`;
-export const MyListSub = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 26px;
     right: 0;
-    background-color: #000;
-    width: 332px;
-    height: 1px;
+    top: 4rem;
+    background-color: #212121;
+    width: 105.6rem;
+    height: 0.1rem;
   }
 `;
-export const MyListCon = styled.div`
-  margin-top: 22px;
+export const MemberWrap = styled.div`
+  background-color: peachpuff;
 `;
-export const Test = styled.div`
-  margin-bottom: 50px;
+export const Btn = styled.button`
+  width: 12.8rem;
+  height: 5.6rem;
+  border: 0.1rem solid #289951;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  color: #289951;
+`;
+
+export const BtnWrap = styled.div`
+  margin-top: 8.8rem;
   display: flex;
-  justify-content: space-around;
-`;
-export const MyLists = styled.div`
-  /* background-color: pink; */
-  width: 764px;
-  height: 64px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 18px;
-  position: relative;
-`;
-export const MyListSubs = styled.div`
-  &::after {
-    content: '';
-    position: absolute;
-    top: 26px;
-    right: 0;
-    background-color: #000;
-    width: 764px;
-    height: 1px;
+  justify-content: center;
+  align-items: center;
+  button:first-child {
+    margin-right: 1rem;
+    width: 12.8rem;
+    height: 5.6rem;
+    border: 0.1rem solid #289951;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: #289951;
   }
-`;
-export const Tests = styled.div`
-  margin-bottom: 50px;
-  display: flex;
-  justify-content: space-around;
-`;
-export const MyBtn = styled.button`
-  width: 130px;
-  height: 56px;
-  background-color: #d9d9d9;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  position: relative;
-  left: 685px;
-  bottom: 80px;
+  button:last-child {
+    width: 12.8rem;
+    height: 5.6rem;
+    background: #289951;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: #ffffff;
+  }
 `;
