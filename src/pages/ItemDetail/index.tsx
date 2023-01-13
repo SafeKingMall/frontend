@@ -4,6 +4,11 @@ import { Nav } from '../../components/item/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineDown } from 'react-icons/ai';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const ItemDetail = () => {
   const { state } = useLocation();
@@ -12,13 +17,14 @@ export const ItemDetail = () => {
   const [itemData, setItemData] = useState<any>('');
   const [desHeight, setDesHeight] = useState(0);
   const [desToggle, setDesToggle] = useState(false);
-  const [itemNavTop, setItemNavTop] = useState(0);
+  // const [itemNavTop, setItemNavTop] = useState(0);
   const [count, setCount] = useState(1);
   const [purchaseBtn, setPurchaseBtn] = useState(
     <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>,
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
       setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
     } else {
@@ -27,13 +33,14 @@ export const ItemDetail = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setItemNavTop((document.querySelector('#item-nav') as HTMLElement).offsetTop);
-    window.scrollTo({
-      top: itemNavTop,
-      behavior: 'smooth',
-    });
-  }, [itemNavTop]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   setItemNavTop((document.querySelector('#item-nav') as HTMLElement).offsetTop);
+  //   window.scrollTo({
+  //     top: itemNavTop,
+  //     behavior: 'smooth',
+  //   });
+  // }, [itemNavTop]);
 
   useEffect(() => {
     const getData = async () => {
@@ -47,9 +54,6 @@ export const ItemDetail = () => {
         ])
         .then(
           axios.spread((res1, res2) => {
-            res1.data.content.sort((a: any, b: any) => {
-              return a.sort - b.sort;
-            });
             setCategoryList(res1.data.content);
             setItemData(res2.data);
             if (res2.data.price === null) {
@@ -62,7 +66,21 @@ export const ItemDetail = () => {
   }, [state.itemId]);
 
   const moveOders = () => {
-    navigate('/orders');
+    swal
+      .fire({
+        icon: 'question',
+        text: '결제 페이지로 이동하시겠습니까?',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        width: 400,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          navigate('/orders');
+        }
+      });
   };
 
   const desEvent = () => {
@@ -91,6 +109,52 @@ export const ItemDetail = () => {
   const countInputBlur = (value: string) => {
     if (Number(value) === 0) value = '1';
     setCount(Number(value));
+  };
+
+  const addCart = async () => {
+    let jwt;
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/login`,
+      data: {
+        username: 'testUser2',
+        password: 'testUser2*',
+      },
+    }).then((res) => {
+      jwt = res.headers.authorization;
+    });
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
+      headers: {
+        Authorization: jwt,
+      },
+      data: {
+        itemId: state.itemId,
+        count: count,
+      },
+    })
+      .then(() => {
+        swal.fire({
+          icon: 'success',
+          title: '성공',
+          text: '장바구니에 추가되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      })
+      .catch((err) => {
+        if (err.response.data.code === 301) {
+          swal.fire({
+            icon: 'warning',
+            text: '동일한 상품이 장바구니에 있습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        }
+      });
   };
 
   return (
@@ -141,7 +205,10 @@ export const ItemDetail = () => {
               </S.TotalPriceArea>
             </div>
             <S.BtnArea>
-              <S.BasketBtn style={{ visibility: itemData.price === null ? 'hidden' : 'visible' }}>
+              <S.BasketBtn
+                style={{ visibility: itemData.price === null ? 'hidden' : 'visible' }}
+                onClick={() => addCart()}
+              >
                 장바구니
               </S.BasketBtn>
               {purchaseBtn}
