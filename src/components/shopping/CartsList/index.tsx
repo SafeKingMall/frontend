@@ -3,21 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 export const CartsList = (props: any) => {
-  let data = props.data;
+  const data = props.data;
   const setResultList = props.setResultList;
   const navigate = useNavigate();
-  const [checkedList, setCheckedList] = useState(data);
-  const [countList, setCountList] = useState(data.map((el: any) => el.count));
+  const [checkedList, setCheckedList] = useState<any>([]);
+  const [countList, setCountList] = useState<any>(data.map((el: any) => el.itemQuantity));
+  // console.log(checkedList);
+
   useEffect(() => {
     setResultList(
       checkedList.map((el: any) => {
         return {
           categoryName: el.categoryName,
-          count: Number((document.getElementById(el.itemId) as HTMLInputElement).value),
-          description: el.description,
-          itemId: el.itemId,
-          name: el.name,
-          price: el.price,
+          itemQuantity: Number((document.getElementById(el.id) as HTMLInputElement).value),
+          id: el.id,
+          itemName: el.itemName,
+          itemPrice: el.itemPrice,
         };
       }),
     );
@@ -44,7 +45,7 @@ export const CartsList = (props: any) => {
     if (checked) {
       setCheckedList([...checkedList, list]);
     } else {
-      setCheckedList(checkedList.filter((el: any) => el.itemId !== list.itemId));
+      setCheckedList(checkedList.filter((el: any) => el.id !== list.id));
     }
   };
   //카운트박스 input입력 이벤트
@@ -90,7 +91,7 @@ export const CartsList = (props: any) => {
         </S.ListTitleBar>
         {data.map((item: any, idx: number) => {
           return (
-            <S.ItemContainer key={item.itemId}>
+            <S.ItemContainer key={item.id}>
               <S.ItemContentArea>
                 <S.ItemCheckBoxArea>
                   <S.ItemCheckBox
@@ -102,18 +103,20 @@ export const CartsList = (props: any) => {
                 <S.ItemInfoArea>
                   <S.ItemImgArea onClick={() => moveDetail(item)}>
                     <img
-                      src='https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785'
+                      src={`${process.env.REACT_APP_BASE_URL}${item.thumbNail}`}
                       width='184'
                       height='184'
-                      alt={item.name}
+                      alt={item.itemName}
                       style={{ border: '0.1rem solid #efeff1' }}
                     />
                   </S.ItemImgArea>
                   <S.ItemTextArea>
                     <S.CategoryText>{item.categoryName}</S.CategoryText>
-                    <S.ItemNameText onClick={() => moveDetail(item)}>{item.name}</S.ItemNameText>
+                    <S.ItemNameText onClick={() => moveDetail(item)}>
+                      {item.itemName}
+                    </S.ItemNameText>
                     <S.ItemPriceText>
-                      {item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                      {item.itemPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
                     </S.ItemPriceText>
                   </S.ItemTextArea>
                 </S.ItemInfoArea>
@@ -122,7 +125,7 @@ export const CartsList = (props: any) => {
                 </S.ItemSaleArea>
                 <S.ItemPriceArea>
                   <p>
-                    {(item.price * countList[idx])
+                    {(item.itemPrice * countList[idx])
                       .toString()
                       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
                     원
@@ -141,7 +144,7 @@ export const CartsList = (props: any) => {
                 <S.CountBox>
                   <S.CountBtn onClick={() => countMinus(countList[idx], idx)}>-</S.CountBtn>
                   <S.CountInput
-                    id={item.itemId}
+                    id={item.id}
                     type='text'
                     onChange={(e) => countInput(e.target.value, idx)}
                     onBlur={(e) => countInputBlur(e.target.value, idx)}

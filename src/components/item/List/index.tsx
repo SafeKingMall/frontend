@@ -61,8 +61,8 @@ export const List = (props: any) => {
               <S.Category>{item.categoryName}</S.Category>
               <S.ItemName>{item.name}</S.ItemName>
               <S.Price>
-                {item.price
-                  ? item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                {item.viewPrice !== 1000000000
+                  ? item.viewPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
                   : '금액표시없음'}
               </S.Price>
             </S.ItemContainer>
