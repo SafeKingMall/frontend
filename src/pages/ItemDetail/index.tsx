@@ -56,7 +56,7 @@ export const ItemDetail = () => {
           axios.spread((res1, res2) => {
             setCategoryList(res1.data.content);
             setItemData(res2.data);
-            if (res2.data.price === null) {
+            if (res2.data.viewPrice === 1000000000) {
               setPurchaseBtn(<S.PurchaseBtn>견적서 요청</S.PurchaseBtn>);
             }
           }),
@@ -175,12 +175,13 @@ export const ItemDetail = () => {
             <S.ItemNameLine />
             <S.PriceArea>
               <S.Price>
-                {itemData.price
-                  ? itemData.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                {itemData.viewPrice !== 1000000000
+                  ? itemData.viewPrice?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') +
+                    '원'
                   : '관리자 문의'}
               </S.Price>
             </S.PriceArea>
-            <div style={{ display: itemData.price === null ? 'none' : '' }}>
+            <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
               <S.CountBoxArea>
                 <S.CountText>수량</S.CountText>
                 <S.CountBox>
@@ -197,7 +198,7 @@ export const ItemDetail = () => {
               <S.TotalPriceArea>
                 <S.TotalPriceTitle>합계</S.TotalPriceTitle>
                 <S.TotalPrice>
-                  {(itemData.price * count)
+                  {(itemData.viewPrice * count)
                     .toString()
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
                   원
@@ -206,7 +207,7 @@ export const ItemDetail = () => {
             </div>
             <S.BtnArea>
               <S.BasketBtn
-                style={{ visibility: itemData.price === null ? 'hidden' : 'visible' }}
+                style={{ visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible' }}
                 onClick={() => addCart()}
               >
                 장바구니
