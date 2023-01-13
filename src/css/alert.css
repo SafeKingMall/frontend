@@ -14,5 +14,5 @@
 }
 .swal2-popup {
   border-radius: 1.2rem !important;
-  padding-bottom: 2rem;
+  padding-bottom: 2rem !important;
 }
