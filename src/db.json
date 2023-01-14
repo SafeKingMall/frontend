@@ -832,5 +832,70 @@
       "lastModifiedDate": "2022-12-11T14:06:19.721243",
       "sort": 1
     }
+  ],
+  "AdminItemcontent": [
+    {
+      "id": 1,
+      "name": "name2",
+      "categoryName": "중대사고예방",
+      "createDate": "2022-12-02T09:11:39.366298",
+      "lastModifiedDate": "2022-12-02T09:11:39.366298"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "categoryName": "화재사고예방",
+      "createDate": "2022-12-02T09:11:41.457502",
+      "lastModifiedDate": "2022-12-02T09:11:41.457502"
+    },
+    {
+      "id": 3,
+      "name": "name3",
+      "categoryName": "누출사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 4,
+      "name": "name4",
+      "categoryName": "중대사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 5,
+      "name": "name5",
+      "categoryName": "누출사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 6,
+      "name": "name6",
+      "categoryName": "화재사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 7,
+      "name": "name7",
+      "categoryName": "누출사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 8,
+      "name": "name8",
+      "categoryName": "해양사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    },
+    {
+      "id": 9,
+      "name": "name9",
+      "categoryName": "해양사고예방",
+      "createDate": "2022-12-02T09:12:28.709188",
+      "lastModifiedDate": "2022-12-02T09:12:28.709188"
+    }
   ]
 }
