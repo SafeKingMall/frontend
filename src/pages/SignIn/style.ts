@@ -6,14 +6,14 @@ export const Container = styled.div`
   justify-content: center;
 `;
 export const Wrapper = styled.div`
+  margin-bottom: 60px;
   /* background-color: pink; */
   width: 1298px;
-  height: 900px;
+  /* height: 900px; */
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: column;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 export const Logo = styled.div`
   background-color: pink;
@@ -22,6 +22,7 @@ export const Logo = styled.div`
   margin: 72px 0 72px;
 `;
 export const InputContainer = styled.div`
+  margin-top: 104px;
   /* background-color: #eee; */
   width: 540px;
   height: 142px;
@@ -40,7 +41,7 @@ export const InputLine = styled.div`
     right: 20px;
     bottom: 0;
     width: 1px;
-    background-color: #ccc;
+    background-color: #efeff1;
     width: 501px;
     height: 1px;
   }
@@ -62,7 +63,7 @@ export const LabelWrap = styled.div`
     top: 50%;
     transform: translateY(-50%);
     width: 1px;
-    background-color: #ccc;
+    background-color: #efeff1;
     width: 1px;
     height: 24px;
   }
@@ -81,7 +82,7 @@ export const InputForm = styled.input`
   }
 `;
 export const SignText = styled.div`
-  margin-top: 40px;
+  margin-top: 16px;
   width: 500px;
   display: flex;
   justify-content: space-between;
@@ -89,15 +90,31 @@ export const SignText = styled.div`
 `;
 export const IdCheck = styled.div`
   /* margin-top: 40px; */
-  font-size: 20px;
-  line-height: 24px;
   display: flex;
   align-items: center;
+  > label {
+    display: flex;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+`;
+export const IdCheckInput = styled.input`
+  margin-right: 12px;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #efeff1;
+  border-radius: 5px;
+  &:checked {
+    background-color: #a9d6b9;
+  }
 `;
 export const Span = styled.div`
-  font-size: 16px;
   font-weight: 400;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +123,7 @@ export const SpanList = styled.span`
   cursor: pointer;
 `;
 export const Btn = styled.button`
-  margin: 40px 0 72px;
+  margin: 40px 0 56px;
   width: 540px;
   height: 90px;
   border-radius: 80px;
@@ -118,14 +135,24 @@ export const Btn = styled.button`
   opacity: 0.9;
   color: #fff;
 `;
-
 export const Social = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 104px;
+    /* right: -12px; */
+    width: 540px;
+    background-color: #333;
+    height: 0.5px;
+  }
 `;
 export const SocialBtn = styled.button`
+  margin-right: 24px;
   margin-bottom: 16px;
-  width: 541px;
+  width: 258px;
   height: 64px;
   border-radius: 80px;
   cursor: pointer;
