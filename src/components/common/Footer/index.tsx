@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <div>
       <S.Wrapper>
-        <S.Logo>로고</S.Logo>
+        <S.Logo></S.Logo>
         <S.Text>
           ㈜리크텍
           <br /> Tel: (02) 6953-1170
