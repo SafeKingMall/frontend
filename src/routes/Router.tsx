@@ -3,6 +3,8 @@ import {
   MyPage,
   Carts,
   AdminItem,
+  AdminItemPo,
+  AdminItemWr,
   AdminMember,
   AdminOrder,
   // AdminOrderDe,
@@ -43,6 +45,8 @@ const Router = () => {
         <Route path='/carts' element={<Carts />} />
         <Route path='/admin-member' element={<AdminMember />} />
         <Route path='/admin-item' element={<AdminItem />} />
+        <Route path='/admin-item-po' element={<AdminItemPo />} />
+        <Route path='/admin-item-wr' element={<AdminItemWr />} />
         <Route path='/admin-order' element={<AdminOrder />} />
         {/* <Route path='/admin-order-de' element={<AdminOrderDe />} /> */}
         <Route path='/admin-category' element={<AdminCategory />} />
