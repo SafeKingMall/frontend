@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
-import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
@@ -37,7 +36,7 @@ export const SignIn = () => {
     try {
       console.log('로그인버튼클릭');
       console.log(email, password);
-      const response = await axios
+      await axios
         .post(
           'http://safekingmall.com/api/v1/login',
           {
@@ -48,13 +47,10 @@ export const SignIn = () => {
             headers: { 'Content-Type': `application/json` },
           },
         )
-
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
             console.log('로그인성공', res.status);
-            setIsLogin(true);
-            console.log(res.headers.refreshtoken);
             const token = res.headers.authorization;
             console.log('token', token);
             setCookie('accessToken', token, { path: '/' });
@@ -65,7 +61,6 @@ export const SignIn = () => {
       console.log('error:', e);
       if (e.response.data.code === 1400) {
         console.log('wrong');
-        setIsLogin(false);
         // setErrMsg('일치하는 회원정보가 없습니다.');
         alert('일치하는 회원정보가 없습니다.');
       }
