@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
 `;
 export const Logo = styled.div`
+  background-image: url(https://user-images.githubusercontent.com/91241596/212526764-a38ae3a1-34e0-4740-b6d0-741a4984431a.png);
+  width: 156px;
+  height: 76px;
   position: absolute;
   left: 110px;
 `;

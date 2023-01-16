@@ -7,16 +7,19 @@ export const Header = () => {
   return (
     <div>
       <S.Wrapper>
-        <S.Logo>안전왕</S.Logo>
+        <S.Logo></S.Logo>
         <S.Menu>
           <S.MenuList>
-            <Link to='/'>안전왕 정복</Link>
+            <Link to='/itemlist-serious'>예방상품리스트</Link>
           </S.MenuList>
           <S.MenuList>
-            <Link to='/itemlist-serious'>예방상품 리스트</Link>
+            <Link to='/notice'>공지사항</Link>
           </S.MenuList>
           <S.MenuList>
             <Link to='/qna'>문의하기</Link>
+          </S.MenuList>
+          <S.MenuList>
+            <Link to='/estimate'>견적서 요청</Link>
           </S.MenuList>
         </S.Menu>
         <S.MenuIcons>
