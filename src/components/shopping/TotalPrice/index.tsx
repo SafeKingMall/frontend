@@ -3,11 +3,11 @@ import * as S from './style';
 
 export const TotalPrice = (props: any) => {
   const resultList = props.resultList;
-  let itemCount = resultList.reduce((pre: any, cur: any) => {
-    return (pre += cur.count);
+  let itemQuantity = resultList.reduce((pre: any, cur: any) => {
+    return (pre += cur.itemQuantity);
   }, 0);
   let itemPrice = resultList.reduce((pre: any, cur: any) => {
-    return (pre += cur.price * cur.count);
+    return (pre += cur.itemPrice * cur.itemQuantity);
   }, 0);
   let deliveryPay = 2500;
   let totalPay = itemPrice + deliveryPay;
@@ -21,7 +21,7 @@ export const TotalPrice = (props: any) => {
           <S.InfoTextWrap>
             <S.InfoTextArea>
               <S.InfoText>주문상품 수</S.InfoText>
-              <S.InfoText>{itemCount}개</S.InfoText>
+              <S.InfoText>{itemQuantity}개</S.InfoText>
             </S.InfoTextArea>
             <S.InfoTextArea>
               <S.InfoText>주문 금액</S.InfoText>

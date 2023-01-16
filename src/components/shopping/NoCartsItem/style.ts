@@ -24,13 +24,13 @@ export const ListContainer = styled.div`
   color: ${({ theme }) => theme.palette.txt};
   margin-bottom: 4.8rem;
 `;
-export const WhiteBtn = styled.button`
+export const GreenBtn = styled.button`
   width: 28rem;
   height: 8rem;
   border-radius: 10rem;
   font-size: 2.4rem;
   font-weight: 700;
-  border: 0.2rem solid ${({ theme }) => theme.palette.green};
-  background-color: #ffffff;
-  color: ${({ theme }) => theme.palette.green};
+  background-color: ${({ theme }) => theme.palette.green};
+  color: #ffffff;
+  margin-bottom: 12rem;
 `;

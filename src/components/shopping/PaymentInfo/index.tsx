@@ -16,7 +16,6 @@ export const PaymentInfo = () => {
   const changePayment = (value: string) => {
     setPaymentState(value);
   };
-  console.log(paymentState);
   return (
     <S.Container>
       <S.PaymentContainer>
