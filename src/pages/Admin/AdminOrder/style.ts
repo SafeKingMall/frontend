@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  //   width: 50%;
-  //   height: 100%;
 `;
 
 export const Wrapper = styled.div`
-  /* width: 144rem; */
   display: flex;
   width: 100%;
   height: 100%;
@@ -17,7 +14,6 @@ export const Wrapper = styled.div`
 `;
 
 export const AdminMembertitle = styled.div`
-  // height: 100%;
   width: 144rem;
   margin-top: 2.4rem;
   display: flex;
@@ -26,7 +22,6 @@ export const AdminMembertitle = styled.div`
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.darkgreen};
   align-items: end;
-  //   justify-content: space-between;
   padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
   border-top: 0.3rem solid ${({ theme }) => theme.palette.green};

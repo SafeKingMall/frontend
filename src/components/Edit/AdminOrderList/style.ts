@@ -18,11 +18,10 @@ export const BigTitle = styled.div`
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 2.4rem;s
+  margin-bottom: 2.4rem;
 `;
 
 export const AdminOrdertitle = styled.div`
-  // height: 100%;
   width: 128rem;
   margin-top: 2.4rem;
   display: flex;
@@ -31,13 +30,10 @@ export const AdminOrdertitle = styled.div`
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
-  //   justify-content: space-between;
   padding: 1.7rem 1.5rem 1.7rem 3.2rem;
   align-items: center;
-  // border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
   border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
   font-size: 2.4rem;
-  // text-align: center;
   div {
     &:nth-child(1) {
       flex-grow: 1.5;
@@ -56,7 +52,6 @@ export const AdminOrdertitle = styled.div`
     }
     &:nth-child(6) {
       flex-grow: 2.2;
-      // text-align: center;
       div {
         &:last-child {
           font-size: 1.5rem;
@@ -173,14 +168,13 @@ export const SearchFour = styled.div`
 
 export const SearchFive = styled.div`
   display: flex;
-  item-align: center;
+  align-items: center;
   margin-top: 1.6rem;
 `;
 
 export const SearchH2 = styled.h2`
   font-size: 2.4rem;
   margin-right: 2.8rem;
-  padding-top: 0.9rem;
 `;
 
 export const SearchInput = styled.input`

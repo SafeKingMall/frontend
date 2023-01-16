@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  //   width: 50%;
-  //   height: 100%;
 `;
 
 export const Wrapper = styled.div`
-  /* width: 144rem; */
   display: flex;
   width: 100%;
   height: 100%;
@@ -29,7 +26,6 @@ export const AdminWrapper = styled.div`
 `;
 
 export const AdminTitle = styled.div`
-  // height: 100%;
   width: 144rem;
   margin-top: 2.4rem;
   display: flex;
@@ -63,15 +59,13 @@ export const NoneOption = styled.option`
 
 export const Table = styled.table`
   width: 128rem;
-  // height: 92.3rem;
   font-size: 2rem;
   border-collapse: collapse;
-  // border-top: 0.4rem solid ${({ theme }) => theme.palette.txt};
-  margin-bottom:4rem;
+  margin-bottom: 4rem;
 
   th {
     background-color: #d4ebdc;
-    width:16.6rem;
+    width: 16.6rem;
     font-weight: normal;
   }
 
@@ -80,7 +74,6 @@ export const Table = styled.table`
     border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     padding: 2rem;
-  }
   }
 `;
 
@@ -120,48 +113,39 @@ export const OrderDiv2 = styled.div`
 
 export const Table2 = styled.table`
   width: 128rem;
-  // height: 92.3rem;
   font-size: 2rem;
   border-collapse: collapse;
-  text-align:center;
-
-  tr {
-
-    td{
-      &:last-child{
-        width:20.5rem;
-      }
-    }
-    &: first-child{
-      background-color: #d4ebdc;
-      // width:16.6rem;
-      td{
-        &:nth-child(2){
-          border-left : 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-        }
-
-      }
-    }
-
-  }
+  text-align: center;
 
   td,
   tr {
     border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     &:first-child,
-    &:nth-child(2){
-border-left : 0.1rem solid white;
-
+    &:nth-child(2) {
+      border-left: 0.1rem solid white;
     }
-border-left : 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-&:first-child{
-  height:6.4rem;
-
-}
-    // height:11.4rem;
+    border-left: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    &:first-child {
+      height: 6.4rem;
+    }
     padding: 0.5rem 0rem;
   }
+
+  tr {
+    &:first-child {
+      background-color: #d4ebdc;
+      td {
+        &:nth-child(2) {
+          border-left: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+        }
+      }
+    }
+    td {
+      &:last-child {
+        width: 20.5rem;
+      }
+    }
   }
 `;
 
