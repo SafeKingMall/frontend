@@ -29,7 +29,9 @@ export const EditMenu = () => {
       </S.StyledLink>
       <S.StyledLink
         to='/admin-order'
-        style={{ color: location === '/admin-order' ? numberColor : '' }}
+        style={{
+          color: location === '/admin-order' || location === '/admin-order-de' ? numberColor : '',
+        }}
       >
         주문관리
       </S.StyledLink>
