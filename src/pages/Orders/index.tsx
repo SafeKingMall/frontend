@@ -1,40 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { OrdersList } from '../../components/shopping/OrdersList';
 import { AddressInfo } from '../../components/shopping/AddressInfo';
 import { PaymentInfo } from '../../components/shopping/PaymentInfo';
 import { TotalPrice } from '../../components/shopping/TotalPrice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Header } from '../../components/common/Header';
+import { Footer } from '../../components/common/Footer';
 
 //테스트 데이터
-const data: any = [
-  {
-    itemId: 1,
-    name: '안전화1',
-    price: 90000,
-    categoryName: '중대사고예방',
-    description: '상품상세설명 블라블라',
-    count: 1,
-  },
-  {
-    itemId: 3,
-    name: '코팅장갑',
-    price: 1000,
-    categoryName: '화재사고예방',
-    description: '상품상세설명 블라블라',
-    count: 2,
-  },
-  {
-    itemId: 5,
-    name: '축압식 분말 소화기 (1.5kg)',
-    price: 13900,
-    categoryName: '누출사고예방',
-    description: '상품상세설명 블라블라',
-    count: 1,
-  },
-];
-
 const userData = {
   name: '이선우',
   username: 'kms111111',
@@ -51,11 +26,19 @@ const userData = {
 
 export const Orders = () => {
   const [checkToggle, setCheckToggle] = useState(false);
+  const { state } = useLocation();
   const navigate = useNavigate();
   const stepTitle = '주문·결제';
+  const data = state.data;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const changeCheckToggle = () => {
     setCheckToggle(!checkToggle);
   };
+
   const paymentEvent = () => {
     if (checkToggle === false) {
       alert('약관에 동의해주세요.');
@@ -63,6 +46,7 @@ export const Orders = () => {
   };
   return (
     <S.Container>
+      <Header />
       <OrdersStep stepTitle={stepTitle} />
       <OrdersList data={data} />
       <AddressInfo userData={userData} />
@@ -78,6 +62,7 @@ export const Orders = () => {
         <S.WhiteBtn onClick={() => navigate(-1)}>취소</S.WhiteBtn>
         <S.GreenBtn onClick={() => paymentEvent()}>결제하기</S.GreenBtn>
       </S.BtnArea>
+      <Footer />
     </S.Container>
   );
 };

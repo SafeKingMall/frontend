@@ -7,6 +7,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
+import { Header } from '../../components/common/Header';
+import { Footer } from '../../components/common/Footer';
 
 const swal = withReactContent(Swal);
 
@@ -65,6 +67,7 @@ export const ItemDetail = () => {
     getData();
   }, [state.itemId]);
 
+  //구매하기
   const moveOders = () => {
     swal
       .fire({
@@ -76,9 +79,29 @@ export const ItemDetail = () => {
         cancelButtonText: '취소',
         width: 400,
       })
-      .then((result) => {
+      .then(async (result) => {
         if (result.isConfirmed) {
-          navigate('/orders');
+          await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+          }).then((res) => {
+            navigate('/orders', {
+              state: {
+                data: [
+                  {
+                    categoryName: res.data.categoryName,
+                    id: res.data.id,
+                    itemName: res.data.name,
+                    itemPrice: res.data.viewPrice,
+                    itemQuantity: Number(
+                      (document.getElementById(state.itemId) as HTMLInputElement).value,
+                    ),
+                    thumbNail: res.data.fileName,
+                  },
+                ],
+              },
+            });
+          });
         }
       });
   };
@@ -117,8 +140,8 @@ export const ItemDetail = () => {
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}/login`,
       data: {
-        username: 'testUser2',
-        password: 'testUser2*',
+        username: 'testUser1',
+        password: 'testUser1*',
       },
     }).then((res) => {
       jwt = res.headers.authorization;
@@ -147,7 +170,7 @@ export const ItemDetail = () => {
       .catch((err) => {
         if (err.response.data.code === 301) {
           swal.fire({
-            icon: 'warning',
+            icon: 'info',
             text: '동일한 상품이 장바구니에 있습니다.',
             confirmButtonText: '확인',
             confirmButtonColor: '#289951',
@@ -159,6 +182,7 @@ export const ItemDetail = () => {
 
   return (
     <S.Container>
+      <Header />
       <Nav categoryList={categoryList} selectNav={itemData.categoryName} />
       <S.DetailContainer>
         <S.DetailArea>
@@ -187,6 +211,7 @@ export const ItemDetail = () => {
                 <S.CountBox>
                   <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
                   <S.CountInput
+                    id={state.itemId}
                     type='text'
                     onChange={(e) => countInput(e.target.value)}
                     onBlur={(e) => countInputBlur(e.target.value)}
@@ -229,6 +254,7 @@ export const ItemDetail = () => {
           <AiOutlineDown style={{ width: 28, height: 24 }} />
         </S.ShowDesBtn>
       </S.ShowDesBtnContainer>
+      <Footer />
     </S.Container>
   );
 };
