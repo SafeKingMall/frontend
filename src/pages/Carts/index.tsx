@@ -135,7 +135,6 @@ export const Carts = () => {
       }).then((res) => {
         setData(res.data.content);
         setResultList(res.data.content);
-        console.log(res);
       });
     };
     getData();
