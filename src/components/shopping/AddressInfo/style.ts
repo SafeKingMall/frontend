@@ -49,7 +49,7 @@ export const AddInputContainer = styled.div`
 export const InputArea = styled.div`
   width: 100%;
   height: 6.4rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.5rem;
   display: flex;
 `;
 export const InputTitleArea = styled.div`
@@ -74,16 +74,16 @@ export const InputBasic = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   background-color: #ffffff;
 `;
-export const InputPhone = styled(InputBasic)`
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;
+// export const InputPhone = styled(InputBasic)`
+//   ::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+//   ::-webkit-outer-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+// `;
 export const InputZipcode = styled(InputBasic)`
   width: 52rem;
   margin-right: 0.8rem;
@@ -161,4 +161,17 @@ export const DaumPostDiv = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: '#ffffff';
+`;
+export const ValidationArea = styled.div`
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding-left: 20.1rem;
+  display: flex;
+  flex-direction: column;
+  height: 1.9rem;
+`;
+export const Validation = styled.span`
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: red;
 `;
