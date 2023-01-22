@@ -9,6 +9,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
 import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
+import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
 
@@ -24,6 +25,8 @@ export const ItemDetail = () => {
   const [purchaseBtn, setPurchaseBtn] = useState(
     <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>,
   );
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -135,17 +138,6 @@ export const ItemDetail = () => {
   };
 
   const addCart = async () => {
-    let jwt;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'testUser1',
-        password: 'testUser1*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
     await axios({
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
