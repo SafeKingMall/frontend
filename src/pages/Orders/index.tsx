@@ -12,8 +12,14 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
+import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
+declare global {
+  interface Window {
+    IMP: any;
+  }
+}
 
 export const Orders = () => {
   const [checkToggle, setCheckToggle] = useState(false);
@@ -28,21 +34,57 @@ export const Orders = () => {
   const navigate = useNavigate();
   const stepTitle = '주문·결제';
   const data = state.data;
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
+
+  //관리자 주문리스트
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     let admin;
+  //     await axios({
+  //       method: 'post',
+  //       url: `${process.env.REACT_APP_API_URL}/login`,
+  //       data: {
+  //         username: 'admin1234',
+  //         password: 'admin1234*',
+  //       },
+  //     }).then((res) => {
+  //       admin = res.headers.authorization;
+  //     });
+  //     await axios({
+  //       method: 'get',
+  //       url: `${process.env.REACT_APP_API_URL}/admin/order/list?page=0&size=20`,
+  //       headers: {
+  //         Authorization: admin,
+  //       },
+  //     }).then((res) => {
+  //       console.log(res);
+  //     });
+  //   };
+  //   getData();
+  // }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     await axios({
+  //       method: 'get',
+  //       url: `${process.env.REACT_APP_API_URL}/user/order/list?page=0&size=20`,
+  //       headers: {
+  //         Authorization: jwt,
+  //       },
+  //     }).then((res) => {
+  //       console.log(res);
+  //     });
+  //   };
+  //   getData();
+  // }, [jwt]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getData = async () => {
-      let jwt;
-      await axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/login`,
-        data: {
-          username: 'testUser1',
-          password: 'testUser1*',
-        },
-      }).then((res) => {
-        jwt = res.headers.authorization;
-      });
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/user/delivery`,
@@ -54,7 +96,7 @@ export const Orders = () => {
       });
     };
     getData();
-  }, []);
+  }, [jwt]);
 
   const changeCheckToggle = () => {
     setCheckToggle(!checkToggle);
@@ -163,17 +205,102 @@ export const Orders = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            swal.fire({
-              icon: 'success',
-              text: '결제!',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            payment();
           }
         });
     }
   };
+
+  const payment = async () => {
+    const IMP = window.IMP;
+    IMP.init(process.env.REACT_APP_STORE_MID);
+
+    const totalPrice =
+      data.reduce((pre: any, cur: any) => {
+        return (pre += cur.itemPrice * cur.itemQuantity);
+      }, 0) + 2500;
+    const productName = data.map((item: any) => item.itemName).join(',');
+    const items = data.map((item: any) => {
+      const itemObj = {
+        id: item.id,
+        price: item.itemPrice,
+        count: item.itemQuantity,
+      };
+      return itemObj;
+    });
+    const merchant_uid = `mid_${new Date().getTime()}`;
+
+    const paymentData = {
+      pg: 'html5_inicis.INIpayTest',
+      pay_method: 'card',
+      merchant_uid: merchant_uid,
+      amount: totalPrice,
+      // amount: 100,
+      name: productName,
+      buyer_name: text[0],
+      buyer_tel: text[2],
+      buyer_email: text[1],
+      buyer_addr: `${text[4]} ${text[5]}`,
+      buyer_postcode: text[3],
+    };
+
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/user/order`,
+      headers: {
+        Authorization: jwt,
+      },
+      data: {
+        receiver: text[0],
+        email: text[1],
+        phone_number: text[2],
+        address: `${text[4]} ${text[5]}`,
+        memo: text[7],
+        delivery_memo: text[6],
+        items: items,
+        merchant_uid: merchant_uid,
+      },
+    })
+      .then((res) => {
+        IMP.request_pay(paymentData, callBack);
+      })
+      .catch((err) => {
+        swal.fire({
+          icon: 'info',
+          text: err.response.data.message,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      });
+  };
+
+  const callBack = async (res: any) => {
+    if (res.success) {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/test/payment`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          success: res.success,
+          imp_uid: res.imp_uid,
+          merchant_uid: res.merchant_uid,
+          paid_amount: res.paid_amount,
+        },
+      }).then((response) => {
+        navigate('/orderok', {
+          state: {
+            merchant_uid: response.data.response.merchant_uid,
+          },
+        });
+      });
+    } else {
+      alert(`결제 실패: ${res.error_msg}`);
+    }
+  };
+
   return (
     <S.Container>
       <Header />

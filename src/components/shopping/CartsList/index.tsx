@@ -5,6 +5,7 @@ import * as S from './style';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
+import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
 
@@ -15,22 +16,11 @@ export const CartsList = (props: any) => {
   const navigate = useNavigate();
   const [checkedList, setCheckedList] = useState<any>([]);
   const [countList, setCountList] = useState<any>(data.map((el: any) => el.itemQuantity));
-  // console.log(checkedList);
-  // console.log(countList);
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
   //장바구니 아이템 개수 수정
   const itemCountEvent = async (itemId: number, itemCount: number) => {
-    let jwt;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'testUser1',
-        password: 'testUser1*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
     await axios({
       method: 'patch',
       url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
@@ -72,17 +62,6 @@ export const CartsList = (props: any) => {
 
   //개별 아이템 삭제
   const deleteItem = async (itemId: number, idx: number) => {
-    let jwt;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'testUser1',
-        password: 'testUser1*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
     await axios({
       method: 'delete',
       url: `${process.env.REACT_APP_API_URL}/user/cartItem?itemId=${itemId}`,
@@ -138,17 +117,6 @@ export const CartsList = (props: any) => {
   const deleteSelectItem = async () => {
     let items = checkedList.map((item: any) => 'itemId=' + item.id + '&');
     let itemsString = items.join('');
-    let jwt;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'testUser1',
-        password: 'testUser1*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
     await axios({
       method: 'delete',
       url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
@@ -207,17 +175,6 @@ export const CartsList = (props: any) => {
       })
       .then(async (result) => {
         if (result.isConfirmed) {
-          let jwt;
-          await axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}/login`,
-            data: {
-              username: 'testUser1',
-              password: 'testUser1*',
-            },
-          }).then((res) => {
-            jwt = res.headers.authorization;
-          });
           await axios({
             method: 'get',
             url: `${process.env.REACT_APP_API_URL}/user/cart`,

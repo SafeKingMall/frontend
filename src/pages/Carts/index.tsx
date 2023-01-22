@@ -11,6 +11,7 @@ import { Footer } from '../../components/common/Footer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
+import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
 
@@ -19,6 +20,8 @@ export const Carts = () => {
   const navigate = useNavigate();
   const [resultList, setResultList] = useState<any>('');
   const [data, setData] = useState<any>('');
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
   //선택상품구매
   const selectPurchase = () => {
@@ -55,22 +58,11 @@ export const Carts = () => {
 
   //전체상품구매
   const allPurchase = async () => {
-    let jwt;
     let length;
     let count;
     let itemPrice;
     const deliveryPay = 2500;
     let totalPrice;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'testUser1',
-        password: 'testUser1*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
     await axios({
       method: 'get',
       url: `${process.env.REACT_APP_API_URL}/user/cart`,
@@ -115,17 +107,6 @@ export const Carts = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let jwt;
-      await axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/login`,
-        data: {
-          username: 'testUser1',
-          password: 'testUser1*',
-        },
-      }).then((res) => {
-        jwt = res.headers.authorization;
-      });
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/user/cart`,
@@ -138,7 +119,7 @@ export const Carts = () => {
       });
     };
     getData();
-  }, []);
+  }, [jwt]);
   const itemInCart =
     data.length === 0 ? (
       <S.Container>
