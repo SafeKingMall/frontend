@@ -183,6 +183,7 @@ export const AllCheckBox = styled.input`
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 3.2rem;
+  accent-color: ${({ theme }) => theme.palette.green};
 `;
 export const ItemCheckBox = styled(AllCheckBox)`
   position: absolute;

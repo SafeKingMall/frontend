@@ -13,23 +13,23 @@ export const OrdersList = (props: any) => {
         </S.ListTitleBar>
         {data.map((item: any, idx: number) => {
           return (
-            <S.ItemContainer key={item.itemId}>
+            <S.ItemContainer key={item.id}>
               <S.ItemContentArea>
                 <S.ItemInfoArea>
                   <S.ItemImgArea>
                     <img
-                      src='https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785'
+                      src={`${process.env.REACT_APP_BASE_URL}${item.thumbNail}`}
                       width='184'
                       height='184'
-                      alt={item.name}
+                      alt={item.itemName}
                       style={{ border: '0.1rem solid #efeff1' }}
                     />
                   </S.ItemImgArea>
                   <S.ItemTextArea>
                     <S.CategoryText>{item.categoryName}</S.CategoryText>
-                    <S.ItemNameText>{item.name}</S.ItemNameText>
+                    <S.ItemNameText>{item.itemName}</S.ItemNameText>
                     <S.ItemPriceText>
-                      {item.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                      {item.itemPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
                     </S.ItemPriceText>
                   </S.ItemTextArea>
                 </S.ItemInfoArea>
@@ -38,7 +38,7 @@ export const OrdersList = (props: any) => {
                 </S.ItemSaleArea>
                 <S.ItemPriceArea>
                   <p>
-                    {(item.price * item.count)
+                    {(item.itemPrice * item.itemQuantity)
                       .toString()
                       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
                     원
@@ -47,7 +47,7 @@ export const OrdersList = (props: any) => {
               </S.ItemContentArea>
               <S.ItemCountArea>
                 <S.CountText>수량.</S.CountText>
-                <S.CountNum>{item.count}</S.CountNum>
+                <S.CountNum>{item.itemQuantity}</S.CountNum>
               </S.ItemCountArea>
             </S.ItemContainer>
           );

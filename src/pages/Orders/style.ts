@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 144rem;
+`;
+export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   flex-direction: column;
   width: 100%;
   height: 100%;
-  min-width: 144rem;
 `;
 export const CheckArea = styled.div`
   width: 144rem;
@@ -14,7 +18,7 @@ export const CheckArea = styled.div`
   display: flex;
   align-items: center;
 `;
-export const CheckBox = styled.input.attrs((props) => ({
+export const CheckBox = styled.input.attrs(() => ({
   type: 'checkbox',
 }))`
   accent-color: ${({ theme }) => theme.palette.green};

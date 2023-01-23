@@ -1,27 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
 import { CSSObject } from 'styled-components';
 
+const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
+const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
+const NUM = /[^0-9]/;
+const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+
 export const AddressInfo = (props: any) => {
   const userData = props.userData;
   const [addRadio, setAddRadio] = useState('basicAdd');
-  // 0=name, 1=email, 2=phoneNumber, 3=zipcode, 4=basicAddress, 5=detailedAddress, 6=delivery_memo, 7=memo
-  const [text, setText] = useState(['', '', '', '', '', '', '', '']);
+  //text배열 index [0=receiver, 1=email, 2=phoneNumber, 3=zipcode, 4=basicAddress, 5=detailedAddress, 6=delivery_memo, 7=memo]
+  const text = props.text;
+  const setText = props.setText;
+  const receiverVal = props.receiverVal;
+  const setReceiverVal = props.setReceiverVal;
+  const emailVal = props.emailVal;
+  const setEmailVal = props.setEmailVal;
+  const phoneVal = props.phoneVal;
+  const setPhoneVal = props.setPhoneVal;
   const [selectValue, setSelectValue] = useState('');
   const [directToggle, setDirectToggle] = useState(false);
   const [isOpenPost, setIsOpenPost] = useState(false);
 
+  //주소모달 열기
   const openModal = () => {
     setIsOpenPost(true);
     document.body.style.cssText = 'overflow-y: hidden; width: 100%; padding-right: 15px;'; // 모달띄웠을떄 스크롤 막기
   };
 
+  //주소모달 닫기
   const closeModal = () => {
     setIsOpenPost(false);
     document.body.style.cssText = ''; //스크롤 막은 것을 해제
   };
 
+  //주소선택 성공
   const onCompletePost = (data: any) => {
     let fullAddr = data.address;
     let extraAddr = '';
@@ -42,16 +57,53 @@ export const AddressInfo = (props: any) => {
     closeModal();
   };
 
-  const radioChange = (value: any) => {
-    setAddRadio(value);
-  };
-
+  //배송지정보 input 입력시 이벤트
   const textChange = (value: string, idx: number) => {
     let copy = [...text];
     copy[idx] = value;
     setText(copy);
+    validationText(copy);
   };
 
+  //유효성검사
+  const validationText = (text: string[]) => {
+    if (KREN.test(text[0])) {
+      setReceiverVal('* 한글/영어/공백으로만 입력해주세요.');
+    } else {
+      setReceiverVal('');
+    }
+    if (EMAIL.test(text[1])) {
+      setEmailVal('');
+    }
+    if (NUM.test(text[2])) {
+      setPhoneVal('* 숫자만 입력해주세요. [예: 01012345678]');
+    } else {
+      setPhoneVal('');
+    }
+  };
+
+  //포커스아웃시 유효성검사
+  const receiverBlur = () => {
+    if (KREN.test(text[0])) {
+      setReceiverVal('* 한글/영어/공백으로만 입력해주세요.');
+    } else if (KRVAL.test(text[0])) {
+      setReceiverVal('* 한글입력을 확인해주세요.');
+    }
+  };
+  const emailBlur = () => {
+    if (!EMAIL.test(text[1])) {
+      setEmailVal('* 올바른 이메일 형식이 아닙니다. [예: Safeking@naver.com]');
+    }
+  };
+  const phoneBlur = () => {
+    if (NUM.test(text[2])) {
+      setPhoneVal('* 숫자만 입력해주세요. [예: 01012345678]');
+    } else if (text[2].length > 11 || text[2].length < 10) {
+      setPhoneVal('* 10~11자리의 숫자로 입력해주세요. [예: 01012345678]');
+    }
+  };
+
+  //배송시요청사항 변경이벤트
   const deliveryReqChange = (value: string) => {
     let copy = [...text];
     if (value === '직접 입력') {
@@ -65,25 +117,41 @@ export const AddressInfo = (props: any) => {
     setSelectValue(value);
   };
 
+  //유효성검사 리셋
+  const resetValidation = useCallback(() => {
+    setReceiverVal('');
+    setEmailVal('');
+    setPhoneVal('');
+  }, [setReceiverVal, setEmailVal, setPhoneVal]);
+
+  //기본배송지, 새로운배송지 선택시 변경 이벤트
+  const radioChange = (value: any) => {
+    setAddRadio(value);
+  };
+
+  //기본배송지, 새로운배송지 초기값
   useEffect(() => {
     if (addRadio === 'basicAdd') {
       let arr = [];
-      arr[0] = userData.name;
+      arr[0] = userData.receiver;
       arr[1] = userData.email;
-      arr[2] = userData.phoneNumber;
+      arr[2] = userData.phone_number;
       arr[3] = userData.zipcode;
-      arr[4] = userData.basicAddress;
-      arr[5] = userData.detailedAddress;
+      arr[4] = userData.address;
+      arr[5] = userData.detail_address;
       arr[6] = '';
       arr[7] = '';
       setText(arr);
       setSelectValue('');
+      resetValidation();
     } else if (addRadio === 'newAdd') {
       setText(['', '', '', '', '', '', '', '']);
       setSelectValue('');
+      resetValidation();
     }
-  }, [addRadio, userData]);
+  }, [addRadio, userData, setText, resetValidation]);
 
+  //주소모달 스타일
   const postCodeStyle: CSSObject = {
     width: '500px',
     height: '460px',
@@ -125,10 +193,14 @@ export const AddressInfo = (props: any) => {
             <S.InputBasic
               type='text'
               placeholder='이름을 입력해주세요.'
-              value={text[0]}
+              value={text[0] || ''}
               onChange={(e) => textChange(e.target.value, 0)}
+              onBlur={() => receiverBlur()}
             />
           </S.InputArea>
+          <S.ValidationArea>
+            <S.Validation>{receiverVal}</S.Validation>
+          </S.ValidationArea>
           <S.InputArea>
             <S.InputTitleArea>
               <S.InputTitle>이메일</S.InputTitle>
@@ -136,30 +208,37 @@ export const AddressInfo = (props: any) => {
             <S.InputBasic
               type='text'
               placeholder='이메일을 입력해주세요.'
-              value={text[1]}
+              value={text[1] || ''}
               onChange={(e) => textChange(e.target.value, 1)}
+              onBlur={() => emailBlur()}
             />
           </S.InputArea>
+          <S.ValidationArea>
+            <S.Validation>{emailVal}</S.Validation>
+          </S.ValidationArea>
           <S.InputArea>
             <S.InputTitleArea>
               <S.InputTitle>휴대전화</S.InputTitle>
             </S.InputTitleArea>
-            <S.InputPhone
-              type='number'
-              placeholder='전화번호를 입력해주세요.'
-              value={text[2]}
+            <S.InputBasic
+              type='text'
+              placeholder='전화번호를 입력해주세요. (숫자만 입력)'
+              value={text[2] || ''}
               onChange={(e) => textChange(e.target.value, 2)}
-              onWheel={(e) => (e.target as HTMLElement).blur()}
+              onBlur={() => phoneBlur()}
             />
           </S.InputArea>
-          <S.InputArea>
+          <S.ValidationArea>
+            <S.Validation>{phoneVal}</S.Validation>
+          </S.ValidationArea>
+          <S.InputArea style={{ marginBottom: '1.6rem' }}>
             <S.InputTitleArea>
               <S.InputTitle>주소</S.InputTitle>
             </S.InputTitleArea>
             <S.InputZipcode
               type='text'
               placeholder='주소찾기를 클릭하세요.'
-              value={text[3]}
+              value={text[3] || ''}
               onChange={(e) => textChange(e.target.value, 3)}
               readOnly
             />
@@ -169,7 +248,7 @@ export const AddressInfo = (props: any) => {
             <S.InputBasic
               type='text'
               placeholder='주소를 입력해주세요.'
-              value={text[4]}
+              value={text[4] || ''}
               onChange={(e) => textChange(e.target.value, 4)}
               readOnly
               style={{ marginLeft: '20.1rem' }}
@@ -177,7 +256,7 @@ export const AddressInfo = (props: any) => {
             <S.InputDetailAdd
               type='text'
               placeholder='상세주소를 입력해주세요.'
-              value={text[5]}
+              value={text[5] || ''}
               onChange={(e) => textChange(e.target.value, 5)}
             />
           </S.InputArea>

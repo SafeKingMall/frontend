@@ -16,13 +16,22 @@ export const EditMenu = () => {
       </S.StyledLink>
       <S.StyledLink
         to='/admin-item'
-        style={{ color: location === '/admin-item' ? numberColor : '' }}
+        style={{
+          color:
+            location === '/admin-item' ||
+            location === '/admin-item-wr' ||
+            location === '/admin-item-po'
+              ? numberColor
+              : '',
+        }}
       >
         상품관리
       </S.StyledLink>
       <S.StyledLink
         to='/admin-order'
-        style={{ color: location === '/admin-order' ? numberColor : '' }}
+        style={{
+          color: location === '/admin-order' || location === '/admin-order-de' ? numberColor : '',
+        }}
       >
         주문관리
       </S.StyledLink>

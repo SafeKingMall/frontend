@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import { GoCreditCard } from 'react-icons/go';
 import { RiKakaoTalkFill } from 'react-icons/ri';
@@ -11,12 +11,12 @@ const btnActive = {
   borderColor: greenColor,
 };
 
-export const PaymentInfo = () => {
-  const [paymentState, setPaymentState] = useState('');
+export const PaymentInfo = (props: any) => {
+  const paymentState = props.paymentState;
+  const setPaymentState = props.setPaymentState;
   const changePayment = (value: string) => {
     setPaymentState(value);
   };
-  console.log(paymentState);
   return (
     <S.Container>
       <S.PaymentContainer>

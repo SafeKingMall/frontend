@@ -21,6 +21,7 @@ export const Searchcompo = (props: any) => {
       (item: any) =>
         Object.keys(item).includes(props.filter) &&
         item[props.filter].toString().toLowerCase().includes(query),
+      // 대문자 소문자 적용하기
     );
   }
 
