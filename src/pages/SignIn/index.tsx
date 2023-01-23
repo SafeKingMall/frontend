@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
+import { SearchUser } from '../../components/modal/SearchUser';
 
 interface SignInForm {
   email: string;
@@ -81,7 +82,7 @@ export const SignIn = () => {
     }
   };
   const navigateSignUp = () => {
-    navigate('/sign-up');
+    navigate('/sign-up1');
   };
   const test = () => {
     console.log('test comment');
@@ -104,12 +105,18 @@ export const SignIn = () => {
     }
   };
 
+  //아이디 비밀번호 찾기 모달창
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const onOpen = () => {
+    console.log('클릭');
+    setIsOpen(true);
+  };
   return (
     <>
       <Header />
       <S.Container>
         <S.Wrapper>
-          <button onClick={refresh}>test</button>
+          {/* <button onClick={refresh}>test</button> */}
           <S.InputContainer>
             {/* 아이디 */}
             <S.InputLine>
@@ -148,10 +155,11 @@ export const SignIn = () => {
               </label>
             </S.IdCheck>
             <S.Span>
-              <S.SpanList onClick={test}> 아이디 / 비밀번호 찾기</S.SpanList>&emsp;|&emsp;
-              <S.SpanList onClick={test}>회원가입</S.SpanList>
+              <S.SpanList onClick={onOpen}> 아이디 / 비밀번호 찾기</S.SpanList>&emsp;|&emsp;
+              <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>
             </S.Span>
           </S.SignText>
+          <S.SearchModal>{isOpen ? <SearchUser /> : ''}</S.SearchModal>
           <div>
             <S.Btn onClick={SignIn}>로그인</S.Btn>
             <S.Social>
