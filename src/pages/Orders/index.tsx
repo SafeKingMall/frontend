@@ -64,6 +64,7 @@ export const Orders = () => {
   //   getData();
   // }, []);
 
+  //사용자 주문 다건조회
   // useEffect(() => {
   //   const getData = async () => {
   //     await axios({
@@ -290,9 +291,15 @@ export const Orders = () => {
           paid_amount: res.paid_amount,
         },
       }).then((response) => {
+        const createDate = new Date();
+        const year = createDate.getFullYear();
+        const month = createDate.getMonth() + 1;
+        const date = createDate.getDate();
+        const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
         navigate('/orderok', {
           state: {
             merchant_uid: response.data.response.merchant_uid,
+            dt: dt,
           },
         });
       });

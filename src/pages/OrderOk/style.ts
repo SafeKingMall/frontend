@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  ${({ theme }) => theme.common.flexCenter};
-  flex-direction: column;
   width: 100%;
   height: 100%;
   min-width: 144rem;
 `;
 export const OrderInfoWrap = styled.div`
   width: 144rem;
-  height: 36.9rem;
+  padding-bottom: 6.4rem;
   border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
   margin-bottom: 4.8rem;
 `;
@@ -30,7 +28,6 @@ export const IconUnderLine = styled.div`
 export const TextArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   width: 100%;
-  heigth: 100%;
   flex-direction: column;
   margin-top: 6.4rem;
 `;

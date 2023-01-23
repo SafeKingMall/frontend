@@ -1,13 +1,17 @@
 import React from 'react';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
+import { Header } from '../../components/common/Header';
+import { Footer } from '../../components/common/Footer';
 
 export const OrderOk = () => {
+  const { state } = useLocation();
   const stepTitle = '주문완료';
   const navigate = useNavigate();
   return (
     <S.Container>
+      <Header />
       <OrdersStep stepTitle={stepTitle} />
       <S.OrderInfoWrap>
         <S.IconArea>
@@ -16,9 +20,9 @@ export const OrderOk = () => {
         </S.IconArea>
         <S.TextArea>
           <S.Text>주문이 완료되었습니다.</S.Text>
-          <S.Text>2022.11.11 에 주문하신 상품의</S.Text>
+          <S.Text>{state.dt} 에 주문하신 상품의</S.Text>
           <S.Text>
-            주문번호는 <S.GreenText>12395849580394534</S.GreenText> 입니다.
+            주문번호는 <S.GreenText>{state.merchant_uid}</S.GreenText> 입니다.
           </S.Text>
         </S.TextArea>
       </S.OrderInfoWrap>
@@ -26,6 +30,7 @@ export const OrderOk = () => {
         <S.WhiteBtn onClick={() => navigate('/')}>쇼핑 계속하기</S.WhiteBtn>
         <S.GreenBtn>결제 내역보기</S.GreenBtn>
       </S.BtnArea>
+      <Footer />
     </S.Container>
   );
 };
