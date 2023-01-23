@@ -5,6 +5,12 @@ export const Container = styled.div`
   height: 100%;
   min-width: 144rem;
 `;
+export const ContentContainer = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
 export const OrderInfoWrap = styled.div`
   width: 144rem;
   padding-bottom: 6.4rem;
