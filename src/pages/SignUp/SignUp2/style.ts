@@ -12,8 +12,8 @@ export const Wrapper = styled.div`
   /* height: 109.6rem; */
 `;
 export const Top = styled.div`
-  background-image: url('https://user-images.githubusercontent.com/91241596/213788582-b96fbd33-cbac-4b4c-8d28-588936cea9e7.png');
-  margin: 2.6rem 0 3.6rem;
+  background-image: url('https://user-images.githubusercontent.com/91241596/213789468-e180ac8e-1a6a-4813-9e87-c972cebf0dff.png');
+  margin: 5.6rem 0 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;
@@ -21,7 +21,7 @@ export const Top = styled.div`
   height: 9.9rem;
 `;
 export const Mid = styled.div`
-  margin: 2.2rem 0 1.6rem;
+  margin: 7.2rem 0 1.6rem;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -60,24 +60,10 @@ export const InputWrapper = styled.div`
     font-weight: 400;
     line-height: 2.2rem;
     padding-left: 2.4rem;
-    width: 32rem;
+    width: 22rem;
   }
-  & > button {
-    background-color: #fff;
-    width: 7.6rem;
-    height: 4rem;
-    border: 0.1rem solid #a6a6a6;
-    border-radius: 1rem;
-    color: #a6a6a6;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 1.9rem;
-    position: absolute;
-    top: 2.5rem;
-    right: 1.6rem;
-  }
-  & > div {
-    /* background-color: lavenderblush;
+  /* & > div {
+    background-color: lavenderblush;
     width: 66rem;
     height: 5.8rem;
     border-radius: 0.5rem;
@@ -89,20 +75,8 @@ export const InputWrapper = styled.div`
     line-height: 2.2rem;
     position: absolute;
     bottom: 2rem;
-    left: 1.6rem; */
-    position: absolute;
-    top: 3.1rem;
-    right: 10rem;
-    font-size: 2.8rem;
-    color: #a6a6a6;
-  }
-  & > p {
-    position: absolute;
-    top: 3.1rem;
-    right: 3rem;
-    font-size: 2.6rem;
-    color: #a6a6a6;
-  }
+    left: 1.6rem;
+  } */
   &::before {
     content: '';
     position: absolute;
@@ -124,6 +98,11 @@ export const InputWrapper = styled.div`
     height: 0.1rem;
   }
 `;
+export const AuthTimer = styled.div`
+  position: absolute;
+  top: 3.5rem;
+  right: 11.5rem;
+`;
 export const ErrMsg = styled.span`
   font-weight: 400;
   font-size: 14px;
@@ -133,7 +112,34 @@ export const ErrMsg = styled.span`
   top: 6.1rem;
   left: 17.4rem;
 `;
-
+export const SendBtn = styled.button`
+  background-color: #fff;
+  width: 13.5rem;
+  height: 4rem;
+  border: 0.1rem solid #289951;
+  border-radius: 1rem;
+  color: #289951;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.4rem;
+`;
+export const CheckBtn = styled.button`
+  background-color: #fff;
+  width: 7.6rem;
+  height: 4rem;
+  border: 0.1rem solid #289951;
+  border-radius: 1rem;
+  color: #289951;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.4rem;
+`;
 export const BtnWrapper = styled.div`
   margin-top: 4.8rem;
   /* margin-bottom: 12rem; */

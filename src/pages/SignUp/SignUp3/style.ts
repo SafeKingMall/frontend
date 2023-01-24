@@ -4,33 +4,35 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   background-color: #fff;
+  width: 129.8rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
-  width: 129.8rem;
   /* height: 109.6rem; */
 `;
-export const Top = styled.div`
-  background-image: url('https://user-images.githubusercontent.com/91241596/213788582-b96fbd33-cbac-4b4c-8d28-588936cea9e7.png');
-  margin: 2.6rem 0 3.6rem;
+export const ProcessBar = styled.div`
+  margin: 5.6rem 0 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;
-  width: 40.1rem;
+  width: 40rem;
   height: 9.9rem;
+  background-image: url('https://user-images.githubusercontent.com/91241596/213253660-d5f39637-aafc-43b1-b6a9-abb3978e5c15.png');
 `;
 export const Mid = styled.div`
-  margin: 2.2rem 0 1.6rem;
+  margin: 7.2rem 0 1.6rem;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
   color: #289951;
+  display: block;
+  align-items: left;
 `;
 export const InputContainer = styled.div`
   background-color: #fff;
   width: 64rem;
-  height: 35.2rem;
+  height: 70.4rem;
   border: 1px solid #efeff1;
   /* border: 0.1rem solid #fff; */
   border-radius: 1rem;
@@ -47,12 +49,32 @@ export const InputWrapper = styled.div`
   & > label {
     /* background-color: thistle; */
     display: inline-block;
-    width: 15rem;
+    width: 20rem;
     height: 17rem;
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.2rem;
     padding: 3.4rem 0 0 3rem;
+    > span {
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 15px;
+      color: #289951;
+    }
+  }
+  & > button {
+    background-color: #fff;
+    width: 10.4rem;
+    height: 4rem;
+    border: 0.1rem solid #289951;
+    border-radius: 1rem;
+    color: #289951;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.9rem;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.4rem;
   }
   & > input {
     background-color: #fff;
@@ -60,24 +82,19 @@ export const InputWrapper = styled.div`
     font-weight: 400;
     line-height: 2.2rem;
     padding-left: 2.4rem;
-    width: 32rem;
+    width: 42rem;
   }
-  & > button {
-    background-color: #fff;
-    width: 7.6rem;
-    height: 4rem;
-    border: 0.1rem solid #a6a6a6;
-    border-radius: 1rem;
-    color: #a6a6a6;
-    font-size: 1.6rem;
+  & > p {
+    color: red;
     font-weight: 400;
-    line-height: 1.9rem;
+    font-size: 16px;
+    line-height: 19px;
     position: absolute;
-    top: 2.5rem;
-    right: 1.6rem;
+    top: 3.5rem;
+    right: 11.5rem;
   }
   & > div {
-    /* background-color: lavenderblush;
+    background-color: lavenderblush;
     width: 66rem;
     height: 5.8rem;
     border-radius: 0.5rem;
@@ -89,24 +106,12 @@ export const InputWrapper = styled.div`
     line-height: 2.2rem;
     position: absolute;
     bottom: 2rem;
-    left: 1.6rem; */
-    position: absolute;
-    top: 3.1rem;
-    right: 10rem;
-    font-size: 2.8rem;
-    color: #a6a6a6;
-  }
-  & > p {
-    position: absolute;
-    top: 3.1rem;
-    right: 3rem;
-    font-size: 2.6rem;
-    color: #a6a6a6;
+    left: 1.6rem;
   }
   &::before {
     content: '';
     position: absolute;
-    left: 14.9rem;
+    left: 20rem;
     top: 3.4rem;
     width: 0.1rem;
     background-color: #efeff1;
@@ -131,9 +136,8 @@ export const ErrMsg = styled.span`
   color: #ff003e;
   position: absolute;
   top: 6.1rem;
-  left: 17.4rem;
+  left: 22.4rem;
 `;
-
 export const BtnWrapper = styled.div`
   margin-top: 4.8rem;
   /* margin-bottom: 12rem; */
@@ -164,10 +168,22 @@ export const BtnWrapper = styled.div`
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
+      /* identical to box height */
+
       color: #ffffff;
       :disabled {
         background-color: #aaaaaa;
       }
     }
   }
+`;
+export const PostModal = styled.div`
+  z-index: 10;
+  position: fixed;
+  width: 50rem;
+  height: 80rem;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: '#ffffff'; */
 `;
