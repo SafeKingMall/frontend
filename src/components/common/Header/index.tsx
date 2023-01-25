@@ -95,7 +95,7 @@ export const Header = () => {
         <S.Logo onClick={() => navigate('/')}></S.Logo>
         <S.Menu>
           <S.MenuList>
-            <Link to='/itemlist-serious'>예방상품리스트</Link>
+            <Link to='/itemlist-1'>예방상품리스트</Link>
           </S.MenuList>
           <S.MenuList>
             <Link to='/notice'>공지사항</Link>
