@@ -14,9 +14,13 @@ export const SearchPw = () => {
   //유효성 검사
   const [isId, setIsId] = useState<boolean>(false);
   const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isCode, setIsCode] = useState<boolean>(false);
   //에러메세지
   const [idMsg, setIdMsg] = useState<string>('');
   const [emailMsg, setEmailMsg] = useState<string>('');
+  //결과창
+  const [result, setResult] = useState<boolean>(false);
+
   //아이디
   const onId = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -59,6 +63,14 @@ export const SearchPw = () => {
       setEmailMsg('');
       setIsEmail(true);
     }
+  };
+  //disabled btn
+  const disabled = !(isId && isEmail && isCode);
+  //아이디 찾기
+  const onSearchPw = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log('searchId');
+    setResult(true);
   };
   return (
     <>
@@ -118,18 +130,24 @@ export const SearchPw = () => {
             </S.InputWrapper>
           </S.InputContainer>
         </form>
-        <S.SearchBtn>비밀번호 찾기</S.SearchBtn>
-        <S.Result>
-          <S.TextWrapper>
-            <div>userId</div>
-            <div>
-              회원님의 임시 비밀번호입니다.
-              <br /> 로그인 후 반드시,
-              <br /> 비밀번호를 변경해주세요.
-            </div>
-          </S.TextWrapper>
-          <S.LoginBtn>로그인하기</S.LoginBtn>
-        </S.Result>
+        <S.SearchBtn disabled={disabled} onClick={onSearchPw}>
+          비밀번호 찾기
+        </S.SearchBtn>
+        {result ? (
+          <S.Result>
+            <S.TextWrapper>
+              <div>userId</div>
+              <div>
+                회원님의 임시 비밀번호입니다.
+                <br /> 로그인 후 반드시,
+                <br /> 비밀번호를 변경해주세요.
+              </div>
+            </S.TextWrapper>
+            <S.LoginBtn>로그인하기</S.LoginBtn>
+          </S.Result>
+        ) : (
+          ''
+        )}
       </S.Wrapper>
     </>
   );

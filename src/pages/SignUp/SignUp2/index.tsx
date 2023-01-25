@@ -59,7 +59,7 @@ export const SignUp2 = () => {
     e.preventDefault();
     const birthCurrent = e.target.value;
     setBirth(birthCurrent);
-    // const birthRegex =
+    // const birthRegex = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
 
     if (birthCurrent === '') {
       setBirthMsg('생년월일을 입력해주세요');

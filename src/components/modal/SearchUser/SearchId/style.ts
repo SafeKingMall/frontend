@@ -26,14 +26,13 @@ export const InputContainer = styled.div`
   /* border: 0.1rem solid #fff; */
   border-radius: 1rem;
   & > div:last-child {
-    &::after {
-      display: none;
-    }
+    border-bottom: none;
   }
 `;
 export const InputWrapper = styled.div`
   /* background-color: mistyrose; */
   height: 8.8rem;
+  border-bottom: 1px solid #efeff1;
   position: relative;
   & > label {
     /* background-color: thistle; */
@@ -91,18 +90,8 @@ export const InputWrapper = styled.div`
     width: 0.1rem;
     height: 2.4rem;
   }
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 0.1rem;
-    background-color: #efeff1;
-    width: 63.8rem;
-    height: 0.1rem;
-  }
 `;
-export const SendBtn = styled.button`
+export const PhoneBtn = styled.button`
   background-color: #fff;
   width: 13.5rem;
   height: 4rem;
@@ -115,6 +104,10 @@ export const SendBtn = styled.button`
   position: absolute;
   top: 2.5rem;
   right: 2.4rem;
+  :disabled {
+    border-color: #aaaaaa;
+    color: #aaaaaa;
+  }
 `;
 export const chekcBtn = styled.button`
   background-color: #fff;
@@ -129,6 +122,10 @@ export const chekcBtn = styled.button`
   position: absolute;
   top: 2.5rem;
   right: 2.4rem;
+  :disabled {
+    border-color: #aaaaaa;
+    color: #aaaaaa;
+  }
 `;
 export const ErrMsg = styled.span`
   font-weight: 400;
@@ -136,7 +133,7 @@ export const ErrMsg = styled.span`
   line-height: 19px;
   color: #ff003e;
   position: absolute;
-  top: 6.1rem;
+  top: 6.4rem;
   left: 17.4rem;
 `;
 export const SearchBtn = styled.button`
@@ -151,6 +148,9 @@ export const SearchBtn = styled.button`
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+  :disabled {
+    background-color: #aaa;
+  }
 `;
 export const Result = styled.div``;
 export const TextWrapper = styled.div`

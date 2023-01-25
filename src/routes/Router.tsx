@@ -1,13 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+import { Estimate } from '../components/shopping/Estimate';
 import {
   MyPage,
   Carts,
   AdminItem,
-  AdminItemPo,
-  AdminItemWr,
   AdminMember,
   AdminOrder,
-  AdminOrderDe,
+  // AdminOrderDe,
   AdminCategory,
   ItemDetail,
   ItemList1,
@@ -21,6 +20,7 @@ import {
   MyPagePw,
   MyPageWd,
   MyPageOd,
+  MyPageOdDetail,
   OrderOk,
   Orders,
   Notice,
@@ -35,6 +35,7 @@ import {
   SignUp2,
   SignUp3,
   SignUp4,
+  NotFound,
 } from '../pages';
 // 페이지내 메뉴가 있을 경우 케밥케이스사용(mypage-edit)
 const Router = () => {
@@ -42,13 +43,12 @@ const Router = () => {
     <div className='App'>
       <Routes>
         <Route path='/' element={<MainPage />} />
+        <Route path='/*' element={<NotFound />} />
         <Route path='/carts' element={<Carts />} />
         <Route path='/admin-member' element={<AdminMember />} />
         <Route path='/admin-item' element={<AdminItem />} />
-        <Route path='/admin-item-po' element={<AdminItemPo />} />
-        <Route path='/admin-item-wr' element={<AdminItemWr />} />
         <Route path='/admin-order' element={<AdminOrder />} />
-        <Route path='/admin-order-de' element={<AdminOrderDe />} />
+        {/* <Route path='/admin-order-de' element={<AdminOrderDe />} /> */}
         <Route path='/admin-category' element={<AdminCategory />} />
         <Route path='/itemdetail/*' element={<ItemDetail />} />
         <Route path='/itemlist-1' element={<ItemList1 />} />
@@ -62,6 +62,9 @@ const Router = () => {
         <Route path='/mypage-pw' element={<MyPagePw />} />
         <Route path='/mypage-wd' element={<MyPageWd />} />
         <Route path='/mypage-od' element={<MyPageOd />} />
+        {/* <Route path=':orderId' element={<MyPageOdDetail />} /> */}
+        <Route path='/mypage-od/:detail' element={<MyPageOdDetail />} />
+        {/* <Route path=':orderId' element={<MyPageOdDetail />} /> */}
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
@@ -76,6 +79,7 @@ const Router = () => {
         <Route path='/sign-up2' element={<SignUp2 />} />
         <Route path='/sign-up3' element={<SignUp3 />} />
         <Route path='/sign-up4' element={<SignUp4 />} />
+        <Route path='/estimate' element={<Estimate />} />
       </Routes>
     </div>
   );

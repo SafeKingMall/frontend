@@ -4,11 +4,15 @@ export const Container = styled.div`
   justify-content: center;
 `;
 export const Wrapper = styled.div`
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
+  margin: 0 0 0 2rem;
   width: 105.6rem;
-  margin-left: 2rem;
+
   display: flex;
   flex-direction: column;
+  > div:nth-child(3) {
+    margin: 10rem 0 0 0;
+  }
 `;
 export const Top = styled.div`
   margin: 10rem 0 8.8rem 0;
@@ -20,10 +24,10 @@ export const Top = styled.div`
   align-items: center;
 `;
 export const BasicWrap = styled.div`
-  background-color: mistyrose;
+  /* background-color: mistyrose; */
   > div {
     margin-bottom: 1.6rem;
-    background-color: pink;
+    /* background-color: pink; */
     > label {
       display: inline-block;
       text-align: center;
@@ -36,10 +40,27 @@ export const BasicWrap = styled.div`
       width: 73.6rem;
       height: 6.4rem;
       border: 0.1rem solid #efeff1;
-      font-weight: 500;
+      font-weight: 400;
       font-size: 2rem;
       line-height: 2.4rem;
       padding: 2rem 4rem;
+    }
+  }
+  > div:nth-child(6) {
+    /* background-color: lavenderblush !important; */
+    > input {
+      width: 54.5rem;
+    }
+    > button {
+      margin: 0 0 0 0.8rem;
+      background-color: #289951;
+      width: 183px;
+      height: 64px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+
+      color: #ffffff;
     }
   }
 `;
@@ -64,18 +85,8 @@ export const Mid = styled.h1`
 export const MemberWrap = styled.div`
   background-color: peachpuff;
 `;
-export const Btn = styled.button`
-  width: 12.8rem;
-  height: 5.6rem;
-  border: 0.1rem solid #289951;
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
-  color: #289951;
-`;
-
 export const BtnWrap = styled.div`
-  margin-top: 8.8rem;
+  margin: 4.4rem 0 4.4rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,5 +108,18 @@ export const BtnWrap = styled.div`
     font-size: 1.6rem;
     line-height: 1.9rem;
     color: #ffffff;
+    :disabled {
+      background-color: #aaaaaa;
+    }
   }
+`;
+export const PostModal = styled.div`
+  z-index: 10;
+  position: fixed;
+  width: 50rem;
+  height: 80rem;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: '#ffffff'; */
 `;
