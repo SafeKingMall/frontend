@@ -21,7 +21,7 @@ export const QnAButton = styled.button`
   margin-left: 135rem;
   width: 6.4rem;
   height: 4rem;
-  top: 72rem;
+  top: 79rem;
   font-size: 1.5rem;
   position: absolute;
   bottom: 18%;
@@ -40,7 +40,7 @@ export const Select = styled.select`
   outline: none;
 `;
 
-export const DataList = styled.ul`
+export const DataList = styled.div`
   margin-bottom: 2.4rem;
 `;
 
@@ -82,15 +82,21 @@ export const Container = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 2;
+      // flex-grow: 2;
+      width: 20rem;
     }
     &:nth-child(2) {
-      flex-grow: 2;
+      width: 44rem;
+      text-align: center;
     }
     &:nth-child(3) {
-      flex-grow: 2;
+      width: 48rem;
+      text-align: center;
     }
     &:nth-child(4) {
+      width: 20rem;
+      text-align: right;
+
       input {
         width: 3.2rem;
         height: 3.2rem;

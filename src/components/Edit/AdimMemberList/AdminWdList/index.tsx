@@ -1,62 +1,60 @@
 import * as S from './style';
-import { Searchcompo } from '../../../often/Searchcompo';
 import { useState } from 'react';
-import { useDateFormat } from '../../../common/hooks/useDateFormat';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Searchcompo2 } from '../../../often/Searchcompo2';
+import { Cookies } from 'react-cookie';
 
 export const AdimWdList = (props: any) => {
-  const data1: any = [
-    {
-      memberId: 1,
-      name: 'user1',
-      secessionDay: '2022-11-14 23:23:59.847240',
-    },
-    {
-      memberId: 2,
-      name: 'user2',
-      secessionDay: '2022-11-14 23:23:59.847240',
-    },
-    {
-      memberId: 3,
-      name: 'user3',
-      secessionDay: '2022-11-14 23:23:59.847240',
-    },
-    {
-      memberId: 4,
-      name: 'user4',
-      secessionDay: '2022-11-14 23:23:59.847240',
-    },
-    {
-      memberId: 5,
-      name: 'user5',
-      secessionDay: '2022-11-15 23:23:59.847240',
-    },
-  ];
-  const data = data1
-    .sort((a: any, b: any) => {
-      return new Date(a.lastModifiedDate).getTime() - new Date(b.lastModifiedDate).getTime();
-    })
-    .reverse();
-  // const data = [...data1].reverse();
-  const { registDate2 } = useDateFormat();
+  const [memberList, setMemberList] = useState([]);
+  //회원명 (search할때 쓰일듯)
+  const [memberName, setMemberName] = useState('');
+  // 페이지 숫자
+  const [page, setPage] = useState(0);
+  // 전체 페이지 확인(전체 페이지 수만큼 페이지네이션 숫자 늘리기)
+  const [totalPages, setTotalPages] = useState(0);
+  const [size] = useState(7);
+  // select 옵션 선택
+  const [filter, setFilter] = useState('');
+  // select 박스
+  const [searchText, setSearchText] = useState('');
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
-  const searchParameters = Object.keys(Object.assign({}, ...data));
-  const filterItems = searchParameters.slice(1, 3);
-  const filterItems1 = {
-    회원명: searchParameters[1],
-    탈퇴일: searchParameters[2],
-  };
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/member/withDrawlList?size=${size}&page=${page}&name=${memberName}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setMemberList(res.data.content);
+        setTotalPages(res.data.totalElements);
+      });
+    };
+    getData();
+  }, [jwt, memberName, size, page]);
+
+  const searchParameters = Object.keys(Object.assign({}, ...memberList));
+
+  // const filterItems1 = {
+  //   회원명: searchParameters[1],
+  //   탈퇴일: searchParameters[2],
+  // };
 
   const dataList2 = (data: any) => {
     return (
       <S.DataList>
-        {data.map((el: any, index: any) => {
+        {memberList.map((el: any, index: any) => {
           return (
             <S.Container key={index}>
               <div>{el.memberId}</div>
               <div>
-                <ul>{el.name}</ul>
+                <div>{el.name}</div>
               </div>
-              <div>{registDate2(el.secessionDay)}</div>
+              <div>{el.withdrawalDate}</div>
             </S.Container>
           );
         })}
@@ -74,21 +72,21 @@ export const AdimWdList = (props: any) => {
     );
   };
 
-  const [filter, setFilter] = useState('');
-
   const optionList = (filterItems: any) => {
     return (
       <S.Select onChange={(e) => setFilter(e.target.value)}>
         <option value=''>선택해주세요</option>
-        {filterItems.map((item: any) => (
-          <option key={item} value={item}>
-            {item === Object.values(filterItems1)[0]
-              ? Object.keys(filterItems1)[0]
-              : Object.keys(filterItems1)[1]}
-          </option>
-        ))}
+        <option value='name'>회원명</option>
       </S.Select>
     );
+  };
+
+  const search = () => {
+    if (filter === searchParameters[1]) {
+      setMemberName(searchText);
+    } else {
+      setMemberName('');
+    }
   };
 
   //   if (props.error) {
@@ -99,13 +97,17 @@ export const AdimWdList = (props: any) => {
   return (
     <S.Wrapper>
       <div>
-        <Searchcompo
-          filterItems={filterItems}
+        <Searchcompo2
           optionList={optionList}
-          filter={filter}
+          size={size}
           dataList2={dataList2}
-          data={data}
           TitleList={TitleList}
+          search={search}
+          setSearchText={setSearchText}
+          data={memberList}
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
         />
       </div>
     </S.Wrapper>

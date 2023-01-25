@@ -40,7 +40,7 @@ export const EditMenu = () => {
         to='/admin-category'
         style={{ color: location === '/admin-category' ? numberColor : '' }}
       >
-        카테코리관리
+        카테고리관리
       </S.StyledLink>
     </S.Wrapper>
   );

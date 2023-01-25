@@ -11,6 +11,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  margin-top: 10.2rem;
 `;
 
 export const AdminMembertitle = styled.div`
@@ -51,11 +53,12 @@ export const BigTitle = styled.div`
   position: absolute;
 `;
 
-export const TabMenu = styled.ul`
+export const TabMenu = styled.div`
   display: flex;
   list-style: none;
   cursor: pointer;
   margin-right: 115rem;
+  top: 10rem;
   .submenu {
     display: flex;
     height: 3rem;
@@ -65,6 +68,10 @@ export const TabMenu = styled.ul`
     padding-right: 3.2rem;
     &:first-child {
       border-right: 0.2rem solid black;
+      width: 11rem;
+    }
+    &:last-child {
+      width: 20rem;
     }
   }
 
