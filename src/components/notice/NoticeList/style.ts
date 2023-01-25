@@ -20,14 +20,14 @@ export const Container = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 1;
+      width: 20rem;
     }
     &:nth-child(2) {
-      display: flex;
-      flex-grow: 8;
+      width: 85rem;
     }
     &:nth-child(3) {
-      flex-grow: 0;
+      width: 30rem;
+      text-align: right;
     }
   }
 `;

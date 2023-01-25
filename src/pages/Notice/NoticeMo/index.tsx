@@ -4,6 +4,8 @@ import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
@@ -12,20 +14,49 @@ import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
 
-export const NoticeWr = () => {
+export const NoticeMo = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const itemList = location.state.data;
+  const moveNoticepo = (item: any) => {
+    navigate('/notice-po', {
+      state: {
+        itemId: item,
+        data: itemList,
+      },
+    });
+  };
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const itemId = location.state.itemId;
+
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
-  //등록 알림창
-  const registerAlert = () => {
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/notice/${itemId}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setTitle(res.data.title);
+        setContent(res.data.contents);
+      });
+    };
+    getData();
+  }, [itemId, jwt]);
+
+  //수정알람
+  const putItemAlert = () => {
     swal
       .fire({
         icon: 'question',
-        text: '게사판을 등록하시겠습니까?',
+        text: '게시판을 수정하시겠습니까?',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
         showCancelButton: true,
@@ -37,7 +68,7 @@ export const NoticeWr = () => {
           registerApi();
           swal.fire({
             icon: 'success',
-            text: '게시판이 등록되었습니다.',
+            text: '게시판이 수정되었습니다.',
             confirmButtonText: '확인',
             confirmButtonColor: '#289951',
             width: 400,
@@ -48,8 +79,8 @@ export const NoticeWr = () => {
 
   const registerApi = async () => {
     await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/admin/notice`,
+      method: 'put',
+      url: `${process.env.REACT_APP_API_URL}/admin/notice/${itemId} `,
       headers: {
         Authorization: jwt,
       },
@@ -60,7 +91,8 @@ export const NoticeWr = () => {
     }).then((res) => {
       navigate('/notice-po', {
         state: {
-          data: res.data,
+          itemId: itemId,
+          data: itemList,
         },
       });
     });
@@ -69,7 +101,7 @@ export const NoticeWr = () => {
     <div>
       <Header />
       <div>
-        <S.Banner>Noticewr</S.Banner>
+        <S.Banner>NoticeMo</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>
@@ -78,6 +110,7 @@ export const NoticeWr = () => {
               <td>제목</td>
               <td>
                 <S.TableInput
+                  value={title}
                   placeholder='제목을 입력해주세요.'
                   onChange={(e: any) => {
                     setTitle(e.target.value);
@@ -89,6 +122,7 @@ export const NoticeWr = () => {
               <td>내용</td>
               <td>
                 <S.TableTextarea
+                  value={content}
                   placeholder='내용을 입력해주세요.'
                   onChange={(e: any) => {
                     setContent(e.target.value);
@@ -99,8 +133,8 @@ export const NoticeWr = () => {
           </tbody>
         </S.Table>
         <S.NoticeBox>
-          <S.NoticeButton onClick={() => navigate('/notice')}>취소</S.NoticeButton>
-          <S.NoticeButton2 onClick={() => registerAlert()}>등록</S.NoticeButton2>
+          <S.NoticeButton onClick={() => moveNoticepo(itemId)}>취소</S.NoticeButton>
+          <S.NoticeButton2 onClick={() => putItemAlert()}>등록</S.NoticeButton2>
         </S.NoticeBox>
       </S.Wrapper>
       <Footer />
