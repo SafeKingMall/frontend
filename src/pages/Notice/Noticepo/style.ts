@@ -20,24 +20,47 @@ export const Wrapper = styled.div`
 export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin: 14.8rem 0rem 0rem 131rem;
+  margin: 2.4rem 0rem 12rem 131rem;
   width: 13rem;
   height: 7rem;
   font-size: 2.4rem;
   align-items: center;
 `;
 
+export const NoticeButton1 = styled.button`
+  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  color: ${({ theme }) => theme.palette.green};
+  width: 13rem;
+  height: 7rem;
+  font-size: 2.4rem;
+  align-items: center;
+`;
+
+export const NoticeButton2 = styled.button`
+  background-color: ${({ theme }) => theme.palette.green};
+  color: white;
+  margin-left: 0.8rem;
+  width: 13rem;
+  height: 7rem;
+  font-size: 2.4rem;
+  align-items: center;
+`;
+
+export const ButtonBox = styled.div`
+  margin-top: 14.8rem;
+  font-size: 2.4rem;
+  margin: 12rem 0rem 0rem 117rem;
+`;
+
 export const PoBox = styled.div`
   width: 144rem;
   margin-top: 2.4rem;
-  margin-bottom: 12rem;
   font-size: 2.4rem;
   border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
   border-bottom: 0.11rem solid ${({ theme }) => theme.palette.txtgray};
 `;
 
 export const TitleDiv = styled.div`
-  text-align: center;
   display: flex;
   width: 144rem;
   height: 100%;
@@ -49,6 +72,7 @@ export const TitleDiv = styled.div`
       display: flex;
       align-items: center;
       font-size: 3.2rem;
+      text-align: left;
       justify-content: center;
     }
   }
