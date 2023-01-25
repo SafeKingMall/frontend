@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { TailSpin } from 'react-loader-spinner';
 
 export const List = (props: any) => {
   const itemList = props.itemList;
@@ -10,10 +11,11 @@ export const List = (props: any) => {
   const page = props.page;
   const setPage = props.setPage;
   const totalPages = props.totalPages;
-  const [loading, setLoading] = useState(false);
+  const [scrollLoading, setScrollLoading] = useState(false);
   const navigate = useNavigate();
   const moveDetail = (item: any) => {
-    navigate('/itemDetail', {
+    sessionStorage.setItem('scroll', window.scrollY.toString());
+    navigate(`/itemDetail/${item.id}`, {
       state: {
         itemId: item.id,
       },
@@ -26,9 +28,15 @@ export const List = (props: any) => {
     } else return;
   };
 
+  window.onpopstate = (event) => {
+    const scroll = Number(sessionStorage.getItem('scroll'));
+    console.log(scroll);
+    window.scrollTo(0, scroll);
+  };
+
   const pageUp = async () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && !loading) {
-      setLoading(true);
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && !scrollLoading) {
+      setScrollLoading(true);
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=${page}&${reqData}`,
@@ -36,7 +44,7 @@ export const List = (props: any) => {
         setItemList([...itemList, ...res.data.content]);
       });
       setPage(page + 1);
-      setLoading(false);
+      setScrollLoading(false);
     }
   };
 
@@ -68,7 +76,16 @@ export const List = (props: any) => {
             </S.ItemContainer>
           );
         })}
-        <S.ScrollDiv />
+        <S.ScrollDiv>
+          <TailSpin
+            height='60'
+            width='60'
+            color='#289951'
+            ariaLabel='tail-spin-loading'
+            radius='1'
+            visible={scrollLoading ? true : false}
+          />
+        </S.ScrollDiv>
       </S.ItemArea>
     </S.Container>
   );

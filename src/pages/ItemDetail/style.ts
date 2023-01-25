@@ -17,7 +17,7 @@ export const DetailArea = styled.div`
   margin-top: 8.3rem;
   border-bottom: 0.1rem solid #000000;
   display: flex;
-  flex-diretion: row;
+  flex-direction: row;
   margin-bottom: 17.6rem;
 `;
 export const ItemTextArea = styled.div`
