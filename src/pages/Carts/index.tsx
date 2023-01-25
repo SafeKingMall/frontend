@@ -109,7 +109,7 @@ export const Carts = () => {
     const getData = async () => {
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/user/cart`,
+        url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
         headers: {
           Authorization: jwt,
         },

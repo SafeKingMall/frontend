@@ -10,7 +10,6 @@ export const ItemArea = styled.div`
   height: 100%;
   width: 144rem;
   margin-top: 4rem;
-  // margin-bottom: 10.4rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

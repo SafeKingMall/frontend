@@ -20,7 +20,6 @@ export const ItemDetail = () => {
   const [itemData, setItemData] = useState<any>('');
   const [desHeight, setDesHeight] = useState(0);
   const [desToggle, setDesToggle] = useState(false);
-  // const [itemNavTop, setItemNavTop] = useState(0);
   const [count, setCount] = useState(1);
   const [purchaseBtn, setPurchaseBtn] = useState(
     <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>,
@@ -37,15 +36,6 @@ export const ItemDetail = () => {
       setDesToggle(true);
     }
   }, []);
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  //   setItemNavTop((document.querySelector('#item-nav') as HTMLElement).offsetTop);
-  //   window.scrollTo({
-  //     top: itemNavTop,
-  //     behavior: 'smooth',
-  //   });
-  // }, [itemNavTop]);
 
   useEffect(() => {
     const getData = async () => {
@@ -164,6 +154,14 @@ export const ItemDetail = () => {
           swal.fire({
             icon: 'info',
             text: '동일한 상품이 장바구니에 있습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        } else if (err.response.data.code === 100) {
+          swal.fire({
+            icon: 'info',
+            text: '장바구니가 가득 찼습니다. (최대 20개)',
             confirmButtonText: '확인',
             confirmButtonColor: '#289951',
             width: 400,
