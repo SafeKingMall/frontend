@@ -35,7 +35,6 @@ export const SignUp3 = () => {
   const [isZip, setIsZip] = useState<boolean>(false);
   const [isBasic, setIsBasic] = useState<boolean>(false);
   const [isDetail, setIsDetail] = useState<boolean>(false);
-
   const [isCeo, setIsCeo] = useState<boolean>(false);
   const [isNumber, setIsNumber] = useState<boolean>(false);
   //에러메세지
@@ -156,13 +155,13 @@ export const SignUp3 = () => {
     setOpenPost(false);
   };
 
-  const postCodeStyle = {
-    // width: '700px',
-    // height: '700px',
-    // padding: '7px',
-    // backgroundColor: '#ffffff',
-    // borderRadius: '15px',
-  };
+  // const postCodeStyle = {
+  //   width: '700px',
+  //   height: '700px',
+  //   padding: '7px',
+  //   backgroundColor: '#ffffff',
+  //   borderRadius: '15px',
+  // };
   const onOpenPost = () => {
     setOpenPost(true);
   };

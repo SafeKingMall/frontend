@@ -149,6 +149,9 @@ export const SearchBtn = styled.button`
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+  :disabled {
+    background-color: #aaa;
+  }
 `;
 export const Result = styled.div`
   display: flex;
