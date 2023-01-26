@@ -3,34 +3,38 @@ import * as S from './style';
 import { Footer } from '../../../../components/common/Footer';
 import { Header } from '../../../../components/common/Header';
 import { EditMenu } from '../../../../components/Edit/EditMenu';
-// import { AdminOrderList } from '../../../components/Edit/AdminOrderList/AdminOrderList';
 import db from './../../../../db.json';
 import { useNavigate } from 'react-router-dom';
 
-import { useDateFormat } from '../../../../components/common/hooks/useDateFormat';
 import { useMoney } from '../../../../components/common/hooks/useMoney';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const AdminOrderDe = () => {
   const data = db.orderdetail;
   const navigate = useNavigate();
-  const { registDate } = useDateFormat();
   const { MoneyNumber } = useMoney();
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
-  //   const payStatus = (status: any) => {
-  //     // const [acount, setAcount] = useState('');
-  //     if (status === 'COMPLETE') {
-  //       return '결제완료';
-  //     } else if (status === 'CANCEL') {
-  //       return '결제취소';
-  //     } else {
-  //       return '결제취소중';
-  //     }
-  //   };
+  const { state } = useLocation();
+  const itemId = state.data;
 
-  const payList = { COMPLETE: '결제완료', CANCEL: '결제취소', CANCELING: '결제취소중' };
-  // 배송대기 / 배송중 / 배송완료 / *배송취소(내용 필요)
-  const deliveryList = { COMPLETE: '배송완료', IN_DELIVERY: '배송중' };
+  const payList = { PAID: '결제완료', CANCEL: '결제취소', READY: '결제대기', FAILED: '결제실패' };
+  const deliveryList = {
+    COMPLETE: '배송완료',
+    IN_DELIVERY: '배송중',
+    PREPARATION: '배송준비',
+    CANCEL: '배송취소',
+  };
   const deliComList = [
     'CJ대한통운',
     '로젠택배',
@@ -47,26 +51,70 @@ export const AdminOrderDe = () => {
     '합동택배',
   ];
 
-  const payOrderStatus1 = (data: any) =>
-    data.map((el: any) => {
-      const payKey = Object.entries(payList).filter(([key, value]) => {
-        return el.order.status === key;
+  const [data1, setData1] = useState([] as any);
+  const [payMentStatus, setPayMentStatus] = useState([] as any);
+  const [deliveryStatus, setDeliveryStatus] = useState([] as any);
+  //주문정보(배달정보)
+  const [deliInfor, setDeliInfor] = useState([] as any);
+  //주문아이템정보
+  const [itemInfor, setItemInfor] = useState([] as any);
+  //결제정보
+  const [payInfor, setPayInfor] = useState([] as any);
+  //관리자 메모
+  const [adminMemo, setAdminMemo] = useState('');
+  //택배회사(selected 부분 )
+  const [deliComStatus, setDeliComStatus] = useState('');
+  //송장번호
+  const [deliNumber, setDeliNumber] = useState('' as string);
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/order/detail/${itemId}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setData1(res.data.order);
+        setPayMentStatus(res.data.order.payment.status);
+        setDeliveryStatus(res.data.order.delivery.status);
+        setDeliInfor(res.data.order.delivery);
+        setItemInfor(res.data.order.order_items);
+        setPayInfor(res.data.order.payment);
+        setAdminMemo(res.data.order.admin_memo);
+        setDeliNumber(res.data.order.delivery.invoice_number);
+        setDeliComStatus(res.data.order.delivery.company);
       });
-      return payKey;
-    });
+    };
+    getData();
+  }, [itemId, jwt]);
 
-  const payValue = payOrderStatus1(data)[0][0][1];
+  const payValue = (data: any) => {
+    if (data === 'PAID') {
+      return '결제완료';
+    } else if (data === 'READY') {
+      return '결제대기';
+    } else if (data === 'CANCEL') {
+      return '결제취소';
+    } else {
+      return '결제실패';
+    }
+  };
 
-  const deliOrderStatus1 = (data: any) =>
-    data.map((el: any) => {
-      const deliKey = Object.entries(deliveryList).filter(([key, value]) => {
-        return el.order.delivery.status === key;
-      });
-      return deliKey;
-    });
+  const deliValue = (data: any) => {
+    if (data === 'COMPLETE') {
+      return '배송완료';
+    } else if (data === 'IN_DELIVERY') {
+      return '배송 중';
+    } else if (data === 'PREPARATION') {
+      return '배송준비';
+    } else {
+      return '배송취소';
+    }
+  };
 
-  const deliValue = deliOrderStatus1(data)[0][0][1];
-
+  //택배사 데이터 받아와서 작성해야함
   const deliComOrderStatus1 = (data: any) =>
     data.map((el: any) => {
       const deliComKey = deliComList.filter((key: any) => {
@@ -77,16 +125,14 @@ export const AdminOrderDe = () => {
 
   const deliComValue = deliComOrderStatus1(data)[0][0];
 
-  //결제상태
-  const [paySelected, setPaySelected] = useState('');
-
+  //결제
   const PayhandleSelect = (e: any) => {
-    setPaySelected(e.target.value);
+    setPayMentStatus(e.target.value);
   };
 
   const PaysSelect = () => (
-    <S.OrderSelect required onChange={PayhandleSelect} value={paySelected}>
-      <S.NoneOption value={payValue}>{payValue}</S.NoneOption>
+    <S.OrderSelect required onChange={PayhandleSelect} value={payMentStatus}>
+      <S.NoneOption value={payMentStatus}>{payValue(payMentStatus)}</S.NoneOption>
       {Object.entries(payList).map(([key, value]) => (
         <option value={key} key={key}>
           {value}
@@ -95,16 +141,15 @@ export const AdminOrderDe = () => {
     </S.OrderSelect>
   );
 
-  //배송상태
-  const [deliSelected, setDeliSelected] = useState('');
+  //배달
 
   const DelihandleSelect = (e: any) => {
-    setDeliSelected(e.target.value);
+    setDeliveryStatus(e.target.value);
   };
 
   const DeliverySelect = () => (
-    <S.OrderSelect onChange={DelihandleSelect} required value={deliSelected}>
-      <S.NoneOption value={deliValue}>{deliValue}</S.NoneOption>
+    <S.OrderSelect onChange={DelihandleSelect} required value={deliveryStatus}>
+      <S.NoneOption value={deliveryStatus}>{deliValue(deliveryStatus)}</S.NoneOption>
       {Object.entries(deliveryList).map(([key, value]) => (
         <option value={key} key={key}>
           {value}
@@ -114,31 +159,136 @@ export const AdminOrderDe = () => {
   );
 
   //택배회사
-  const [deliComiSelected, setDeliComSelected] = useState('');
-
   const DeliComhandleSelect = (e: any) => {
-    setDeliComSelected(e.target.value);
+    setDeliComStatus(e.target.value);
   };
 
-  const DeliComSelect = () => (
+  //주문정보
+  const AdminOrderDetail2 = () => (
     <div>
-      <S.OrderSelect onChange={DeliComhandleSelect} required value={deliComiSelected}>
-        <S.NoneOption value={deliComValue}>{deliComValue}</S.NoneOption>
-        {deliComList.map((key: any) => (
-          <option value={key} key={key}>
-            {key}
-          </option>
-        ))}
-      </S.OrderSelect>
-      <S.OrderInput />
+      <S.OrderDiv>
+        <S.OrderH2>주문정보</S.OrderH2>
+      </S.OrderDiv>
+      <S.Table>
+        <tbody>
+          <tr>
+            <th>수령인</th>
+            <td>{deliInfor.receiver}</td>
+            <th>연락처</th>
+            <td>{deliInfor.phone_number}</td>
+          </tr>
+          <tr>
+            <th>주소</th>
+            <td colSpan={3}>{deliInfor.address}</td>
+          </tr>
+          <tr>
+            <th>배송요청사항</th>
+            <td colSpan={3}>{deliInfor.memo}</td>
+          </tr>
+          <tr>
+            <th>주문요청사항</th>
+            <td colSpan={3}>{data1.memo}</td>
+          </tr>
+        </tbody>
+      </S.Table>
     </div>
   );
 
-  const AdminOrderDetail = () => (
+  //결제정보
+  const AdminOrderPayDetail = () => (
     <div>
-      {data.map((el: any) => {
-        return (
-          <div key={el.order.id}>
+      <S.OrderDiv>
+        <S.OrderH2>결제 정보</S.OrderH2>
+      </S.OrderDiv>
+      <S.Table>
+        <tbody>
+          <tr>
+            <th>결제방식</th>
+            <td>{payInfor.means}</td>
+            <th>결제금액</th>
+            <td>{payInfor.price}</td>
+          </tr>
+          <tr>
+            <th>입금자명</th>
+            <td>{/* {payInfor.name} */}</td>
+            <th>카드사</th>
+            <td>{payInfor.company}</td>
+          </tr>
+          <tr>
+            <th>현금영수증방식</th>
+            <td>{/* {el.memo} */}</td>
+            {/* 현금영수증방시데이터는 따로 안들어오나? */}
+            <th>사업자번호</th>
+            <td>{payInfor.business_number}</td>
+          </tr>
+        </tbody>
+      </S.Table>
+    </div>
+  );
+
+  // 주문관리 상세 수정
+  const putItemAlert = (itemId: number) => {
+    swal
+      .fire({
+        icon: 'question',
+        text: '수정하시겠습니까?',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        width: 400,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          modifyApi(itemId);
+          swal.fire({
+            icon: 'success',
+            text: '수정되었습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        }
+      });
+  };
+
+  const modifyApi = async (itemId: any) => {
+    await axios({
+      method: 'put',
+      url: `${process.env.REACT_APP_API_URL}/admin/order/detail/${itemId} `,
+      headers: {
+        Authorization: jwt,
+      },
+      data: {
+        order: {
+          admin_memo: adminMemo,
+          delivery: {
+            status: deliveryStatus,
+            invoice_number: deliNumber,
+            cost: deliInfor.cost,
+            company: deliComStatus,
+          },
+          payment: {
+            status: payMentStatus,
+          },
+        },
+      },
+    }).then((res) => {
+      navigate('/admin-order-de', {
+        state: {
+          data: itemId,
+        },
+      });
+    });
+  };
+
+  return (
+    <div>
+      <Header />
+      <S.Container>
+        <EditMenu />
+        <S.Wrapper>
+          <div key={data1.id}>
             <S.OrderDiv>
               <S.OrderH2>주문정보</S.OrderH2>
             </S.OrderDiv>
@@ -146,12 +296,11 @@ export const AdminOrderDe = () => {
               <S.OrderDiv2>
                 <S.AdminWrapper>
                   <h3>주문번호 | </h3>
-                  <div>{el.order.id}</div>
+                  <div>{data1.id}</div>
                 </S.AdminWrapper>
                 <S.AdminWrapper>
                   <h3>주문일시 | </h3>
-                  <div> {registDate(el.order.date)}</div>
-                  {/* <div>{payStatus}</div> */}
+                  <div> {data1.date}</div>
                 </S.AdminWrapper>
               </S.OrderDiv2>
               <S.Table2>
@@ -166,7 +315,7 @@ export const AdminOrderDe = () => {
                     <td>배송료</td>
                     <td>송장번호</td>
                   </tr>
-                  {el.order.orderItems.map((al: any, index: any) => {
+                  {itemInfor.map((al: any, index: any) => {
                     return (
                       <tr key={index}>
                         <td>
@@ -190,9 +339,26 @@ export const AdminOrderDe = () => {
                           <DeliverySelect />
                         </td>
 
-                        <td>{el.order.delivery.price}</td>
+                        <td>{deliInfor.cost}</td>
                         <td>
-                          <DeliComSelect />
+                          <S.OrderSelect
+                            onChange={DeliComhandleSelect}
+                            required
+                            value={deliComStatus}
+                          >
+                            <S.NoneOption value={deliComValue}>{deliComValue}</S.NoneOption>
+                            {deliComList.map((key: any) => (
+                              <option value={key} key={key}>
+                                {key}
+                              </option>
+                            ))}
+                          </S.OrderSelect>
+                          <S.OrderInput
+                            value={deliNumber}
+                            onChange={(e: any) => {
+                              setDeliNumber(e.target.value);
+                            }}
+                          />
                         </td>
                       </tr>
                     );
@@ -201,106 +367,20 @@ export const AdminOrderDe = () => {
               </S.Table2>
             </div>
           </div>
-        );
-      })}
-    </div>
-  );
-
-  //주문정보
-  const AdminOrderDetail2 = () => (
-    <div>
-      <S.OrderDiv>
-        <S.OrderH2>주문정보</S.OrderH2>
-      </S.OrderDiv>
-      <S.Table>
-        {data.map((el: any, index: any) => {
-          return (
-            <tbody key={index}>
-              <tr>
-                <th>수령인</th>
-                <td>{el.order.delivery.receiver}</td>
-                <th>연락처</th>
-                <td>{el.order.delivery.phone_number}</td>
-              </tr>
-              <tr>
-                <th>주소</th>
-                <td colSpan={3}>{el.order.delivery.address}</td>
-              </tr>
-              <tr>
-                <th>배송요청사항</th>
-                <td colSpan={3}>{el.order.delivery.memo}</td>
-              </tr>
-              <tr>
-                <th>주문요청사항</th>
-                <td colSpan={3}>{el.order.memo}</td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </S.Table>
-    </div>
-  );
-
-  //결제정보
-  const AdminOrderPayDetail = () => (
-    <div>
-      <S.OrderDiv>
-        <S.OrderH2>결제 정보</S.OrderH2>
-      </S.OrderDiv>
-      <S.Table>
-        {data.map((el: any, index: any) => {
-          return (
-            <tbody key={index}>
-              <tr>
-                <th>결제방식</th>
-                <td>{el.order.payment.means}</td>
-                <th>결제금액</th>
-                <td>{el.order.payment.price}</td>
-              </tr>
-              <tr>
-                <th>입금자명</th>
-                <td>{el.order.payment.name}</td>
-                <th>카드사</th>
-                <td>{el.order.payment.company}</td>
-              </tr>
-              <tr>
-                <th>현금영수증방식</th>
-                <td>{el.order.payment.memo}</td>
-                {/* 현금영수증방시데이터는 따로 안들어오나? */}
-                <th>사업자번호</th>
-                <td>{el.order.payment.business_number}</td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </S.Table>
-    </div>
-  );
-
-  //관리자 메모
-
-  const AdminMemo = () => (
-    <div>
-      <S.OrderDiv>
-        <S.OrderH2>관리자 메모</S.OrderH2>
-      </S.OrderDiv>
-      <S.AdminTextarea />
-    </div>
-  );
-
-  return (
-    <div>
-      <Header />
-      <S.Container>
-        <EditMenu />
-        <S.Wrapper>
-          <AdminOrderDetail />
           <AdminOrderDetail2 />
           <AdminOrderPayDetail />
-          <AdminMemo />
+          <S.OrderDiv>
+            <S.OrderH2>관리자 메모</S.OrderH2>
+          </S.OrderDiv>
+          <S.AdminTextarea
+            value={adminMemo}
+            onChange={(e: any) => {
+              setAdminMemo(e.target.value);
+            }}
+          />
           <S.QnABox>
             <S.QnAButton onClick={() => navigate('/admin-order')}>취소</S.QnAButton>
-            <S.QnAButton2 onClick={() => navigate('/admin-order')}>저장하기</S.QnAButton2>
+            <S.QnAButton2 onClick={() => putItemAlert(itemId)}>저장하기</S.QnAButton2>
           </S.QnABox>
         </S.Wrapper>
       </S.Container>

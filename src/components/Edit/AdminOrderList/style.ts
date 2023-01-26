@@ -36,22 +36,22 @@ export const AdminOrdertitle = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 1.5;
-    }
-    &:nth-child(2) {
-      flex-grow: 1.5;
-    }
-    &:nth-child(3) {
       flex-grow: 1.3;
     }
-    &:nth-child(4) {
+    &:nth-child(2) {
+      flex-grow: 1.8;
+    }
+    &:nth-child(3) {
       flex-grow: 1.2;
     }
+    &:nth-child(4) {
+      flex-grow: 0.8;
+    }
     &:nth-child(5) {
-      flex-grow: 2.3;
+      flex-grow: 2;
     }
     &:nth-child(6) {
-      flex-grow: 2.2;
+      flex-grow: 3;
       div {
         &:last-child {
           font-size: 1.5rem;
@@ -68,30 +68,38 @@ export const Container = styled.div`
   width: 128rem;
   display: flex;
   align-items: center;
-  padding: 2.4rem 2.4rem 2.4rem 5.8rem;
+  padding: 2.4rem 1.5rem 2.4rem 5.8rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 2;
+      width: 7rem;
+      text-align: left;
     }
     &:nth-child(2) {
-      flex-grow: 1;
+      width: 20rem;
+      text-align: center;
     }
     &:nth-child(3) {
-      flex-grow: 1.5;
+      width: 18rem;
+      text-align: center;
     }
     &:nth-child(4) {
-      flex-grow: 1.5;
+      width: 13rem;
+      text-align: center;
     }
     &:nth-child(5) {
-      flex-grow: 1.5;
+      width: 13rem;
+
+      text-align: center;
     }
     &:nth-child(6) {
-      flex-grow: 1.5;
+      width: 28rem;
+      text-align: center;
     }
     &:nth-child(7) {
-      flex-grow: 0;
+      width: 23rem;
+      text-align: right;
     }
   }
 `;
@@ -124,10 +132,6 @@ export const SearchThird = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  input {
-    // position: relative;
-    // z-index: 2;
-  }
 `;
 
 export const DayInput = styled.input`
@@ -153,7 +157,7 @@ export const Tilde = styled.div`
 `;
 
 export const SearchFour = styled.div`
-  position: relative;
+  /* position: relative; */
 `;
 
 //inpit date icon css
@@ -182,6 +186,7 @@ export const SearchInput = styled.input`
   height: 4.8rem;
   border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
   margin-right: 1.6rem;
+  padding-left: 0.8rem;
 `;
 
 export const DeliSelect = styled.select`
