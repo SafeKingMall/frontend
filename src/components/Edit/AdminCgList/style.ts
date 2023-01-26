@@ -24,17 +24,19 @@ export const DragList = styled.div`
   display: flex;
   align-items: center;
   padding: 2.4rem 2.4rem 2.4rem 5.8rem;
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 1.25;
+      width: 15rem;
     }
     &:nth-child(2) {
-      flex-grow: 1.8;
+      width: 50rem;
+      text-align: center;
     }
     &:nth-child(3) {
-      flex-grow: 1;
+      width: 60rem;
+      text-align: center;
     }
   }
 `;
@@ -63,13 +65,12 @@ export const AdminCgtitle = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   flex-wrap: wrap;
-  background-color: ${({ theme }) => theme.palette.darkgreen};
+  background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
   //   justify-content: space-between;
   padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
