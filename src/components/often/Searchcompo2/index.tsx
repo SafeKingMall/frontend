@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Pagination } from '../pagination';
 
-export const Searchcompo = (props: any) => {
+export const Searchcompo2 = (props: any) => {
   //현재페이지
   const [currentPage, setCurrentPage] = useState(props.page + 1);
   //페이지당 보여지는 리스트
@@ -34,15 +34,15 @@ export const Searchcompo = (props: any) => {
     <S.Wrapper>
       <S.Container>
         <S.SearchArea>
-          {props.optionList(props.filterItems)}
+          {props.optionList()}
           <S.SearchBar
             type='text'
             name='search-form'
             id='search-form'
             placeholder='Search for...'
             onClick={searchClick}
-            onChange={(e: any) => onChangeText(e)}
-            onKeyDown={(e: any) => onKeyDownEnter(e)}
+            onChange={(e) => onChangeText(e)}
+            onKeyDown={(e) => onKeyDownEnter(e)}
             autoComplete='off'
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
