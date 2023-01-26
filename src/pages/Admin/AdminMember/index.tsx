@@ -28,18 +28,19 @@ export const AdminMember = () => {
           <S.TabMenu>
             {menuArr.map((tap, index) => {
               return (
-                <li
+                <div
                   key={index}
                   className={currentTab === index ? 'submenu focused' : 'submenu'}
                   onClick={() => selectMenuHandler(index)}
                 >
                   {tap.name}
-                </li>
+                </div>
               );
             })}
           </S.TabMenu>
           <div>
-            <p>{menuArr[currentTab].content}</p>
+            {/* <AdimWdList /> */}
+            <div>{menuArr[currentTab].content}</div>
           </div>
         </S.Wrapper>
       </S.Container>

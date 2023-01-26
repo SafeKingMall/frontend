@@ -21,7 +21,7 @@ export const Select = styled.select`
   outline: none;
 `;
 
-export const DataList = styled.ul`
+export const DataList = styled.div`
   margin-bottom: 2.4rem;
 `;
 
