@@ -11,12 +11,13 @@ export const Pagination = (props: any) => {
   };
 
   const pages = [];
-  for (let i = 1; i <= Math.ceil(props.data.length / props.itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(props.totalPages / props.itemsPerPage); i++) {
     pages.push(i);
   }
 
   const handleClick = (event: any) => {
     props.setCurrentPage(Number(event.target.id));
+    props.setPage(event.target.id - 1);
   };
 
   const renderPageNumbers = pages.map((number: any) => {
@@ -38,6 +39,7 @@ export const Pagination = (props: any) => {
 
   const handleNextbtn = () => {
     props.setCurrentPage(props.currentPage + 1);
+    props.setPage(props.page + 1);
 
     if (props.currentPage + 1 > props.maxPageNumberLimit) {
       props.setMaxPageNumberLimit(props.maxPageNumberLimit + props.pageNumberLimit);
@@ -47,6 +49,7 @@ export const Pagination = (props: any) => {
 
   const handlePrevbtn = () => {
     props.setCurrentPage(props.currentPage - 1);
+    props.setPage(props.page - 1);
 
     if ((props.currentPage - 1) % props.pageNumberLimit === 0) {
       props.setMaxPageNumberLimit(props.maxPageNumberLimit - props.pageNumberLimit);
