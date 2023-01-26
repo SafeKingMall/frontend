@@ -3,26 +3,78 @@ import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
 import { Footer } from '../../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
-import { EditorWr } from '../../../../components/Edit/AdminItemList/Editor';
+// import { EditorWr } from '../../../../components/Edit/AdminItemList/Editor';
 import { Header } from '../../../../components/common/Header';
 import { EditMenu } from '../../../../components/Edit/EditMenu';
 import db from '../../../../db.json';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { Cookies } from 'react-cookie';
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const AdminItemWr = () => {
   const data = db.categorycontent;
   const navigate = useNavigate();
 
-  //사진 업로드
+  // 상품명
+  const [itemName, setItemName] = useState('');
+  //화면에 출력되는 파일
   const [selectedImages, setSelectedImages] = useState([]);
+  //서버에 보내지는 파일
+  const [selectedFiles, setSelectedFiles] = useState(null as any);
 
-  const onSelectFile = (event: any) => {
-    const selectedFiles = event.target.files;
-    const selectedFileArray = Array.from(selectedFiles);
+  //설명부분
+  const [descriptEdit, setDescriptEdit] = useState('' as any);
+  const [hideBtn, setHideBtn] = useState(true);
+  //만약 숨기기 버튼이 눌렸으면(false)이면 N을 보내줘야함
+  const [sendhide, setSendhide] = useState('' as any);
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
+
+  const clickHide = () => {
+    setHideBtn(!hideBtn);
+    if (hideBtn === false) {
+      setSendhide('Y');
+    } else if (hideBtn === true) {
+      setSendhide('N');
+    }
+  };
+
+  const onSelectFile = (e: any) => {
+    e.preventDefault();
+    e.persist();
+    const selectedFiles = e.target.files;
+    const fileUrlList = [...selectedFiles];
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const nowUrl = URL.createObjectURL(selectedFiles[i]);
+      fileUrlList.push(nowUrl);
+    }
+
+    // 업로드하는 파일 개수 제한하는 것
+    if (fileUrlList.length > 1) {
+      fileUrlList.slice(0, 1);
+    }
+
+    if (selectedImages.length > 1) {
+      selectedImages.slice(0, 1);
+    }
+
+    setSelectedFiles(fileUrlList);
+
+    const selectedFileArray: any = Array.from(selectedFiles);
+
     const imageArray = selectedFileArray.map((file: any) => {
       return file.name;
     });
+
     setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
-    event.target.value = '';
+    e.target.value = '';
   };
 
   const attachFile =
@@ -70,9 +122,119 @@ export const AdminItemWr = () => {
     }
   };
 
-  const [cataSelect, setCataSelect] = useState('');
+  const [cateSelect, setCateSelect] = useState('');
   const selectChange = (e: any) => {
-    setCataSelect(e.target.value);
+    setCateSelect(e.target.value);
+  };
+
+  const [categoryId, setCategoryId] = useState([] as any);
+
+  const sendCategoryId = categoryId.filter((el: any) => el.name === cateSelect);
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/category/list`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setCategoryId(res.data.content);
+      });
+    };
+    getData();
+  }, [jwt]);
+
+  //등록 알림창
+  const registerAlert = () => {
+    swal
+      .fire({
+        icon: 'question',
+        text: '상품을 등록하시겠습니까?',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        width: 400,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          registerApi();
+          swal.fire({
+            icon: 'success',
+            text: '상품이 등록되었습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        }
+      });
+  };
+  //등록 api
+  const registerApi = async () => {
+    let jwt;
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/login`,
+      data: {
+        username: 'admin1234',
+        password: 'admin1234*',
+      },
+    }).then((res) => {
+      jwt = res.headers.authorization;
+    });
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/admin/item`,
+      headers: {
+        Authorization: jwt,
+      },
+      data: {
+        //상품명
+        name: itemName,
+        // 상품수량
+        quantity: Number(moneyNum.split(',').join('')),
+        //상품설명moneyNum
+        description: descriptEdit,
+        //상품금액
+        // price: 1,
+        price: Number(quantityNum.split(',').join('')),
+
+        //카테고리 ID
+        categoryId: sendCategoryId[0].id,
+        //가격표시여부
+        viewYn: sendhide,
+      },
+    }).then((res) => {
+      registFile(res.data);
+    });
+  };
+
+  const registFile = async (id: any) => {
+    const formData = new FormData();
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append('file', selectedFiles[i]);
+    }
+    formData.append('type', 'item');
+    formData.append('targetId', id);
+
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_URL}/file/upload`,
+      headers: {
+        Authorization: jwt,
+        'Content-Type': 'multipart/form-data',
+      },
+      data: formData,
+    }).then((res) => {
+      navigate('/qna', {
+        state: {
+          data: id,
+        },
+      });
+    });
   };
 
   return (
@@ -86,11 +248,15 @@ export const AdminItemWr = () => {
               <tr>
                 <td>제목</td>
                 <td>
-                  <S.TableInput placeholder='상품명을 입력해주세요' />
+                  <S.TableInput
+                    autoComplete='off'
+                    placeholder='상품명을 입력해주세요'
+                    onChange={(e: any) => setItemName(e.target.value)}
+                  />
                 </td>
                 <td>카테고리</td>
                 <td>
-                  <S.Select onChange={selectChange} value={cataSelect} required>
+                  <S.Select onChange={selectChange} value={cateSelect} required>
                     <S.NoneOption value='카테고리'>-카테고리-</S.NoneOption>
                     {data.map((el: any) => {
                       return (
@@ -108,6 +274,7 @@ export const AdminItemWr = () => {
                 <td colSpan={3}>
                   <S.PayInput>
                     <S.TableInput
+                      autoComplete='off'
                       name='moneyNum'
                       placeholder='가격을 입력해주세요.'
                       type='text'
@@ -115,7 +282,7 @@ export const AdminItemWr = () => {
                       onChange={changeEnteredNum}
                     />
                     <S.PayP>원</S.PayP>
-                    <S.StyledInput type='checkbox' id='Hide' name='Hide' />
+                    <S.StyledInput onClick={clickHide} type='checkbox' id='Hide' name='Hide' />
                     <S.StyledLabel htmlFor='Hide'>
                       <S.StyledP>숨기기</S.StyledP>
                     </S.StyledLabel>
@@ -127,6 +294,7 @@ export const AdminItemWr = () => {
                 <td>상품수량</td>
                 <td colSpan={3}>
                   <S.TableInput
+                    autoComplete='off'
                     name='quantityNum'
                     placeholder='수량을 입력해주세요.'
                     type='text'
@@ -160,14 +328,20 @@ export const AdminItemWr = () => {
               <tr>
                 <td>설명</td>
                 <td colSpan={3}>
-                  <EditorWr />
+                  {/* <EditorWr descriptEdit={descriptEdit} setDescriptEdit={setDescriptEdit} /> */}
+                  <S.TableTextarea
+                    value={descriptEdit}
+                    onChange={(e: any) => {
+                      setDescriptEdit(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
             </tbody>
           </S.Table>
           <S.QnABox>
             <S.QnAButton onClick={() => navigate('/admin-item')}>취소</S.QnAButton>
-            <S.QnAButton2 onClick={() => navigate('/admin-item-po')}>등록</S.QnAButton2>
+            <S.QnAButton2 onClick={() => registerAlert()}>등록</S.QnAButton2>
           </S.QnABox>
         </S.Wrapper>
       </S.Container>

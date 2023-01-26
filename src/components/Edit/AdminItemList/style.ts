@@ -33,7 +33,7 @@ export const Select = styled.select`
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 10.4rem;s
+  margin-bottom: 10.4rem;
 `;
 
 export const AdminTitle = styled.div`
@@ -43,8 +43,8 @@ export const AdminTitle = styled.div`
   background-color: ${({ theme }) => theme.palette.whitegreen};
   padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  /* border-bottom: 0.3rem solid ${({ theme }) => theme.palette.lightgray}; */
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
@@ -68,20 +68,21 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 2.4rem 2.4rem 2.4rem 5.8rem;
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 2.1;
+      width: 20rem;
     }
     &:nth-child(2) {
-      flex-grow: 2.5;
+      text-align: center;
+      width: 35rem;
     }
     &:nth-child(3) {
-      flex-grow: 1.9;
+      text-align: center;
+      width: 65rem;
     }
     &:nth-child(4) {
-      flex-grow: 0;
     }
   }
 `;
