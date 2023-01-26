@@ -3,6 +3,7 @@ import * as S from './style';
 import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { Header } from '../../../components/common/Header';
 
 export const QnAPw = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export const QnAPw = () => {
 
   return (
     <div>
+      <Header />
       <div>
         <S.Banner>QnApw</S.Banner>
       </div>
@@ -21,7 +23,9 @@ export const QnAPw = () => {
         </S.PwBox>
         <S.QnABox>
           <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => navigate('/qna-po', { state: data })}>확인</S.QnAButton2>
+          <S.QnAButton2 onClick={() => navigate('/qna-po', { state: { data: data } })}>
+            확인
+          </S.QnAButton2>
         </S.QnABox>
       </S.Wrapper>
       <Footer />

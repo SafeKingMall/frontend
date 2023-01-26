@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
+import { useLocation } from 'react-router';
+
 import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,13 +14,32 @@ import { Cookies } from 'react-cookie';
 
 const swal = withReactContent(Swal);
 
-export const QnAWr = () => {
+export const QnAMo = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+
+  const itemId = state.itemId;
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setTitle(res.data.title);
+        setContents(res.data.contents);
+      });
+    };
+    getData();
+  }, [itemId, jwt]);
 
   //화면에 출력되는 파일
   const [selectedImages, setSelectedImages] = useState([]);
@@ -71,7 +92,7 @@ export const QnAWr = () => {
     swal
       .fire({
         icon: 'question',
-        text: '게시판을 등록하시겠습니까?',
+        text: '게시판을 수정하시겠습니까?',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
         showCancelButton: true,
@@ -83,12 +104,17 @@ export const QnAWr = () => {
           registApi();
           swal.fire({
             icon: 'success',
-            text: '게사판이 등록되었습니다.',
+            text: '게사판이 수정되었습니다.',
             confirmButtonText: '확인',
             confirmButtonColor: '#289951',
             width: 400,
           });
         }
+        navigate('/qna-po', {
+          state: {
+            data: itemId,
+          },
+        });
       });
   };
 
@@ -102,8 +128,8 @@ export const QnAWr = () => {
     // }
 
     await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/user/itemQna`,
+      method: 'put',
+      url: `${process.env.REACT_APP_API_URL}/user/itemQna/${itemId}`,
       headers: {
         Authorization: jwt,
       },
@@ -113,7 +139,7 @@ export const QnAWr = () => {
         itemId: 3,
       },
     }).then((res) => {
-      registFile(res.data);
+      registFile(itemId);
     });
   };
 
@@ -134,12 +160,6 @@ export const QnAWr = () => {
         'Content-Type': 'multipart/form-data',
       },
       data: formData,
-    }).then((res) => {
-      navigate('/qna', {
-        state: {
-          data: id,
-        },
-      });
     });
   };
 
@@ -156,6 +176,7 @@ export const QnAWr = () => {
               <td>제목</td>
               <td>
                 <S.TableInput
+                  value={title}
                   placeholder='제목을 입력해주세요.'
                   onChange={(e: any) => {
                     setTitle(e.target.value);
@@ -173,6 +194,7 @@ export const QnAWr = () => {
               <td>내용</td>
               <td>
                 <S.TableTextarea
+                  value={contents}
                   placeholder='내용을 입력해주세요.'
                   onChange={(e: any) => {
                     setContents(e.target.value);

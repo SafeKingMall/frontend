@@ -25,16 +25,16 @@ export const QnATitle = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 2.1;
+      flex-grow: 1.5;
     }
     &:nth-child(2) {
-      flex-grow: 2.7;
+      flex-grow: 3.8;
     }
     &:nth-child(3) {
-      flex-grow: 2;
+      flex-grow: 2.1;
     }
     &:nth-child(4) {
-      flex-grow: 0;
+      flex-grow: 0.1;
     }
   }
 `;
@@ -62,20 +62,22 @@ export const Container = styled.div`
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
-      flex-grow: 1;
+      width: 10rem;
     }
     &:nth-child(2) {
       display: flex;
-      flex-grow: 3.7;
+      width: 65rem;
       svg {
         margin-left: 1rem;
       }
     }
     &:nth-child(3) {
-      flex-grow: 2.5;
+      width: 30rem;
+      text-align: center;
     }
     &:nth-child(4) {
-      flex-grow: 0;
+      width: 30rem;
+      text-align: right;
     }
   }
 `;

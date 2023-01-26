@@ -31,7 +31,6 @@ export const PwBox = styled.div`
   position: absolute;
   width: 144rem;
   height: 30rem;
-  magin-top: 14.8rem;
   display: grid;
   justify-content: center;
   font-size: 2.4rem;
