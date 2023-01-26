@@ -29,7 +29,7 @@ export const AdminMemberList = (props: any) => {
   // select 박스
   const [searchText, setSearchText] = useState('');
   // 체크된 아이템을 담을 배열
-  const [checkItems, setCheckItems] = useState([] as any);
+  const [checkItems, setCheckItems] = useState<any[]>([]);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
