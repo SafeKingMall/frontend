@@ -1,22 +1,13 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
-// import { useEffect } from 'react';
-import { useState } from 'react';
-// import {useEffect} from 'react';
-import db from '../../../db.json';
+import { useEffect, useState } from 'react';
 import { Pagination } from '../../often/pagination';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { useMoney } from '../../common/hooks/useMoney';
+import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
 export const AdminOrderList = (props: any) => {
-  const data1 = db.orders;
-  const data = data1
-    .sort((a: any, b: any) => {
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    })
-    .reverse();
-  // const data = [...data1].reverse();
-
   const { registDate, registDate2 } = useDateFormat();
   const { MoneyNumber } = useMoney();
 
@@ -29,51 +20,23 @@ export const AdminOrderList = (props: any) => {
     });
   };
 
+  const [itemList, setItemList] = useState([]);
+  const [sort] = useState(`sort=date,asc`);
+  // 페이지 숫자
+  const [page, setPage] = useState(0);
+  // 전체 페이지 확인(전체 페이지 수만큼 페이지네이션 숫자 늘리기)
+  const [totalPages, setTotalPages] = useState(0);
+  const [size] = useState(7);
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
+
   //페이지 네이션
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(page + 1);
+  const [itemsPerPage] = useState(size);
 
   const [pageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-
-  const dataList2 = (data: any) => {
-    return (
-      <S.DataList>
-        {data.map((el: any, index: any) => {
-          return (
-            <S.Container key={index} onClick={() => moveQnApw(el)}>
-              <div>{el.id}</div>
-              {el.orderItem_count === 1 ? (
-                <div>{el.orderItem.name}</div>
-              ) : (
-                <div>
-                  {el.orderItem.name} 외 {el.orderItem_count - 1}건
-                </div>
-              )}
-              <div>{MoneyNumber(el.price)}</div>
-              <div>
-                {el.payment.status === 'COMPLETE'
-                  ? '결제완료'
-                  : el.payment.status === 'CANCEL'
-                  ? '결제취소'
-                  : '결제취소중'}
-              </div>
-              <div>{el.delivery.status === 'COMPLETE' ? '배송완료' : '배송중'}</div>
-              <div>{registDate(el.date)}</div>
-              <div>
-                {el.member.name}/{el.delivery.receiver}
-              </div>
-            </S.Container>
-          );
-        })}
-      </S.DataList>
-    );
-  };
 
   // 검색시작날짜
   const [startDay, setStartDay] = useState('' as any);
@@ -86,6 +49,73 @@ export const AdminOrderList = (props: any) => {
   // 배송상태
   const [deliStatus, setDeliStatus] = useState('');
 
+  //상품명 입력
+  const [keyWord, setKeyWord] = useState('');
+
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+
+        url: `${process.env.REACT_APP_API_URL}/admin/order/list?sort=${sort}&page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&keyword=${keyWord}&deliveryStatus=${deliStatus}&paymentStats=${payStatus}
+        `,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setItemList(res.data.orders);
+        setTotalPages(res.data.total_elements);
+      });
+    };
+    getData();
+  }, [jwt, size, sort, page, startDay, finishDay, keyWord, deliStatus, payStatus]);
+
+  const dataList2 = (data: any) => {
+    return (
+      <S.DataList>
+        {data.map((el: any, index: any) => {
+          return (
+            <S.Container key={index} onClick={() => moveQnApw(el.id)}>
+              <div>{el.id}</div>
+              {el.order_item_count === 1 ? (
+                <div>{el.order_item.name}</div>
+              ) : (
+                <div>
+                  {el.order_item.name} 외 {el.order_item_count - 1}건
+                </div>
+              )}
+              <div>{MoneyNumber(el.price)}</div>
+              <div>
+                {el.payment.status === 'PAID'
+                  ? '결제완료'
+                  : el.payment.status === 'READY'
+                  ? '결제대기'
+                  : el.payment.status === 'CANCEL'
+                  ? '결제취소'
+                  : '결제실패'}
+              </div>
+
+              <div>
+                {el.delivery.status === 'COMPLETE'
+                  ? '배송완료'
+                  : el.delivery.status === 'IN_DELIVERY'
+                  ? '배송 중'
+                  : el.delivery.status === 'PREPARATION'
+                  ? '배송 준비'
+                  : '배송취소'}
+              </div>
+              <div>{registDate(el.date)}</div>
+              <div>
+                {el.member.name}/{el.delivery.receiver}
+              </div>
+            </S.Container>
+          );
+        })}
+      </S.DataList>
+    );
+  };
   //오늘
   const Now = () => {
     const date = new Date();
@@ -117,8 +147,32 @@ export const AdminOrderList = (props: any) => {
     setFinishDay(registDate2(date));
   };
 
-  const SearchBox = () => {
-    return (
+  const onChangeText = (e: any) => {
+    setSearchText(e.target.value);
+  };
+  const onKeyDownEnter = (e: any) => {
+    if (e.key === 'Enter') {
+      search();
+      e.target.blur();
+    }
+  };
+
+  const searchClick = () => {
+    setCurrentPage(1);
+    setPage(0);
+  };
+
+  const search = () => {
+    setKeyWord(searchText);
+  };
+
+  //   if (props.error) {
+  //     return <>{props.error.message}</>;
+  // } else if (!props.loaded) {
+  //     return <>loading...</>;
+  // } else {
+  return (
+    <S.Wrapper>
       <S.SearchBox>
         <S.SearchSecon>
           <S.DayButton onClick={Now}>오늘</S.DayButton>
@@ -129,7 +183,7 @@ export const AdminOrderList = (props: any) => {
             <S.SearchFour>
               <S.DayInput
                 type='date'
-                value={startDay}
+                value={finishDay}
                 onChange={(e: any) => {
                   setStartDay(e.target.value);
                 }}
@@ -140,7 +194,7 @@ export const AdminOrderList = (props: any) => {
             <S.Tilde>~</S.Tilde>
             <S.DayInput
               type='date'
-              value={finishDay}
+              value={startDay}
               onChange={(e: any) => {
                 setFinishDay(e.target.value);
               }}
@@ -149,32 +203,33 @@ export const AdminOrderList = (props: any) => {
         </S.SearchSecon>
         <S.SearchFive>
           <S.SearchH2>상품명</S.SearchH2>
-          <S.SearchInput type='search' />
+          <S.SearchInput
+            type='text'
+            name='search-form'
+            id='search-form'
+            placeholder='Search for...'
+            onClick={searchClick}
+            onChange={(e: any) => onChangeText(e)}
+            onKeyDown={(e: any) => onKeyDownEnter(e)}
+            autoComplete='off'
+          />
           <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
             <option>결제상태</option>
-            <option>결제완료</option>
-            <option>결제취소</option>
-            <option>결제취소중</option>
+            <option value='PAID'>결제완료</option>
+            <option value='READY'>결제대기</option>
+            <option value='CANCEL'>결제취소</option>
+            <option value='FAILED'>결제실패</option>
           </S.DeliSelect>
           <S.DeliSelect value={deliStatus} onChange={(e: any) => setDeliStatus(e.target.value)}>
             <option>배송상태</option>
-            <option>배송완료</option>
-            <option>배송중</option>
+            <option value='PREPARATION'>배송준비</option>
+            <option value='IN_DELIVERY'>배송중</option>
+            <option value='COMPLETE'>배송완료</option>
+            <option value='CANCEL'>배송취소</option>
           </S.DeliSelect>
-          <S.SearchButton>검색</S.SearchButton>
+          <S.SearchButton onClick={() => search()}>검색</S.SearchButton>
         </S.SearchFive>
       </S.SearchBox>
-    );
-  };
-
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
-  return (
-    <S.Wrapper>
-      <SearchBox />
       <div>
         <S.BigTitle>상품 리스트</S.BigTitle>
       </div>
@@ -190,9 +245,12 @@ export const AdminOrderList = (props: any) => {
         </div>
         <div>주문자/수령인</div>
       </S.AdminOrdertitle>
-      {dataList2(currentItems)}
+      {dataList2(itemList)}
       <Pagination
-        data={data}
+        data={itemList}
+        totalPages={totalPages}
+        page={page}
+        setPage={setPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         itemsPerPage={itemsPerPage}
@@ -201,9 +259,6 @@ export const AdminOrderList = (props: any) => {
         setMaxPageNumberLimit={setMaxPageNumberLimit}
         minPageNumberLimit={minPageNumberLimit}
         setMinPageNumberLimit={setMinPageNumberLimit}
-        indexOfLastItem={indexOfLastItem}
-        indexOfFirstItem={indexOfFirstItem}
-        currentItems={currentItems}
       />
     </S.Wrapper>
   );
