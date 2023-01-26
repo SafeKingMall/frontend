@@ -53,7 +53,6 @@ export const Table = styled.table`
 
 export const TableInput = styled.input`
   width: 40.4rem;
-  heith: 8rem;
   font-size: 2.4rem;
   margin: 1.2rem;
   border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
@@ -68,7 +67,6 @@ export const TableInput = styled.input`
 
 export const PayInput = styled.div`
   display: flex;
-  item-align: center;
 `;
 
 export const PayP = styled.p`
@@ -146,15 +144,12 @@ export const CheckPay = styled.div`
 //카테고리 select
 export const Select = styled.select`
   width: 40rem;
-  heith: 8rem;
   // font-size:  ${(props) => (props.value === '' ? '2rem' : '3.2rem')};
   font-size: 2.4rem;
   margin-left: 1.2rem;
   padding: 1.2rem;
   color: ${(props) => (props.value === '' ? props.theme.palette.txtgray : '')};
   border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-
-  }
 `;
 export const NoneOption = styled.option`
   display: none;
@@ -169,6 +164,7 @@ export const ChangeButton = styled.button`
   width: 12.8rem;
   height: 5.2rem;
   cursor: pointer;
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   margin-left: 90rem;
   margin-top: -1rem;
   position: absolute;
@@ -245,4 +241,21 @@ export const QnABox = styled.div`
   margin-bottom: 16rem;
   margin-left: 116rem;
   width: 30rem;
+`;
+
+export const TableTextarea = styled.textarea`
+  width: 104rem;
+
+  min-height: 53.8rem;
+  margin: 1.2rem;
+  padding: 1.2rem;
+  font-size: 2rem;
+  outline: none;
+  resize: none;
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  ::placeholder {
+    color: ${({ theme }) => theme.palette.txtgray};
+    font-size: 2.4rem;
+    padding-top: 25rem;
+  }
 `;
