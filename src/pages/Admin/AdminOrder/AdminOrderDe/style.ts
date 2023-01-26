@@ -64,6 +64,7 @@ export const Table = styled.table`
   margin-bottom: 4rem;
 
   th {
+    height: 7.1rem;
     background-color: #d4ebdc;
     width: 16.6rem;
     font-weight: normal;
@@ -71,6 +72,7 @@ export const Table = styled.table`
 
   td,
   tr {
+    height: 7.1rem;
     border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     padding: 2rem;
@@ -99,6 +101,7 @@ export const OrderH2 = styled.h2`
   padding-bottom: 2.4rem;
   margin-left: 2.4rem;
   margin-top: 4rem;
+  width: 125rem;
 `;
 
 export const OrderDiv = styled.div`
@@ -119,6 +122,7 @@ export const Table2 = styled.table`
 
   td,
   tr {
+    height: 7.1rem;
     border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
     &:first-child,
