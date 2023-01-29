@@ -10,6 +10,7 @@ import '../../css/alert.css';
 import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
 import { Cookies } from 'react-cookie';
+import history from '../../history';
 
 const swal = withReactContent(Swal);
 
@@ -28,7 +29,6 @@ export const ItemDetail = () => {
   const jwt = cookies.get('accessToken');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
       setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
     } else {
@@ -36,6 +36,18 @@ export const ItemDetail = () => {
       setDesToggle(true);
     }
   }, []);
+
+  useEffect(() => {
+    const listenBack = () => {
+      sessionStorage.setItem('goBack', 'Y');
+    };
+    const historyEvent = history.listen(({ action }) => {
+      if (action === 'POP') {
+        listenBack();
+      }
+    });
+    return historyEvent;
+  }, [navigate]);
 
   useEffect(() => {
     const getData = async () => {
