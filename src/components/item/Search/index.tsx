@@ -41,10 +41,10 @@ export const Search = (props: any) => {
     <S.Container>
       <S.SearchArea>
         <S.Select onChange={(e) => sortChange(e)} value={selectSort}>
-          <option value={'최신 순'}>최신 순</option>
-          <option value={'이름 순'}>이름 순</option>
-          <option value={'가격 낮은 순'}>가격 낮은 순</option>
-          <option value={'가격 높은 순'}>가격 높은 순</option>
+          <option value='최신 순'>최신 순</option>
+          <option value='이름 순'>이름 순</option>
+          <option value='가격 낮은 순'>가격 낮은 순</option>
+          <option value='가격 높은 순'>가격 높은 순</option>
         </S.Select>
         <S.SearchBar
           id='searchBar'

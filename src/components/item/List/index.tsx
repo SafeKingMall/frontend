@@ -56,14 +56,6 @@ export const List = (props: any) => {
     return () => window.removeEventListener('scroll', onScroll);
   });
 
-  // useEffect(() => {
-  //   let goBackData = sessionStorage.getItem('itemList');
-  //   if (goBackData) {
-  //     setItemList(JSON.parse(goBackData));
-  //   }
-  //   sessionStorage.clear();
-  // }, [setItemList]);
-
   return (
     <S.Container>
       <S.ItemArea>
