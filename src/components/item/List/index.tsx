@@ -11,10 +11,19 @@ export const List = (props: any) => {
   const page = props.page;
   const setPage = props.setPage;
   const totalPages = props.totalPages;
+  const selectSort = props.selectSort;
+  const searchWord = props.searchWord;
   const [scrollLoading, setScrollLoading] = useState(false);
   const navigate = useNavigate();
+
   const moveDetail = (item: any) => {
     sessionStorage.setItem('scroll', window.scrollY.toString());
+    sessionStorage.setItem('itemList', JSON.stringify(itemList));
+    sessionStorage.setItem('page', page);
+    sessionStorage.setItem('totalPages', totalPages);
+    sessionStorage.setItem('reqData', reqData);
+    sessionStorage.setItem('selectSort', selectSort);
+    sessionStorage.setItem('searchWord', searchWord.current);
     navigate(`/itemDetail/${item.id}`, {
       state: {
         itemId: item.id,
@@ -26,12 +35,6 @@ export const List = (props: any) => {
     if (page < totalPages) {
       pageUp();
     } else return;
-  };
-
-  window.onpopstate = (event) => {
-    const scroll = Number(sessionStorage.getItem('scroll'));
-    console.log(scroll);
-    window.scrollTo(0, scroll);
   };
 
   const pageUp = async () => {

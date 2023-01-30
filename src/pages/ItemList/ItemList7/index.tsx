@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { Nav } from '../../../components/item/Nav';
 import axios from 'axios';
@@ -18,6 +18,8 @@ export const ItemList7 = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [selectSort, setSelectSort] = useState('최신 순');
+  const searchWord = useRef('');
 
   useEffect(() => {
     const getData = async () => {
@@ -34,16 +36,47 @@ export const ItemList7 = () => {
       });
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=0&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
+        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=0&${sort}&categoryName=${categoryName}&itemName=${searchWord.current}`,
       }).then((res) => {
         setItemList(res.data.content);
-        setReqData(`${sort}&categoryName=${categoryName}&itemName=${searchItem}`);
+        setReqData(`${sort}&categoryName=${categoryName}&itemName=${searchWord.current}`);
         setTotalPages(res.data.totalPages);
         setLoading(false);
       });
     };
-    getData();
-  }, [sort, selectNav, searchItem]);
+    const getGoBackData = async () => {
+      let categoryName: string = '';
+      let goBackData: any = sessionStorage.getItem('itemList');
+      let goBackPage: any = Number(sessionStorage.getItem('page'));
+      let goBackTotalPages: any = Number(sessionStorage.getItem('totalPages'));
+      let goBackReqData: any = sessionStorage.getItem('reqData');
+      let goBackScroll: any = Number(sessionStorage.getItem('scroll'));
+      let goBackSelectSort: any = sessionStorage.getItem('selectSort');
+      let goBackSearchWord: any = sessionStorage.getItem('searchWord');
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
+      }).then((res) => {
+        categoryName = res.data.content[6].name;
+        setCategoryList(res.data.content);
+        setSelectNav(categoryName);
+      });
+      setItemList(JSON.parse(goBackData));
+      setPage(goBackPage);
+      setTotalPages(goBackTotalPages);
+      setReqData(goBackReqData);
+      setSelectSort(goBackSelectSort);
+      searchWord.current = goBackSearchWord;
+      setLoading(false);
+      window.scrollTo(0, goBackScroll);
+      sessionStorage.removeItem('goBack');
+    };
+    if (sessionStorage.getItem('goBack') === 'Y') {
+      getGoBackData();
+    } else {
+      getData();
+    }
+  }, [sort, searchItem]);
 
   const loadingData = () => {
     if (loading === true) {
@@ -68,6 +101,8 @@ export const ItemList7 = () => {
           page={page}
           setPage={setPage}
           totalPages={totalPages}
+          selectSort={selectSort}
+          searchWord={searchWord}
         />
       );
     }
@@ -77,7 +112,13 @@ export const ItemList7 = () => {
     <S.Container>
       <Header />
       <Nav categoryList={categoryList} selectNav={selectNav} />
-      <Search setSort={setSort} setSearchItem={setSearchItem} />
+      <Search
+        setSort={setSort}
+        selectSort={selectSort}
+        setSelectSort={setSelectSort}
+        setSearchItem={setSearchItem}
+        searchWord={searchWord}
+      />
       {loadingData()}
       <Footer />
     </S.Container>
