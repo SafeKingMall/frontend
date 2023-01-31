@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as S from './style';
+import * as S from '../style';
 import { Nav } from '../../../components/item/Nav';
 import axios from 'axios';
 import { List } from '../../../components/item/List';
@@ -12,13 +12,13 @@ export const ItemList7 = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [selectNav, setSelectNav] = useState('');
   const [itemList, setItemList] = useState([]);
-  const [sort, setSort] = useState(`sort=createDate,desc&sort=name,asc`);
+  const [sort, setSort] = useState(`sort=viewPrice,desc&sort=name,asc`);
   const [searchItem, setSearchItem] = useState('');
   const [reqData, setReqData] = useState(``);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [selectSort, setSelectSort] = useState('최신 순');
+  const [selectSort, setSelectSort] = useState('가격 높은 순');
   const searchWord = useRef('');
 
   useEffect(() => {

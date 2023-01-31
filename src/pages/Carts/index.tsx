@@ -65,7 +65,7 @@ export const Carts = () => {
     let totalPrice;
     await axios({
       method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/user/cart`,
+      url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
       headers: {
         Authorization: jwt,
       },
@@ -82,7 +82,7 @@ export const Carts = () => {
         .fire({
           icon: 'question',
           title: `상품 종류: ${length}개
-          주문 상품 수: ${count}개
+          주문 상품 수: ${count.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}개
           배송비: ${deliveryPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
           최종 결제 금액: ${totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
           `,

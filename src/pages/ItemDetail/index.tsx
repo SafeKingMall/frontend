@@ -11,6 +11,7 @@ import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
 import { Cookies } from 'react-cookie';
 import history from '../../history';
+import { TailSpin } from 'react-loader-spinner';
 
 const swal = withReactContent(Swal);
 
@@ -22,6 +23,7 @@ export const ItemDetail = () => {
   const [desHeight, setDesHeight] = useState(0);
   const [desToggle, setDesToggle] = useState(false);
   const [count, setCount] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [purchaseBtn, setPurchaseBtn] = useState(
     <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>,
   );
@@ -29,13 +31,17 @@ export const ItemDetail = () => {
   const jwt = cookies.get('accessToken');
 
   useEffect(() => {
-    if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
-      setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
-    } else {
-      setDesHeight(1836);
-      setDesToggle(true);
+    if (!loading) {
+      setTimeout(() => {
+        if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
+          setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
+        } else {
+          setDesHeight(1836);
+          setDesToggle(true);
+        }
+      }, 300);
     }
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     const listenBack = () => {
@@ -64,13 +70,16 @@ export const ItemDetail = () => {
             setCategoryList(res1.data.content);
             setItemData(res2.data);
             if (res2.data.viewPrice === 1000000000) {
-              setPurchaseBtn(<S.PurchaseBtn>견적서 요청</S.PurchaseBtn>);
+              setPurchaseBtn(
+                <S.PurchaseBtn onClick={() => navigate('/estimate')}>견적서 요청</S.PurchaseBtn>,
+              );
             }
+            setLoading(false);
           }),
         );
     };
     getData();
-  }, [state.itemId]);
+  }, [state.itemId, navigate]);
 
   //구매하기
   const moveOders = () => {
@@ -187,69 +196,97 @@ export const ItemDetail = () => {
       <Header />
       <Nav categoryList={categoryList} selectNav={itemData.categoryName} />
       <S.DetailContainer>
-        <S.DetailArea>
-          <img
-            src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
-            width='700'
-            height='700'
-            alt={itemData.name}
-            style={{ border: '1px solid #DDDDDD', marginRight: '4rem' }}
-          />
-          <S.ItemTextArea>
-            <S.Category>{itemData.categoryName}</S.Category>
-            <S.ItemName>{itemData.name}</S.ItemName>
-            <S.ItemNameLine />
-            <S.PriceArea>
-              <S.Price>
-                {itemData.viewPrice !== 1000000000
-                  ? itemData.viewPrice?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') +
-                    '원'
-                  : '관리자 문의'}
-              </S.Price>
-            </S.PriceArea>
-            <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
-              <S.CountBoxArea>
-                <S.CountText>수량</S.CountText>
-                <S.CountBox>
-                  <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
-                  <S.CountInput
-                    id={state.itemId}
-                    type='text'
-                    onChange={(e) => countInput(e.target.value)}
-                    onBlur={(e) => countInputBlur(e.target.value)}
-                    value={count}
-                  />
-                  <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
-                </S.CountBox>
-              </S.CountBoxArea>
-              <S.TotalPriceArea>
-                <S.TotalPriceTitle>합계</S.TotalPriceTitle>
-                <S.TotalPrice>
-                  {(itemData.viewPrice * count)
-                    .toString()
-                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
-                  원
-                </S.TotalPrice>
-              </S.TotalPriceArea>
-            </div>
-            <S.BtnArea>
-              <S.BasketBtn
-                style={{ visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible' }}
-                onClick={() => addCart()}
-              >
-                장바구니
-              </S.BasketBtn>
-              {purchaseBtn}
-            </S.BtnArea>
-          </S.ItemTextArea>
-        </S.DetailArea>
+        {loading ? (
+          <S.LoadingBox>
+            <TailSpin
+              height='100'
+              width='100'
+              color='#289951'
+              ariaLabel='tail-spin-loading'
+              radius='1'
+              visible={true}
+            />
+          </S.LoadingBox>
+        ) : (
+          <S.DetailArea>
+            <img
+              src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
+              width='700'
+              height='700'
+              alt={itemData.name}
+              style={{ border: '1px solid #DDDDDD', marginRight: '4rem' }}
+            />
+            <S.ItemTextArea>
+              <S.Category>{itemData.categoryName}</S.Category>
+              <S.ItemName>{itemData.name}</S.ItemName>
+              <S.ItemNameLine />
+              <S.PriceArea>
+                <S.Price>
+                  {itemData.viewPrice !== 1000000000
+                    ? itemData.viewPrice
+                        ?.toString()
+                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                    : '<가격관련 관리자 문의>'}
+                </S.Price>
+              </S.PriceArea>
+              <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
+                <S.CountBoxArea>
+                  <S.CountText>수량</S.CountText>
+                  <S.CountBox>
+                    <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
+                    <S.CountInput
+                      id={state.itemId}
+                      type='text'
+                      onChange={(e) => countInput(e.target.value)}
+                      onBlur={(e) => countInputBlur(e.target.value)}
+                      value={count}
+                    />
+                    <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
+                  </S.CountBox>
+                </S.CountBoxArea>
+                <S.TotalPriceArea>
+                  <S.TotalPriceTitle>합계</S.TotalPriceTitle>
+                  <S.TotalPrice>
+                    {(itemData.viewPrice * count)
+                      .toString()
+                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                    원
+                  </S.TotalPrice>
+                </S.TotalPriceArea>
+              </div>
+              <S.BtnArea>
+                <S.BasketBtn
+                  style={{ visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible' }}
+                  onClick={() => addCart()}
+                >
+                  장바구니
+                </S.BasketBtn>
+                {purchaseBtn}
+              </S.BtnArea>
+            </S.ItemTextArea>
+          </S.DetailArea>
+        )}
       </S.DetailContainer>
-      <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
-        <S.Description id='description'>
-          <div style={{ fontSize: '3rem' }}>{itemData.description}</div>
-        </S.Description>
-        <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
-      </S.DesContainer>
+      {loading ? (
+        <S.DesLoadingBox>
+          <TailSpin
+            height='100'
+            width='100'
+            color='#289951'
+            ariaLabel='tail-spin-loading'
+            radius='1'
+            visible={true}
+          />
+        </S.DesLoadingBox>
+      ) : (
+        <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
+          <S.Description
+            id='description'
+            dangerouslySetInnerHTML={{ __html: itemData.description }}
+          />
+          <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
+        </S.DesContainer>
+      )}
       <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
         <S.ShowDesBtn onClick={() => desEvent()}>
           <span>상세페이지 더보기</span>

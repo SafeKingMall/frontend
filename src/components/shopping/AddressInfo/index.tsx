@@ -6,7 +6,8 @@ import { CSSObject } from 'styled-components';
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
 const NUM = /[^0-9]/;
-const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+// const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[a-zA-Z]+){1,2}$/;
 
 export const AddressInfo = (props: any) => {
   const userData = props.userData;
@@ -193,6 +194,7 @@ export const AddressInfo = (props: any) => {
             <S.InputBasic
               type='text'
               placeholder='이름을 입력해주세요.'
+              maxLength={50}
               value={text[0] || ''}
               onChange={(e) => textChange(e.target.value, 0)}
               onBlur={() => receiverBlur()}
@@ -208,6 +210,7 @@ export const AddressInfo = (props: any) => {
             <S.InputBasic
               type='text'
               placeholder='이메일을 입력해주세요.'
+              maxLength={80}
               value={text[1] || ''}
               onChange={(e) => textChange(e.target.value, 1)}
               onBlur={() => emailBlur()}
@@ -256,6 +259,7 @@ export const AddressInfo = (props: any) => {
             <S.InputDetailAdd
               type='text'
               placeholder='상세주소를 입력해주세요.'
+              maxLength={50}
               value={text[5] || ''}
               onChange={(e) => textChange(e.target.value, 5)}
             />
@@ -284,6 +288,7 @@ export const AddressInfo = (props: any) => {
             <S.InputDetailAdd
               type='text'
               placeholder='배송시 요청사항을 입력해주세요.'
+              maxLength={50}
               value={text[6]}
               onChange={(e) => textChange(e.target.value, 6)}
               style={{ display: directToggle ? '' : 'none' }}
