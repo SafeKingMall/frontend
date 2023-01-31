@@ -29,7 +29,7 @@ export const OrderOk = () => {
         </S.OrderInfoWrap>
         <S.BtnArea>
           <S.WhiteBtn onClick={() => navigate('/')}>쇼핑 계속하기</S.WhiteBtn>
-          <S.GreenBtn>결제 내역보기</S.GreenBtn>
+          <S.GreenBtn onClick={() => navigate('/mypage-od')}>결제 내역보기</S.GreenBtn>
         </S.BtnArea>
       </S.ContentContainer>
       <Footer />

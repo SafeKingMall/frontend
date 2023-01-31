@@ -42,3 +42,12 @@ export const Price = styled.p`
   margin-top: 2.6rem;
   color: ${(props) => props.theme.palette.txtgray};
 `;
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 100%;
+  height: 30rem;
+  border-top: 0.2rem solid ${({ theme }) => theme.palette.green};
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
+`;

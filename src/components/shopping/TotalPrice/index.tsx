@@ -21,7 +21,9 @@ export const TotalPrice = (props: any) => {
           <S.InfoTextWrap>
             <S.InfoTextArea>
               <S.InfoText>주문상품 수</S.InfoText>
-              <S.InfoText>{itemQuantity}개</S.InfoText>
+              <S.InfoText>
+                {itemQuantity.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}개
+              </S.InfoText>
             </S.InfoTextArea>
             <S.InfoTextArea>
               <S.InfoText>주문 금액</S.InfoText>

@@ -10,6 +10,7 @@ export const DetailContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 export const DetailArea = styled.div`
   width: 144rem;
@@ -85,8 +86,60 @@ export const DesContainer = styled.div`
 `;
 export const Description = styled.div`
   width: 86rem;
-  height: 300rem;
-  background-color: #f8f7bc;
+  h1 {
+    font-size: 6.4rem;
+  }
+  h2 {
+    font-size: 5.6rem;
+  }
+  h3 {
+    font-size: 4.8rem;
+  }
+  h4 {
+    font-size: 4rem;
+  }
+  h5 {
+    font-size: 3.2rem;
+  }
+  h6 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  span {
+    font-size: 1.6rem;
+  }
+  h1 > span {
+    font-size: 6.4rem;
+  }
+  h2 > span {
+    font-size: 6.4rem;
+  }
+  h3 > span {
+    font-size: 6.4rem;
+  }
+  h4 > span {
+    font-size: 6.4rem;
+  }
+  h5 > span {
+    font-size: 6.4rem;
+  }
+  h6 > span {
+    font-size: 6.4rem;
+  }
+  p > span {
+    font-size: 1.6rem;
+  }
+  .ql-align-center {
+    text-align: center;
+  }
+  .ql-align-right {
+    text-align: right;
+  }
+  img {
+    width: 100%;
+  }
 `;
 export const DesGradation = styled.div`
   width: 86rem;
@@ -181,4 +234,17 @@ export const TotalPriceTitle = styled.span`
 export const TotalPrice = styled(TotalPriceTitle)`
   font-weight: 700;
   margin-right: 0;
+`;
+export const LoadingBox = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 78rem;
+  margin-top: 8.3rem;
+  border-bottom: 0.1rem solid #000000;
+  margin-bottom: 17.6rem;
+`;
+export const DesLoadingBox = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.common.flexCenter};
+  margin-bottom: 17.6rem;
 `;
