@@ -2,6 +2,7 @@
   "name": "safeking",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://safekingmall.com",
   "dependencies": {
     "@sweetalert/with-react": "^0.1.1",
     "@testing-library/jest-dom": "^5.14.1",

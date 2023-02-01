@@ -109,8 +109,8 @@ export const PopUpContainer = styled.div`
   left: 0;
   right: 0;
   background-color: rgb(0, 0, 0, 0.5);
-  padding-top: 13%;
-  padding-left: 9%;
+  padding-top: 40rem;
+  /* padding-left: 1%; */
 `;
 
 export const PopUpBody = styled.div`

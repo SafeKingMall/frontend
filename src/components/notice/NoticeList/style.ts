@@ -75,3 +75,22 @@ export const Select = styled.select`
   color: #686868;
   outline: none;
 `;
+
+export const NoticeButton = styled.button`
+  background-color: ${({ theme }) => theme.palette.green};
+  color: white;
+  margin-left: 130rem;
+  width: 13rem;
+  height: 5rem;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 18%;
+`;
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
+`;

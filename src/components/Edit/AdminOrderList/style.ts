@@ -205,3 +205,12 @@ export const SearchButton = styled.button`
   font-size: 2rem;
   color: white;
 `;
+
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 128rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
+`;

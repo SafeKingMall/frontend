@@ -259,3 +259,10 @@ export const TableTextarea = styled.textarea`
     padding-top: 25rem;
   }
 `;
+
+export const RedDiv = styled.div`
+  color: red;
+  font-size: 2rem;
+  padding-left: 1.2rem;
+  padding-bottom: 1.2rem;
+`;

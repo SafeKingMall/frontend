@@ -6,6 +6,8 @@ import { Searchcompo2 } from '../../../often/Searchcompo2';
 import { Cookies } from 'react-cookie';
 
 export const AdimWdList = (props: any) => {
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
   const [memberList, setMemberList] = useState([]);
   //회원명 (search할때 쓰일듯)
   const [memberName, setMemberName] = useState('');
@@ -18,8 +20,8 @@ export const AdimWdList = (props: any) => {
   const [filter, setFilter] = useState('');
   // select 박스
   const [searchText, setSearchText] = useState('');
-  const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  //검색리스트 길이
+  const [listLength, setListLength] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
@@ -32,6 +34,7 @@ export const AdimWdList = (props: any) => {
       }).then((res) => {
         setMemberList(res.data.content);
         setTotalPages(res.data.totalElements);
+        setListLength(res.data.numberOfElements);
       });
     };
     getData();
@@ -39,25 +42,24 @@ export const AdimWdList = (props: any) => {
 
   const searchParameters = Object.keys(Object.assign({}, ...memberList));
 
-  // const filterItems1 = {
-  //   회원명: searchParameters[1],
-  //   탈퇴일: searchParameters[2],
-  // };
-
   const dataList2 = (data: any) => {
     return (
       <S.DataList>
-        {memberList.map((el: any, index: any) => {
-          return (
-            <S.Container key={index}>
-              <div>{el.memberId}</div>
-              <div>
-                <div>{el.name}</div>
-              </div>
-              <div>{el.withdrawalDate}</div>
-            </S.Container>
-          );
-        })}
+        {listLength !== 0 ? (
+          memberList.map((el: any, index: any) => {
+            return (
+              <S.Container key={index}>
+                <div>{el.memberId}</div>
+                <div>
+                  <div>{el.name}</div>
+                </div>
+                <div>{el.withdrawalDate}</div>
+              </S.Container>
+            );
+          })
+        ) : (
+          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
+        )}
       </S.DataList>
     );
   };

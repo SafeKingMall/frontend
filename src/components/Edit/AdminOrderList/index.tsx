@@ -53,6 +53,8 @@ export const AdminOrderList = (props: any) => {
   const [keyWord, setKeyWord] = useState('');
 
   const [searchText, setSearchText] = useState('');
+  //검색리스트 길이
+  const [listLength, setListLength] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
@@ -67,6 +69,7 @@ export const AdminOrderList = (props: any) => {
       }).then((res) => {
         setItemList(res.data.orders);
         setTotalPages(res.data.total_elements);
+        setListLength(res.data.total_elements);
       });
     };
     getData();
@@ -75,44 +78,48 @@ export const AdminOrderList = (props: any) => {
   const dataList2 = (data: any) => {
     return (
       <S.DataList>
-        {data.map((el: any, index: any) => {
-          return (
-            <S.Container key={index} onClick={() => moveQnApw(el.id)}>
-              <div>{el.id}</div>
-              {el.order_item_count === 1 ? (
-                <div>{el.order_item.name}</div>
-              ) : (
+        {listLength !== 0 ? (
+          data.map((el: any, index: any) => {
+            return (
+              <S.Container key={index} onClick={() => moveQnApw(el.id)}>
+                <div>{el.id}</div>
+                {el.order_item_count === 1 ? (
+                  <div>{el.order_item.name}</div>
+                ) : (
+                  <div>
+                    {el.order_item.name} 외 {el.order_item_count - 1}건
+                  </div>
+                )}
+                <div>{MoneyNumber(el.price)}</div>
                 <div>
-                  {el.order_item.name} 외 {el.order_item_count - 1}건
+                  {el.payment.status === 'PAID'
+                    ? '결제완료'
+                    : el.payment.status === 'READY'
+                    ? '결제대기'
+                    : el.payment.status === 'CANCEL'
+                    ? '결제취소'
+                    : '결제실패'}
                 </div>
-              )}
-              <div>{MoneyNumber(el.price)}</div>
-              <div>
-                {el.payment.status === 'PAID'
-                  ? '결제완료'
-                  : el.payment.status === 'READY'
-                  ? '결제대기'
-                  : el.payment.status === 'CANCEL'
-                  ? '결제취소'
-                  : '결제실패'}
-              </div>
 
-              <div>
-                {el.delivery.status === 'COMPLETE'
-                  ? '배송완료'
-                  : el.delivery.status === 'IN_DELIVERY'
-                  ? '배송 중'
-                  : el.delivery.status === 'PREPARATION'
-                  ? '배송 준비'
-                  : '배송취소'}
-              </div>
-              <div>{registDate(el.date)}</div>
-              <div>
-                {el.member.name}/{el.delivery.receiver}
-              </div>
-            </S.Container>
-          );
-        })}
+                <div>
+                  {el.delivery.status === 'COMPLETE'
+                    ? '배송완료'
+                    : el.delivery.status === 'IN_DELIVERY'
+                    ? '배송 중'
+                    : el.delivery.status === 'PREPARATION'
+                    ? '배송 준비'
+                    : '배송취소'}
+                </div>
+                <div>{registDate(el.date)}</div>
+                <div>
+                  {el.member.name}/{el.delivery.receiver}
+                </div>
+              </S.Container>
+            );
+          })
+        ) : (
+          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
+        )}
       </S.DataList>
     );
   };
@@ -185,7 +192,7 @@ export const AdminOrderList = (props: any) => {
                 type='date'
                 value={finishDay}
                 onChange={(e: any) => {
-                  setStartDay(e.target.value);
+                  setFinishDay(e.target.value);
                 }}
               />
               {/* input date icon 디자인 바꾸기  */}
@@ -196,7 +203,7 @@ export const AdminOrderList = (props: any) => {
               type='date'
               value={startDay}
               onChange={(e: any) => {
-                setFinishDay(e.target.value);
+                setStartDay(e.target.value);
               }}
             />
           </S.SearchThird>
@@ -214,14 +221,14 @@ export const AdminOrderList = (props: any) => {
             autoComplete='off'
           />
           <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
-            <option>결제상태</option>
+            <option value=''>결제상태</option>
             <option value='PAID'>결제완료</option>
             <option value='READY'>결제대기</option>
             <option value='CANCEL'>결제취소</option>
             <option value='FAILED'>결제실패</option>
           </S.DeliSelect>
           <S.DeliSelect value={deliStatus} onChange={(e: any) => setDeliStatus(e.target.value)}>
-            <option>배송상태</option>
+            <option value=''>배송상태</option>
             <option value='PREPARATION'>배송준비</option>
             <option value='IN_DELIVERY'>배송중</option>
             <option value='COMPLETE'>배송완료</option>

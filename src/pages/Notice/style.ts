@@ -20,8 +20,11 @@ export const NoticeButton = styled.button`
 `;
 
 export const Banner = styled.div`
-  background-color: #289951;
+  background-color: ${({ theme }) => theme.palette.green};
   height: 47rem;
-  position: relative;
-  font-size: 10rem;
+  font-size: 4rem;
+  margin-bottom: 14.8rem;
+  text-align: center;
+  padding-top: 23rem;
+  color: white;
 `;

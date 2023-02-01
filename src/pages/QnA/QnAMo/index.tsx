@@ -15,13 +15,23 @@ import { Cookies } from 'react-cookie';
 const swal = withReactContent(Swal);
 
 export const QnAMo = () => {
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
-  const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  const [password, setPassword] = useState('');
+  //화면에 출력되는 파일
+  const [selectedImages, setSelectedImages] = useState<any[]>([]);
+  //서버에 보내지는 파일
+  const [selectedFiles, setSelectedFiles] = useState(null as any);
+  //서버에서 들어온 파일
+  // const [
+  //   // getFile,
+  //   setGetFile,
+  // ] = useState('' as any);
 
   const itemId = state.itemId;
 
@@ -37,14 +47,20 @@ export const QnAMo = () => {
         setTitle(res.data.title);
         setContents(res.data.contents);
       });
+
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
+        headers: {
+          Authorization: jwt,
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then((res) => {
+        setSelectedImages(res.data);
+      });
     };
     getData();
   }, [itemId, jwt]);
-
-  //화면에 출력되는 파일
-  const [selectedImages, setSelectedImages] = useState([]);
-  //서버에 보내지는 파일
-  const [selectedFiles, setSelectedFiles] = useState(null as any);
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
@@ -74,48 +90,129 @@ export const QnAMo = () => {
     e.target.value = '';
   };
 
+  //수정 알림창
+
+  //삭제 이미지 id
+  const deleteBtn = (id: any, image: any) => {
+    if (id === undefined) {
+      setSelectedImages(selectedImages.filter((e) => e !== image));
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: `기존의 파일을 삭제하시겠습니까?   
+          삭제하시면 복구가 불가능합니다.`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setSelectedImages(selectedImages.filter((e) => e !== image));
+            deleteFile(id);
+            swal.fire({
+              icon: 'success',
+              text: '파일이 삭제되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
+  };
+
   const attachFile =
     selectedImages &&
     selectedImages.map((image: any) => {
       return (
-        <S.DivImg key={image}>
-          <div>{image}</div>
-          <button onClick={() => setSelectedImages(selectedImages.filter((e) => e !== image))}>
+        <S.DivImg key={image.id || image}>
+          <div>{image.orgFileName || image}</div>
+          <button onClick={(e: any) => deleteBtn(image.id, image)}>
             <VscClose size='30' />
           </button>
         </S.DivImg>
       );
     });
 
-  //등록 알림창
+  //파일 삭제 api
+
+  const deleteFile = async (id: any) => {
+    await axios({
+      method: 'delete',
+      url: `${process.env.REACT_APP_API_URL}/file/${id}`,
+      headers: {
+        Authorization: jwt,
+      },
+    }).then((res) => {
+      axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
+        headers: {
+          Authorization: jwt,
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then((res) => {
+        setSelectedImages(res.data);
+      });
+    });
+  };
+
+  //수정 알림창
   const registAlert = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '게시판을 수정하시겠습니까?',
+    if (title === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '제목을 입력해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
         width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          registApi();
-          swal.fire({
-            icon: 'success',
-            text: '게사판이 수정되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
-        navigate('/qna-po', {
-          state: {
-            data: itemId,
-          },
-        });
       });
+    }
+    if (contents === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '내용을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+    if (password === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '비밀번호를 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+    if (title !== '' && contents !== '' && password !== '') {
+      swal
+        .fire({
+          icon: 'question',
+          text: '게시판을 수정하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            registApi();
+            swal.fire({
+              icon: 'success',
+              text: '게사판이 수정되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
 
   const registApi = async () => {
@@ -126,21 +223,41 @@ export const QnAMo = () => {
     // for (let value of formData.values()) {
     //   console.log(value);
     // }
-
-    await axios({
-      method: 'put',
-      url: `${process.env.REACT_APP_API_URL}/user/itemQna/${itemId}`,
-      headers: {
-        Authorization: jwt,
-      },
-      data: {
-        title: title,
-        contents: contents,
-        itemId: 3,
-      },
-    }).then((res) => {
-      registFile(itemId);
-    });
+    if (selectedFiles === null) {
+      await axios({
+        method: 'put',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna/${itemId}`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          title: title,
+          contents: contents,
+          password,
+        },
+      }).then((res) => {
+        navigate('/qna-po', {
+          state: {
+            data: itemId,
+          },
+        });
+      });
+    } else {
+      await axios({
+        method: 'put',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna/${itemId}`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          title: title,
+          contents: contents,
+          password,
+        },
+      }).then((res) => {
+        registFile(itemId);
+      });
+    }
   };
 
   const registFile = async (id: any) => {
@@ -160,14 +277,57 @@ export const QnAMo = () => {
         'Content-Type': 'multipart/form-data',
       },
       data: formData,
+    }).then((res) => {
+      navigate('/qna-po', {
+        state: {
+          data: itemId,
+        },
+      });
     });
+  };
+
+  // 내용 기입 후 취소 버튼을 눌렀을때
+  const cancelBtn = () => {
+    if (title !== '' && contents !== '') {
+      swal
+        .fire({
+          icon: 'question',
+          text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/notice');
+          }
+        });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: `문의하기 등록을 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/qna');
+          }
+        });
+    }
   };
 
   return (
     <div>
       <Header />
       <div>
-        <S.Banner>QnAwr</S.Banner>
+        <S.Banner>문의하기</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>
@@ -187,7 +347,11 @@ export const QnAMo = () => {
             <tr>
               <td>비밀번호</td>
               <td>
-                <S.TableInput placeholder='비밀번호를 입력해주세요.' />
+                <S.TableInput
+                  placeholder='비밀번호를 입력해주세요.'
+                  type='password'
+                  onChange={(e: any) => setPassword(e.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -225,8 +389,8 @@ export const QnAMo = () => {
           </tbody>
         </S.Table>
         <S.QnABox>
-          <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => registAlert()}>등록</S.QnAButton2>
+          <S.QnAButton onClick={() => cancelBtn()}>취소</S.QnAButton>
+          <S.QnAButton2 onClick={() => registAlert()}>수정</S.QnAButton2>
         </S.QnABox>
       </S.Wrapper>
       <Footer />

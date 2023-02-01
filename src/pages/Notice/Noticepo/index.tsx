@@ -18,12 +18,16 @@ export const NoticePo = () => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   const location = useLocation();
+  const itemId = location.state.itemId;
+  const itemList = location.state.data;
+  const reqData = location.state.reqData;
   const navigate = useNavigate();
   const moveNoticepo = (item: any) => {
     navigate('/notice-po', {
       state: {
         itemId: item,
         data: itemList,
+        reqData: reqData,
       },
     });
   };
@@ -32,128 +36,68 @@ export const NoticePo = () => {
       state: {
         itemId: item,
         data: itemList,
+        reqData: reqData,
       },
     });
   };
-  const itemId = location.state.itemId;
-  const itemList = location.state.data;
+
   // const page = location.state.page;
   // const [size] = useState(7);
 
-  const index = itemList.findIndex((elm: any) => elm.id === itemId);
+  // const index = itemList.findIndex((elm: any) => elm.id === itemId);
 
-  let preItemId: any;
-  let nextItemId: any;
-  if (index !== 0) {
-    preItemId = itemList[index - 1].id;
-  }
-  if (index !== 6) {
-    nextItemId = itemList[index + 1].id;
-  }
-
-  //index===0이라면 사용할 데이터
-  // const [firstData, setFirstData] = useState([]);
-  // const preItemId2 = firstData[firstData.length - 1];
-  //index가 마지막 배열이면 사용할 데이터
-  // const [lastData, setLastData] = useState([]);
-  // const nextItemId2 = lastData[0];
+  // let preItemId: any;
+  // let nextItemId: any;
+  // if (index !== 0) {
+  //   preItemId = itemList[index - 1].id;
+  // }
+  // if (index !== 6) {
+  //   nextItemId = itemList[index + 1].id;
+  // }
 
   const [data, setDate] = useState('' as any);
-  const [nextData2, setNextData2] = useState('' as any);
-  const [nextData3, setNextData3] = useState('' as any);
-  // const [error, setError] = useState('' as any);
-  // const [error2, setError2] = useState('' as any);
+  const [preData, setPreData] = useState('' as any);
+  const [nextData, setNextData] = useState('' as any);
 
   useEffect(() => {
-    // let data1;
     const getData = async () => {
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/notice/${itemId}`,
+        url: `${process.env.REACT_APP_API_URL}/notice/${itemId}`,
         headers: {
-          // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
           Authorization: jwt,
         },
       }).then((res) => {
         setDate(res.data);
       });
 
-      // await axios({
-      //   method: 'get',
-      //   url: `${process.env.REACT_APP_API_URL}/admin/notice/list?size=${size}&page=${page - 1}`,
-      //   headers: {
-      //     // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-      //     Authorization: jwt,
-      //   },
-      // })
-      //   .then((res) => {
-      //     setFirstData(res.data);
-      //   })
-      //   .catch(err);
+      //이전글
 
-      // await axios ({
-      //   method:'get',
-      //   url:`${process.env.REACT_APP_API_URL}/admin/notice/list?size=${size}&page=${page+1}`,
-      //   headers: {
-      //     // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-      //     Authorization: jwt,
-      //   },
-      // }).then((res) => {
-      //   setLastData(res.data)
-      // }).catch((err)=> )
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/notice/prev/${itemId}?${reqData}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setPreData(res.data);
+      });
 
-      if (index !== 6) {
-        await axios({
-          method: 'get',
-          url: `${process.env.REACT_APP_API_URL}/admin/notice/${nextItemId}`,
-          headers: {
-            // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-            Authorization: jwt,
-          },
-        })
-          .then((res) => {
-            setNextData3(res.data);
-          })
-          .catch((err) => {
-            // setError2(err.response.status);
-          });
-      }
+      // 다음글
 
-      // await axios({
-      //   method: 'get',
-      //   url: `${process.env.REACT_APP_API_URL}/admin/notice/${nextItemId2}`,
-      //   headers: {
-      //     // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-      //     Authorization: jwt,
-      //   },
-      // })
-      //   .then((res) => {
-      //     setNextData3(res.data);
-      //   })
-      //   .catch((err) => {
-      //     setError2(err.response.status);
-      //   });
-
-      if (index !== 0) {
-        await axios({
-          method: 'get',
-          url: `${process.env.REACT_APP_API_URL}/admin/notice/${preItemId}`,
-          headers: {
-            // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-            Authorization: jwt,
-          },
-        })
-          .then((res) => {
-            setNextData2(res.data);
-          })
-          .catch((err) => {
-            // setError(err.response.status);
-          });
-      }
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/notice/next/${itemId}?${reqData}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setNextData(res.data);
+      });
     };
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemId, jwt]); // eslint-disable-next-line
+  }, [itemId, jwt, reqData]);
 
   //아이템 삭제 알림
   const deleteItemAlert = (id: number) => {
@@ -190,16 +134,14 @@ export const NoticePo = () => {
       headers: {
         Authorization: jwt,
       },
-    });
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/admin/notice/list?sort=sort,asc`,
-      headers: {
-        // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      setDate(res.data.content);
+    }).catch((err) => {
+      swal.fire({
+        icon: 'warning',
+        text: '관리자만 삭제가능합니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     });
   };
 
@@ -209,7 +151,7 @@ export const NoticePo = () => {
     <div>
       <Header />
       <div>
-        <S.Banner>Noticepo</S.Banner>
+        <S.Banner>공지사항</S.Banner>
       </div>
       <S.Wrapper>
         {/* 쿠키에 관리자토큰이 아니라면 이거 안보여야 함 */}
@@ -223,37 +165,38 @@ export const NoticePo = () => {
             <div>{registDate2(data.lastModifiedDate)}</div>
           </S.TitleDiv>
           <S.Content>
-            <div>{data.contents}</div>
+            <S.Description id='description' dangerouslySetInnerHTML={{ __html: data.contents }} />
+            {/* <div>{data.contents}</div> */}
           </S.Content>
           <S.NextPage>
             <S.Table>
               <tbody>
                 <tr>
                   <td>
-                    {index === 0 ? (
+                    {preData === '' ? (
                       <S.NotPage2>이전글이 없습니다.</S.NotPage2>
                     ) : (
-                      <div onClick={() => moveNoticepo(nextData2.id)}>
+                      <div onClick={() => moveNoticepo(preData.id)}>
                         <S.FirstDiv>
                           <AiOutlineLeft size={15} />
                           <div>이전글</div>
                         </S.FirstDiv>
-                        <S.NextTitle>{nextData2.title}</S.NextTitle>
-                        <S.DateData>{registDate2(nextData2.lastModifiedDate)}</S.DateData>
+                        <S.NextTitle>{preData.title}</S.NextTitle>
+                        <S.DateData>{registDate2(preData.lastModifiedDate)}</S.DateData>
                       </div>
                     )}
                   </td>
                   <td>
-                    {index === 6 ? (
+                    {nextData === '' ? (
                       <S.NotPage>다음글이 없습니다.</S.NotPage>
                     ) : (
-                      <S.SecondDiv onClick={() => moveNoticepo(nextData3.id)}>
+                      <S.SecondDiv onClick={() => moveNoticepo(nextData.id)}>
                         <S.FirstDiv>
                           <div>다음글</div>
                           <AiOutlineRight size={15} />
                         </S.FirstDiv>
-                        <S.NextTitle>{nextData3.title}</S.NextTitle>
-                        <S.DateData>{registDate2(nextData3.lastModifiedDate)}</S.DateData>
+                        <S.NextTitle>{nextData.title}</S.NextTitle>
+                        <S.DateData>{registDate2(nextData.lastModifiedDate)}</S.DateData>
                       </S.SecondDiv>
                     )}
                   </td>

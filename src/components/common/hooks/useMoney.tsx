@@ -1,6 +1,6 @@
 export const useMoney = () => {
   const MoneyNumber = (number: any) => {
-    return `${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`;
+    return `${number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원` || '';
   };
 
   const MoneyNumber2 = (number: any) => {

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
-import { Footer } from '../../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
-// import { EditorWr } from '../../../../components/Edit/AdminItemList/Editor';
+import { EditorWr } from '../../../../components/Edit/AdminItemList/Editor';
 import { Header } from '../../../../components/common/Header';
 import { EditMenu } from '../../../../components/Edit/EditMenu';
-import db from '../../../../db.json';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Cookies } from 'react-cookie';
@@ -14,11 +12,11 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { AdminFooter } from '../../../../components/common/AdminFooter';
 
 const swal = withReactContent(Swal);
 
 export const AdminItemWr = () => {
-  const data = db.categorycontent;
   const navigate = useNavigate();
 
   // 상품명
@@ -33,15 +31,22 @@ export const AdminItemWr = () => {
   const [hideBtn, setHideBtn] = useState(true);
   //만약 숨기기 버튼이 눌렸으면(false)이면 N을 보내줘야함
   const [sendhide, setSendhide] = useState('' as any);
+  //에디터용 type
+  const [adminItem] = useState('adminItem');
+  // 에디터용 typeId
+  const [sendId, setSendId] = useState(0 as any);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+  // 유효성 검사 (특수문자)
+
+  const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
   const clickHide = () => {
     setHideBtn(!hideBtn);
     if (hideBtn === false) {
-      setSendhide('Y');
-    } else if (hideBtn === true) {
       setSendhide('N');
+    } else if (hideBtn === true) {
+      setSendhide('Y');
     }
   };
 
@@ -91,34 +96,37 @@ export const AdminItemWr = () => {
     });
 
   //숫자 3마디마다 ,찍기(상품가격)
-  const [enteredNum, setEnterdNum] = useState({
-    moneyNum: '',
-    quantityNum: '',
-  });
 
-  const { moneyNum, quantityNum } = enteredNum;
+  const [moneyNum2, setMoneyNum2] = useState('');
+  const [quantityNum, setquantityNum2] = useState('');
 
-  const changeEnteredNum = (e: any) => {
-    const { value, name } = e.target;
+  const changeEnteredNum2 = (e: any) => {
+    const value = e.target.value;
     const removedCommaValue = Number(value.replaceAll(',', ''));
 
     if (removedCommaValue.toLocaleString() !== 'NaN') {
-      setEnterdNum({
-        ...enteredNum,
-        [name]: removedCommaValue.toLocaleString(),
-      });
+      setMoneyNum2(removedCommaValue.toLocaleString());
     }
     if (removedCommaValue.toLocaleString() === 'NaN') {
-      setEnterdNum({
-        ...enteredNum,
-        [name]: '숫자로 기입해주세요',
-      });
+      setMoneyNum2('.');
     }
-    if (value.substr(0, 10) === '숫자로 기입해주세요') {
-      setEnterdNum({
-        ...enteredNum,
-        [name]: '',
-      });
+    if (value.substr(0, 1) === '.') {
+      setMoneyNum2('');
+    }
+  };
+
+  const changeEnteredNum = (e: any) => {
+    const value = e.target.value;
+    const removedCommaValue = Number(value.replaceAll(',', ''));
+
+    if (removedCommaValue.toLocaleString() !== 'NaN') {
+      setquantityNum2(removedCommaValue.toLocaleString());
+    }
+    if (removedCommaValue.toLocaleString() === 'NaN') {
+      setquantityNum2('.');
+    }
+    if (value.substr(0, 1) === '.') {
+      setquantityNum2('');
     }
   };
 
@@ -127,7 +135,7 @@ export const AdminItemWr = () => {
     setCateSelect(e.target.value);
   };
 
-  const [categoryId, setCategoryId] = useState([] as any);
+  const [categoryId, setCategoryId] = useState<any[]>([]);
 
   const sendCategoryId = categoryId.filter((el: any) => el.name === cateSelect);
 
@@ -141,6 +149,7 @@ export const AdminItemWr = () => {
         },
       }).then((res) => {
         setCategoryId(res.data.content);
+        setSendId(res.data.content[0].id);
       });
     };
     getData();
@@ -148,67 +157,153 @@ export const AdminItemWr = () => {
 
   //등록 알림창
   const registerAlert = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '상품을 등록하시겠습니까?',
+    if (patternSpc.test(itemName)) {
+      swal.fire({
+        icon: 'warning',
+        text: '특수문자를 제외한 상품명을 올바르게 기입해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
         width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          registerApi();
-          swal.fire({
-            icon: 'success',
-            text: '상품이 등록되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
       });
+    } else if (itemName === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품명을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (cateSelect === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '카테고리를 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (moneyNum2 === '.') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품가격을 숫자로 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (moneyNum2 === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품가격을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (quantityNum === '.') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품수량을 숫자로 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (quantityNum === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품수량을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (descriptEdit === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '상품설명을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '상품을 등록하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            registerApi();
+            swal.fire({
+              icon: 'success',
+              text: '상품이 등록되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
   //등록 api
   const registerApi = async () => {
-    let jwt;
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/login`,
-      data: {
-        username: 'admin1234',
-        password: 'admin1234*',
-      },
-    }).then((res) => {
-      jwt = res.headers.authorization;
-    });
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/admin/item`,
-      headers: {
-        Authorization: jwt,
-      },
-      data: {
-        //상품명
-        name: itemName,
-        // 상품수량
-        quantity: Number(moneyNum.split(',').join('')),
-        //상품설명moneyNum
-        description: descriptEdit,
-        //상품금액
-        // price: 1,
-        price: Number(quantityNum.split(',').join('')),
+    if (selectedFiles === null) {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/admin/item`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          //상품명
+          name: itemName,
+          // 상품수량
+          quantity: Number(moneyNum2.split(',').join('')),
+          //상품설명moneyNum
+          description: descriptEdit,
+          //상품금액
+          price: Number(quantityNum.split(',').join('')),
 
-        //카테고리 ID
-        categoryId: sendCategoryId[0].id,
-        //가격표시여부
-        viewYn: sendhide,
-      },
-    }).then((res) => {
-      registFile(res.data);
-    });
+          //카테고리 ID
+          categoryId: sendCategoryId[0].id,
+          //가격표시여부
+          viewYn: sendhide,
+        },
+      }).then((res) => {
+        navigate('/admin-item-po', {
+          state: {
+            data: res.data,
+          },
+        });
+      });
+    } else {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/admin/item`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          //상품명
+          name: itemName,
+          // 상품수량
+          quantity: Number(moneyNum2.split(',').join('')),
+          //상품설명moneyNum
+          description: descriptEdit,
+          //상품금액
+          // price: 1,
+          price: Number(quantityNum.split(',').join('')),
+
+          //카테고리 ID
+          categoryId: sendCategoryId[0].id,
+          //가격표시여부
+          viewYn: sendhide,
+        },
+      }).then((res) => {
+        registFile(res.data);
+      });
+    }
   };
 
   const registFile = async (id: any) => {
@@ -217,19 +312,18 @@ export const AdminItemWr = () => {
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append('file', selectedFiles[i]);
     }
-    formData.append('type', 'item');
-    formData.append('targetId', id);
+    formData.append('itemId', id);
 
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_URL}/file/upload`,
+      url: `${process.env.REACT_APP_API_URL}/admin/itemPhoto/${id}`,
       headers: {
         Authorization: jwt,
         'Content-Type': 'multipart/form-data',
       },
       data: formData,
     }).then((res) => {
-      navigate('/qna', {
+      navigate('/admin-item-po', {
         state: {
           data: id,
         },
@@ -253,12 +347,17 @@ export const AdminItemWr = () => {
                     placeholder='상품명을 입력해주세요'
                     onChange={(e: any) => setItemName(e.target.value)}
                   />
+                  {patternSpc.test(itemName) ? (
+                    <S.RedDiv>특수문자를 제외한 상품명을 올바르게 기입해주세요.</S.RedDiv>
+                  ) : (
+                    ''
+                  )}
                 </td>
                 <td>카테고리</td>
                 <td>
                   <S.Select onChange={selectChange} value={cateSelect} required>
                     <S.NoneOption value='카테고리'>-카테고리-</S.NoneOption>
-                    {data.map((el: any) => {
+                    {categoryId.map((el: any) => {
                       return (
                         <option value={el.name} key={el.id}>
                           {el.name}
@@ -278,8 +377,8 @@ export const AdminItemWr = () => {
                       name='moneyNum'
                       placeholder='가격을 입력해주세요.'
                       type='text'
-                      value={moneyNum}
-                      onChange={changeEnteredNum}
+                      value={moneyNum2}
+                      onChange={changeEnteredNum2}
                     />
                     <S.PayP>원</S.PayP>
                     <S.StyledInput onClick={clickHide} type='checkbox' id='Hide' name='Hide' />
@@ -287,7 +386,9 @@ export const AdminItemWr = () => {
                       <S.StyledP>숨기기</S.StyledP>
                     </S.StyledLabel>
                   </S.PayInput>
+
                   <S.CheckPay>*가격을 숨기고 싶으시다면 우측의 버튼을 클릭해주세요.</S.CheckPay>
+                  {moneyNum2 === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
                 </td>
               </tr>
               <tr>
@@ -301,7 +402,7 @@ export const AdminItemWr = () => {
                     value={quantityNum}
                     onChange={changeEnteredNum}
                   />
-                  개
+                  개{quantityNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
                 </td>
               </tr>
               <tr>
@@ -328,12 +429,11 @@ export const AdminItemWr = () => {
               <tr>
                 <td>설명</td>
                 <td colSpan={3}>
-                  {/* <EditorWr descriptEdit={descriptEdit} setDescriptEdit={setDescriptEdit} /> */}
-                  <S.TableTextarea
-                    value={descriptEdit}
-                    onChange={(e: any) => {
-                      setDescriptEdit(e.target.value);
-                    }}
+                  <EditorWr
+                    targetId={sendId}
+                    type={adminItem}
+                    descriptEdit={descriptEdit}
+                    setDescriptEdit={setDescriptEdit}
                   />
                 </td>
               </tr>
@@ -345,7 +445,7 @@ export const AdminItemWr = () => {
           </S.QnABox>
         </S.Wrapper>
       </S.Container>
-      <Footer />
+      <AdminFooter />
     </div>
   );
 };

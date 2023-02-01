@@ -3,12 +3,11 @@ import * as S from './style';
 import { Footer } from '../../../components/common/Footer';
 import { TfiLock } from 'react-icons/tfi';
 import { AiOutlineDownload } from 'react-icons/ai';
-
-// import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
+import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { useDateFormat } from '../../../components/common/hooks/useDateFormat';
+import { useDateFormat } from '../../../components/common/hooks/useDateFormat';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
@@ -23,6 +22,9 @@ export const QnAPo = () => {
   const itemId = state.data;
   const [data, setData] = useState([] as any);
   const [qnaFile, setQnaFile] = useState([] as any);
+  const [memberId, setMemberId] = useState('');
+  const [answerContents, setAnswerContents] = useState('');
+  const [answer, setAnswer] = useState<any[]>([]);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
@@ -44,6 +46,8 @@ export const QnAPo = () => {
         },
       }).then((res) => {
         setData(res.data);
+        setMemberId(res.data.memberId);
+        setAnswer(res.data.answer);
       });
 
       await axios({
@@ -60,59 +64,96 @@ export const QnAPo = () => {
     getData();
   }, [itemId, jwt]);
 
-  const downloadFile = async (el: any) => {
+  // 댓글 등록 알람
+  const answerAlert = () => {
+    if (answerContents === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '내용을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '댓글을 등록하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            registAnswer();
+            swal
+              .fire({
+                icon: 'success',
+                text: '댓글이 등록되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              })
+              .then((res) => {
+                setAnswerContents('');
+              });
+          }
+        });
+    }
+  };
+
+  //댓글 등록
+  const registAnswer = async () => {
     await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_BASE_URL}${el.filePath}${el.fileName}`,
-      responseType: 'blob',
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/user/itemAnswer`,
       headers: {
         Authorization: jwt,
-        'Content-Type': 'multipart/form-data',
+      },
+      data: {
+        contents: answerContents,
+        memberId,
+        itemQnaId: itemId,
+      },
+    });
+
+    await axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
+      headers: {
+        Authorization: jwt,
       },
     }).then((res) => {
-      for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].orgFileName === el.orgFileName) {
-          const url = window.URL.createObjectURL(new Blob([res.data[i]]));
-          // const newBlob = new Blob([new Uint8Array(img.data.data.data)]);
-          // const newFile = new File([newBlob], qnaFile.orgFileName, { type: qnaFile.filePath });
-
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', res.data[i].fileName);
-          document.body.appendChild(link);
-          link.click();
-        }
-      }
+      setData(res.data);
+      setMemberId(res.data.memberId);
+      setAnswer(res.data.answer);
     });
   };
 
-  //댓글부분
-  // const comment = data.answer?.map((el: any) => {
-  //   return el;
-  // });
+  const { registDate } = useDateFormat();
 
-  // const {registDate} =useDateFormat();
-
-  // const answer2 = (al: any) => {
-  //   return (
-  //     <ul>
-  //       {al.map((al: any, index: any) => {
-  //         return (
-  //           <div key={index}>
-  //             <S.TitleDiv2>
-  //               <div>
-  //                 <div>{al.adminId}</div>
-  //                 <HiOutlineChatBubbleOvalLeftEllipsis />
-  //               </div>
-  //               {/* <div>{registDate(al.createDate)}</div> */}
-  //             </S.TitleDiv2>
-  //             <S.Content2>{al.contents}</S.Content2>
-  //           </div>
-  //         );
-  //       })}
-  //     </ul>
-  //   );
-  // };
+  const answer2 = (al: any) => {
+    return (
+      <ul>
+        {al.map((al: any, index: any) => {
+          return (
+            <div key={index}>
+              <S.TitleDiv2>
+                <div>
+                  <div>{al.memberId}</div>
+                  <IoChatbubbleEllipsesOutline />
+                </div>
+                <div>{registDate(al.createDate)}</div>
+              </S.TitleDiv2>
+              <S.Content2>{al.contents}</S.Content2>
+            </div>
+          );
+        })}
+      </ul>
+    );
+  };
 
   //삭제 알람
   const deleteItemAlert = (id: number) => {
@@ -157,7 +198,7 @@ export const QnAPo = () => {
     <div>
       <Header />
       <div>
-        <S.Banner>QnApo</S.Banner>
+        <S.Banner>문의하기</S.Banner>
       </div>
       <S.Wrapper>
         <S.ButtonBox>
@@ -180,21 +221,28 @@ export const QnAPo = () => {
                   <div>첨부파일</div>
                   <div>{el.orgFileName}</div>
                   <div>
-                    <button onClick={() => downloadFile(el)}>
+                    <a
+                      href={process.env.REACT_APP_BASE_URL + el.filePath + el.fileName}
+                      download
+                      target='_blank'
+                      rel='noreferrer'
+                    >
                       <AiOutlineDownload size='30' />
-                    </button>
+                    </a>
                   </div>
                 </S.FileDown>
               );
             })}
           </S.Content>
           <S.TitleDiv3>댓글</S.TitleDiv3>
-          {/* {answer2(comment)} */}
-          {/* <div>{data.answer !== undefined ? answer2(comment) : ''}</div> */}
+          <div>{data.answer !== undefined ? answer2(answer) : ''}</div>
           <S.Comment>
             <div>댓글쓰기</div>
-            <S.ComemntInput placeholder='댓글을 입력해주세요.' />
-            <S.QnAButton2>등록</S.QnAButton2>
+            <S.ComemntInput
+              placeholder='댓글을 입력해주세요.'
+              onChange={(e: any) => setAnswerContents(e.target.value)}
+            />
+            <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
           </S.Comment>
         </S.PoBox>
         <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>

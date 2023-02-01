@@ -1,19 +1,26 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Searchcompo } from '../../often/Searchcompo';
+import { Searchcompo2 } from '../../often/Searchcompo2';
 import { useState } from 'react';
 import axios from 'axios';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const NoticeList = (props: any) => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
 
   // 들어온 데이터 넣는것
   const [itemList, setItemList] = useState([]);
   //creatdate로 sort 바꿀것
-  const [sort, setSort] = useState(`sort=createDate,desc&sort=title,asc`);
+  const [sort] = useState(`sort=createDate,desc`);
   //itemName -> 상품명 (search할때 쓰일듯)
   const [searchItem, setSearchItem] = useState('');
   // 페이지 숫자
@@ -27,16 +34,26 @@ export const NoticeList = (props: any) => {
   const [filter, setFilter] = useState('');
   // select 박스
   const [searchText, setSearchText] = useState('');
+  const [reqData, setReqData] = useState(``);
+  //검색리스트 길이
+  const [listLength, setListLength] = useState(0);
 
-  const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
-
+  // 토큰이 admin이면 notice-po로 토큰이 일반이면 notice-user-po로 연결
   const moveNoticepo = (item: any) => {
     navigate('/notice-po', {
       state: {
         itemId: item,
         data: itemList,
         page: page,
+        size: size,
+        reqData: reqData,
+      },
+    });
+  };
+  const moveNoticewr = () => {
+    navigate('/notice-wr', {
+      state: {
+        reqData: reqData,
         size: size,
       },
     });
@@ -46,14 +63,15 @@ export const NoticeList = (props: any) => {
     const getData = async () => {
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/notice/list?size=${size}&page=${page}&${sort}&title=${categoryName}&lastModifiedDate=${searchItem}`,
+        url: `${process.env.REACT_APP_API_URL}/notice/list?size=${size}&page=${page}&${sort}&title=${categoryName}&createDate=${searchItem}`,
         headers: {
-          // 나중에 여기다가 쿠키 값 불러와서 적어야 한다.
           Authorization: jwt,
         },
       }).then((res) => {
         setItemList(res.data.content);
         setTotalPages(res.data.totalElements);
+        setListLength(res.data.numberOfElements);
+        setReqData(`${sort}&title=${categoryName}&lastModifiedDate=${searchItem}`);
       });
     };
     getData();
@@ -64,15 +82,19 @@ export const NoticeList = (props: any) => {
   const DataList2 = (data: any) => {
     return (
       <S.DataList>
-        {data.map((el: any, index: any) => {
-          return (
-            <S.Container key={index} onClick={() => moveNoticepo(el.id)}>
-              <div>{el.id}</div>
-              <div>{el.title}</div>
-              <div>{registDate2(el.lastModifiedDate)}</div>
-            </S.Container>
-          );
-        })}
+        {listLength !== 0 ? (
+          data.map((el: any, index: any) => {
+            return (
+              <S.Container key={index} onClick={() => moveNoticepo(el.id)}>
+                <div>{el.id}</div>
+                <div>{el.title}</div>
+                <div>{registDate2(el.createDate)}</div>
+              </S.Container>
+            );
+          })
+        ) : (
+          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
+        )}
       </S.DataList>
     );
   };
@@ -87,42 +109,38 @@ export const NoticeList = (props: any) => {
     );
   };
 
-  const searchParameters = Object.keys(Object.assign({}, ...itemList));
-  const filterItems = [];
-  filterItems.push(searchParameters[1], searchParameters[4]);
-  const filterItems1 = {
-    제목: searchParameters[1],
-    등록일: searchParameters[4],
-  };
-
   //select 옵션
-  const OptionList = (filterItems: any) => {
+  const OptionList = () => {
     return (
       <S.Select onChange={(e: any) => setFilter(e.target.value)}>
         <option value=''>선택해주세요</option>
-        {filterItems.map((item: any, index: any) => (
-          <option key={index} value={item}>
-            {item === Object.values(filterItems1)[0]
-              ? Object.keys(filterItems1)[0]
-              : Object.keys(filterItems1)[1]}
-          </option>
-        ))}
+        <option value='title'>제목</option>
+        <option value='createDate'>작성일</option>
       </S.Select>
     );
   };
 
   const search = () => {
-    if (filter === searchParameters[1]) {
-      setSearchItem(searchText);
+    if (filter === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '체크박스를 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (filter === 'title') {
+      setSearchItem('');
 
-      setCategoryName('');
-    } else if (filter === searchParameters[4]) {
-      setSearchItem('');
       setCategoryName(searchText);
-    } else {
-      setSearchItem('');
+    } else if (filter === 'createDate') {
+      setSearchItem(searchText);
       setCategoryName('');
     }
+    //  else {
+    //   setSearchItem('');
+    //   setCategoryName('');
+    // }
   };
 
   //   if (props.error) {
@@ -133,8 +151,8 @@ export const NoticeList = (props: any) => {
   return (
     <S.Wrapper>
       <div>
-        <Searchcompo
-          filterItems={filterItems}
+        <Searchcompo2
+          filter={filter}
           optionList={OptionList}
           size={size}
           dataList2={DataList2}
@@ -142,14 +160,12 @@ export const NoticeList = (props: any) => {
           search={search}
           setSearchText={setSearchText}
           data={itemList}
-          // reqData={reqData}
           page={page}
           setPage={setPage}
           totalPages={totalPages}
-          // 굳이 필요가 없는뎅
-          setSort={setSort}
         />
       </div>
+      <S.NoticeButton onClick={() => moveNoticewr()}>글쓰기</S.NoticeButton>
     </S.Wrapper>
   );
   // }
