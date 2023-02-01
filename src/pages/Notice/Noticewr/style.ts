@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
+  position: relative;
   background-color: ${({ theme }) => theme.palette.green};
   height: 47rem;
-  position: relative;
-  font-size: 10rem;
+  font-size: 4rem;
+  margin-bottom: 14.8rem;
+  text-align: center;
+  padding-top: 23rem;
+  color: white;
 `;
 
 export const Wrapper = styled.div`

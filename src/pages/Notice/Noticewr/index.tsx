@@ -9,44 +9,76 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { useLocation } from 'react-router';
+import { EditorWr } from '../../../components/Edit/AdminItemList/Editor';
+import { useEffect } from 'react';
 
 const swal = withReactContent(Swal);
 
 export const NoticeWr = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const reqData = location.state.reqData;
+  const size = location.state.size;
+  const [noticeContent] = useState('noticeContent');
+  const [sendId, setSendId] = useState(0 as any);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
+  useEffect(() => {
+    const getData = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/notice/list?size=${size}&page=0&${reqData}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setSendId(res.data.content[0].id);
+      });
+    };
+    getData();
+  }, [jwt, reqData, size]);
+
   //등록 알림창
-  const registerAlert = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '게사판을 등록하시겠습니까?',
+  const registerAlert = (reqData: any) => {
+    if (title === '' || content === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '내용을 기입해주세요',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
         width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          registerApi();
-          swal.fire({
-            icon: 'success',
-            text: '게시판이 등록되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
       });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '게시판을 등록하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            registerApi(reqData);
+            swal.fire({
+              icon: 'success',
+              text: '게시판이 등록되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
 
-  const registerApi = async () => {
+  const registerApi = async (reqData: any) => {
     await axios({
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}/admin/notice`,
@@ -60,16 +92,54 @@ export const NoticeWr = () => {
     }).then((res) => {
       navigate('/notice-po', {
         state: {
-          data: res.data,
+          itemId: res.data,
+          reqData: reqData,
         },
       });
     });
+  };
+
+  // 내용 기입 후 취소 버튼을 눌렀을때
+  const cancelBtn = () => {
+    if (title !== '' || content !== '') {
+      swal
+        .fire({
+          icon: 'question',
+          text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/notice');
+          }
+        });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: `공지사항 등록을 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/notice');
+          }
+        });
+    }
   };
   return (
     <div>
       <Header />
       <div>
-        <S.Banner>Noticewr</S.Banner>
+        <S.Banner>공지사항</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>
@@ -88,19 +158,19 @@ export const NoticeWr = () => {
             <tr>
               <td>내용</td>
               <td>
-                <S.TableTextarea
-                  placeholder='내용을 입력해주세요.'
-                  onChange={(e: any) => {
-                    setContent(e.target.value);
-                  }}
+                <EditorWr
+                  targetId={sendId}
+                  type={noticeContent}
+                  descriptEdit={content}
+                  setDescriptEdit={setContent}
                 />
               </td>
             </tr>
           </tbody>
         </S.Table>
         <S.NoticeBox>
-          <S.NoticeButton onClick={() => navigate('/notice')}>취소</S.NoticeButton>
-          <S.NoticeButton2 onClick={() => registerAlert()}>등록</S.NoticeButton2>
+          <S.NoticeButton onClick={() => cancelBtn()}>취소</S.NoticeButton>
+          <S.NoticeButton2 onClick={() => registerAlert(reqData)}>등록</S.NoticeButton2>
         </S.NoticeBox>
       </S.Wrapper>
       <Footer />

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  background-color: ${({ theme }) => theme.palette.green};
-  width: 100%;
-  height: 47rem;
   position: relative;
-  font-size: 10rem;
+  background-color: ${({ theme }) => theme.palette.green};
+  height: 47rem;
+  font-size: 4rem;
+  margin-bottom: 14.8rem;
+  text-align: center;
+  padding-top: 23rem;
+  color: white;
 `;
 
 export const Wrapper = styled.div`
@@ -79,10 +82,68 @@ export const TitleDiv = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 144rem;
+  width: 100%;
   height: 100%;
   padding: 4.8rem 2.3rem 4.8rem 2.3rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+`;
+
+export const Description = styled.div`
+  width: 100%;
+  h1 {
+    font-size: 6.4rem;
+  }
+  h2 {
+    font-size: 5.6rem;
+  }
+  h3 {
+    font-size: 4.8rem;
+  }
+  h4 {
+    font-size: 4rem;
+  }
+  h5 {
+    font-size: 3.2rem;
+  }
+  h6 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  span {
+    font-size: 1.6rem;
+  }
+  h1 > span {
+    font-size: 6.4rem;
+  }
+  h2 > span {
+    font-size: 6.4rem;
+  }
+  h3 > span {
+    font-size: 6.4rem;
+  }
+  h4 > span {
+    font-size: 6.4rem;
+  }
+  h5 > span {
+    font-size: 6.4rem;
+  }
+  h6 > span {
+    font-size: 6.4rem;
+  }
+  p > span {
+    font-size: 1.6rem;
+  }
+  .ql-align-center {
+    text-align: center;
+  }
+  .ql-align-right {
+    text-align: right;
+  }
+  img {
+    width: 100%;
+  }
 `;
 
 export const NextPage = styled.div`
@@ -91,9 +152,11 @@ export const NextPage = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
   padding-left: 1rem;
   padding-right: 1rem;
+  cursor: pointer;
 `;
 export const SecondDiv = styled.div`
   text-align: right;
+  cursor: pointer;
   div {
     &:first-child {
       justify-content: flex-end;
@@ -102,11 +165,13 @@ export const SecondDiv = styled.div`
 `;
 
 export const NextTitle = styled.div`
+  cursor: pointer;
   font-size: 3.2rem;
   padding-bottom: 1.6rem;
 `;
 
 export const FirstDiv = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 1.6rem;
@@ -115,6 +180,7 @@ export const FirstDiv = styled.div`
 `;
 
 export const DateData = styled.div`
+  cursor: pointer;
   padding-bottom: 2.4rem;
 `;
 

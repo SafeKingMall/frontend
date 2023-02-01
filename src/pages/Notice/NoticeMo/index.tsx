@@ -11,6 +11,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { EditorWr } from '../../../components/Edit/AdminItemList/Editor';
 
 const swal = withReactContent(Swal);
 
@@ -18,15 +19,17 @@ export const NoticeMo = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const itemList = location.state.data;
+  const reqData = location.state.reqData;
   const moveNoticepo = (item: any) => {
     navigate('/notice-po', {
       state: {
         itemId: item,
         data: itemList,
+        reqData: reqData,
       },
     });
   };
-
+  const [noticeContent] = useState('noticeContent');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -93,6 +96,7 @@ export const NoticeMo = () => {
         state: {
           itemId: itemId,
           data: itemList,
+          reqData: reqData,
         },
       });
     });
@@ -101,7 +105,7 @@ export const NoticeMo = () => {
     <div>
       <Header />
       <div>
-        <S.Banner>NoticeMo</S.Banner>
+        <S.Banner>공지사항</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>
@@ -121,12 +125,11 @@ export const NoticeMo = () => {
             <tr>
               <td>내용</td>
               <td>
-                <S.TableTextarea
-                  value={content}
-                  placeholder='내용을 입력해주세요.'
-                  onChange={(e: any) => {
-                    setContent(e.target.value);
-                  }}
+                <EditorWr
+                  targetId={itemId}
+                  type={noticeContent}
+                  descriptEdit={content}
+                  setDescriptEdit={setContent}
                 />
               </td>
             </tr>
@@ -134,7 +137,7 @@ export const NoticeMo = () => {
         </S.Table>
         <S.NoticeBox>
           <S.NoticeButton onClick={() => moveNoticepo(itemId)}>취소</S.NoticeButton>
-          <S.NoticeButton2 onClick={() => putItemAlert()}>등록</S.NoticeButton2>
+          <S.NoticeButton2 onClick={() => putItemAlert()}>수정</S.NoticeButton2>
         </S.NoticeBox>
       </S.Wrapper>
       <Footer />
