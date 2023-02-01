@@ -12,11 +12,10 @@ export const Wrapper = styled.div`
 
 export const BigTitle = styled.div`
   font-size: 2.4rem;
-  width: 14rem;
+  /* width: 14rem; */
   font-weight: 700;
   margin-top: 10rem;
   margin-left: 1.5rem;
-  position: absolute;
 `;
 
 export const Select = styled.select`
@@ -33,7 +32,7 @@ export const Select = styled.select`
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 10.4rem;
+  margin-bottom: 2.4rem;
 `;
 
 export const AdminTitle = styled.div`
@@ -104,4 +103,24 @@ export const AdminButton2 = styled.button`
   height: 4rem;
   margin-right: 0.8rem;
   align-items: center;
+`;
+
+export const QnAButton = styled.button`
+  background-color: ${({ theme }) => theme.palette.green};
+  color: white;
+  margin-left: 130rem;
+  width: 6.4rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 12.5%;
+`;
+
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
 `;
