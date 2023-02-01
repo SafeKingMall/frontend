@@ -1,17 +1,24 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { TfiLock } from 'react-icons/tfi';
-import { Searchcompo } from '../../often/Searchcompo';
+import { Searchcompo2 } from '../../often/Searchcompo2';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const QnAList = (props: any) => {
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
   // 들어온 데이터 넣는것
   const [memberList, setMemberList] = useState([]);
-  const [sort] = useState(`sort=title,desc&sort=contents,asc&sort=itemId,desc`);
+  const [sort] = useState(`sort=createDate,desc`);
 
   // // 페이지 숫자
   const [page, setPage] = useState(0);
@@ -28,8 +35,8 @@ export const QnAList = (props: any) => {
   //createDate
   const [lastModifiedDate, setLastModifiedDate] = useState('');
   const [memberId, setMemberId] = useState('');
-  const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  //검색리스트 길이
+  const [listLength, setListLength] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
@@ -42,6 +49,7 @@ export const QnAList = (props: any) => {
       }).then((res) => {
         setMemberList(res.data.content);
         setTotalPages(res.data.totalElements);
+        setListLength(res.data.numberOfElements);
       });
     };
     getData();
@@ -56,33 +64,28 @@ export const QnAList = (props: any) => {
     });
   };
 
-  const searchParameters = Object.keys(Object.assign({}, ...memberList));
-  const filterItems: any = [];
-  filterItems.push(searchParameters[1], searchParameters[3], searchParameters[5]);
-  const filterItems1 = {
-    제목: searchParameters[1],
-    작성자: searchParameters[3],
-    등록일: searchParameters[4],
-  };
-
   const { registDate2 } = useDateFormat();
 
   const dataList2 = (data: any) => {
     return (
       <S.DataList>
-        {data.map((el: any, index: any) => {
-          return (
-            <S.Container key={index} onClick={() => moveQnApw(el.id)}>
-              <div>{el.id}</div>
-              <div>
-                <ul>{el.title}</ul>
-                <TfiLock color='#D9D9D9' />
-              </div>
-              <div>{el.memberId}</div>
-              <div>{registDate2(el.lastModifiedDate)}</div>
-            </S.Container>
-          );
-        })}
+        {listLength !== 0 ? (
+          data.map((el: any, index: any) => {
+            return (
+              <S.Container key={index} onClick={() => moveQnApw(el.id)}>
+                <div>{el.id}</div>
+                <div>
+                  <ul>{el.title}</ul>
+                  <TfiLock color='#D9D9D9' />
+                </div>
+                <div>{el.memberId}</div>
+                <div>{registDate2(el.createDate)}</div>
+              </S.Container>
+            );
+          })
+        ) : (
+          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
+        )}
       </S.DataList>
     );
   };
@@ -98,38 +101,36 @@ export const QnAList = (props: any) => {
     );
   };
 
-  const optionList = (filterItems: any) => {
+  const optionList = () => {
     return (
       <S.Select onChange={(e: any) => setFilter(e.target.value)}>
         <option value=''>선택해주세요</option>
-        {filterItems.map((item: any, index: any) => (
-          <option key={index} value={item}>
-            {item === Object.values(filterItems1)[0]
-              ? Object.keys(filterItems1)[0]
-              : item === Object.values(filterItems1)[1]
-              ? Object.keys(filterItems1)[1]
-              : Object.keys(filterItems1)[2]}
-          </option>
-        ))}
+        <option value='title'>제목</option>
+        <option value='memberId'>작성자</option>
+        <option value='createDate'>등록일</option>
       </S.Select>
     );
   };
 
   const search = () => {
-    if (filter === searchParameters[1]) {
+    if (filter === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '체크박스를 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (filter === 'title') {
       setTitle(searchText);
       setLastModifiedDate('');
       setMemberId('');
-    } else if (filter === searchParameters[3]) {
+    } else if (filter === 'memberId') {
       setMemberId(searchText);
       setTitle('');
       setLastModifiedDate('');
-    } else if (filter === searchParameters[4]) {
+    } else if (filter === 'createDate') {
       setLastModifiedDate(searchText);
-      setTitle('');
-      setMemberId('');
-    } else {
-      setLastModifiedDate('');
       setTitle('');
       setMemberId('');
     }
@@ -142,8 +143,8 @@ export const QnAList = (props: any) => {
   // } else {
   return (
     <S.Wrapper>
-      <Searchcompo
-        filterItems={filterItems}
+      <Searchcompo2
+        filter={filter}
         optionList={optionList}
         size={size}
         dataList2={dataList2}

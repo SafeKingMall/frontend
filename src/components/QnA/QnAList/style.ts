@@ -13,6 +13,15 @@ export const DataList = styled.ul`
   margin-bottom: 10.4rem;
 `;
 
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
+`;
+
 export const QnATitle = styled.div`
   width: 144rem;
   margin-top: 2.4rem;

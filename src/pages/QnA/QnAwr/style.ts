@@ -3,8 +3,11 @@ import styled from 'styled-components';
 export const Banner = styled.div`
   background-color: ${({ theme }) => theme.palette.green};
   height: 47rem;
-  position: relative;
-  font-size: 10rem;
+  font-size: 4rem;
+  margin-bottom: 14.8rem;
+  text-align: center;
+  padding-top: 23rem;
+  color: white;
 `;
 
 export const Wrapper = styled.div`
@@ -88,7 +91,7 @@ export const ChangeButton = styled.button`
 
 export const TableDiv = styled.div`
   width: 118.4rem;
-  height: 8rem;
+  /* height: 8rem; */
   font-size: 2.5rem;
   margin-left: 1.2rem;
   border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};

@@ -11,10 +11,9 @@ export const QnA = () => {
   return (
     <div>
       <Header />
-
       <S.Wrapper>
         <div>
-          <S.Banner>QnA</S.Banner>
+          <S.Banner>문의하기</S.Banner>
         </div>
         <S.Container>
           <QnAList

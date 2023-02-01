@@ -24,6 +24,8 @@ export const QnAWr = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   //서버에 보내지는 파일
   const [selectedFiles, setSelectedFiles] = useState(null as any);
+  //비밀번호
+  const [passWord, setPassWord] = useState('' as any);
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
@@ -67,32 +69,62 @@ export const QnAWr = () => {
     });
 
   //등록 알림창
-  const registAlert = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '게시판을 등록하시겠습니까?',
+  const registAlert = (selectedFiles: any) => {
+    if (title === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '제목을 입력해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
         width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          registApi();
-          swal.fire({
-            icon: 'success',
-            text: '게사판이 등록되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
       });
+    }
+    if (passWord === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '비밀번호를 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+    if (contents === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '내용을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+
+    if (title !== '' && contents !== '' && passWord !== '') {
+      swal
+        .fire({
+          icon: 'question',
+          text: '게시판을 수정하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            registApi(selectedFiles);
+            swal.fire({
+              icon: 'success',
+              text: '게사판이 수정되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
 
-  const registApi = async () => {
+  const registApi = async (selectedFiles: any) => {
     // for (let key of formData.keys()) {
     //   console.log(key);
     // }
@@ -100,21 +132,41 @@ export const QnAWr = () => {
     // for (let value of formData.values()) {
     //   console.log(value);
     // }
-
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/user/itemQna`,
-      headers: {
-        Authorization: jwt,
-      },
-      data: {
-        title: title,
-        contents: contents,
-        itemId: 3,
-      },
-    }).then((res) => {
-      registFile(res.data);
-    });
+    if (selectedFiles === null) {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          title: title,
+          contents: contents,
+          password: passWord,
+        },
+      }).then((res) => {
+        navigate('/qna-po', {
+          state: {
+            data: res.data,
+          },
+        });
+      });
+    } else {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          title: title,
+          contents: contents,
+          password: passWord,
+        },
+      }).then((res) => {
+        registFile(res.data);
+      });
+    }
   };
 
   const registFile = async (id: any) => {
@@ -135,7 +187,7 @@ export const QnAWr = () => {
       },
       data: formData,
     }).then((res) => {
-      navigate('/qna', {
+      navigate('/qna-po', {
         state: {
           data: id,
         },
@@ -143,11 +195,47 @@ export const QnAWr = () => {
     });
   };
 
+  // 내용 기입 후 취소 버튼을 눌렀을때
+  const cancelBtn = () => {
+    if (title !== '' || contents !== '' || selectedFiles !== 'null') {
+      swal
+        .fire({
+          icon: 'question',
+          text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/qna');
+          }
+        });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: `문의하기 등록을 취소하시겠습니까?`,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/qna');
+          }
+        });
+    }
+  };
   return (
     <div>
       <Header />
       <div>
-        <S.Banner>QnAwr</S.Banner>
+        <S.Banner>문의하기</S.Banner>
       </div>
       <S.Wrapper>
         <S.Table>
@@ -166,7 +254,11 @@ export const QnAWr = () => {
             <tr>
               <td>비밀번호</td>
               <td>
-                <S.TableInput placeholder='비밀번호를 입력해주세요.' />
+                <S.TableInput
+                  placeholder='비밀번호를 입력해주세요.'
+                  type='password'
+                  onChange={(e: any) => setPassWord(e.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -203,8 +295,8 @@ export const QnAWr = () => {
           </tbody>
         </S.Table>
         <S.QnABox>
-          <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => registAlert()}>등록</S.QnAButton2>
+          <S.QnAButton onClick={() => cancelBtn()}>취소</S.QnAButton>
+          <S.QnAButton2 onClick={() => registAlert(selectedFiles)}>등록</S.QnAButton2>
         </S.QnABox>
       </S.Wrapper>
       <Footer />
