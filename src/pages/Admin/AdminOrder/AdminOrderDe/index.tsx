@@ -3,7 +3,6 @@ import * as S from './style';
 import { Footer } from '../../../../components/common/Footer';
 import { Header } from '../../../../components/common/Header';
 import { EditMenu } from '../../../../components/Edit/EditMenu';
-import db from './../../../../db.json';
 import { useNavigate } from 'react-router-dom';
 
 import { useMoney } from '../../../../components/common/hooks/useMoney';
@@ -19,11 +18,11 @@ import '../../../../css/alert.css';
 const swal = withReactContent(Swal);
 
 export const AdminOrderDe = () => {
-  const data = db.orderdetail;
-  const navigate = useNavigate();
-  const { MoneyNumber } = useMoney();
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+  // const data = db.orderdetail;
+  const navigate = useNavigate();
+  const { MoneyNumber } = useMoney();
 
   const { state } = useLocation();
   const itemId = state.data;
@@ -114,16 +113,16 @@ export const AdminOrderDe = () => {
     }
   };
 
-  //택배사 데이터 받아와서 작성해야함
-  const deliComOrderStatus1 = (data: any) =>
-    data.map((el: any) => {
-      const deliComKey = deliComList.filter((key: any) => {
-        return el.order.delivery.company === key;
-      });
-      return deliComKey;
-    });
+  // //택배사 데이터 받아와서 작성해야함
+  // const deliComOrderStatus1 = (data: any) =>
+  //   data.map((el: any) => {
+  //     const deliComKey = deliComList.filter((key: any) => {
+  //       return el.order.delivery.company === key;
+  //     });
+  //     return deliComKey;
+  //   });
 
-  const deliComValue = deliComOrderStatus1(data)[0][0];
+  // const deliComValue = deliComOrderStatus1(data)[0][0];
 
   //결제
   const PayhandleSelect = (e: any) => {
@@ -132,7 +131,7 @@ export const AdminOrderDe = () => {
 
   const PaysSelect = () => (
     <S.OrderSelect required onChange={PayhandleSelect} value={payMentStatus}>
-      <S.NoneOption value={payMentStatus}>{payValue(payMentStatus)}</S.NoneOption>
+      <S.NoneOption value={payMentStatus || ''}>{payValue(payMentStatus)}</S.NoneOption>
       {Object.entries(payList).map(([key, value]) => (
         <option value={key} key={key}>
           {value}
@@ -149,7 +148,7 @@ export const AdminOrderDe = () => {
 
   const DeliverySelect = () => (
     <S.OrderSelect onChange={DelihandleSelect} required value={deliveryStatus}>
-      <S.NoneOption value={deliveryStatus}>{deliValue(deliveryStatus)}</S.NoneOption>
+      <S.NoneOption value={deliveryStatus || ''}>{deliValue(deliveryStatus)}</S.NoneOption>
       {Object.entries(deliveryList).map(([key, value]) => (
         <option value={key} key={key}>
           {value}
@@ -167,27 +166,27 @@ export const AdminOrderDe = () => {
   const AdminOrderDetail2 = () => (
     <div>
       <S.OrderDiv>
-        <S.OrderH2>주문정보</S.OrderH2>
+        <S.OrderH2>배송정보</S.OrderH2>
       </S.OrderDiv>
       <S.Table>
         <tbody>
           <tr>
             <th>수령인</th>
-            <td>{deliInfor.receiver}</td>
+            <td>{deliInfor.receiver || ''}</td>
             <th>연락처</th>
-            <td>{deliInfor.phone_number}</td>
+            <td>{deliInfor.phone_number || ''}</td>
           </tr>
           <tr>
             <th>주소</th>
-            <td colSpan={3}>{deliInfor.address}</td>
+            <td colSpan={3}>{deliInfor.address || ''}</td>
           </tr>
           <tr>
             <th>배송요청사항</th>
-            <td colSpan={3}>{deliInfor.memo}</td>
+            <td colSpan={3}>{deliInfor.memo || ''}</td>
           </tr>
           <tr>
             <th>주문요청사항</th>
-            <td colSpan={3}>{data1.memo}</td>
+            <td colSpan={3}>{data1.memo || ''}</td>
           </tr>
         </tbody>
       </S.Table>
@@ -204,22 +203,22 @@ export const AdminOrderDe = () => {
         <tbody>
           <tr>
             <th>결제방식</th>
-            <td>{payInfor.means}</td>
+            <td>{payInfor.means || ''}</td>
             <th>결제금액</th>
-            <td>{payInfor.price}</td>
+            <td>{MoneyNumber(payInfor.price)}</td>
           </tr>
           <tr>
             <th>입금자명</th>
             <td>{/* {payInfor.name} */}</td>
             <th>카드사</th>
-            <td>{payInfor.company}</td>
+            <td>{payInfor.company || ''}</td>
           </tr>
           <tr>
             <th>현금영수증방식</th>
             <td>{/* {el.memo} */}</td>
             {/* 현금영수증방시데이터는 따로 안들어오나? */}
             <th>사업자번호</th>
-            <td>{payInfor.business_number}</td>
+            <td>{payInfor.business_number || ''}</td>
           </tr>
         </tbody>
       </S.Table>
@@ -296,11 +295,11 @@ export const AdminOrderDe = () => {
               <S.OrderDiv2>
                 <S.AdminWrapper>
                   <h3>주문번호 | </h3>
-                  <div>{data1.id}</div>
+                  <div>{data1.id || ''}</div>
                 </S.AdminWrapper>
                 <S.AdminWrapper>
                   <h3>주문일시 | </h3>
-                  <div> {data1.date}</div>
+                  <div> {data1.date || ''}</div>
                 </S.AdminWrapper>
               </S.OrderDiv2>
               <S.Table2>
@@ -329,9 +328,9 @@ export const AdminOrderDe = () => {
                         </td>
 
                         <td>{al.name}</td>
-                        <td>{MoneyNumber(al.price)}</td>
-                        <td>{al.count}</td>
-                        <td>{MoneyNumber(al.price * al.count)}</td>
+                        <td>{MoneyNumber(al.price) || ''}</td>
+                        <td>{al.count || ''}</td>
+                        <td>{MoneyNumber(al.price * al.count) || ''}</td>
                         <td>
                           <PaysSelect />
                         </td>
@@ -339,22 +338,22 @@ export const AdminOrderDe = () => {
                           <DeliverySelect />
                         </td>
 
-                        <td>{deliInfor.cost}</td>
+                        <td>{MoneyNumber(deliInfor.cost)}</td>
                         <td>
                           <S.OrderSelect
                             onChange={DeliComhandleSelect}
                             required
                             value={deliComStatus}
                           >
-                            <S.NoneOption value={deliComValue}>{deliComValue}</S.NoneOption>
+                            {/* <S.NoneOption value={deliComValue}>{deliComValue}</S.NoneOption> */}
                             {deliComList.map((key: any) => (
-                              <option value={key} key={key}>
+                              <option value={key || ''} key={key}>
                                 {key}
                               </option>
                             ))}
                           </S.OrderSelect>
                           <S.OrderInput
-                            value={deliNumber}
+                            value={deliNumber || ''}
                             onChange={(e: any) => {
                               setDeliNumber(e.target.value);
                             }}
@@ -373,7 +372,7 @@ export const AdminOrderDe = () => {
             <S.OrderH2>관리자 메모</S.OrderH2>
           </S.OrderDiv>
           <S.AdminTextarea
-            value={adminMemo}
+            value={adminMemo || ''}
             onChange={(e: any) => {
               setAdminMemo(e.target.value);
             }}

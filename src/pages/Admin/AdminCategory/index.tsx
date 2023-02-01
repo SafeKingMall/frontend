@@ -2,8 +2,8 @@ import React from 'react';
 import * as S from './style';
 import { EditMenu } from '../../../components/Edit/EditMenu';
 import { Header } from '../../../components/common/Header';
-import { Footer } from '../../../components/common/Footer';
 import { AdimCgList } from '../../../components/Edit/AdminCgList';
+import { AdminFooter } from '../../../components/common/AdminFooter';
 // import axios from 'axios';
 
 export const AdminCategory = () => {
@@ -16,7 +16,7 @@ export const AdminCategory = () => {
           <AdimCgList />
         </S.Wrapper>
       </S.Container>
-      <Footer />
+      <AdminFooter />
     </div>
   );
 };
