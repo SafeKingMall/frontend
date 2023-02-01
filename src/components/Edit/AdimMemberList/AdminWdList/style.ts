@@ -91,3 +91,12 @@ export const QnAButton = styled.button`
   position: absolute;
   bottom: 18%;
 `;
+
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
+`;

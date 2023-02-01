@@ -64,10 +64,6 @@ export const AdminTitle = styled.div`
       flex-grow: 2;
     }
     &:nth-child(4) {
-      input {
-        width: 3.2rem;
-        height: 3.2rem;
-      }
     }
   }
 `;
@@ -96,13 +92,16 @@ export const Container = styled.div`
     &:nth-child(4) {
       width: 20rem;
       text-align: right;
-
-      input {
-        width: 3.2rem;
-        height: 3.2rem;
-      }
     }
   }
+`;
+
+export const CheckBox = styled.input.attrs(() => ({
+  type: 'checkbox',
+}))`
+  accent-color: ${({ theme }) => theme.palette.green};
+  width: 3.2rem;
+  height: 3.2rem;
 `;
 
 export const AdminButton = styled.button`
@@ -122,4 +121,13 @@ export const AdminButton2 = styled.button`
   height: 4rem;
   margin-right: 0.8rem;
   align-items: center;
+`;
+
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 144rem;
+  height: 30rem;
+  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
+  font-size: 2.4rem;
+  font-weight: 500;
 `;
