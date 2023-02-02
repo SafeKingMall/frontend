@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { Nav } from '../../components/item/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -24,20 +24,48 @@ export const ItemDetail = () => {
   const [desToggle, setDesToggle] = useState(false);
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [purchaseBtn, setPurchaseBtn] = useState(
-    <S.PurchaseBtn
-      onClick={() => moveOders()}
-      style={{
-        color: itemData.quantity ? '' : '#aaaaaa',
-        borderColor: itemData.quantity ? '' : '#aaaaaa',
-      }}
-      disabled={!itemData.quantity}
-    >
-      구매하기
-    </S.PurchaseBtn>,
-  );
+  const purchaseBtn = useRef(<div />);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+
+  //구매하기
+  const moveOrders = useCallback(() => {
+    swal
+      .fire({
+        icon: 'question',
+        text: '결제 페이지로 이동하시겠습니까?',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        width: 400,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          await axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+          }).then((res) => {
+            navigate('/orders', {
+              state: {
+                data: [
+                  {
+                    categoryName: res.data.categoryName,
+                    id: res.data.id,
+                    itemName: res.data.name,
+                    itemPrice: res.data.viewPrice,
+                    itemQuantity: Number(
+                      (document.getElementById(state.itemId) as HTMLInputElement).value,
+                    ),
+                    thumbNail: res.data.fileName,
+                  },
+                ],
+              },
+            });
+          });
+        }
+      });
+  }, [navigate, state]);
 
   useEffect(() => {
     if (!loading) {
@@ -79,8 +107,21 @@ export const ItemDetail = () => {
             setCategoryList(res1.data.content);
             setItemData(res2.data);
             if (res2.data.viewPrice === 1000000000) {
-              setPurchaseBtn(
-                <S.PurchaseBtn onClick={() => navigate('/estimate')}>견적서 요청</S.PurchaseBtn>,
+              purchaseBtn.current = (
+                <S.PurchaseBtn onClick={() => navigate('/estimate')}>견적서 요청</S.PurchaseBtn>
+              );
+            } else {
+              purchaseBtn.current = (
+                <S.PurchaseBtn
+                  onClick={() => moveOrders()}
+                  style={{
+                    color: itemData.quantity ? '' : '#aaaaaa',
+                    borderColor: itemData.quantity ? '' : '#aaaaaa',
+                  }}
+                  disabled={!itemData.quantity}
+                >
+                  구매하기
+                </S.PurchaseBtn>
               );
             }
             setLoading(false);
@@ -88,46 +129,7 @@ export const ItemDetail = () => {
         );
     };
     getData();
-  }, [state.itemId, navigate]);
-
-  //구매하기
-  const moveOders = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '결제 페이지로 이동하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
-          }).then((res) => {
-            navigate('/orders', {
-              state: {
-                data: [
-                  {
-                    categoryName: res.data.categoryName,
-                    id: res.data.id,
-                    itemName: res.data.name,
-                    itemPrice: res.data.viewPrice,
-                    itemQuantity: Number(
-                      (document.getElementById(state.itemId) as HTMLInputElement).value,
-                    ),
-                    thumbNail: res.data.fileName,
-                  },
-                ],
-              },
-            });
-          });
-        }
-      });
-  };
+  }, [state.itemId, navigate, itemData, moveOrders]);
 
   const desEvent = () => {
     setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
@@ -282,7 +284,7 @@ export const ItemDetail = () => {
                 >
                   장바구니
                 </S.BasketBtn>
-                {purchaseBtn}
+                {purchaseBtn.current}
               </S.BtnArea>
             </S.ItemTextArea>
           </S.DetailArea>
