@@ -22,7 +22,7 @@ export const NavArea = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 0.1rem solid ${(props) => props.theme.palette.txtblack};
+  /* border-bottom: 0.1rem solid ${(props) => props.theme.palette.txtblack}; */
 `;
 export const Nav = styled.div`
   height: 100%;
