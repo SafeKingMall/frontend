@@ -224,8 +224,8 @@ export const AdminMemberList = (props: any) => {
           setPage={setPage}
           totalPages={totalPages}
         />
-        <S.QnAButton onClick={() => deleteMemberAlert()}>탈퇴</S.QnAButton>
       </S.CenterContainer>
+      <S.QnAButton onClick={() => deleteMemberAlert()}>탈퇴</S.QnAButton>
     </S.Wrapper>
   );
   // }

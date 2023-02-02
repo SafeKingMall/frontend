@@ -32,9 +32,12 @@ export const AdminItemPo = () => {
   // } as any);
 
   // const { moneyNum, quantityNum } = enteredNum;
+
+  const [moneyNum, setMoneyNum2] = useState('');
+  const [quantityNum, setquantityNum2] = useState('');
   const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
-  //안찍힌 숫자들
+  // 안찍힌 숫자들
   const [sendMoneyNum, setSendMoneyNum] = useState(0 as Number);
   const [sendQuantityNum, setSendQuantityNum] = useState(0 as Number);
 
@@ -55,7 +58,10 @@ export const AdminItemPo = () => {
   //에디터용 type
   const [adminItem] = useState('adminItem');
   //파일 삭제 id
-  const [deleteId, setDeleteId] = useState(0 as any);
+  // const [
+  //   // deleteId,
+  //   setDeleteId,
+  // ] = useState(0 as any);
 
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
@@ -80,36 +86,16 @@ export const AdminItemPo = () => {
       }).then((res) => {
         setItemName(res.data.name);
 
-        MoneyNumber2(res.data.price);
-        MoneyNumber2(res.data.quantity);
+        setMoneyNum2(res.data.price);
+        setquantityNum2(res.data.quantity);
 
         setSendMoneyNum(res.data.price);
         setSendQuantityNum(res.data.quantity);
         setCateSelect(res.data.categoryName);
         setDescriptEdit(res.data.description);
 
+        setSelectedFiles(res.data.fileName);
         setHideBtn(res.data.viewYn === 'N' ? false : true);
-      });
-
-      axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/itemPhoto/${state.data}`,
-        headers: {
-          Authorization: jwt,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/file/list/item/${state.data}`,
-        // responseType: 'blob',
-        headers: {
-          Authorization: jwt,
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((res) => {
-        setSelectedImages(res.data);
       });
     };
     getData();
@@ -188,6 +174,14 @@ export const AdminItemPo = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
+    } else if (selectedImages.length === 0) {
+      swal.fire({
+        icon: 'warning',
+        text: '썸네일을 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     } else {
       swal
         .fire({
@@ -217,15 +211,6 @@ export const AdminItemPo = () => {
   // 수정 api
   const modifyApi = async () => {
     if (selectedFiles === null) {
-      if (deleteId !== undefined) {
-        await axios({
-          method: 'delete',
-          url: `${process.env.REACT_APP_API_URL}/file/${deleteId}`,
-          headers: {
-            Authorization: jwt,
-          },
-        });
-      }
       await axios({
         method: 'put',
         url: `${process.env.REACT_APP_API_URL}/admin/item/${itemId}`,
@@ -250,15 +235,6 @@ export const AdminItemPo = () => {
         navigate('/admin-item');
       });
     } else {
-      if (deleteId !== undefined) {
-        await axios({
-          method: 'delete',
-          url: `${process.env.REACT_APP_API_URL}/file/${deleteId}`,
-          headers: {
-            Authorization: jwt,
-          },
-        });
-      }
       await axios({
         method: 'put',
         url: `${process.env.REACT_APP_API_URL}/admin/item/${itemId}`,
@@ -270,6 +246,7 @@ export const AdminItemPo = () => {
           name: itemName,
           // 상품수량
           quantity: Number(sendQuantityNum),
+          //
           //상품설명moneyNum
           description: descriptEdit,
           //상품금액
@@ -291,12 +268,11 @@ export const AdminItemPo = () => {
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append('file', selectedFiles[i]);
     }
-    formData.append('type', 'item');
-    formData.append('targetId', id);
+    formData.append('itemId', id);
 
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_URL}/file/upload`,
+      url: `${process.env.REACT_APP_API_URL}/admin/itemPhoto/${id}`,
       headers: {
         Authorization: jwt,
         'Content-Type': 'multipart/form-data',
@@ -314,17 +290,17 @@ export const AdminItemPo = () => {
     const selectedFiles = e.target.files;
     const fileUrlList = [...selectedFiles];
 
-    const nowUrl = URL.createObjectURL(selectedFiles[0]);
+    const nowUrl = URL.createObjectURL(selectedFiles[selectedFiles.length - 1]);
     fileUrlList.push(nowUrl);
 
     // 업로드하는 파일 개수 제한하는 것
-    if (fileUrlList.length > 1) {
-      fileUrlList.slice(0, 1);
-    }
+    // if (fileUrlList.length > 1) {
+    //   fileUrlList.slice(0, 1);
+    // }
 
-    if (selectedImages.length > 1) {
-      selectedImages.slice(0, 1);
-    }
+    // if (selectedImages.length > 1) {
+    //   selectedImages.slice(0, 1);
+    // }
 
     setSelectedFiles(fileUrlList);
 
@@ -338,22 +314,24 @@ export const AdminItemPo = () => {
     e.target.value = '';
   };
 
-  const deleteBtn = (id: any, image: any) => {
-    if (id === undefined) {
-      setSelectedImages(selectedImages.filter((e) => e !== image));
-    } else {
-      setSelectedImages(selectedImages.filter((e) => e !== image));
-      setDeleteId(id);
-    }
-  };
+  // const deleteBtn = (id: any, image: any) => {
+  //   if (id === undefined) {
+  //     setSelectedImages(selectedImages.filter((e) => e !== image));
+  //   } else {
+  //     setSelectedImages(selectedImages.filter((e) => e !== image));
+  //     setDeleteId(id);
+  //   }
+  // };
 
   const attachFile =
     selectedImages &&
     selectedImages.map((image: any) => {
       return (
-        <S.DivImg key={image.id || image}>
-          <div>{image.orgFileName || image}</div>
-          <button onClick={(e: any) => deleteBtn(image.id, image)}>
+        <S.DivImg key={image}>
+          <div>{image}</div>
+          <button
+            onClick={(e: any) => setSelectedImages(selectedImages.filter((e) => e !== image))}
+          >
             <VscClose size='30' />
           </button>
         </S.DivImg>
@@ -362,15 +340,14 @@ export const AdminItemPo = () => {
 
   //,상품수량
 
-  const [moneyNum, setMoneyNum2] = useState('');
-  const [quantityNum, setquantityNum2] = useState('');
-
   const changeEnteredNum2 = (e: any) => {
     const value = e.target.value;
+    setSendMoneyNum(e.target.value.split(',').join(''));
     const removedCommaValue = Number(value.replaceAll(',', ''));
 
     if (removedCommaValue.toLocaleString() !== 'NaN') {
       setMoneyNum2(removedCommaValue.toLocaleString());
+      // setSendMoneyNum(removedCommaValue.toLocaleString());
     }
     if (removedCommaValue.toLocaleString() === 'NaN') {
       setMoneyNum2('.');
@@ -382,6 +359,7 @@ export const AdminItemPo = () => {
 
   const changeEnteredNum = (e: any) => {
     const value = e.target.value;
+    setSendQuantityNum(e.target.value.split(',').join(''));
     const removedCommaValue = Number(value.replaceAll(',', ''));
 
     if (removedCommaValue.toLocaleString() !== 'NaN') {
@@ -417,6 +395,8 @@ export const AdminItemPo = () => {
         }
       });
   };
+
+  // console.log(moneyNum, sendMoneyNum);
 
   return (
     <div>
@@ -462,7 +442,7 @@ export const AdminItemPo = () => {
                     <S.TableInput
                       name='moneyNum'
                       placeholder='가격을 입력해주세요.'
-                      value={moneyNum}
+                      value={MoneyNumber2(moneyNum)}
                       onChange={changeEnteredNum2}
                     />
                     <S.PayP>원</S.PayP>
@@ -493,7 +473,7 @@ export const AdminItemPo = () => {
                     name='quantityNum'
                     placeholder='수량을 입력해주세요.'
                     type='text'
-                    value={quantityNum}
+                    value={MoneyNumber2(quantityNum)}
                     onChange={changeEnteredNum}
                   />
                   개{quantityNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}

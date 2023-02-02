@@ -30,7 +30,7 @@ export const QnATitle = styled.div`
   padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
   border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  /* border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray}; */
   font-size: 2.4rem;
   div {
     &:nth-child(1) {
@@ -67,7 +67,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 2.4rem 2.4rem 2.4rem 5.8rem;
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.lightgray};
   font-size: 2.4rem;
   div {
     &:nth-child(1) {

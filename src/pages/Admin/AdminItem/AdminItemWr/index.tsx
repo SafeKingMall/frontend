@@ -18,6 +18,8 @@ const swal = withReactContent(Swal);
 
 export const AdminItemWr = () => {
   const navigate = useNavigate();
+  const [moneyNum2, setMoneyNum2] = useState('');
+  const [quantityNum, setquantityNum2] = useState('');
 
   // 상품명
   const [itemName, setItemName] = useState('');
@@ -96,9 +98,6 @@ export const AdminItemWr = () => {
     });
 
   //숫자 3마디마다 ,찍기(상품가격)
-
-  const [moneyNum2, setMoneyNum2] = useState('');
-  const [quantityNum, setquantityNum2] = useState('');
 
   const changeEnteredNum2 = (e: any) => {
     const value = e.target.value;
@@ -217,6 +216,14 @@ export const AdminItemWr = () => {
       swal.fire({
         icon: 'warning',
         text: '상품설명을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (selectedImages.length === 0) {
+      swal.fire({
+        icon: 'warning',
+        text: '썸네일을 선택해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
         width: 400,
