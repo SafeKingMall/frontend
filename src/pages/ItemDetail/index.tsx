@@ -25,7 +25,16 @@ export const ItemDetail = () => {
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(true);
   const [purchaseBtn, setPurchaseBtn] = useState(
-    <S.PurchaseBtn onClick={() => moveOders()}>구매하기</S.PurchaseBtn>,
+    <S.PurchaseBtn
+      onClick={() => moveOders()}
+      style={{
+        color: itemData.quantity ? '' : '#aaaaaa',
+        borderColor: itemData.quantity ? '' : '#aaaaaa',
+      }}
+      disabled={!itemData.quantity}
+    >
+      구매하기
+    </S.PurchaseBtn>,
   );
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
@@ -209,13 +218,20 @@ export const ItemDetail = () => {
           </S.LoadingBox>
         ) : (
           <S.DetailArea>
-            <img
-              src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
-              width='700'
-              height='700'
-              alt={itemData.name}
-              style={{ border: '1px solid #DDDDDD', marginRight: '4rem' }}
-            />
+            <S.DetailImgArea>
+              <S.DetailImg
+                src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
+                alt={itemData.name}
+              />
+              <S.Soldout
+                style={{
+                  backgroundColor: itemData.quantity ? '' : 'rgba(33, 33, 33, 0.5)',
+                  display: itemData.quantity ? 'none' : '',
+                }}
+              >
+                해당 상품은 품절된 상품입니다.
+              </S.Soldout>
+            </S.DetailImgArea>
             <S.ItemTextArea>
               <S.Category>{itemData.categoryName}</S.Category>
               <S.ItemName>{itemData.name}</S.ItemName>
@@ -230,33 +246,38 @@ export const ItemDetail = () => {
                 </S.Price>
               </S.PriceArea>
               <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
-                <S.CountBoxArea>
-                  <S.CountText>수량</S.CountText>
-                  <S.CountBox>
-                    <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
-                    <S.CountInput
-                      id={state.itemId}
-                      type='text'
-                      onChange={(e) => countInput(e.target.value)}
-                      onBlur={(e) => countInputBlur(e.target.value)}
-                      value={count}
-                    />
-                    <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
-                  </S.CountBox>
-                </S.CountBoxArea>
-                <S.TotalPriceArea>
-                  <S.TotalPriceTitle>합계</S.TotalPriceTitle>
-                  <S.TotalPrice>
-                    {(itemData.viewPrice * count)
-                      .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
-                    원
-                  </S.TotalPrice>
-                </S.TotalPriceArea>
+                <S.TotalPriceWrap>
+                  <S.TotalPriceArea>
+                    <S.CountBox>
+                      <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
+                      <S.CountInput
+                        id={state.itemId}
+                        type='text'
+                        onChange={(e) => countInput(e.target.value)}
+                        onBlur={(e) => countInputBlur(e.target.value)}
+                        value={count}
+                      />
+                      <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
+                    </S.CountBox>
+                    <S.TotalPriceBox>
+                      <S.TotalPriceTitle>합계</S.TotalPriceTitle>
+                      <S.TotalPrice>
+                        {(itemData.viewPrice * count)
+                          .toString()
+                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                        원
+                      </S.TotalPrice>
+                    </S.TotalPriceBox>
+                  </S.TotalPriceArea>
+                </S.TotalPriceWrap>
               </div>
               <S.BtnArea>
                 <S.BasketBtn
-                  style={{ visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible' }}
+                  style={{
+                    visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible',
+                    backgroundColor: itemData.quantity ? '' : '#aaaaaa',
+                  }}
+                  disabled={!itemData.quantity}
                   onClick={() => addCart()}
                 >
                   장바구니
@@ -267,32 +288,35 @@ export const ItemDetail = () => {
           </S.DetailArea>
         )}
       </S.DetailContainer>
-      {loading ? (
-        <S.DesLoadingBox>
-          <TailSpin
-            height='100'
-            width='100'
-            color='#289951'
-            ariaLabel='tail-spin-loading'
-            radius='1'
-            visible={true}
-          />
-        </S.DesLoadingBox>
-      ) : (
-        <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
-          <S.Description
-            id='description'
-            dangerouslySetInnerHTML={{ __html: itemData.description }}
-          />
-          <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
-        </S.DesContainer>
-      )}
-      <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
-        <S.ShowDesBtn onClick={() => desEvent()}>
-          <span>상세페이지 더보기</span>
-          <AiOutlineDown style={{ width: 28, height: 24 }} />
-        </S.ShowDesBtn>
-      </S.ShowDesBtnContainer>
+      <S.DesWrap>
+        <S.DesLine />
+        {loading ? (
+          <S.DesLoadingBox>
+            <TailSpin
+              height='100'
+              width='100'
+              color='#289951'
+              ariaLabel='tail-spin-loading'
+              radius='1'
+              visible={true}
+            />
+          </S.DesLoadingBox>
+        ) : (
+          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
+            <S.Description
+              id='description'
+              dangerouslySetInnerHTML={{ __html: itemData.description }}
+            />
+            <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
+          </S.DesContainer>
+        )}
+        <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
+          <S.ShowDesBtn onClick={() => desEvent()}>
+            <span>상세페이지 더보기</span>
+            <AiOutlineDown style={{ width: 28, height: 24 }} />
+          </S.ShowDesBtn>
+        </S.ShowDesBtnContainer>
+      </S.DesWrap>
       <Footer />
     </S.Container>
   );

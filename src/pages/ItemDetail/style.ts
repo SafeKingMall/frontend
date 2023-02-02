@@ -14,16 +14,37 @@ export const DetailContainer = styled.div`
 `;
 export const DetailArea = styled.div`
   width: 144rem;
-  height: 78rem;
+  height: 70rem;
   margin-top: 8.3rem;
-  border-bottom: 0.1rem solid #000000;
   display: flex;
   flex-direction: row;
-  margin-bottom: 17.6rem;
+  margin-bottom: 10.4rem;
+`;
+export const DetailImgArea = styled.div`
+  width: 70rem;
+  height: 70rem;
+  margin-right: 4rem;
+  ${({ theme }) => theme.common.flexCenter};
+  position: relative;
+`;
+export const DetailImg = styled.img`
+  width: 70rem;
+  height: 70rem;
+  border: 0.1rem solid #dddddd;
+`;
+export const Soldout = styled.div`
+  position: absolute;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #ffffff;
+  width: 70rem;
+  height: 70rem;
+  ${({ theme }) => theme.common.flexCenter};
+  /* background-color: rgba(33, 33, 33, 0.8); */
 `;
 export const ItemTextArea = styled.div`
   width: 66rem;
-  height: 70rem;
+  height: 100%;
   position: relative;
 `;
 export const Category = styled.p`
@@ -37,9 +58,10 @@ export const ItemName = styled.p`
 `;
 export const ItemNameLine = styled.div`
   width: 100%;
-  height: 0.1rem;
-  background-color: #909090;
+  height: 0.2rem;
+  background-color: #212121;
   margin-top: 4.8rem;
+  box-shadow: 0px 2px 6px 0px #00000080;
 `;
 export const PriceArea = styled.div`
   width: 100%;
@@ -71,14 +93,16 @@ export const Btn = styled.button`
 export const BasketBtn = styled(Btn)`
   background-color: ${(props) => props.theme.palette.green};
   color: #ffffff;
+  border-radius: 0.5rem;
 `;
 export const PurchaseBtn = styled(Btn)`
   background-color: #ffffff;
   border: 0.1rem solid ${(props) => props.theme.palette.green};
+  border-radius: 0.5rem;
   color: ${(props) => props.theme.palette.green};
 `;
 export const DesContainer = styled.div`
-  width: 100%;
+  width: 144rem;
   ${({ theme }) => theme.common.flexCenter};
   overflow: hidden;
   align-items: flex-start;
@@ -168,25 +192,26 @@ export const ShowDesBtn = styled.div`
   color: #000000;
   cursor: pointer;
 `;
-export const CountBoxArea = styled.div`
+export const TotalPriceWrap = styled.div`
   width: 66rem;
   height: 8rem;
-  background-color: ${({ theme }) => theme.palette.lightgray};
   position: absolute;
-  bottom: 22.4rem;
+  bottom: 12.8rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  border-top: 0.1rem solid #999999;
+  border-bottom: 0.1rem solid #999999;
 `;
-export const CountText = styled.p`
-  position: absolute;
-  left: 5.1rem;
-  font-size: 2rem;
-  font-weight: 500;
+export const TotalPriceArea = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
 `;
 export const CountBox = styled.div`
   position: absolute;
-  right: 4rem;
+  top: 50%;
+  left: 1.2rem;
+  transform: translate(0, -50%);
   height: 4.8rem;
   width: 18.4rem;
   background-color: #ffffff;
@@ -216,35 +241,46 @@ export const CountInput = styled.input`
     margin: 0;
   }
 `;
-export const TotalPriceArea = styled.div`
-  width: 66rem;
-  height: 12rem;
+export const TotalPriceBox = styled.div`
   position: absolute;
-  bottom: 10.4rem;
+  top: 50%;
+  right: 1.2rem;
+  transform: translate(0, -50%);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 `;
 export const TotalPriceTitle = styled.span`
-  font-size: 3rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.palette.txt};
-  margin-right: 8.6rem;
-`;
-export const TotalPrice = styled(TotalPriceTitle)`
+  font-size: 2rem;
   font-weight: 700;
-  margin-right: 0;
+  color: #000000;
+  margin-right: 1.6rem;
+`;
+export const TotalPrice = styled.span`
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #ff003e;
+`;
+export const DesWrap = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  flex-direction: column;
+`;
+export const DesLine = styled.div`
+  width: 21rem;
+  height: 0.6rem;
+  box-shadow: 0px 2px 6px 0px #00000080;
+  background-color: ${({ theme }) => theme.palette.green};
+  margin-bottom: 15.2rem;
+  border-radius: 1.5rem;
 `;
 export const LoadingBox = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   width: 144rem;
   height: 78rem;
   margin-top: 8.3rem;
-  border-bottom: 0.1rem solid #000000;
-  margin-bottom: 17.6rem;
+  margin-bottom: 10.4rem;
 `;
 export const DesLoadingBox = styled.div`
   width: 100%;
   ${({ theme }) => theme.common.flexCenter};
-  margin-bottom: 17.6rem;
+  margin-bottom: 10.4rem;
 `;
