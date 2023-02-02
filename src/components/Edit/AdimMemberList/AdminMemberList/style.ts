@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   align-items: center;
   flex-direction: column;
   position: relative;
@@ -21,10 +21,10 @@ export const QnAButton = styled.button`
   margin-left: 135rem;
   width: 6.4rem;
   height: 4rem;
-  top: 79rem;
+  /* top: 79rem; */
   font-size: 1.5rem;
   position: absolute;
-  bottom: 18%;
+  bottom: 12.5%;
 `;
 
 export const Select = styled.select`

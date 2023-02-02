@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   background-color: #a9d6b9;
-  min-width: 100%;
+  width: 100%;
   height: 8rem;
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  /* transform: translatY(-100%); */
 `;
 export const Text = styled.div`
   margin: 0 0 0 50%;

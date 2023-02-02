@@ -301,7 +301,7 @@ export const QnAMo = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            navigate('/notice');
+            navigate('/qna');
           }
         });
     } else {
