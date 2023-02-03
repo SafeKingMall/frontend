@@ -37,39 +37,12 @@ export const Orders = () => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
-  //관리자 주문리스트
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     let admin;
-  //     await axios({
-  //       method: 'post',
-  //       url: `${process.env.REACT_APP_API_URL}/login`,
-  //       data: {
-  //         username: 'admin1234',
-  //         password: 'admin1234*',
-  //       },
-  //     }).then((res) => {
-  //       admin = res.headers.authorization;
-  //     });
-  //     await axios({
-  //       method: 'get',
-  //       url: `${process.env.REACT_APP_API_URL}/admin/order/list?page=0&size=20`,
-  //       headers: {
-  //         Authorization: admin,
-  //       },
-  //     }).then((res) => {
-  //       console.log(res);
-  //     });
-  //   };
-  //   getData();
-  // }, []);
-
   //사용자 주문 다건조회
   // useEffect(() => {
   //   const getData = async () => {
   //     await axios({
   //       method: 'get',
-  //       url: `${process.env.REACT_APP_API_URL}/user/order/list?page=0&size=20`,
+  //       url: `${process.env.REACT_APP_API_URL}/user/order/list?page=0&size=20&fromDate=2023-02-01&toDate=2023-02-03`,
   //       headers: {
   //         Authorization: jwt,
   //       },
@@ -80,9 +53,21 @@ export const Orders = () => {
   //   getData();
   // }, [jwt]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  //사용자 주문 상세조회;
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     await axios({
+  //       method: 'get',
+  //       url: `${process.env.REACT_APP_API_URL}/user/order/detail/46`,
+  //       headers: {
+  //         Authorization: jwt,
+  //       },
+  //     }).then((res) => {
+  //       console.log(res);
+  //     });
+  //   };
+  //   getData();
+  // }, [jwt]);
 
   useEffect(() => {
     const getData = async () => {
@@ -280,7 +265,7 @@ export const Orders = () => {
     if (res.success) {
       await axios({
         method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/test/payment`,
+        url: `${process.env.REACT_APP_API_URL}/user/payment`,
         headers: {
           Authorization: jwt,
         },
@@ -291,20 +276,43 @@ export const Orders = () => {
           paid_amount: res.paid_amount,
         },
       }).then((response) => {
+        // console.log(response);
         const createDate = new Date();
         const year = createDate.getFullYear();
         const month = createDate.getMonth() + 1;
         const date = createDate.getDate();
         const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
+        const paymentDataId = data.map((el: any) => el.id);
         navigate('/orderok', {
           state: {
             merchant_uid: response.data.response.merchant_uid,
             dt: dt,
+            paymentDataId: paymentDataId,
           },
         });
       });
     } else {
-      alert(`결제 실패: ${res.error_msg}`);
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/auth`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          success: res.success,
+          merchant_uid: res.merchant_uid,
+          error_msg: res.error_msg,
+        },
+      }).then((response) => {
+        // console.log(response);
+        swal.fire({
+          icon: 'error',
+          text: res.error_msg,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      });
     }
   };
 

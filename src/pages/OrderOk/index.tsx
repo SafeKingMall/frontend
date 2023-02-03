@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
+import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
 export const OrderOk = () => {
   const { state } = useLocation();
   const stepTitle = '주문완료';
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
+
+  useEffect(() => {
+    const deleteCartItem = async () => {
+      let items = state.paymentDataId.map((itemId: any) => 'itemId=' + itemId + '&');
+      let itemsString = items.join('');
+      await axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
+        headers: {
+          Authorization: jwt,
+        },
+      });
+    };
+    deleteCartItem();
+  }, [jwt, state]);
+
   return (
     <S.Container>
       <Header />
