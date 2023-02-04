@@ -146,28 +146,38 @@ export const AdminMemberList = (props: any) => {
 
   //탈퇴 알림창
   const deleteMemberAlert = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '회원을 탈퇴시키겠습니까? ',
+    if (checkItems.length === 0) {
+      swal.fire({
+        icon: 'warning',
+        text: '탈퇴시킬 회원을 선택해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
         width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          deleteMember();
-          swal.fire({
-            icon: 'success',
-            text: '회원을 탈퇴하였습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
       });
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '회원을 탈퇴시키겠습니까? ',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            deleteMember();
+            swal.fire({
+              icon: 'success',
+              text: '회원을 탈퇴하였습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
 
   //탈퇴get

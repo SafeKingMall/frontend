@@ -25,7 +25,7 @@ export const AdminItemList = (props: any) => {
 
   // 들어온 데이터 넣는것
   const [itemList, setItemList] = useState([]);
-  const [sort] = useState(`sort=createDate,desc&sort=name,asc`);
+  const [sort] = useState(`sort=createDate,desc`);
   //itemName -> 상품명 (search할때 쓰일듯)
   const [searchItem, setSearchItem] = useState('');
   // 페이지 숫자

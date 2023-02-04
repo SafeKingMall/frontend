@@ -20,11 +20,13 @@ export const NoticeButton = styled.button`
 `;
 
 export const Banner = styled.div`
-  background-color: ${({ theme }) => theme.palette.green};
+  /* background-color: ${({ theme }) => theme.palette.green}; */
   height: 47rem;
   font-size: 4rem;
   margin-bottom: 14.8rem;
   text-align: center;
   padding-top: 23rem;
   color: white;
+  background-image: url('/img/noticeBanner.png');
+  background-size: 100% 100%;
 `;

@@ -17,13 +17,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
+  /* position: relative; */
 `;
 
 export const QnApwInput = styled.input`
   justify-content: center;
   width: 46rem;
   height: 6.4rem;
+  margin-top: 4.8rem;
   margin-bottom: 7.2rem;
   font-size: 2.4rem;
   padding: 1rem;
@@ -31,24 +32,35 @@ export const QnApwInput = styled.input`
 `;
 
 export const PwBox = styled.div`
-  position: absolute;
+  /* position: absolute; */
   width: 144rem;
-  height: 30rem;
+  /* height: 30rem; */
   display: grid;
   justify-content: center;
   font-size: 2.4rem;
   text-align: center;
+  margin-top: 17.8rem;
   border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-  div {
-    margin-top: 7.2rem;
-    margin-bottom: 7.2rem;
+`;
+
+export const Ladius = styled.div`
+  border-radius: 50%;
+  background-color: #a9d6b9;
+  width: 14.8rem;
+  height: 14.8rem;
+  margin-top: 7.2rem;
+  margin-bottom: 4.8rem;
+  margin-left: 15rem;
+
+  svg {
+    margin-top: 2rem;
   }
 `;
 
 export const QnABox = styled.div`
-  margin-top: 65rem;
-  margin-bottom: 20rem;
+  margin-top: 4.8rem;
+  margin-bottom: 12rem;
 `;
 
 export const QnAButton = styled.button`
