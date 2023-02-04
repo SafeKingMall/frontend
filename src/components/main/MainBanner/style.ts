@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 `;
 export const CustomSlider = styled(Slider)`
   .slick-list {
