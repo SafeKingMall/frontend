@@ -26,7 +26,7 @@ export const NavArea = styled.div`
 `;
 export const Nav = styled.div`
   height: 100%;
-  width: 94.5rem;
+  width: 100rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
