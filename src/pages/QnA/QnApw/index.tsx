@@ -10,6 +10,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
+import { CiLock } from 'react-icons/ci';
 
 const swal = withReactContent(Swal);
 
@@ -65,6 +66,10 @@ export const QnAPw = () => {
       </div>
       <S.Wrapper>
         <S.PwBox>
+          <S.Ladius>
+            <CiLock size='100' color='white' fontWeight='900' />
+          </S.Ladius>
+          <div>비공개 게시글입니다.</div>
           <div>비밀번호를 입력해주세요.</div>
           <S.QnApwInput
             onKeyDown={(e) => onKeyDownEnter(e)}

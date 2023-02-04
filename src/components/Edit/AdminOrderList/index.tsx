@@ -21,7 +21,7 @@ export const AdminOrderList = (props: any) => {
   };
 
   const [itemList, setItemList] = useState([]);
-  const [sort] = useState(`sort=date,asc`);
+  const [sort] = useState(`sort=date,desc`);
   // 페이지 숫자
   const [page, setPage] = useState(0);
   // 전체 페이지 확인(전체 페이지 수만큼 페이지네이션 숫자 늘리기)
@@ -187,17 +187,13 @@ export const AdminOrderList = (props: any) => {
           <S.DayButton onClick={ThreeMonth}>3개월</S.DayButton>
           <S.DayButton onClick={SixMonth}>6개월</S.DayButton>
           <S.SearchThird>
-            <S.SearchFour>
-              <S.DayInput
-                type='date'
-                value={finishDay}
-                onChange={(e: any) => {
-                  setFinishDay(e.target.value);
-                }}
-              />
-              {/* input date icon 디자인 바꾸기  */}
-              {/* <S.SearchButton>라</S.SearchButton> */}
-            </S.SearchFour>
+            <S.DayInput
+              type='date'
+              value={finishDay}
+              onChange={(e: any) => {
+                setFinishDay(e.target.value);
+              }}
+            />
             <S.Tilde>~</S.Tilde>
             <S.DayInput
               type='date'

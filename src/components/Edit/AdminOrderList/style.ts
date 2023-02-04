@@ -142,11 +142,12 @@ export const DayInput = styled.input`
   padding-left: 0.5rem;
   border: 0.1rem solid ${({ theme }) => theme.palette.lightgreen};
   ::-webkit-calendar-picker-indicator {
-    // opacity: 0;
-    position: relative;
-    z-index: 2;
-    // height: 4rem;
-    // width: 4rem;
+    opacity: 1;
+    display: block;
+    background: url('/img/calendar.png') center/100% no-repeat white;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
   }
 `;
 
@@ -155,20 +156,6 @@ export const Tilde = styled.div`
   margin-left: 1.6rem;
   margin-right: 0.8rem;
 `;
-
-export const SearchFour = styled.div`
-  /* position: relative; */
-`;
-
-//inpit date icon css
-// export const SearchButton = styled.button`
-//   position: absolute;
-//   background-color: ${({ theme }) => theme.palette.lightgreen};
-//   z-index: 1;
-//   width: 4rem;
-//   height: 4rem;
-//   left: 21rem;
-// `;
 
 export const SearchFive = styled.div`
   display: flex;
