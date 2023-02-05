@@ -24,7 +24,7 @@ export const List = (props: any) => {
     sessionStorage.setItem('reqData', reqData);
     sessionStorage.setItem('selectSort', selectSort);
     sessionStorage.setItem('searchWord', searchWord.current);
-    navigate(`/itemDetail/${item.id}`, {
+    navigate('/itemDetail', {
       state: {
         itemId: item.id,
       },

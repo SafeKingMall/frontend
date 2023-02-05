@@ -25,6 +25,7 @@ export const ItemDetail = () => {
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(true);
   const purchaseBtn = useRef(<div />);
+  const viewedItem = useRef<any>({});
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
@@ -69,6 +70,27 @@ export const ItemDetail = () => {
 
   useEffect(() => {
     if (!loading) {
+      if (localStorage.getItem('viewedItems')) {
+        let viewedItems: any = localStorage.getItem('viewedItems');
+        viewedItems = JSON.parse(viewedItems);
+        if (viewedItems.map((item: any) => item.id).includes(viewedItem.current.id)) {
+          viewedItems = viewedItems.filter((item: any) => item.id !== viewedItem.current.id);
+          viewedItems.unshift(viewedItem.current);
+          localStorage.setItem('viewedItems', JSON.stringify(viewedItems));
+        } else if (viewedItems.length === 15) {
+          viewedItems.pop();
+          viewedItems.unshift(viewedItem.current);
+          localStorage.setItem('viewedItems', JSON.stringify(viewedItems));
+        } else {
+          viewedItems.unshift(viewedItem.current);
+          localStorage.setItem('viewedItems', JSON.stringify(viewedItems));
+        }
+      } else {
+        let viewedItems = [];
+        viewedItems.unshift(viewedItem.current);
+        localStorage.setItem('viewedItems', JSON.stringify(viewedItems));
+      }
+
       setTimeout(() => {
         if ((document.querySelector('#description') as HTMLElement).offsetHeight <= 1836) {
           setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);
@@ -124,12 +146,17 @@ export const ItemDetail = () => {
                 </S.PurchaseBtn>
               );
             }
+            viewedItem.current = {
+              id: res2.data.id,
+              name: res2.data.name,
+              fileName: res2.data.fileName,
+            };
             setLoading(false);
           }),
         );
     };
     getData();
-  }, [state.itemId, navigate, itemData, moveOrders]);
+  }, [state.itemId, navigate, moveOrders, itemData.quantity, itemData.id, itemData.fileName]);
 
   const desEvent = () => {
     setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);

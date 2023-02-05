@@ -9,3 +9,7 @@ export const Container = styled.div`
   -ms-user-select: none;
   user-select: none;
 `;
+export const BannerNoticeWrap = styled.div`
+  position: relative;
+  margin-bottom: 12.8rem;
+`;

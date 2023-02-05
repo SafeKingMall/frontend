@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 export const NoticeBarWrap = styled.div`
+  position: absolute;
+  bottom: 0;
   width: 100%;
   height: 8.8rem;
-  background: #b1c7b9;
-  margin-bottom: 12.8rem;
+  background-color: rgba(167, 237, 192, 0.6);
   display: flex;
   justify-content: center;
   font-size: 2.4rem;
@@ -16,33 +13,34 @@ export const NoticeBarWrap = styled.div`
   color: #212121;
 `;
 export const NoticeContent = styled.div`
-  width: 144rem;
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
 `;
-export const LeftText = styled.span`
-  position: absolute;
-  left: 11.3rem;
+export const LeftTextArea = styled.div`
+  width: 43.8rem;
+  height: 100%;
+  ${({ theme }) => theme.common.flexCenter};
 `;
+export const LeftText = styled.span``;
 export const LeftBar = styled.div`
-  position: absolute;
-  left: 30.6rem;
   width: 0.2rem;
   height: 4rem;
   background-color: #ffffff;
 `;
+export const TitleArea = styled.div`
+  width: 100rem;
+  height: 100%;
+  ${({ theme }) => theme.common.flexCenter};
+`;
 export const Title = styled.span`
-  position: absolute;
-  left: 41.8rem;
   cursor: pointer;
   :hover {
     text-decoration: underline;
   }
 `;
 export const ArrowBox = styled.div`
-  position: absolute;
-  left: 128.2rem;
   display: flex;
   align-items: center;
 `;
