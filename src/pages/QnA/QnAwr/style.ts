@@ -28,10 +28,16 @@ export const Table = styled.table`
   border-collapse: collapse;
   td,
   tr {
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   }
   tr {
+    &:first-child {
+      height: 11.2rem;
+    }
+    &:nth-child(2) {
+      height: 11.2rem;
+    }
     td {
       &:first-child {
         background-color: #d4ebdc;
@@ -45,6 +51,7 @@ export const Table = styled.table`
       height: 58.3rem;
     }
     &:last-child {
+      height: 11.2rem;
       td {
         &:last-child {
           position: relative;
@@ -64,7 +71,7 @@ export const TableInput = styled.input`
   height: 8rem;
   font-size: 3.2rem;
   margin-left: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   padding: 1.2rem;
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
@@ -94,7 +101,7 @@ export const TableDiv = styled.div`
   /* height: 8rem; */
   font-size: 2.5rem;
   margin-left: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   padding: 1.8rem;
   display: flex;
   input {
@@ -117,7 +124,6 @@ export const DivImg = styled.div`
   background-color: #efeff1;
   align-items: center;
   font-weight: 400;
-  margin-bottom: 2rem;
   button {
     margin-left: 0.5rem;
     color: gray;
@@ -140,7 +146,7 @@ export const TableTextarea = styled.textarea`
   font-size: 3.2rem;
   outline: none;
   resize: none;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 2.4rem;

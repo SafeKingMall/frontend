@@ -46,42 +46,52 @@ export const AdminItemWr = () => {
   const clickHide = () => {
     setHideBtn(!hideBtn);
     if (hideBtn === false) {
-      setSendhide('N');
-    } else if (hideBtn === true) {
       setSendhide('Y');
+    } else if (hideBtn === true) {
+      setSendhide('N');
     }
   };
 
-  const onSelectFile = (e: any) => {
-    e.preventDefault();
-    e.persist();
-    const selectedFiles = e.target.files;
-    const fileUrlList = [...selectedFiles];
+  const sendFileAlret = (e: any) => {
+    if (selectedFiles > 1) {
+      swal.fire({
+        icon: 'warning',
+        text: '특수문자를 제외한 상품명을 올바르게 기입해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else {
+      e.preventDefault();
+      e.persist();
+      const selectedFiles = e.target.files;
+      const fileUrlList = [...selectedFiles];
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-      const nowUrl = URL.createObjectURL(selectedFiles[i]);
-      fileUrlList.push(nowUrl);
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const nowUrl = URL.createObjectURL(selectedFiles[i]);
+        fileUrlList.push(nowUrl);
+      }
+
+      // 업로드하는 파일 개수 제한하는 것
+      // if (fileUrlList.length > 1) {
+      //   fileUrlList.slice(0, 1);
+      // }
+
+      // if (selectedImages.length > 1) {
+      //   selectedImages.slice(0, 1);
+      // }
+
+      setSelectedFiles(fileUrlList);
+
+      const selectedFileArray: any = Array.from(selectedFiles);
+
+      const imageArray = selectedFileArray.map((file: any) => {
+        return file.name;
+      });
+
+      setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
+      e.target.value = '';
     }
-
-    // 업로드하는 파일 개수 제한하는 것
-    if (fileUrlList.length > 1) {
-      fileUrlList.slice(0, 1);
-    }
-
-    if (selectedImages.length > 1) {
-      selectedImages.slice(0, 1);
-    }
-
-    setSelectedFiles(fileUrlList);
-
-    const selectedFileArray: any = Array.from(selectedFiles);
-
-    const imageArray = selectedFileArray.map((file: any) => {
-      return file.name;
-    });
-
-    setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
-    e.target.value = '';
   };
 
   const attachFile =
@@ -426,7 +436,7 @@ export const AdminItemWr = () => {
                     <input
                       type='file'
                       name='images'
-                      onChange={onSelectFile}
+                      onChange={(e: any) => sendFileAlret(e)}
                       // multiple
                       accept='.png, .jpg,image/*'
                     />

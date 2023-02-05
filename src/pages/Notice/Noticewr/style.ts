@@ -29,8 +29,8 @@ export const Table = styled.table`
   border-collapse: collapse;
   td,
   tr {
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   }
   tr {
     td {
@@ -65,7 +65,7 @@ export const TableInput = styled.input`
   height: 8rem;
   font-size: 3.2rem;
   margin: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   padding: 1.2rem;
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
@@ -81,7 +81,7 @@ export const TableTextarea = styled.textarea`
   font-size: 3.2rem;
   outline: none;
   resize: none;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 2.4rem;

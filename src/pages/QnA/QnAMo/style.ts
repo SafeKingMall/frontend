@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 
 export const Table = styled.table`
   width: 144rem;
-  min-height: 92.3rem;
+  height: 92.3rem;
   font-size: 2.8rem;
   margin-top: 14.8rem;
   border-collapse: collapse;
@@ -32,9 +32,14 @@ export const Table = styled.table`
     border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
   }
   tr {
+    &:first-child {
+      height: 11.2rem;
+    }
+    &:nth-child(2) {
+      height: 11.2rem;
+    }
     td {
       &:first-child {
-        height: 10rem;
         background-color: #d4ebdc;
         width: 22.4rem;
         text-align: center;
@@ -46,6 +51,7 @@ export const Table = styled.table`
       height: 58.3rem;
     }
     &:last-child {
+      height: 11.2rem;
       td {
         &:last-child {
           position: relative;
@@ -120,7 +126,6 @@ export const DivImg = styled.div`
   background-color: #efeff1;
   align-items: center;
   font-weight: 400;
-  margin-bottom: 2rem;
   button {
     margin-left: 0.5rem;
     color: gray;
