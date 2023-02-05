@@ -70,13 +70,16 @@ export const ItemDetail = () => {
 
   useEffect(() => {
     if (!loading) {
+      //내가 본 상품
       if (localStorage.getItem('viewedItems')) {
         let viewedItems: any = localStorage.getItem('viewedItems');
         viewedItems = JSON.parse(viewedItems);
+        //내가 본 상품에 이미 들어있는 경우
         if (viewedItems.map((item: any) => item.id).includes(viewedItem.current.id)) {
           viewedItems = viewedItems.filter((item: any) => item.id !== viewedItem.current.id);
           viewedItems.unshift(viewedItem.current);
           localStorage.setItem('viewedItems', JSON.stringify(viewedItems));
+          //내가 본 상품이 가득찬 경우
         } else if (viewedItems.length === 15) {
           viewedItems.pop();
           viewedItems.unshift(viewedItem.current);
@@ -102,6 +105,7 @@ export const ItemDetail = () => {
     }
   }, [loading]);
 
+  //뒤로가기 감지
   useEffect(() => {
     const listenBack = () => {
       sessionStorage.setItem('goBack', 'Y');

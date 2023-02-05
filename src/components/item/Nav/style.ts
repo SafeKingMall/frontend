@@ -4,25 +4,32 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const Banner = styled.div`
+export const BannerWrap = styled.div`
   display: flex;
   width: 100%;
   height: 47rem;
-  background-color: ${(props) => props.theme.palette.green};
   justify-content: center;
   align-items: center;
+  position: relative;
+`;
+export const Banner = styled.img.attrs({ src: 'img/ItemListBannerImg.png' })`
+  width: 100%;
+  height: 100%;
 `;
 export const BannerText = styled.span`
   color: #ffffff;
   font-weight: 700;
   font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 export const NavArea = styled.div`
   height: 8.8rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border-bottom: 0.1rem solid ${(props) => props.theme.palette.txtblack}; */
 `;
 export const Nav = styled.div`
   height: 100%;
