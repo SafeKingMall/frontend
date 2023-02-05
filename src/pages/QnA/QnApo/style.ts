@@ -117,7 +117,7 @@ export const TitleDiv3 = styled.div`
   padding: 4.2rem 1rem 1.8rem 1rem;
   font-size: 3.2rem;
   justify-content: space-between;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 
 export const Content = styled.div`
@@ -134,7 +134,7 @@ export const Content2 = styled.div`
   width: 144rem;
   height: 100%;
   padding: 0rem 2.3rem 3.2rem 2.3rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 
 export const ComemntInput = styled.input`

@@ -17,6 +17,7 @@ const swal = withReactContent(Swal);
 export const NoticePo = () => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+  const admin = cookies.get('admin');
   const location = useLocation();
   const itemId = location.state.itemId;
   const itemList = location.state.data;
@@ -154,11 +155,15 @@ export const NoticePo = () => {
         <S.Banner>공지사항</S.Banner>
       </div>
       <S.Wrapper>
-        {/* 쿠키에 관리자토큰이 아니라면 이거 안보여야 함 */}
-        <S.ButtonBox>
-          <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
-          <S.NoticeButton2 onClick={() => moveNoticeMo(itemId)}>수정</S.NoticeButton2>
-        </S.ButtonBox>
+        {admin ? (
+          <S.ButtonBox>
+            <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
+            <S.NoticeButton2 onClick={() => moveNoticeMo(itemId)}>수정</S.NoticeButton2>
+          </S.ButtonBox>
+        ) : (
+          ''
+        )}
+
         <S.PoBox>
           <S.TitleDiv>
             <div>{data.title}</div>

@@ -35,7 +35,7 @@ export const QnAWr = () => {
 
     for (let i = 0; i < selectedFiles.length; i++) {
       const nowUrl = URL.createObjectURL(selectedFiles[i]);
-      fileUrlList.push(nowUrl);
+      fileUrlList.push(nowUrl[i]);
     }
 
     //업로드하는 파일 개수 제한하는 것
@@ -102,7 +102,7 @@ export const QnAWr = () => {
       swal
         .fire({
           icon: 'question',
-          text: '게시판을 수정하시겠습니까?',
+          text: '게시판을 등록하시겠습니까?',
           confirmButtonText: '확인',
           confirmButtonColor: '#289951',
           showCancelButton: true,
@@ -114,7 +114,7 @@ export const QnAWr = () => {
             registApi(selectedFiles);
             swal.fire({
               icon: 'success',
-              text: '게사판이 수정되었습니다.',
+              text: '게사판이 등록되었습니다.',
               confirmButtonText: '확인',
               confirmButtonColor: '#289951',
               width: 400,
