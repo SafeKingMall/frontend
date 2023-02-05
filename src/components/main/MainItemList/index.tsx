@@ -6,7 +6,7 @@ export const MainItemList = (props: any) => {
   const itemList = props.itemList;
   const navigate = useNavigate();
   const moveDetail = (item: any) => {
-    navigate(`/itemDetail/${item.id}`, {
+    navigate('/itemDetail', {
       state: {
         itemId: item.id,
       },

@@ -30,7 +30,7 @@ export const MainCategory = (props: any) => {
   return (
     <S.Container>
       <S.CategoryWrap>
-        <S.Title>메인 카테고리</S.Title>
+        <S.Title>Main Product</S.Title>
         <S.CategoryNavArea>
           {category.map((el: any) => {
             return (

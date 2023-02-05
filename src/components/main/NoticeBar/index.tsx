@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const NoticeBar = () => {
   const [noticeList, setNoticeList] = useState<any>([]);
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getNoticeData = async () => {
@@ -35,24 +37,36 @@ export const NoticeBar = () => {
     }
   };
 
+  const moveDetail = (id: number) => {
+    navigate('/notice-po', {
+      state: {
+        itemId: id,
+      },
+    });
+  };
+
   return (
-    <S.Container>
-      <S.NoticeBarWrap>
-        <S.NoticeContent>
+    <S.NoticeBarWrap>
+      <S.NoticeContent>
+        <S.LeftTextArea>
           <S.LeftText>공지사항</S.LeftText>
-          <S.LeftBar />
-          <S.Title>{noticeList[count]?.title}</S.Title>
-          <S.ArrowBox>
-            <S.ArrowArea onClick={() => preNotice()}>
-              <AiOutlineLeft color='#ffffff' />
-            </S.ArrowArea>
-            <S.ArrowBar />
-            <S.ArrowArea onClick={() => nextNotice()}>
-              <AiOutlineRight color='#ffffff' />
-            </S.ArrowArea>
-          </S.ArrowBox>
-        </S.NoticeContent>
-      </S.NoticeBarWrap>
-    </S.Container>
+        </S.LeftTextArea>
+        <S.LeftBar />
+        <S.TitleArea>
+          <S.Title onClick={() => moveDetail(noticeList[count].id)}>
+            {noticeList[count]?.title}
+          </S.Title>
+        </S.TitleArea>
+        <S.ArrowBox>
+          <S.ArrowArea onClick={() => preNotice()}>
+            <AiOutlineLeft color='#ffffff' />
+          </S.ArrowArea>
+          <S.ArrowBar />
+          <S.ArrowArea onClick={() => nextNotice()}>
+            <AiOutlineRight color='#ffffff' />
+          </S.ArrowArea>
+        </S.ArrowBox>
+      </S.NoticeContent>
+    </S.NoticeBarWrap>
   );
 };

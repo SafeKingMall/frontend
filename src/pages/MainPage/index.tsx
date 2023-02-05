@@ -8,6 +8,7 @@ import { MainBanner } from '../../components/main/MainBanner';
 import { NoticeBar } from '../../components/main/NoticeBar';
 import { MainCategory } from '../../components/main/MainCategory';
 import { MainItemList } from '../../components/main/MainItemList';
+import { ViewedItem } from '../../components/main/ViewedItem';
 import axios from 'axios';
 
 export const MainPage = () => {
@@ -44,9 +45,12 @@ export const MainPage = () => {
 
   return (
     <S.Container>
+      <ViewedItem />
       <Header />
-      <MainBanner />
-      <NoticeBar />
+      <S.BannerNoticeWrap>
+        <MainBanner />
+        <NoticeBar />
+      </S.BannerNoticeWrap>
       <MainCategory
         category={category}
         selectedCategory={selectedCategory}
