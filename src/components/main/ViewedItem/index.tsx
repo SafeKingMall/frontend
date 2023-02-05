@@ -32,7 +32,7 @@ export const ViewedItem = () => {
     }
   };
   const countPlus = () => {
-    if (count < 5) {
+    if (count < (totalPage.current ? totalPage.current : 1)) {
       setCount(count + 1);
       setIdx(idx.map((i) => i + 3));
     }

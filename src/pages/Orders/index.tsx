@@ -42,7 +42,7 @@ export const Orders = () => {
   //   const getData = async () => {
   //     await axios({
   //       method: 'get',
-  //       url: `${process.env.REACT_APP_API_URL}/user/order/list?page=0&size=20&fromDate=2023-02-01&toDate=2023-02-03`,
+  //       url: `${process.env.REACT_APP_API_URL}/user/order/list?page=0&size=20&fromDate=2023-02-05&toDate=2023-02-05`,
   //       headers: {
   //         Authorization: jwt,
   //       },
@@ -214,21 +214,6 @@ export const Orders = () => {
       };
       return itemObj;
     });
-    const merchant_uid = `mid_${new Date().getTime()}`;
-
-    const paymentData = {
-      pg: 'html5_inicis.INIpayTest',
-      pay_method: 'card',
-      merchant_uid: merchant_uid,
-      amount: totalPrice,
-      // amount: 100,
-      name: productName,
-      buyer_name: text[0],
-      buyer_tel: text[2],
-      buyer_email: text[1],
-      buyer_addr: `${text[4]} ${text[5]}`,
-      buyer_postcode: text[3],
-    };
 
     await axios({
       method: 'post',
@@ -244,10 +229,21 @@ export const Orders = () => {
         memo: text[7],
         delivery_memo: text[6],
         items: items,
-        merchant_uid: merchant_uid,
       },
     })
       .then((res) => {
+        const paymentData = {
+          pg: 'html5_inicis.INIpayTest',
+          pay_method: 'card',
+          merchant_uid: res.data.order.merchant_uid,
+          amount: totalPrice,
+          name: productName,
+          buyer_name: text[0],
+          buyer_tel: text[2],
+          buyer_email: text[1],
+          buyer_addr: `${text[4]} ${text[5]}`,
+          buyer_postcode: text[3],
+        };
         IMP.request_pay(paymentData, callBack);
       })
       .catch((err) => {
@@ -276,7 +272,6 @@ export const Orders = () => {
           paid_amount: res.paid_amount,
         },
       }).then((response) => {
-        // console.log(response);
         const createDate = new Date();
         const year = createDate.getFullYear();
         const month = createDate.getMonth() + 1;
@@ -304,7 +299,6 @@ export const Orders = () => {
           error_msg: res.error_msg,
         },
       }).then((response) => {
-        // console.log(response);
         swal.fire({
           icon: 'error',
           text: res.error_msg,

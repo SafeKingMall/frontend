@@ -14,9 +14,10 @@ export const Nav = (props: any) => {
   };
   return (
     <S.Container>
-      <S.Banner>
+      <S.BannerWrap>
+        <S.Banner />
         <S.BannerText>{selectNav}</S.BannerText>
-      </S.Banner>
+      </S.BannerWrap>
       <S.NavArea>
         <S.Nav id='item-nav'>
           {categoryList.map((el: any, idx: number) => {
