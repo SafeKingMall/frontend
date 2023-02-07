@@ -7,10 +7,10 @@ export default createGlobalStyle`
   margin: 0;
   padding: 0;
   /* 스크롤바 숨기기 */
-  -ms-overflow-style: none;
+  /* -ms-overflow-style: none;
   ::-webkit-scrollbar {
     display: none;
-  }
+  } */
 }
 html {
   font-size: 62.5%;

@@ -5,16 +5,12 @@ import { Header } from '../../../components/common/Header';
 import { Agreement } from '../../../components/user/Agreement';
 import { PersonalInfo } from '../../../components/user/PersonalInfo';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-interface SignupForm4 {
-  check1: boolean;
-  check2: boolean;
-}
 
 export const SignUp4 = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [allCheck, setAllCheck] = useState(false);
@@ -61,7 +57,7 @@ export const SignUp4 = () => {
     e.preventDefault();
     try {
       await axios
-        .post('http://safekingmall.com/api/v1/signup/agreementInfo/1', {
+        .post(`${process.env.REACT_APP_API_URL}/signup/agreementInfo/${state.memberId}`, {
           userAgreement: check1,
           infoAgreement: check2,
         })
