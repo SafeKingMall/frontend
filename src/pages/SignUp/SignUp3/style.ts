@@ -187,3 +187,20 @@ export const PostModal = styled.div`
   transform: translate(-50%, -50%);
   /* background-color: '#ffffff'; */
 `;
+export const DaumPostBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 144rem;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+export const DaumPostDiv = styled.div`
+  z-index: 200;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: '#ffffff';
+`;

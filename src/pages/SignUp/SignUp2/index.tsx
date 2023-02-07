@@ -1,171 +1,229 @@
 /* eslint-disable no-unused-vars */
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Timer } from '../../../components/user/Timer';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-interface SignUpForm2 {
-  name: string;
-  birth: string;
-  phone: string;
-  code: string;
-}
+const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
+const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
+const BIRTH = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+const NUM = /[^0-9]/;
 
 export const SignUp2 = () => {
   const navigate = useNavigate();
-  //이름 생년월일 휴대폰번호 인증번호
-  const [name, setName] = useState<string>('');
-  const [birth, setBirth] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [code, setCode] = useState<string>('');
-  //유효성 검사
-  const [isName, setIsName] = useState<boolean>(false);
-  const [isBirth, setIsBirth] = useState<boolean>(false);
-  const [isPhone, setIsPhone] = useState<boolean>(false);
-  const [isCode, setIsCode] = useState<boolean>(false);
-  //에러 메세지
-  const [nameMsg, setNameMsg] = useState<string>('');
-  const [birthMsg, setBirthMsg] = useState<string>('');
-  const [phoneMsg, setPhoneMsg] = useState<string>('');
-  //타이머 호출
-  const [onTimer, setOnTimer] = useState<boolean>(false);
+  const { state } = useLocation();
+  const swal = withReactContent(Swal);
+  const [disable, setDisable] = useState(true);
+  //이름
+  const [name, setName] = useState('');
+  const [nameVal, setNameVal] = useState('');
+  const [nameCheck, setNameCheck] = useState(false);
+  //생년월일
+  const [birth, setBirth] = useState('');
+  const [birthVal, setBirthVal] = useState('');
+  const [birthCheck, setBirthCheck] = useState(false);
+  //휴대폰
+  const [phone, setPhone] = useState('');
+  const [phoneVal, setPhoneVal] = useState('');
+  const [phoneCheck, setPhoneCheck] = useState(false);
+  //타이머
+  const [timer, setTimer] = useState(false);
+  const [minutes, setMinutes] = useState(3);
+  const [seconds, setSeconds] = useState(0);
+  //인증번호
+  const [code, setCode] = useState('');
+  const [codeCheck, setCodeCheck] = useState(false);
 
-  //이름(한글,영어) 특문숫자x
-  const onName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const nameCurrent = e.target.value;
-    setName(nameCurrent);
-    const nameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;
+  const onChangeName = (e: string) => {
+    setName(e);
+    validationName(e);
+  };
+  const onChangeBirth = (e: string) => {
+    setBirth(e);
+    validationBirth(e);
+  };
+  const onChangePhone = (e: string) => {
+    setPhone(e);
+    validationPhone(e);
+  };
+  const onChangeCode = (e: string) => {
+    setCode(e);
+  };
 
-    if (nameCurrent === '') {
-      setNameMsg('이름을 입력해주세요');
-      setIsName(false);
-    } else if (!nameRegex.test(nameCurrent)) {
-      setNameMsg('한글/영어로만 입력해주세요');
-      setIsName(false);
-    } else if (nameCurrent.length > 50) {
-      setNameMsg('50자 이내로 입력해주세요');
-      setIsName(false);
+  //이름 유효성검사
+  const validationName = (text: string) => {
+    if (KREN.test(text)) {
+      setNameVal('* 한글/영어/공백으로만 입력해주세요.');
+      setNameCheck(false);
     } else {
-      setNameMsg('');
-      setIsName(true);
+      setNameVal('');
+      setNameCheck(true);
     }
   };
-  //생년월일(숫자) 특문,한글,영문x
-  const onBirth = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const birthCurrent = e.target.value;
-    setBirth(birthCurrent);
-    // const birthRegex = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+  //이름 포커스아웃 유효성검사
+  const blurName = (text: string) => {
+    if (KREN.test(text)) {
+      setNameVal('* 한글/영어/공백으로만 입력해주세요.');
+      setNameCheck(false);
+    } else if (KRVAL.test(text)) {
+      setNameVal('* 한글입력을 확인해주세요.');
+      setNameCheck(false);
+    }
+  };
+  //생년월일 유효성검사
+  const validationBirth = (text: string) => {
+    if (NUM.test(text)) {
+      setBirthVal('* 숫자만 입력해주세요');
+      setBirthCheck(false);
+    } else if (!BIRTH.test(text)) {
+      setBirthVal('* 생년월일 8자리를 입력해주세요. [예: 19900101]');
+      setBirthCheck(false);
+    } else {
+      setBirthVal('');
+      setBirthCheck(true);
+    }
+  };
+  //휴대폰 유효성검사
+  const validationPhone = (text: string) => {
+    if (NUM.test(text)) {
+      setPhoneVal('* 숫자만 입력해주세요. [예: 01012345678]');
+      setPhoneCheck(false);
+    } else if (text.length > 11 || text.length < 10) {
+      setPhoneVal('* 10~11자리의 숫자로 입력해주세요.');
+      setPhoneCheck(false);
+    } else {
+      setPhoneVal('');
+      setPhoneCheck(true);
+    }
+  };
 
-    if (birthCurrent === '') {
-      setBirthMsg('생년월일을 입력해주세요');
-      setIsBirth(false);
-    }
-    // else if () {}
-    else {
-      setBirthMsg('');
-      setIsBirth(true);
-    }
-  };
-  //휴대폰 번호
-  const onPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const phoneCurrent = e.target.value;
-    setPhone(phoneCurrent);
-    console.log(phoneCurrent);
-  };
   //인증번호 발송
-  const onPhoneAuth = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const sendPhoneAuth = async () => {
     try {
-      await axios
-        .post('http://safekingmall.com/api/v1/coolsms', { clientPhoneNumber: phone })
-        .then((res) => {
-          console.log('폰번호', phone);
-          console.log(res);
-          console.log(res.data);
-          if (res.status === 200) {
-            console.log('인증번호 발송 완료');
-            // setIsPhone(true);
-          }
-          setOnTimer(true);
-        });
-    } catch (error: any) {
-      console.log(error);
-      if (error.response.data.code === 999) {
-        setPhoneMsg('발송량초과');
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/coolsms`,
+        data: {
+          clientPhoneNumber: phone,
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          console.log(`인증번호: ${res.data}`);
+          setTimer(true);
+          setMinutes(3);
+          setSeconds(0);
+          setCodeCheck(false);
+        }
+      });
+    } catch (err: any) {
+      console.log(err);
+      if (err.response.data.code === 999) {
+        // setPhoneMsg('발송량초과');
       }
     }
   };
-  //인증번호
-  const onCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const codeCurrent = e.target.value;
-    //숫자 > 문자화
-    setCode(String(codeCurrent));
-    console.log('인증번호', codeCurrent, typeof codeCurrent);
+  //인증번호 재발송
+  const resend = () => {
+    swal
+      .fire({
+        icon: 'question',
+        text: '인증번호를 재발송하시겠습니까?',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        showCancelButton: true,
+        cancelButtonText: '취소',
+        width: 400,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          sendPhoneAuth();
+        }
+      });
   };
-  //인증번호 확인 버튼(인증번호 일치하지않을시 에러메세지)
-  const onPhoneAuthCheck = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    //인증번호 시간 초과시 경고창 설정하기
-    e.preventDefault();
-    console.log('test');
-    console.log('code:', code);
+
+  //인증번호 확인
+  const phoneAuthConfirm = async () => {
     try {
-      await axios
-        .post('http://safekingmall.com/api/v1/coolsms/code', {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/coolsms/code`,
+        data: {
           clientPhoneNumber: phone,
           code: code,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            setPhoneMsg('');
-            setIsPhone(true);
-          }
-        });
-    } catch (error: any) {
-      console.log(error);
-      console.log(error.response.data.code);
-      if (error.response.data.code === 1200) {
-        console.log('에러메세지임');
-        setPhoneMsg('휴대폰 인증을 처음부터 다시 진행해주세요');
-        setIsPhone(false);
-      } else if (error.response.data.code === 1700) {
-        console.log('에러메세지임');
-        setPhoneMsg('코드가 일치하지않습니다. 휴대폰 인증을 처음부터 다시 진행해주세요. ');
-        setIsPhone(false);
-      } else {
-        setPhoneMsg('');
-      }
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          swal.fire({
+            icon: 'success',
+            text: '확인되었습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+          setCodeCheck(true);
+          setTimer(false);
+        }
+      });
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
-  //다음버튼 disabled
-  const disabled = !(isName && isBirth && isPhone);
-  //다음버튼
-  const onSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log(name, birth, phone, code);
-    try {
-      await axios
-        .post('http://safekingmall.com/api/v1/signup/authenticationInfo/1', {
-          name,
-          birth: String(birth),
-          phoneNumber: String(phone),
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            navigate('/sign-up3');
-          }
-        });
-    } catch (error) {
-      console.log(error);
+  //다음버튼 활성화 이벤트
+  useEffect(() => {
+    if (nameCheck && birthCheck && codeCheck) {
+      setDisable(false);
+    } else {
+      setDisable(true);
     }
+  }, [nameCheck, birthCheck, codeCheck]);
+
+  const nextBtnEvent = async () => {
+    try {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/signup/authenticationInfo/${state.memberId}`,
+        data: {
+          name: name,
+          birth: birth,
+          phoneNumber: phone,
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          navigate('/sign-up3', {
+            state: {
+              memberId: res.data,
+            },
+          });
+        }
+      });
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+  const sendBtnStyle = {
+    borderColor: phoneCheck && !codeCheck ? '#289951' : '#a6a6a6',
+    color: phoneCheck && !codeCheck ? '#289951' : '#a6a6a6',
+  };
+  const confirmBtnStyle = {
+    borderColor: timer ? '#289951' : '#a6a6a6',
+    color: timer ? '#289951' : '#a6a6a6',
   };
   return (
     <>
@@ -177,34 +235,90 @@ export const SignUp2 = () => {
           <S.InputContainer>
             <S.InputWrapper>
               <label>이름</label>
-              <input placeholder='홍길동' onChange={onName} />
-              <S.ErrMsg>{nameMsg}</S.ErrMsg>
+              <input
+                placeholder='이름을 입력해주세요.'
+                value={name}
+                onChange={(e) => {
+                  onChangeName(e.target.value);
+                }}
+                onBlur={(e) => {
+                  blurName(e.target.value);
+                }}
+                maxLength={50}
+              />
+              <S.ErrMsg>{nameVal}</S.ErrMsg>
             </S.InputWrapper>
             <S.InputWrapper>
               <label>생년월일</label>
-              <input placeholder='YYYYMMDD' onChange={onBirth} />
-              <S.ErrMsg>{birthMsg}</S.ErrMsg>
+              <input
+                placeholder='생년월일 8자리'
+                value={birth}
+                onChange={(e) => onChangeBirth(e.target.value)}
+                maxLength={8}
+              />
+              <S.ErrMsg>{birthVal}</S.ErrMsg>
             </S.InputWrapper>
             <S.InputWrapper>
               <label>휴대폰 번호</label>
-              <input onChange={onPhone} />
-              <S.SendBtn onClick={onPhoneAuth}>인증번호 발송</S.SendBtn>
+              <input
+                placeholder='전화번호를 입력해주세요.'
+                value={phone}
+                onChange={(e) => onChangePhone(e.target.value)}
+                maxLength={11}
+                disabled={codeCheck}
+              />
+              <S.ErrMsg>{phoneVal}</S.ErrMsg>
+              {timer ? (
+                <S.SendBtn style={sendBtnStyle} onClick={() => resend()} disabled={!phoneCheck}>
+                  재발송
+                </S.SendBtn>
+              ) : (
+                <S.SendBtn
+                  style={sendBtnStyle}
+                  onClick={() => sendPhoneAuth()}
+                  disabled={!phoneCheck || codeCheck}
+                >
+                  인증번호 발송
+                </S.SendBtn>
+              )}
             </S.InputWrapper>
             <S.InputWrapper>
               <label>인증번호</label>
-              <input onChange={onCode} />
-              <S.AuthTimer>{onTimer ? <Timer /> : ''}</S.AuthTimer>
-              <S.CheckBtn onClick={onPhoneAuthCheck}>확인</S.CheckBtn>
-              <S.ErrMsg>{phoneMsg}</S.ErrMsg>
+              <input
+                value={code}
+                onChange={(e) => onChangeCode(e.target.value)}
+                maxLength={15}
+                disabled={codeCheck}
+              />
+              <S.AuthTimer>
+                {timer ? (
+                  <Timer
+                    minutes={minutes}
+                    setMinutes={setMinutes}
+                    seconds={seconds}
+                    setSeconds={setSeconds}
+                    timer={timer}
+                    setTimer={setTimer}
+                  />
+                ) : (
+                  ''
+                )}
+              </S.AuthTimer>
+              <S.CheckBtn
+                style={confirmBtnStyle}
+                onClick={() => phoneAuthConfirm()}
+                disabled={!timer}
+              >
+                확인
+              </S.CheckBtn>
             </S.InputWrapper>
           </S.InputContainer>
           <S.BtnWrapper>
             <button onClick={() => navigate(-1)}>이전</button>
-            <button disabled={disabled} onClick={onSubmit}>
+            <button disabled={disable} onClick={() => nextBtnEvent()}>
               다음
             </button>
           </S.BtnWrapper>
-          <Timer />
         </S.Wrapper>
       </S.Container>
       <Footer />

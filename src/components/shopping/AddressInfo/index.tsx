@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
-import { CSSObject } from 'styled-components';
 
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
 const NUM = /[^0-9]/;
-// const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[a-zA-Z]+){1,2}$/;
 
 export const AddressInfo = (props: any) => {
@@ -153,7 +151,7 @@ export const AddressInfo = (props: any) => {
   }, [addRadio, userData, setText, resetValidation]);
 
   //주소모달 스타일
-  const postCodeStyle: CSSObject = {
+  const postCodeStyle = {
     width: '500px',
     height: '460px',
     padding: '7px',
