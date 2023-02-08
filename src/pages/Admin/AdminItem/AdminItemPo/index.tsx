@@ -142,10 +142,18 @@ export const AdminItemPo = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-    } else if (moneyNum === '' || moneyNum === '0') {
+    } else if (moneyNum === '') {
       swal.fire({
         icon: 'warning',
         text: '상품가격을 입력해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else if (moneyNum.length < 3) {
+      swal.fire({
+        icon: 'warning',
+        text: '최소가격은 100원부터 입니다.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
         width: 400,
@@ -170,14 +178,6 @@ export const AdminItemPo = () => {
       swal.fire({
         icon: 'warning',
         text: '상품설명을 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (selectedImages.length === 0) {
-      swal.fire({
-        icon: 'warning',
-        text: '썸네일을 선택해주세요.',
         confirmButtonText: '확인',
         confirmButtonColor: '#289951',
         width: 400,
