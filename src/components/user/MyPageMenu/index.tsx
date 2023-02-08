@@ -28,11 +28,11 @@ export const MyPageMenu = () => {
               비밀번호 변경
             </NavLink>
           </li>
-          {/* <li>
+          <li>
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-wd'>
               회원 탈퇴
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </S.Wrapper>
     </div>

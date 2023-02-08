@@ -161,9 +161,10 @@ export const Description = styled.div`
   .ql-align-right {
     text-align: right;
   }
-  img {
+  /* img {
     width: 100%;
-  }
+    height: auto;
+  } */
 `;
 export const DesGradation = styled.div`
   width: 86rem;

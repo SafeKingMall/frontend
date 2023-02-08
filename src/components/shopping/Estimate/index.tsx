@@ -7,11 +7,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { Cookies } from 'react-cookie';
 
 export const Estimate = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const swal = withReactContent(Swal);
+  const cookies = new Cookies();
+  const jwt = cookies.get('accessToken');
   const [disable, setDisable] = useState(true);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -157,8 +160,12 @@ export const Estimate = () => {
         }
       });
     };
-    getData();
-  }, [state]);
+    if (!jwt) {
+      navigate('/sign-in');
+    } else {
+      getData();
+    }
+  }, [state, jwt, navigate]);
   const sendMail = () => {
     setTimeout(() => {
       navigate(-1);

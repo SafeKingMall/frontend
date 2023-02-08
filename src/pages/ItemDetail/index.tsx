@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { Nav } from '../../components/item/Nav';
@@ -31,42 +32,46 @@ export const ItemDetail = () => {
 
   //구매하기
   const moveOrders = useCallback(() => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '결제 페이지로 이동하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
-          }).then((res) => {
-            navigate('/orders', {
-              state: {
-                data: [
-                  {
-                    categoryName: res.data.categoryName,
-                    id: res.data.id,
-                    itemName: res.data.name,
-                    itemPrice: res.data.viewPrice,
-                    itemQuantity: Number(
-                      (document.getElementById(state.itemId) as HTMLInputElement).value,
-                    ),
-                    thumbNail: res.data.fileName,
-                  },
-                ],
-              },
+    if (!jwt) {
+      navigate('/sign-in');
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '결제 페이지로 이동하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            await axios({
+              method: 'get',
+              url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+            }).then((res) => {
+              navigate('/orders', {
+                state: {
+                  data: [
+                    {
+                      categoryName: res.data.categoryName,
+                      id: res.data.id,
+                      itemName: res.data.name,
+                      itemPrice: res.data.viewPrice,
+                      itemQuantity: Number(
+                        (document.getElementById(state.itemId) as HTMLInputElement).value,
+                      ),
+                      thumbNail: res.data.fileName,
+                    },
+                  ],
+                },
+              });
             });
-          });
-        }
-      });
-  }, [navigate, state]);
+          }
+        });
+    }
+  }, [navigate, state, jwt]);
 
   useEffect(() => {
     if (!loading) {
@@ -117,6 +122,7 @@ export const ItemDetail = () => {
     });
     return historyEvent;
   }, [navigate]);
+
   useEffect(() => {
     const getData = async () => {
       await axios
@@ -210,46 +216,50 @@ export const ItemDetail = () => {
   };
 
   const addCart = async () => {
-    await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
-      headers: {
-        Authorization: jwt,
-      },
-      data: {
-        itemId: state.itemId,
-        count: count,
-      },
-    })
-      .then(() => {
-        swal.fire({
-          icon: 'success',
-          title: '성공',
-          text: '장바구니에 추가되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          width: 400,
-        });
+    if (!jwt) {
+      navigate('/sign-in');
+    } else {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
+        headers: {
+          Authorization: jwt,
+        },
+        data: {
+          itemId: state.itemId,
+          count: count,
+        },
       })
-      .catch((err) => {
-        if (err.response.data.code === 301) {
+        .then(() => {
           swal.fire({
-            icon: 'info',
-            text: '동일한 상품이 장바구니에 있습니다.',
+            icon: 'success',
+            title: '성공',
+            text: '장바구니에 추가되었습니다.',
             confirmButtonText: '확인',
             confirmButtonColor: '#289951',
             width: 400,
           });
-        } else if (err.response.data.code === 100) {
-          swal.fire({
-            icon: 'info',
-            text: '장바구니가 가득 찼습니다. (최대 20개)',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
-      });
+        })
+        .catch((err) => {
+          if (err.response.data.code === 301) {
+            swal.fire({
+              icon: 'info',
+              text: '동일한 상품이 장바구니에 있습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else if (err.response.data.code === 100) {
+            swal.fire({
+              icon: 'info',
+              text: '장바구니가 가득 찼습니다. (최대 20개)',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
+    }
   };
 
   return (
@@ -292,8 +302,8 @@ export const ItemDetail = () => {
                 <S.Price>
                   {itemData.viewPrice !== 1000000000
                     ? itemData.viewPrice
-                        ?.toString()
-                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                      ?.toString()
+                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
                     : '<가격관련 관리자 문의>'}
                 </S.Price>
               </S.PriceArea>

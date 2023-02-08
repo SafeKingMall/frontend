@@ -9,15 +9,17 @@ import { Cookies } from 'react-cookie';
 import DaumPostcode from 'react-daum-postcode';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router-dom';
 
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
 
 export const MyPage = () => {
   const swal = withReactContent(Swal);
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<any>({});
   const cookies = new Cookies();
-  const token = cookies.get('accessToken');
+  const jwt = cookies.get('accessToken');
   const [isOpenPost, setIsOpenPost] = useState(false);
   const [disable, setDisable] = useState(true);
 
@@ -165,7 +167,7 @@ export const MyPage = () => {
       await axios
         .get(`${process.env.REACT_APP_API_URL}/user/details`, {
           headers: {
-            Authorization: token,
+            Authorization: jwt,
           },
         })
         .then((res) => {
@@ -192,7 +194,11 @@ export const MyPage = () => {
     }
   };
   useEffect(() => {
-    getUser();
+    if (!jwt) {
+      navigate('/sign-in');
+    } else {
+      getUser();
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -295,7 +301,7 @@ export const MyPage = () => {
               method: 'PUT',
               url: `${process.env.REACT_APP_API_URL}/user/update`,
               headers: {
-                Authorization: token,
+                Authorization: jwt,
               },
               data: {
                 name: name,
