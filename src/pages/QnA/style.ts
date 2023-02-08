@@ -35,7 +35,7 @@ export const Banner = styled.div`
   padding-top: 23rem;
   color: white;
   font-weight: 900;
-  background-image: url('/img/qnaBanner.png');
+  background-image: url('/img/QnABannerImg.png');
   background-size: 100% 100%;
 `;
 
