@@ -18,11 +18,11 @@ export const MyPageMenu = () => {
               내 정보
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-od'>
               주문내역
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/mypage-pw'>
               비밀번호 변경
