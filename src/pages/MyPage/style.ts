@@ -26,7 +26,7 @@ export const Top = styled.div`
 export const BasicWrap = styled.div`
   /* background-color: mistyrose; */
   > div {
-    margin-bottom: 1.6rem;
+    /* margin-bottom: 1.6rem; */
     /* background-color: pink; */
     > label {
       display: inline-block;
@@ -122,4 +122,34 @@ export const PostModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   /* background-color: '#ffffff'; */
+`;
+export const InputWrap = styled.div`
+  height: 9rem;
+  position: relative;
+`;
+export const ErrMsg = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ff003e;
+  position: absolute;
+  bottom: 0.4rem;
+  left: 25.6rem;
+`;
+export const DaumPostBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 144rem;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+export const DaumPostDiv = styled.div`
+  z-index: 200;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: '#ffffff';
 `;

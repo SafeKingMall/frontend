@@ -20,7 +20,6 @@ export const MainBanner = () => {
       setSlide(false);
     },
   };
-  console.log(slide);
 
   return (
     <S.Container>

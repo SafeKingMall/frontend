@@ -121,10 +121,13 @@ export const SignUp2 = () => {
         }
       });
     } catch (err: any) {
-      console.log(err);
-      if (err.response.data.code === 999) {
-        // setPhoneMsg('발송량초과');
-      }
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
   //인증번호 재발송
@@ -190,23 +193,36 @@ export const SignUp2 = () => {
 
   const nextBtnEvent = async () => {
     try {
-      await axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/signup/authenticationInfo/${state.memberId}`,
-        data: {
-          name: name,
-          birth: birth,
-          phoneNumber: phone,
-        },
-      }).then((res) => {
-        if (res.status === 200) {
-          navigate('/sign-up3', {
-            state: {
-              memberId: res.data,
-            },
-          });
-        }
-      });
+      if (state) {
+        await axios({
+          method: 'post',
+          url: `${process.env.REACT_APP_API_URL}/signup/authenticationInfo/${state.memberId}`,
+          data: {
+            name: name,
+            birth: birth,
+            phoneNumber: phone,
+          },
+        }).then((res) => {
+          if (res.status === 200) {
+            if (state) {
+              navigate('/sign-up3', {
+                state: {
+                  memberId: res.data,
+                },
+              });
+            }
+          }
+        });
+      } else {
+        swal.fire({
+          icon: 'warning',
+          title: '올바르지 않은 방식입니다.',
+          text: '회원가입을 다시 진행해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      }
     } catch (err: any) {
       swal.fire({
         icon: 'warning',

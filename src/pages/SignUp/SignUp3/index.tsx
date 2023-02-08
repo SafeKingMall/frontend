@@ -6,10 +6,13 @@ import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const SignUp3 = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const swal = withReactContent(Swal);
   const [isOpenPost, setIsOpenPost] = useState(false);
   const [company, SetCompany] = useState<string>('');
   const [saupja, setSaupja] = useState<string>('');
@@ -193,28 +196,45 @@ export const SignUp3 = () => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios
-        .post(`${process.env.REACT_APP_API_URL}/signup/memberInfo/${state.memberId}`, {
-          companyName: company,
-          companyRegistrationNumber: saupja,
-          corporateRegistrationNumber: beobin,
-          representativeName: ceo,
-          zipcode: zipText,
-          basicAddress: basicText,
-          detailedAddress: detail,
-          contact: number,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            navigate('/sign-up4', {
-              state: {
-                memberId: res.data,
-              },
-            });
-          }
+      if (state) {
+        await axios
+          .post(`${process.env.REACT_APP_API_URL}/signup/memberInfo/${state.memberId}`, {
+            companyName: company,
+            companyRegistrationNumber: saupja,
+            corporateRegistrationNumber: beobin,
+            representativeName: ceo,
+            zipcode: zipText,
+            basicAddress: basicText,
+            detailedAddress: detail,
+            contact: number,
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              navigate('/sign-up4', {
+                state: {
+                  memberId: res.data,
+                },
+              });
+            }
+          });
+      } else {
+        swal.fire({
+          icon: 'warning',
+          title: '올바르지 않은 방식입니다.',
+          text: '회원가입을 다시 진행해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
         });
-    } catch (error) {
-      console.log(error);
+      }
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
   return (

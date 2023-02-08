@@ -10,10 +10,11 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 129.8rem;
   /* height: 109.6rem; */
+  margin-bottom: 12rem;
 `;
 export const Top = styled.div`
   background-image: url('https://user-images.githubusercontent.com/91241596/213789468-e180ac8e-1a6a-4813-9e87-c972cebf0dff.png');
-  margin: 5.6rem 0 0;
+  margin: 10.4rem 0 10.4rem 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;
@@ -21,7 +22,7 @@ export const Top = styled.div`
   height: 9.9rem;
 `;
 export const Mid = styled.div`
-  margin: 7.2rem 0 1.6rem;
+  margin-bottom: 1.6rem;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;

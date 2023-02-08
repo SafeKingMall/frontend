@@ -15,10 +15,11 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 129.8rem;
   /* height: 109.6rem; */
+  margin-bottom: 12rem;
 `;
 export const Top = styled.div`
   background-image: url('https://user-images.githubusercontent.com/91241596/213788582-b96fbd33-cbac-4b4c-8d28-588936cea9e7.png');
-  margin: 2.6rem 0 3.6rem;
+  margin: 10.4rem 0 10.4rem 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;

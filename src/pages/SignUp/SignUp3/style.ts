@@ -10,18 +10,19 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* height: 109.6rem; */
+  margin-bottom: 12rem;
 `;
 export const ProcessBar = styled.div`
-  margin: 5.6rem 0 0;
+  margin: 10.4rem 0 10.4rem 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;
-  width: 40rem;
+  width: 40.1rem;
   height: 9.9rem;
   background-image: url('https://user-images.githubusercontent.com/91241596/213253660-d5f39637-aafc-43b1-b6a9-abb3978e5c15.png');
 `;
 export const Mid = styled.div`
-  margin: 7.2rem 0 1.6rem;
+  margin-bottom: 1.6rem;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
