@@ -113,7 +113,6 @@ export const SignUp2 = () => {
         },
       }).then((res) => {
         if (res.status === 200) {
-          console.log(`인증번호: ${res.data}`);
           setTimer(true);
           setMinutes(3);
           setSeconds(0);

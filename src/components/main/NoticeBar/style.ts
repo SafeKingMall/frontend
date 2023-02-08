@@ -5,12 +5,13 @@ export const NoticeBarWrap = styled.div`
   bottom: 0;
   width: 100%;
   height: 8.8rem;
-  background-color: rgba(167, 237, 192, 0.6);
+  background-color: rgba(167, 237, 192, 0);
   display: flex;
   justify-content: center;
   font-size: 2.4rem;
   font-weight: 500;
-  color: #212121;
+  color: #ffffff;
+  border-top: 1px solid #ffffff;
 `;
 export const NoticeContent = styled.div`
   width: 100%;

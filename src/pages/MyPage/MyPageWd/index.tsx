@@ -51,33 +51,33 @@ export const MyPageWd = () => {
   const cookies = new Cookies();
   const token = cookies.get('accessToken');
   //submit
-  const onSubmit = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    console.log('click', id, password);
-    try {
-      await axios
-        .post(
-          'http://safekingmall.com/api/v1/user/withdrawal',
-          { inputUsername: id, password },
-          {
-            headers: {
-              Authorization: token,
-            },
-          },
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            alert('탈퇴완료');
-            console.log('탈완');
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const onSubmit = async (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   console.log('click', id, password);
+  //   try {
+  //     await axios
+  //       .post(
+  //         'http://safekingmall.com/api/v1/user/withdrawal',
+  //         { inputUsername: id, password },
+  //         {
+  //           headers: {
+  //             Authorization: token,
+  //           },
+  //         },
+  //       )
+  //       .then((res) => {
+  //         console.log(res);
+  //         if (res.status === 200) {
+  //           alert('탈퇴완료');
+  //           console.log('탈완');
+  //         }
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   //disabled btn
-  const disabled = !(isId && isPassword);
+  // const disabled = !(isId && isPassword);
   return (
     <>
       <Header />
@@ -87,7 +87,6 @@ export const MyPageWd = () => {
         </div>
         <S.Wrapper>
           <S.Top>회원 탈퇴</S.Top>
-          {/* <S.Area1>임시칼라박스임시칼라박스임시칼라박스임시칼라박스임시칼라박스</S.Area1> */}
           <S.AreaWrap>
             <S.Mid>회원탈퇴 약관</S.Mid>
             <WithdrawInfo />
@@ -96,7 +95,7 @@ export const MyPageWd = () => {
             <S.Mid>유의사항</S.Mid>
             <WithdrawInfo2 />
           </S.AreaWrap>
-          <form>
+          {/* <form>
             <S.AreaWrap>
               <S.Mid>탈퇴사유</S.Mid>
               <S.InputWrapper>
@@ -121,7 +120,7 @@ export const MyPageWd = () => {
                 탈퇴하기
               </S.Btn>
             </S.AreaWrap>
-          </form>
+          </form> */}
         </S.Wrapper>
       </S.Container>
       <Footer />
