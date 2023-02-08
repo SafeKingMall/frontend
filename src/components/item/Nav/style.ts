@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const BannerWrap = styled.div`
   display: flex;
   width: 100%;
-  height: 47rem;
+  height: auto;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -15,6 +15,7 @@ export const BannerWrap = styled.div`
 export const Banner = styled.img.attrs({ src: 'img/ItemListBannerImg.png' })`
   width: 100%;
   height: 100%;
+  display: block;
 `;
 export const BannerText = styled.span`
   color: #ffffff;

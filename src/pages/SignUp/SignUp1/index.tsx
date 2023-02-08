@@ -166,8 +166,14 @@ export const SignUp1 = () => {
           });
         }
       });
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
 
@@ -184,7 +190,6 @@ export const SignUp1 = () => {
         },
       }).then((res) => {
         if (res.status === 200) {
-          console.log(res);
           navigate('/sign-up2', {
             state: {
               memberId: res.data,
@@ -192,8 +197,14 @@ export const SignUp1 = () => {
           });
         }
       });
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
 

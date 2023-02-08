@@ -117,7 +117,6 @@ export const ItemDetail = () => {
     });
     return historyEvent;
   }, [navigate]);
-
   useEffect(() => {
     const getData = async () => {
       await axios
@@ -134,7 +133,18 @@ export const ItemDetail = () => {
             setItemData(res2.data);
             if (res2.data.viewPrice === 1000000000) {
               purchaseBtn.current = (
-                <S.PurchaseBtn onClick={() => navigate('/estimate')}>견적서 요청</S.PurchaseBtn>
+                <S.PurchaseBtn
+                  onClick={() =>
+                    navigate('/estimate', {
+                      state: {
+                        categoryName: itemData.categoryName,
+                        itemName: itemData.name,
+                      },
+                    })
+                  }
+                >
+                  견적서 요청
+                </S.PurchaseBtn>
               );
             } else {
               purchaseBtn.current = (
@@ -160,7 +170,16 @@ export const ItemDetail = () => {
         );
     };
     getData();
-  }, [state.itemId, navigate, moveOrders, itemData.quantity, itemData.id, itemData.fileName]);
+  }, [
+    state.itemId,
+    navigate,
+    moveOrders,
+    itemData.quantity,
+    itemData.id,
+    itemData.fileName,
+    itemData.categoryName,
+    itemData.name,
+  ]);
 
   const desEvent = () => {
     setDesHeight((document.querySelector('#description') as HTMLElement).offsetHeight);

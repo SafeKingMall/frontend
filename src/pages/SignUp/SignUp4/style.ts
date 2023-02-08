@@ -10,18 +10,19 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 129.8rem;
   /* height: 109.6rem; */
+  margin-bottom: 12rem;
 `;
 export const Top = styled.div`
   background-image: url('https://user-images.githubusercontent.com/91241596/213257228-7525a33c-b048-4fa9-b9e3-27d8c5013223.png');
-  margin: 5.6rem 0 0;
+  margin: 10.4rem 0 10.4rem 0;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 3rem;
-  width: 40rem;
+  width: 40.1rem;
   height: 9.9rem;
 `;
 export const Mid = styled.div`
-  margin: 7.2rem 0 1.6rem;
+  margin-bottom: 1.6rem;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -127,4 +128,10 @@ export const BtnWrapper = styled.div`
       }
     }
   }
+`;
+export const Background = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 `;
