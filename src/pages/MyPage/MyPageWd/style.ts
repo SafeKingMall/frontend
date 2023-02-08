@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  min-width: 144rem;
 `;
 export const Wrapper = styled.div`
   width: 79rem;

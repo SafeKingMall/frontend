@@ -23,9 +23,9 @@ export const Banner = styled.img`
   width: 100%;
   height: 100%;
 `;
-export const Banner1 = styled(Banner).attrs({ src: 'img/MainBannerImg1.png' })``;
-export const Banner2 = styled(Banner).attrs({ src: 'img/MainBannerImg2.png' })``;
-export const Banner3 = styled(Banner).attrs({ src: 'img/MainBannerImg3.png' })``;
+export const Banner1 = styled(Banner).attrs({ src: 'img/MainBanner1.png' })``;
+export const Banner2 = styled(Banner).attrs({ src: 'img/MainBanner2.png' })``;
+export const Banner3 = styled(Banner).attrs({ src: 'img/MainBanner3.png' })``;
 export const BannerTextArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   flex-direction: column;
