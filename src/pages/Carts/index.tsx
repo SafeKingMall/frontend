@@ -125,7 +125,7 @@ export const Carts = () => {
       <S.Container>
         <Header />
         <NoCartsItem />
-        <Footer />
+        {/* <Footer /> */}
       </S.Container>
     ) : (
       <S.Container>
