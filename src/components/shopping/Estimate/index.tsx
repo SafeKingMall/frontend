@@ -169,7 +169,7 @@ export const Estimate = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-    }, 100);
+    }, 1000);
   };
   return (
     <S.Container>
