@@ -9,20 +9,12 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
-// import { useRefresh } from '../../../common/hooks/useRefresh';
 
 const swal = withReactContent(Swal);
 
 export const AdminMemberList = (props: any) => {
-  //쿠키
-  // const [
-  //   cookie,
-  //   setCookie,
-  //   //  removeCookie
-  // ] = useCookies();
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
-  // const refreshToken = cookies.get('refreshToken');
   // 들어온 데이터 넣는것
   const [memberList, setMemberList] = useState([]);
   const [sort] = useState(`sort=memberId,asc`);
@@ -56,34 +48,11 @@ export const AdminMemberList = (props: any) => {
         headers: {
           Authorization: jwt,
         },
-      })
-        .then((res) => {
-          setListLength(res.data.numberOfElements);
-          setMemberList(res.data.content);
-          setTotalPages(res.data.totalElements);
-        })
-        .catch((err) => {
-          // if (err.response.data.code === 812) {
-          // refresh(err.response.data.code);
-          // refresh(err.response.data.code);
-          // cookies.remove('refreshToken');
-          // cookies.remove('accessToken');
-          // axios({
-          //   method: 'get',
-          //   url: `${process.env.REACT_APP_API_URL}/refresh`,
-          //   headers: {
-          //     // Authorization: jwt,
-          //     'refresh-token': refresh,
-          //     'Content-Type': `application/json`,
-          //   },
-          //   withCredentials: true,
-          // }).then((res) => {
-          //   // const rtoken = res.headers['refresh-token'];
-          //   cookies.set('refreshToken', res.headers['refresh-token']);
-          //   cookies.set('accessToken', res.headers.authorization);
-          // });
-          // }
-        });
+      }).then((res) => {
+        setListLength(res.data.numberOfElements);
+        setMemberList(res.data.content);
+        setTotalPages(res.data.totalElements);
+      });
     };
     getData();
   }, [sort, memberName, size, page, jwt, filter]);
