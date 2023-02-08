@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Banner = styled.div`
   font-weight: 900;
-  background-image: url('/img/qnaBanner.png');
+  background-image: url('/img/QnABannerImg.png');
   background-size: 100% 100%;
   height: 47rem;
   font-size: 4rem;
