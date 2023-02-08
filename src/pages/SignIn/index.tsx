@@ -13,6 +13,9 @@ interface SignInForm {
 }
 
 export const SignIn = () => {
+  //쿠키만료시간
+  const expires = new Date();
+  expires.setMinutes(expires.getMinutes() + 180);
   const [cookies, setCookie, removeCookie] = useCookies();
   const cookie = new Cookies();
 
@@ -39,11 +42,9 @@ export const SignIn = () => {
   //로그인
   const SignIn = async () => {
     try {
-      console.log('로그인버튼클릭');
-      console.log(email, password);
       await axios
         .post(
-          'https://safekingmall.com/api/v1/login',
+          `${process.env.REACT_APP_API_URL}/login`,
           {
             username: email,
             password,
@@ -53,82 +54,41 @@ export const SignIn = () => {
           },
         )
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
-            console.log('로그인성공', res.status);
             const token = res.headers.authorization;
-            console.log('token', token);
-            setCookie('accessToken', token, { path: '/' });
-            console.log(res.headers.refresh_token);
-            const rtoken = res.headers['refresh-token'];
-            setCookie('refreshToken', rtoken, { path: '/' });
-            console.log('rt', rtoken);
+            setCookie('accessToken', token, { path: '/', expires });
+            // const rtoken = res.headers['refresh-token'];
+            // setCookie('refreshToken', rtoken, { path: '/', expires });
             navigate('/');
             if (res.data === 'ROLE_ADMIN') {
-              console.log('관리자지롱');
-              setCookie('admin', res.data, { path: '/' });
+              setCookie('admin', res.data, { path: '/', expires });
             } else if (res.data === 'ROLE_USER') {
-              console.log('유저지롱');
-              setCookie('user', res.data, { path: '/' });
+              setCookie('user', res.data, { path: '/', expires });
             }
           }
         });
     } catch (e: any) {
-      console.log('error:', e);
       if (e.response.data.code === 1400) {
-        console.log('wrong');
-        // setErrMsg('일치하는 회원정보가 없습니다.');
         alert('일치하는 회원정보가 없습니다.');
       }
     }
   };
 
   const token = cookie.get('acessToken');
+  // const refresh = cookie.get('refreshToken');
   const create = axios.create({
-    baseURL: 'https://safekingmall.com',
+    baseURL: `${process.env.REACT_APP_BASE_URL}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: token,
     },
   });
 
-  // create.interceptors.request.use(function (config: any) {
-  //   config.headers.Authorization = token;
-  // });
-
-  create.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (err) => {
-      return new Promise((resolve, reject) => {
-        const originalReq = err.config;
-        if (err.response.data.code === 812) {
-          originalReq._retry = true;
-
-          let res = fetch('https://safekingmall.com/api/v1/refresh', {
-            method: 'get',
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              cookies.set('accessToken', res.Authorization);
-              return 'accessToken';
-            });
-
-          resolve(res);
-        }
-
-        return reject(err);
-      });
-    },
-  );
-
+  //회원가입
   const navigateSignUp = () => {
     navigate('/sign-up1');
   };
-  const test = () => {
-    console.log('test comment');
-  };
+
   //아이디저장
   const [saveId, setSaveId] = useState(false);
   useEffect(() => {
@@ -149,7 +109,6 @@ export const SignIn = () => {
   //아이디 비밀번호 찾기 모달창
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
-    console.log('클릭');
     setIsOpen(true);
   };
   return (
