@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
+// import { Footer } from '../../components/common/Footer';
+// import { FindId } from '../../components/FindId';
 
 interface SignInForm {
   email: string;
@@ -109,8 +110,9 @@ export const SignIn = () => {
   //아이디 비밀번호 찾기 모달창
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onOpen = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
+
   return (
     <>
       <Header />
@@ -154,8 +156,11 @@ export const SignIn = () => {
               </label>
             </S.IdCheck>
             <S.Span>
-              <S.SpanList onClick={() => setIsOpen(true)}> 아이디 / 비밀번호 찾기</S.SpanList>
-              &emsp;|&emsp;
+              {/* <S.SpanList onClick={onOpen}> 아이디 / 비밀번호 찾기</S.SpanList> */}
+              {/* {isOpen && (
+                <FindId onOpen={onOpen} />
+              )} */}
+
               <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>
             </S.Span>
           </S.SignText>
@@ -170,7 +175,7 @@ export const SignIn = () => {
           </div>
         </S.Wrapper>
       </S.Container>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

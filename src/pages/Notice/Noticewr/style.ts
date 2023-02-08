@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 export const Banner = styled.div`
   position: relative;
-  background-color: ${({ theme }) => theme.palette.green};
   height: 47rem;
   font-size: 4rem;
   margin-bottom: 14.8rem;
   text-align: center;
   padding-top: 23rem;
   color: white;
+  font-weight: 900;
+  background-image: url('/img/noticeBanner.png');
+  background-size: 100% 100%;
 `;
 
 export const Wrapper = styled.div`

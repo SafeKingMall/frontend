@@ -4,9 +4,12 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { Searchcompo2 } from '../../../often/Searchcompo2';
 import { Cookies } from 'react-cookie';
+import { useRefresh } from '../../../common/hooks/useRefresh';
+// import { useNavigate } from 'react-router-dom';
 
 export const AdimWdList = (props: any) => {
   const cookies = new Cookies();
+  // const navigate = useNavigate();
   const jwt = cookies.get('accessToken');
   const [memberList, setMemberList] = useState([]);
   //회원명 (search할때 쓰일듯)
@@ -23,6 +26,15 @@ export const AdimWdList = (props: any) => {
   //검색리스트 길이
   const [listLength, setListLength] = useState(0);
 
+  const refresh = useRefresh();
+  // const url = {
+  //   method: 'get',
+  //   url: `${process.env.REACT_APP_API_URL}/admin/member/withDrawlList?size=${size}&page=${page}&name=${memberName}`,
+  //   headers: {
+  //     Authorization: jwt,
+  //   },
+  // };
+
   useEffect(() => {
     const getData = async () => {
       await axios({
@@ -31,11 +43,29 @@ export const AdimWdList = (props: any) => {
         headers: {
           Authorization: jwt,
         },
-      }).then((res) => {
-        setMemberList(res.data.content);
-        setTotalPages(res.data.totalElements);
-        setListLength(res.data.numberOfElements);
-      });
+      })
+        .then((res) => {
+          setMemberList(res.data.content);
+          setTotalPages(res.data.totalElements);
+          setListLength(res.data.numberOfElements);
+        })
+        .catch((err) => {
+          refresh(err.response.data.code);
+          const status: any = refresh(err.response.data.code);
+          if (status === 200) {
+            axios({
+              method: 'get',
+              url: `${process.env.REACT_APP_API_URL}/admin/member/withDrawlList?size=${size}&page=${page}&name=${memberName}`,
+              headers: {
+                Authorization: jwt,
+              },
+            }).then((res) => {
+              setMemberList(res.data.content);
+              setTotalPages(res.data.totalElements);
+              setListLength(res.data.numberOfElements);
+            });
+          }
+        });
     };
     getData();
   }, [jwt, memberName, size, page]);

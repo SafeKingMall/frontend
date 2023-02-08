@@ -16,14 +16,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
 `;
-export const Logo = styled.div`
-  background-color: pink;
-  width: 26.8rem;
-  height: 13rem;
-  margin: 7.2rem 0 7.2rem;
-`;
+
 export const InputContainer = styled.div`
-  margin-top: 10.4rem;
+  margin-top: 15.4rem;
   /* background-color: #eee; */
   width: 54rem;
   height: 14.2rem;
@@ -77,6 +72,7 @@ export const InputWrap = styled.div`
 export const InputForm = styled.input`
   border: none;
   width: 37.6rem;
+  font-size: 2rem;
   height: 2.4rem;
   :focus {
     outline: none;
@@ -139,7 +135,7 @@ export const Btn = styled.button`
   line-height: 2.9rem;
   font-weight: 400;
   background-color: #289951;
-  opacity: 0.9;
+  /* opacity: 0.9; */
   color: #fff;
 `;
 export const Social = styled.div`

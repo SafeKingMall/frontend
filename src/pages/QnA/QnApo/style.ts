@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  background-color: ${({ theme }) => theme.palette.green};
+  font-weight: 900;
+  background-image: url('/img/qnaBanner.png');
+  background-size: 100% 100%;
   height: 47rem;
   font-size: 4rem;
   margin-bottom: 14.8rem;
@@ -142,14 +144,16 @@ export const ComemntInput = styled.input`
   width: 144rem;
   height: 20rem;
   font-size: 2.4rem;
-  padding: 4rem 120rem 13.8rem 4rem;
+  padding: 4rem 20rem 13.8rem 4rem;
   position: relative;
   margin-bottom: 4.8rem;
   cursor: pointer;
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 2.4rem;
-    padding: 4rem 120rem 13.8rem 0rem;
+    /* width: 144rem; */
+    padding: 4rem 20rem 13.8rem 4rem;
+    /* padding: 4rem 120rem 13.8rem 0rem; */
   }
 `;
 

@@ -23,6 +23,14 @@ export const AdminItemList = (props: any) => {
     });
   };
 
+  const moveItemDetail = (itemId: any) => {
+    navigate('/itemdetail', {
+      state: {
+        itemId: itemId.id,
+      },
+    });
+  };
+
   // 들어온 데이터 넣는것
   const [itemList, setItemList] = useState([]);
   const [sort] = useState(`sort=createDate,desc`);
@@ -115,9 +123,9 @@ export const AdminItemList = (props: any) => {
           data.map((el: any, index: any) => {
             return (
               <S.Container key={index}>
-                <div>{el.id}</div>
-                <div>{el.name}</div>
-                <div>{el.categoryName}</div>
+                <div onClick={() => moveItemDetail(el)}>{el.id}</div>
+                <div onClick={() => moveItemDetail(el)}>{el.name}</div>
+                <div onClick={() => moveItemDetail(el)}>{el.categoryName}</div>
                 <S.AdminButton2 onClick={() => moveAdminItemPo(el)}>수정</S.AdminButton2>
                 <S.AdminButton onClick={() => deleteItemAlert(el.id, el.name)}>삭제</S.AdminButton>
               </S.Container>
