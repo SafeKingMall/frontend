@@ -396,8 +396,6 @@ export const AdminItemPo = () => {
       });
   };
 
-  // console.log(moneyNum, sendMoneyNum);
-
   return (
     <div>
       <Header />

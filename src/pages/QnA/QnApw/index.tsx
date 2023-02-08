@@ -40,7 +40,6 @@ export const QnAPw = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
         swal.fire({
           icon: 'warning',
           text: '비밀번호가 틀렸습니다.',

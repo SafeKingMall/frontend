@@ -209,7 +209,7 @@ export const AdminOrderDe = () => {
           </tr>
           <tr>
             <th>입금자명</th>
-            <td>{/* {payInfor.name} */}</td>
+            <td>{payInfor.buyer_name}</td>
             <th>카드사</th>
             <td>{payInfor.company || ''}</td>
           </tr>
@@ -319,7 +319,7 @@ export const AdminOrderDe = () => {
                       <tr key={index}>
                         <td>
                           <img
-                            src='https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785'
+                            src={al === '' ? '' : process.env.REACT_APP_BASE_URL + al.thumbnail}
                             width='70'
                             height='70'
                             alt={al.name}
@@ -345,10 +345,10 @@ export const AdminOrderDe = () => {
                             required
                             value={deliComStatus}
                           >
-                            {/* <S.NoneOption value={deliComValue}>{deliComValue}</S.NoneOption> */}
+                            {/* <option value=''></option> */}
                             {deliComList.map((key: any) => (
                               <option value={key || ''} key={key}>
-                                {key}
+                                {key || ''}
                               </option>
                             ))}
                           </S.OrderSelect>

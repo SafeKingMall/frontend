@@ -185,7 +185,7 @@ export const QnAButton2 = styled.button`
 
 export const QnABox = styled.div`
   margin-top: 1.2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 15rem;
   margin-left: 106rem;
   width: 30rem;
 `;

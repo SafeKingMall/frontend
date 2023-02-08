@@ -5,9 +5,13 @@ export const Wrapper = styled.div`
   /* width: 100%; */
   /* min-width: 180rem; */
   padding: 0 1rem;
-  min-width: 130rem;
+  width: 100%;
+  /* min-width: 130rem; */
   height: 80px;
   display: flex;
+  /* position: fixed;
+  top: 0; */
+  background-color: white;
   justify-content: space-between;
   align-items: center;
 `;
@@ -43,4 +47,13 @@ export const MenuIcons = styled.div`
 export const IconList = styled.div`
   padding: 0 1rem;
   /* padding: 1rem 1rem; */
+`;
+
+//나중에 로그인버튼 바꿀떄
+export const SignInBtn = styled.button`
+  border-radius: 5rem;
+  border: 0.1rem solid #999999;
+  font-size: 2rem;
+  height: 4.8rem;
+  width: 10rem;
 `;

@@ -111,31 +111,53 @@ export const AdminItemWr = () => {
 
   const changeEnteredNum2 = (e: any) => {
     const value = e.target.value;
-    const removedCommaValue = Number(value.replaceAll(',', ''));
 
-    if (removedCommaValue.toLocaleString() !== 'NaN') {
-      setMoneyNum2(removedCommaValue.toLocaleString());
-    }
-    if (removedCommaValue.toLocaleString() === 'NaN') {
-      setMoneyNum2('.');
-    }
-    if (value.substr(0, 1) === '.') {
-      setMoneyNum2('');
+    if (value.length < 13) {
+      const removedCommaValue = Number(value.replaceAll(',', ''));
+
+      if (removedCommaValue.toLocaleString() !== 'NaN') {
+        setMoneyNum2(removedCommaValue.toLocaleString());
+      }
+      if (removedCommaValue.toLocaleString() === 'NaN') {
+        setMoneyNum2('.');
+      }
+      if (value.substr(0, 1) === '.') {
+        setMoneyNum2('');
+      }
+    } else {
+      swal.fire({
+        icon: 'warning',
+        text: '최대 가격은 21억까지 입니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
 
   const changeEnteredNum = (e: any) => {
     const value = e.target.value;
-    const removedCommaValue = Number(value.replaceAll(',', ''));
 
-    if (removedCommaValue.toLocaleString() !== 'NaN') {
-      setquantityNum2(removedCommaValue.toLocaleString());
-    }
-    if (removedCommaValue.toLocaleString() === 'NaN') {
-      setquantityNum2('.');
-    }
-    if (value.substr(0, 1) === '.') {
-      setquantityNum2('');
+    if (value.length < 13) {
+      const removedCommaValue = Number(value.replaceAll(',', ''));
+
+      if (removedCommaValue.toLocaleString() !== 'NaN') {
+        setquantityNum2(removedCommaValue.toLocaleString());
+      }
+      if (removedCommaValue.toLocaleString() === 'NaN') {
+        setquantityNum2('.');
+      }
+      if (value.substr(0, 1) === '.') {
+        setquantityNum2('');
+      }
+    } else {
+      swal.fire({
+        icon: 'warning',
+        text: '최대 수량은 21억개까지 입니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     }
   };
 
@@ -206,6 +228,14 @@ export const AdminItemWr = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
+    } else if (moneyNum2.length < 3) {
+      swal.fire({
+        icon: 'warning',
+        text: '최소가격은 100원부터 입니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     } else if (quantityNum === '.') {
       swal.fire({
         icon: 'warning',
@@ -214,7 +244,7 @@ export const AdminItemWr = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-    } else if (quantityNum === '') {
+    } else if (quantityNum === '' || quantityNum === '0') {
       swal.fire({
         icon: 'warning',
         text: '상품수량을 입력해주세요.',

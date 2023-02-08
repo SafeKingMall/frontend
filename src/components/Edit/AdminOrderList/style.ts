@@ -174,6 +174,7 @@ export const SearchInput = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
   margin-right: 1.6rem;
   padding-left: 0.8rem;
+  font-size: 2rem;
 `;
 
 export const DeliSelect = styled.select`

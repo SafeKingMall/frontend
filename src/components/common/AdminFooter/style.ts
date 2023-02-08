@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   position: fixed;
   bottom: 0;
+  opacity: 0.7;
   /* transform: translatY(-100%); */
 `;
 export const Text = styled.div`

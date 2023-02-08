@@ -27,6 +27,7 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 23rem;
   color: white;
+  font-weight: 900;
   background-image: url('/img/noticeBanner.png');
   background-size: 100% 100%;
 `;
