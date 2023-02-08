@@ -306,11 +306,12 @@ export const AdminItemWr = () => {
           //상품명
           name: itemName,
           // 상품수량
-          quantity: Number(moneyNum2.split(',').join('')),
+
+          quantity: Number(quantityNum.split(',').join('')),
           //상품설명moneyNum
           description: descriptEdit,
           //상품금액
-          price: Number(quantityNum.split(',').join('')),
+          price: Number(moneyNum2.split(',').join('')),
 
           //카테고리 ID
           categoryId: sendCategoryId[0].id,
@@ -335,12 +336,13 @@ export const AdminItemWr = () => {
           //상품명
           name: itemName,
           // 상품수량
-          quantity: Number(moneyNum2.split(',').join('')),
+          quantity: Number(quantityNum.split(',').join('')),
           //상품설명moneyNum
           description: descriptEdit,
           //상품금액
           // price: 1,
-          price: Number(quantityNum.split(',').join('')),
+
+          price: Number(moneyNum2.split(',').join('')),
 
           //카테고리 ID
           categoryId: sendCategoryId[0].id,
