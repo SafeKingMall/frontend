@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const MyPageWd = () => {
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
   const swal = withReactContent(Swal);
   const navigate = useNavigate();
   const [disable, setDisable] = useState(true);
@@ -74,7 +73,7 @@ export const MyPageWd = () => {
               method: 'post',
               url: `${process.env.REACT_APP_API_URL}/user/withdrawal`,
               headers: {
-                Authorization: jwt,
+                Authorization: cookies.get('accessToken'),
               },
               data: {
                 inputUsername: id,

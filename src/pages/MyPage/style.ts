@@ -55,11 +55,11 @@ export const BasicWrap = styled.div`
     > button {
       margin: 0 0 0 0.8rem;
       background-color: #289951;
-      width: 183px;
-      height: 64px;
+      width: 18.3rem;
+      height: 6.4rem;
       font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 2rem;
+      line-height: 2.4rem;
 
       color: #ffffff;
     }
@@ -130,8 +130,8 @@ export const InputWrap = styled.div`
 `;
 export const ErrMsg = styled.span`
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
   color: #ff003e;
   position: absolute;
   bottom: 0.4rem;

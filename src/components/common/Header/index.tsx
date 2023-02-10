@@ -11,7 +11,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
   const token = cookies.get('accessToken');
-  // const token = cookies.get('accessToken');
   const admin = cookies.get('admin');
   const user = cookies.get('user');
   const logout = () => {

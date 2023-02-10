@@ -19,7 +19,8 @@ export const MyPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<any>({});
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  // const jwt = cookies.get('accessToken');
+
   const [isOpenPost, setIsOpenPost] = useState(false);
   const [disable, setDisable] = useState(true);
 
@@ -167,7 +168,7 @@ export const MyPage = () => {
       await axios
         .get(`${process.env.REACT_APP_API_URL}/user/details`, {
           headers: {
-            Authorization: jwt,
+            Authorization: cookies.get('accessToken'),
           },
         })
         .then((res) => {
@@ -182,23 +183,14 @@ export const MyPage = () => {
           setZip(res.data.zipcode);
           setBasic(res.data.basicAddress);
           setDetail(res.data.detailedAddress);
+          console.log('getUser');
         });
     } catch (err: any) {
-      swal.fire({
-        icon: 'warning',
-        text: err.response.data.message,
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+      navigate('/sign-in');
     }
   };
   useEffect(() => {
-    if (!jwt) {
-      navigate('/sign-in');
-    } else {
-      getUser();
-    }
+    getUser();
     // eslint-disable-next-line
   }, []);
 
@@ -301,7 +293,7 @@ export const MyPage = () => {
               method: 'PUT',
               url: `${process.env.REACT_APP_API_URL}/user/update`,
               headers: {
-                Authorization: jwt,
+                Authorization: cookies.get('accessToken'),
               },
               data: {
                 name: name,

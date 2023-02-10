@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   padding: 0 1rem;
   width: 100%;
   /* min-width: 130rem; */
-  height: 80px;
+  height: 8rem;
   display: flex;
   /* position: fixed;
   top: 0; */
@@ -18,15 +18,15 @@ export const Wrapper = styled.div`
 export const Logo = styled.div`
   background-image: url(https://user-images.githubusercontent.com/91241596/212526764-a38ae3a1-34e0-4740-b6d0-741a4984431a.png);
   margin: 0 0 0 6rem;
-  width: 156px;
-  height: 76px;
+  width: 15.6rem;
+  height: 7.6rem;
   cursor: pointer;
 `;
 export const Menu = styled.ul`
   display: flex;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 2.4rem;
   /* justify-content: center; */
   text-align: center;
   margin: 0 auto;
@@ -39,7 +39,7 @@ export const MenuList = styled.li`
 export const MenuIcons = styled.div`
   margin: 0 10rem 0 0;
   display: flex;
-  font-size: 24px;
+  font-size: 2.4rem;
 
   /* position: absolute;
   right: 10%; */
