@@ -92,13 +92,13 @@ export const ViewedItem = () => {
       </S.ItemArea>
       <S.PageArea>
         <S.ArrowBox>
-          <AiOutlineLeft size={24} color='#ffffff' onClick={() => countMinus()} />
+          <AiOutlineLeft size='2.4rem' color='#ffffff' onClick={() => countMinus()} />
         </S.ArrowBox>
         <S.PageText>
           {count} / {totalPage.current}
         </S.PageText>
         <S.ArrowBox>
-          <AiOutlineRight size={24} color='#ffffff' onClick={() => countPlus()} />
+          <AiOutlineRight size='2.4rem' color='#ffffff' onClick={() => countPlus()} />
         </S.ArrowBox>
       </S.PageArea>
     </S.Container>
