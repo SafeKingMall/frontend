@@ -4,7 +4,7 @@ import { useCookies, Cookies } from 'react-cookie';
 
 export const Refresh = () => {
   const cookie = new Cookies();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [, setCookie] = useCookies();
 
   axios.interceptors.request.use(
     async function (config: any) {

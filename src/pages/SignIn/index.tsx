@@ -10,7 +10,7 @@ import { Header } from '../../components/common/Header';
 
 export const SignIn = () => {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [, setCookie] = useCookies();
   const cookie = new Cookies();
   const [saveIdChecked, setSaveIdChecked] = useState(cookie.get('savedId') ? true : false);
   const savedId = useRef(cookie.get('savedId'));
