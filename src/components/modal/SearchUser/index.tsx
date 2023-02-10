@@ -1,59 +1,49 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import { SearchId } from './SearchId';
+
 import { SearchPw } from './SearchPw';
 
-export const SearchUser = (props: any) => {
-  const d = {
-    backgroundColor: '#D4EBDC',
-    color: '#212121',
-    fontWeight: '400',
-  };
-  const c = { backgroundColor: '#ffffff', color: '#289951', fontWeight: '700' };
-  //버튼 상태
-  const [idBtn, setIdBtn] = useState(c);
-  const [pwBtn, setPwBtn] = useState(d);
-  // const [btnColor, setBtnColor] = useState({
-  //   backgrounColor: '#D4EBDC',
-  //   color: '#212121',
-  //   fontWeight: '400',
-  // });
-  //모달 상태
-  const [idOpen, setIdOpen] = useState<boolean>(true);
-  const [pwOpen, setPwOpen] = useState<boolean>(false);
+import { useState } from 'react';
 
-  const onId = () => {
-    setIdBtn(c);
-    setPwBtn(d);
-    setIdOpen(true);
-    setPwOpen(false);
+export const SearchUser = (props: any) => {
+  const [currentTab, setTab] = useState(0);
+  //저장된 id값
+  const [userId, setUserId] = useState('');
+  const selectMenuHandler = (index: any) => {
+    setTab(index);
   };
-  const onPw = () => {
-    setPwBtn(c);
-    setIdBtn(d);
-    setIdOpen(false);
-    setPwOpen(true);
-  };
+  const menuArr = [
+    {
+      name: '아이디 찾기',
+      content: (
+        <SearchId setTab={setTab} onOpen={props.onOpen} setUserId={setUserId} userId={userId} />
+      ),
+    },
+    { name: '비밀번호 찾기', content: <SearchPw /> },
+  ];
 
   return (
-    <>
-      <S.Wrapper>
-        <S.BtnWrapper>
-          <button onClick={onId} style={idBtn}>
-            아이디 찾기
-          </button>
-          <button onClick={onPw} style={pwBtn}>
-            비밀번호 찾기
-          </button>
-        </S.BtnWrapper>
-        <div style={{ display: idOpen ? '' : 'none' }}>
-          <SearchId />
+    <S.PopUpContainer onClick={props.onOpen}>
+      <S.PopUpBody onClick={(e: any) => e.stopPropagation()}>
+        <S.TabMenu>
+          {menuArr.map((tap, index) => {
+            return (
+              <ul
+                key={index}
+                className={currentTab === index ? 'submenu focused' : 'submenu'}
+                onClick={() => selectMenuHandler(index)}
+              >
+                {tap.name}
+              </ul>
+            );
+          })}
+        </S.TabMenu>
+        <div>
+          {/* <AdimWdList /> */}
+          <div>{menuArr[currentTab].content}</div>
         </div>
-        <div style={{ display: pwOpen ? '' : 'none' }}>
-          <SearchPw />
-        </div>
-      </S.Wrapper>
-    </>
+      </S.PopUpBody>
+    </S.PopUpContainer>
   );
 };

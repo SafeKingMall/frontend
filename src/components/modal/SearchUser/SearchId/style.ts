@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  /* background-color: mistyrose; */
   width: 64rem;
   height: 94.9rem;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 `;
 export const Top = styled.div`
   margin: 4.8rem 0 4.8rem 0;
@@ -23,19 +22,13 @@ export const InputContainer = styled.div`
   width: 59.2rem;
   height: 26.4rem;
   border: 1px solid #efeff1;
-  /* border: 0.1rem solid #fff; */
   border-radius: 1rem;
-  & > div:last-child {
-    border-bottom: none;
-  }
 `;
 export const InputWrapper = styled.div`
-  /* background-color: mistyrose; */
   height: 8.8rem;
   border-bottom: 1px solid #efeff1;
   position: relative;
   & > label {
-    /* background-color: thistle; */
     display: inline-block;
     width: 15rem;
     height: 17rem;
@@ -54,22 +47,11 @@ export const InputWrapper = styled.div`
   }
 
   & > div {
-    /* background-color: lavenderblush;
-    width: 66rem;
-    height: 5.8rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    padding-left: 3.2rem;
-    font-size: 1.8rem;
-    font-weight: 400;
-    line-height: 2.2rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 1.6rem; */
     position: absolute;
     top: 3.1rem;
     right: 10rem;
+    padding-top: 0.5rem;
+    margin-right: 2rem;
     font-size: 2.8rem;
     color: #a6a6a6;
   }
@@ -91,42 +73,7 @@ export const InputWrapper = styled.div`
     height: 2.4rem;
   }
 `;
-export const PhoneBtn = styled.button`
-  background-color: #fff;
-  width: 13.5rem;
-  height: 4rem;
-  border: 0.1rem solid #289951;
-  border-radius: 1rem;
-  color: #289951;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 1.9rem;
-  position: absolute;
-  top: 2.5rem;
-  right: 2.4rem;
-  :disabled {
-    border-color: #aaaaaa;
-    color: #aaaaaa;
-  }
-`;
-export const chekcBtn = styled.button`
-  background-color: #fff;
-  width: 7.6rem;
-  height: 4rem;
-  border: 0.1rem solid #a6a6a6;
-  border-radius: 1rem;
-  color: #a6a6a6;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 1.9rem;
-  position: absolute;
-  top: 2.5rem;
-  right: 2.4rem;
-  :disabled {
-    border-color: #aaaaaa;
-    color: #aaaaaa;
-  }
-`;
+
 export const ErrMsg = styled.span`
   font-weight: 400;
   font-size: 14px;
@@ -179,14 +126,12 @@ export const TextWrapper = styled.div`
 `;
 export const BtnWrapper = styled.div`
   margin-top: 4.8rem;
-  /* margin-bottom: 12rem; */
   width: 59.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   > button {
     background-color: #fff;
-    /* border: 0.1rem solid #000; */
     border-radius: 10rem;
     width: 28.4rem;
     height: 8rem;
@@ -198,7 +143,6 @@ export const BtnWrapper = styled.div`
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
-      /* identical to box height */
 
       color: #289951;
     }
@@ -213,4 +157,40 @@ export const BtnWrapper = styled.div`
       }
     }
   }
+`;
+
+export const SendBtn = styled.button`
+  background-color: #fff;
+  width: 13.5rem;
+  height: 4rem;
+  border: 0.1rem solid #289951;
+  border-radius: 1rem;
+  color: #289951;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.4rem;
+`;
+
+export const AuthTimer = styled.div`
+  position: absolute;
+  top: 3.5rem;
+  right: 11.5rem;
+`;
+
+export const CheckBtn = styled.button`
+  background-color: #fff;
+  width: 7.6rem;
+  height: 4rem;
+  border: 0.1rem solid #289951;
+  border-radius: 1rem;
+  color: #289951;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.4rem;
 `;

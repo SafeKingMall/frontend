@@ -42,20 +42,6 @@ export const NoticePo = () => {
     });
   };
 
-  // const page = location.state.page;
-  // const [size] = useState(7);
-
-  // const index = itemList.findIndex((elm: any) => elm.id === itemId);
-
-  // let preItemId: any;
-  // let nextItemId: any;
-  // if (index !== 0) {
-  //   preItemId = itemList[index - 1].id;
-  // }
-  // if (index !== 6) {
-  //   nextItemId = itemList[index + 1].id;
-  // }
-
   const [data, setDate] = useState('' as any);
   const [preData, setPreData] = useState('' as any);
   const [nextData, setNextData] = useState('' as any);
