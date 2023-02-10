@@ -145,7 +145,7 @@ export const OrderList = (props: any) => {
     // } else {
     return (
         <S.Wrapper>
-            <S.Mid>환불 내역</S.Mid>
+            <S.Mid>주문 내역</S.Mid>
             <S.SearchBox>
                 <S.SearchFirst>
                     <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
