@@ -109,7 +109,7 @@ export const DesContainer = styled.div`
   position: relative;
 `;
 export const Description = styled.div`
-  width: 86rem;
+  width: 144rem;
   h1 {
     font-size: 6.4rem;
   }

@@ -62,6 +62,11 @@ export const ItemContentArea = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
 `;
+export const ItemImg = styled.img`
+  width: 18.4rem;
+  height: 18.4rem;
+  border: 0.1rem solid #efeff1;
+`;
 export const ItemCountArea = styled.div`
   width: 91.667%;
   height: 10.4rem;

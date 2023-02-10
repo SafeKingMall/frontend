@@ -8,16 +8,14 @@ import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { useNavigate } from 'react-router-dom';
 
 const PWREGEX = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{3,20}$/;
 const SYMBOL = /[^!@#$%^&*0-9a-zA-Z]/;
 
 export const MyPagePw = () => {
   const swal = withReactContent(Swal);
-  const navigate = useNavigate();
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  // const jwt = cookies.get('accessToken');
   const [disable, setDisable] = useState(true);
 
   //비밀번호, 새 비밀번호, 비밀번호 확인
@@ -93,11 +91,11 @@ export const MyPagePw = () => {
       setNewPwConfirmVal('');
     }
   };
-  useEffect(() => {
-    if (!jwt) {
-      navigate('/sign-in');
-    }
-  });
+  // useEffect(() => {
+  //   if (!jwt) {
+  //     navigate('/sign-in');
+  //   }
+  // });
 
   useEffect(() => {
     if (pwCheck && newPwCheck && newPwConfirmCheck) {
@@ -124,7 +122,7 @@ export const MyPagePw = () => {
             method: 'PATCH',
             url: `${process.env.REACT_APP_API_URL}/user/update/password`,
             headers: {
-              Authorization: jwt,
+              Authorization: cookies.get('accessToken'),
             },
             data: {
               previousPassword: pw,

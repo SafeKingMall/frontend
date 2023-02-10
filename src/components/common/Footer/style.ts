@@ -18,8 +18,8 @@ export const Logo = styled.div`
   margin: 0 0 0 28rem;
   > div {
     background-image: url(https://user-images.githubusercontent.com/91241596/212526703-b3b12d80-3d1f-4060-a0f3-af556e8839bf.png);
-    width: 220px;
-    height: 110px;
+    width: 22rem;
+    height: 11rem;
   }
 
   @media (max-width: 360px) {
@@ -35,9 +35,9 @@ export const Logo = styled.div`
 `;
 export const Text = styled.div`
   margin: 0 0 0 11rem;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 2.4rem;
 
   @media (max-width: 360px) {
     /* background-color: red; */
@@ -47,8 +47,8 @@ export const Text = styled.div`
     justify-content: left;
     margin: 0.8rem 0 0 1.6rem;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     color: #252525;
     & > span {
       font-weight: 600;

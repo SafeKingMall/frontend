@@ -29,6 +29,11 @@ export const ItemContainer = styled.div`
     margin-right: 0;
   }
 `;
+export const ItemImg = styled.img`
+  width: 33.6rem;
+  height: 33.6rem;
+  border: 1px solid #dddddd;
+`;
 export const Category = styled.p`
   font-size: 1.6rem;
   margin-top: 2.4rem;

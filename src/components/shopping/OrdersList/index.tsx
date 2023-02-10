@@ -17,12 +17,9 @@ export const OrdersList = (props: any) => {
               <S.ItemContentArea>
                 <S.ItemInfoArea>
                   <S.ItemImgArea>
-                    <img
+                    <S.ItemImg
                       src={`${process.env.REACT_APP_BASE_URL}${item.thumbNail}`}
-                      width='184'
-                      height='184'
                       alt={item.itemName}
-                      style={{ border: '0.1rem solid #efeff1' }}
                     />
                   </S.ItemImgArea>
                   <S.ItemTextArea>

@@ -41,6 +41,11 @@ export const ItemContainer = styled.div`
   padding-left: 9rem;
   padding-right: 3rem;
 `;
+export const ItemImg = styled.img`
+  width: 18.4rem;
+  height: 18.4rem;
+  border: 0.1rem solid #efeff1;
+`;
 export const ItemContentArea = styled.div`
   width: 100%;
   height: 18.4rem;

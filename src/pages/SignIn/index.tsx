@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
@@ -7,48 +7,44 @@ import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
 // import { Footer } from '../../components/common/Footer';
 // import { FindId } from '../../components/FindId';
-
-interface SignInForm {
-  email: string;
-  password: string;
-}
+// import { Refresh } from '../../components/common/hooks/refresh';
 
 export const SignIn = () => {
-  //쿠키만료시간
-  const expires = new Date();
-  expires.setMinutes(expires.getMinutes() + 180);
   const [cookies, setCookie, removeCookie] = useCookies();
-  const cookie = new Cookies();
+  // const cookie = new Cookies();
+  // const refreshToken = cookie.get('refreshToken');
+  // Refresh();
+  //엑세트토큰 쿠키만료시간
+  const tokenExpires = new Date();
+  // tokenExpires.setMinutes(tokenExpires.getMinutes() + 180);
+  tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
+  //리프레시토큰 쿠키만료시간
+  const rtokenExpires = new Date();
+  // rtokenExpires.setMinutes(tokenExpires.getMinutes() + 360);
+  rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
 
   const navigate = useNavigate();
-  //email, password
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  //에러메세지
-  const [errMsg, setErrMsg] = useState('');
-  const [isLogin, setIsLogin] = useState(false);
-  //아이디
-  const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const emailCurrent = e.target.value;
-    setEmail(emailCurrent);
-    const idRegex = /^[a-zA-Z0-9]*$/;
+  //id, password
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+
+  //아이디 입력
+  const onChangeId = (e: string) => {
+    setId(e);
   };
-  //비밀번호
-  const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const passwordCurrent = e.target.value;
-    setPassword(passwordCurrent);
+  //비밀번호 입력
+  const onChangePw = (e: string) => {
+    setPw(e);
   };
   //로그인
-  const SignIn = async () => {
+  const signIn = async () => {
     try {
       await axios
         .post(
           `${process.env.REACT_APP_API_URL}/login`,
           {
-            username: email,
-            password,
+            username: id,
+            password: pw,
           },
           {
             headers: { 'Content-Type': `application/json` },
@@ -57,33 +53,33 @@ export const SignIn = () => {
         .then((res) => {
           if (res.status === 200) {
             const token = res.headers.authorization;
-            setCookie('accessToken', token, { path: '/', expires });
-            // const rtoken = res.headers['refresh-token'];
-            // setCookie('refreshToken', rtoken, { path: '/', expires });
-            navigate('/');
+            setCookie('accessToken', token, { path: '/', expires: tokenExpires });
+            const rtoken = res.headers['refresh-token'];
+            setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
             if (res.data === 'ROLE_ADMIN') {
-              setCookie('admin', res.data, { path: '/', expires });
+              setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
             } else if (res.data === 'ROLE_USER') {
-              setCookie('user', res.data, { path: '/', expires });
+              setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
+            navigate('/');
           }
         });
     } catch (e: any) {
       if (e.response.data.code === 1400) {
         alert('일치하는 회원정보가 없습니다.');
+      } else {
+        alert(e.response.data.message);
       }
     }
   };
 
-  const token = cookie.get('acessToken');
-  // const refresh = cookie.get('refreshToken');
-  const create = axios.create({
-    baseURL: `${process.env.REACT_APP_BASE_URL}`,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
-  });
+  // const create = axios.create({
+  //   baseURL: `${process.env.REACT_APP_BASE_URL}`,
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: token,
+  //   },
+  // });
 
   //회원가입
   const navigateSignUp = () => {
@@ -94,28 +90,120 @@ export const SignIn = () => {
   const [saveId, setSaveId] = useState(false);
   useEffect(() => {
     if (cookies.idSaved !== undefined) {
-      setEmail(cookies.idSaved);
+      setId(cookies.idSaved);
       setSaveId(true);
     }
   }, []);
+
   const onIdChange = (e: any) => {
     setSaveId(e.target.checked);
     if (e.target.checked) {
       // 아이디 저장 유효기간은 6달
-      setCookie('idSaved', email, { maxAge: 15552000 });
+      setCookie('idSaved', id, { maxAge: 60 * 60 * 24 * 180 });
     } else {
       removeCookie('idSaved');
     }
   };
   //아이디 비밀번호 찾기 모달창
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const onOpen = () => {
-    setIsOpen(!isOpen);
-  };
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const onOpen = () => {
+  //   setIsOpen(!isOpen);
+  // };
+
+  // const refresh = async () => {
+  //   if (!jwt && refreshToken) {
+  //     await axios({
+  //       method: 'get',
+  //       url: `${process.env.REACT_APP_API_URL}/refresh`,
+  //       headers: {
+  //         'refresh-token': refreshToken,
+  //       },
+  //     }).then((res) => {
+  //       const token = res.headers.authorization;
+  //       const rtoken = res.headers['refresh-token'];
+  //       setCookie('accessToken', token, { path: '/', expires: tokenExpires });
+  //       setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
+  //       if (res.data === 'ROLE_ADMIN') {
+  //         setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+  //       } else if (res.data === 'ROLE_USER') {
+  //         setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+  //       }
+  //     });
+  //   }
+  // };
+
+  // const refresh = async () => {
+  //   await axios({
+  //     method: 'get',
+  //     url: `${process.env.REACT_APP_API_URL}/refresh`,
+  //     headers: {
+  //       'refresh-token': refreshToken,
+  //     },
+  //   }).then((res) => {
+  //     const token = res.headers.authorization;
+  //     const rtoken = res.headers['refresh-token'];
+  //     setCookie('accessToken', token, { path: '/', expires: tokenExpires });
+  //     setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
+  //     if (res.data === 'ROLE_ADMIN') {
+  //       setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+  //     } else if (res.data === 'ROLE_USER') {
+  //       setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+  //     }
+  //   });
+  // };
+
+  // axios.interceptors.request.use(
+  //   function (config: any) {
+  //     const accessToken = cookie.get('accessToken');
+  //     const refreshToken = cookie.get('refreshToken');
+  //     if (!accessToken && refreshToken) {
+  //       console.log('엑세스토큰만료');
+  //       axios({
+  //         method: 'get',
+  //         url: `${process.env.REACT_APP_API_URL}/refresh`,
+  //         headers: {
+  //           'refresh-token': refreshToken,
+  //         },
+  //       }).then((res) => {
+  //         const token = res.headers.authorization;
+  //         const rtoken = res.headers['refresh-token'];
+  //         setCookie('accessToken', token, { path: '/', expires: tokenExpires });
+  //         setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
+  //         if (res.data === 'ROLE_ADMIN') {
+  //           setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+  //         } else if (res.data === 'ROLE_USER') {
+  //           setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+  //         }
+  //         console.log('hi');
+  //       });
+  //     }
+  //     return config;
+  //   },
+  //   function (error) {
+  //     return Promise.reject(error);
+  //   },
+  // );
+
+  // axios.interceptors.request.use(
+  //   function (config: any) {
+  //     const accessToken = cookie.get('accessToken');
+  //     const refreshToken = cookie.get('refreshToken');
+  //     if (!accessToken && refreshToken) {
+  //       config.headers.common['Authorization'] = `${accessToken}`;
+  //       config.headers.common['Refresh-Token'] = `${refreshToken}`;
+  //       console.log('hi');
+  //     }
+  //     return config;
+  //   },
+  //   function (error) {
+  //     return Promise.reject(error);
+  //   },
+  // );
 
   return (
     <>
       <Header />
+      {/* <button onClick={() => refresh()}>test</button> */}
       <S.Container>
         <S.Wrapper>
           <S.InputContainer>
@@ -127,9 +215,8 @@ export const SignIn = () => {
               <S.InputWrap>
                 <S.InputForm
                   type='text'
-                  // placeholder='아이디를 입력해주세요'
-                  onChange={emailChange}
-                  defaultValue={email}
+                  onChange={(e) => onChangeId(e.target.value)}
+                  defaultValue={id}
                 />
               </S.InputWrap>
             </S.InputLine>
@@ -139,15 +226,10 @@ export const SignIn = () => {
                 <label htmlFor='password'>패스워드</label>
               </S.LabelWrap>
               <S.InputWrap>
-                <S.InputForm
-                  type='password'
-                  // placeholder='비밀번호를 입력해주세요'
-                  onChange={passwordChange}
-                />
+                <S.InputForm type='password' onChange={(e) => onChangePw(e.target.value)} />
               </S.InputWrap>
             </S.InputLine>
           </S.InputContainer>
-          {/* {errMsg} */}
           <S.SignText>
             <S.IdCheck>
               <label>
@@ -165,7 +247,7 @@ export const SignIn = () => {
             </S.Span>
           </S.SignText>
           <div>
-            <S.Btn onClick={SignIn}>로그인</S.Btn>
+            <S.Btn onClick={() => signIn()}>로그인</S.Btn>
             {/* <S.Social>
               <S.SocialBtn onClick={test}>구글로 로그인하기</S.SocialBtn>
               <S.SocialBtn onClick={test} style={{ backgroundColor: '#FDDC3F' }}>

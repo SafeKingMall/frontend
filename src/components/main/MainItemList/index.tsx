@@ -18,13 +18,9 @@ export const MainItemList = (props: any) => {
         {itemList.map((item: any) => {
           return (
             <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
-              <img
-                src={process.env.REACT_APP_BASE_URL + item.fileName}
-                width='336'
-                height='336'
-                alt={item.name}
-                style={{ border: '1px solid #DDDDDD' }}
-              />
+              {/* <S.ItemImgArea> */}
+              <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
+              {/* </S.ItemImgArea> */}
               <S.Category>{item.categoryName}</S.Category>
               <S.ItemName>{item.name}</S.ItemName>
               <S.Price>

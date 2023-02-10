@@ -42,5 +42,70 @@ input {
   border: none;
   :focus {outline: none}
 }
-
+@media (max-width: 1560px) {
+  html {
+    font-size: 57.5%;
+  }
+}
+@media (max-width: 1440px) {
+  html {
+    font-size: 52.5%;
+  }
+}
+@media (max-width: 1320px) {
+  html {
+    font-size: 47.5%;
+  }
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: 42.5%;
+  }
+}
+@media (max-width: 1080px) {
+  html {
+    font-size: 37.5%;
+  }
+}
+@media (max-width: 960px) {
+  html {
+    font-size: 32.5%;
+  }
+}
+@media (max-width: 840px) {
+  html {
+    font-size: 27.5%;
+  }
+}
+@media (max-width: 720px) {
+  html {
+    font-size: 27.5%;
+  }
+}
+@media (max-width: 600px) {
+  html {
+    font-size: 22.5%;
+  }
+}
+@media (max-width: 480px) {
+  html {
+    font-size: 17.5%;
+  }
+}
+@media (max-width: 360px) {
+  html {
+    font-size: 12.5%;
+  }
+}
+@media (max-width: 240px) {
+  html {
+    font-size: 7.5%;
+  }
+}
+@media (max-width: 120px) {
+  html {
+    font-size: 2.5%;
+    min-width: 120px;
+  }
+}
 `;

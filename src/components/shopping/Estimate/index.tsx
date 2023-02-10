@@ -14,7 +14,7 @@ export const Estimate = () => {
   const navigate = useNavigate();
   const swal = withReactContent(Swal);
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  const rtoken = cookies.get('refreshToken');
   const [disable, setDisable] = useState(true);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -160,12 +160,12 @@ export const Estimate = () => {
         }
       });
     };
-    if (!jwt) {
+    if (!rtoken) {
       navigate('/sign-in');
     } else {
       getData();
     }
-  }, [state, jwt, navigate]);
+  }, [state, rtoken, navigate]);
   const sendMail = () => {
     setTimeout(() => {
       navigate(-1);

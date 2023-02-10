@@ -269,12 +269,9 @@ export const CartsList = (props: any) => {
                 </S.ItemCheckBoxArea>
                 <S.ItemInfoArea>
                   <S.ItemImgArea onClick={() => moveDetail(item)}>
-                    <img
+                    <S.ItemImg
                       src={`${process.env.REACT_APP_BASE_URL}${item.thumbNail}`}
-                      width='184'
-                      height='184'
                       alt={item.itemName}
-                      style={{ border: '0.1rem solid #efeff1' }}
                     />
                   </S.ItemImgArea>
                   <S.ItemTextArea>

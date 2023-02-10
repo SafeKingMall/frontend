@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  padding: 0 5rem;
 `;
 export const ItemArea = styled.div`
   height: 100%;
@@ -23,6 +24,16 @@ export const ItemContainer = styled.div`
   &:nth-child(4n) {
     margin-right: 0;
   }
+`;
+export const ItemImgArea = styled.div`
+  width: 33.6rem;
+  height: 33.6rem;
+  border: 1px solid #dddddd;
+`;
+export const ItemImg = styled.img`
+  width: 33.6rem;
+  height: 33.6rem;
+  border: 1px solid #dddddd;
 `;
 export const Category = styled.p`
   font-size: 1.6rem;

@@ -28,11 +28,11 @@ export const ItemDetail = () => {
   const purchaseBtn = useRef(<div />);
   const viewedItem = useRef<any>({});
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  const rtoken = cookies.get('refreshToken');
 
   //구매하기
   const moveOrders = useCallback(() => {
-    if (!jwt) {
+    if (!rtoken) {
       navigate('/sign-in');
     } else {
       swal
@@ -71,7 +71,7 @@ export const ItemDetail = () => {
           }
         });
     }
-  }, [navigate, state, jwt]);
+  }, [navigate, state, rtoken]);
 
   useEffect(() => {
     if (!loading) {
@@ -216,14 +216,14 @@ export const ItemDetail = () => {
   };
 
   const addCart = async () => {
-    if (!jwt) {
+    if (!rtoken) {
       navigate('/sign-in');
     } else {
       await axios({
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
         data: {
           itemId: state.itemId,

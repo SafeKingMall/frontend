@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 import { Footer } from '../../components/common/Footer';
 import { MainBanner } from '../../components/main/MainBanner';
@@ -38,7 +37,7 @@ export const MainPage = () => {
         setItemList(res.data.content);
       });
     };
-    if (selectedCategory){
+    if (selectedCategory) {
       getItemData();
     }
   }, [selectedCategory]);

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
@@ -63,19 +64,13 @@ export const List = (props: any) => {
           itemList.map((item: any) => {
             return (
               <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
-                <img
-                  src={process.env.REACT_APP_BASE_URL + item.fileName}
-                  width='336'
-                  height='336'
-                  alt={item.name}
-                  style={{ border: '1px solid #DDDDDD' }}
-                />
+                <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
                 <S.Category>{item.categoryName}</S.Category>
                 <S.ItemName>{item.name}</S.ItemName>
                 <S.Price>
                   {item.viewPrice !== 1000000000
                     ? item.viewPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') +
-                      '원'
+                    '원'
                     : '금액표시없음'}
                 </S.Price>
               </S.ItemContainer>
