@@ -13,7 +13,7 @@ export const NoticeBar = () => {
     const getNoticeData = async () => {
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/notice/list?size=6&page=0&sort=id,desc`,
+        url: `${process.env.REACT_APP_API_URL}/notice/list?size=7&page=0&sort=createDate,desc`,
       }).then((res) => {
         setNoticeList(res.data.content);
       });
@@ -41,6 +41,10 @@ export const NoticeBar = () => {
     navigate('/notice-po', {
       state: {
         itemId: id,
+        data: noticeList,
+        page: 0,
+        size: 7,
+        reqData: 'sort=createDate,desc',
       },
     });
   };

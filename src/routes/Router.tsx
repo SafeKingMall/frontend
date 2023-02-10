@@ -23,6 +23,11 @@ import {
   MyPageWd,
   MyPageOd,
   MyPageOdDetail,
+  MyPageRf,
+  MyPageRfDetail,
+  MyPageAp1,
+  MyPageAp2,
+  MyPageAp3,
   OrderOk,
   Orders,
   Notice,
@@ -68,9 +73,13 @@ const Router = () => {
         <Route path='/mypage-pw' element={<MyPagePw />} />
         <Route path='/mypage-wd' element={<MyPageWd />} />
         <Route path='/mypage-od' element={<MyPageOd />} />
-        {/* <Route path=':orderId' element={<MyPageOdDetail />} /> */}
-        <Route path='/mypage-od/:detail' element={<MyPageOdDetail />} />
-        {/* <Route path=':orderId' element={<MyPageOdDetail />} /> */}
+        <Route path='/mypage-ap1' element={<MyPageAp1 />} />
+        <Route path='/mypage-ap2' element={<MyPageAp2 />} />
+        <Route path='/mypage-ap3' element={<MyPageAp3 />} />
+
+        <Route path='/mypage-od-detail' element={<MyPageOdDetail />} />
+        <Route path='/mypage-rf' element={<MyPageRf />} />
+        <Route path='/mypage-rf-detail' element={<MyPageRfDetail />} />
         <Route path='/orderok' element={<OrderOk />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
