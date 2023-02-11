@@ -4,21 +4,18 @@ import { useCookies, Cookies } from 'react-cookie';
 
 export const Refresh = () => {
   const cookie = new Cookies();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [, setCookie] = useCookies();
 
   axios.interceptors.request.use(
     async function (config: any) {
       const accessToken = cookie.get('accessToken');
       const refreshToken = cookie.get('refreshToken');
-      console.log('인터셉트');
       if (!accessToken && refreshToken) {
         //엑세트토큰 쿠키만료시간
         const tokenExpires = new Date();
-        // tokenExpires.setMinutes(tokenExpires.getMinutes() + 180);
         tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
         //리프레시토큰 쿠키만료시간
         const rtokenExpires = new Date();
-        // rtokenExpires.setMinutes(tokenExpires.getMinutes() + 360);
         rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
         await fetch(`${process.env.REACT_APP_API_URL}/refresh`, {
           headers: {
@@ -40,7 +37,6 @@ export const Refresh = () => {
             } else if (data === 'ROLE_USER') {
               setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
-            console.log(cookie.get('accessToken'));
           });
       }
       return config;

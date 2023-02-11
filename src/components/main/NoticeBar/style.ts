@@ -11,7 +11,7 @@ export const NoticeBarWrap = styled.div`
   font-size: 2.4rem;
   font-weight: 500;
   color: #ffffff;
-  border-top: 1px solid #ffffff;
+  border-top: 0.05rem solid #ffffff;
 `;
 export const NoticeContent = styled.div`
   width: 100%;
@@ -20,18 +20,23 @@ export const NoticeContent = styled.div`
   align-items: center;
 `;
 export const LeftTextArea = styled.div`
-  width: 43.8rem;
+  /* width: 43.8rem; */
+  width: 20%;
   height: 100%;
   ${({ theme }) => theme.common.flexCenter};
+  position: relative;
 `;
 export const LeftText = styled.span``;
 export const LeftBar = styled.div`
   width: 0.2rem;
   height: 4rem;
   background-color: #ffffff;
+  position: absolute;
+  right: 0;
 `;
 export const TitleArea = styled.div`
-  width: 100rem;
+  /* width: 100rem; */
+  width: 60%;
   height: 100%;
   ${({ theme }) => theme.common.flexCenter};
 `;
@@ -41,11 +46,19 @@ export const Title = styled.span`
     text-decoration: underline;
   }
 `;
+export const ArrowArea = styled.div`
+  width: 20%;
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
 export const ArrowBox = styled.div`
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 25rem;
 `;
-export const ArrowArea = styled.div`
+export const ArrowIcon = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;

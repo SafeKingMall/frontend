@@ -13,6 +13,8 @@ export const MainBanner = () => {
     slidesToScroll: 1,
     useTransform: false,
     arrows: false,
+    pauseOnHover: false,
+    pauseOnFocus: false,
     afterChange: () => {
       setSlide(true);
     },

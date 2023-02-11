@@ -1,31 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 // import { Footer } from '../../components/common/Footer';
 // import { FindId } from '../../components/FindId';
-// import { Refresh } from '../../components/common/hooks/refresh';
 
 export const SignIn = () => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  // const cookie = new Cookies();
-  // const refreshToken = cookie.get('refreshToken');
-  // Refresh();
-  //엑세트토큰 쿠키만료시간
-  const tokenExpires = new Date();
-  // tokenExpires.setMinutes(tokenExpires.getMinutes() + 180);
-  tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
-  //리프레시토큰 쿠키만료시간
-  const rtokenExpires = new Date();
-  // rtokenExpires.setMinutes(tokenExpires.getMinutes() + 360);
-  rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
-
   const navigate = useNavigate();
+  const [, setCookie] = useCookies();
+  const swal = withReactContent(Swal);
+  const cookie = new Cookies();
+  const [saveIdChecked, setSaveIdChecked] = useState(cookie.get('savedId') ? true : false);
+  const savedId = useRef(cookie.get('savedId'));
+  const onChangeSaveId = () => {
+    setSaveIdChecked(!saveIdChecked);
+  };
+  // const refreshToken = cookie.get('refreshToken');
+
   //id, password
-  const [id, setId] = useState('');
+  const [id, setId] = useState(cookie.get('savedId') ? cookie.get('savedId') : '');
   const [pw, setPw] = useState('');
 
   //아이디 입력
@@ -38,6 +36,14 @@ export const SignIn = () => {
   };
   //로그인
   const signIn = async () => {
+    //엑세트토큰 쿠키만료시간
+    const tokenExpires = new Date();
+    // tokenExpires.setMinutes(tokenExpires.getMinutes() + 180);
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
+    //리프레시토큰 쿠키만료시간
+    const rtokenExpires = new Date();
+    // rtokenExpires.setMinutes(tokenExpires.getMinutes() + 360);
+    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
     try {
       await axios
         .post(
@@ -61,25 +67,46 @@ export const SignIn = () => {
             } else if (res.data === 'ROLE_USER') {
               setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
+            if (saveIdChecked) {
+              if (savedId.current !== id) {
+                setCookie('savedId', id, { path: '/', maxAge: 60 * 60 * 24 * 180 });
+              }
+            } else {
+              if (savedId.current) {
+                cookie.remove('savedId');
+              }
+            }
             navigate('/');
           }
         });
-    } catch (e: any) {
-      if (e.response.data.code === 1400) {
-        alert('일치하는 회원정보가 없습니다.');
+    } catch (err: any) {
+      if (err.response.data.code === 1400) {
+        swal.fire({
+          icon: 'info',
+          text: '일치하는 회원정보가 없습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (err.response.data.code === 1401) {
+        swal.fire({
+          icon: 'info',
+          text: '휴면계정입니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
       } else {
-        alert(e.response.data.message);
+        swal.fire({
+          icon: 'warning',
+          text: err.response.data.message,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
       }
     }
   };
-
-  // const create = axios.create({
-  //   baseURL: `${process.env.REACT_APP_BASE_URL}`,
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: token,
-  //   },
-  // });
 
   //회원가입
   const navigateSignUp = () => {
@@ -87,123 +114,32 @@ export const SignIn = () => {
   };
 
   //아이디저장
-  const [saveId, setSaveId] = useState(false);
-  useEffect(() => {
-    if (cookies.idSaved !== undefined) {
-      setId(cookies.idSaved);
-      setSaveId(true);
-    }
-  }, []);
+  // const [saveId, setSaveId] = useState(false);
+  // useEffect(() => {
+  //   if (cookies.idSaved !== undefined) {
+  //     setId(cookies.idSaved);
+  //     setSaveId(true);
+  //   }
+  // }, []);
 
-  const onIdChange = (e: any) => {
-    setSaveId(e.target.checked);
-    if (e.target.checked) {
-      // 아이디 저장 유효기간은 6달
-      setCookie('idSaved', id, { maxAge: 60 * 60 * 24 * 180 });
-    } else {
-      removeCookie('idSaved');
-    }
-  };
+  // const onIdChange = (e: any) => {
+  //   setSaveId(e.target.checked);
+  //   if (e.target.checked) {
+  //     // 아이디 저장 유효기간은 6달
+  //     setCookie('idSaved', id, { maxAge: 60 * 60 * 24 * 180 });
+  //   } else {
+  //     removeCookie('idSaved');
+  //   }
+  // };
   //아이디 비밀번호 찾기 모달창
   // const [isOpen, setIsOpen] = useState<boolean>(false);
   // const onOpen = () => {
   //   setIsOpen(!isOpen);
   // };
 
-  // const refresh = async () => {
-  //   if (!jwt && refreshToken) {
-  //     await axios({
-  //       method: 'get',
-  //       url: `${process.env.REACT_APP_API_URL}/refresh`,
-  //       headers: {
-  //         'refresh-token': refreshToken,
-  //       },
-  //     }).then((res) => {
-  //       const token = res.headers.authorization;
-  //       const rtoken = res.headers['refresh-token'];
-  //       setCookie('accessToken', token, { path: '/', expires: tokenExpires });
-  //       setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
-  //       if (res.data === 'ROLE_ADMIN') {
-  //         setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
-  //       } else if (res.data === 'ROLE_USER') {
-  //         setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
-  //       }
-  //     });
-  //   }
-  // };
-
-  // const refresh = async () => {
-  //   await axios({
-  //     method: 'get',
-  //     url: `${process.env.REACT_APP_API_URL}/refresh`,
-  //     headers: {
-  //       'refresh-token': refreshToken,
-  //     },
-  //   }).then((res) => {
-  //     const token = res.headers.authorization;
-  //     const rtoken = res.headers['refresh-token'];
-  //     setCookie('accessToken', token, { path: '/', expires: tokenExpires });
-  //     setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
-  //     if (res.data === 'ROLE_ADMIN') {
-  //       setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
-  //     } else if (res.data === 'ROLE_USER') {
-  //       setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
-  //     }
-  //   });
-  // };
-
-  // axios.interceptors.request.use(
-  //   function (config: any) {
-  //     const accessToken = cookie.get('accessToken');
-  //     const refreshToken = cookie.get('refreshToken');
-  //     if (!accessToken && refreshToken) {
-  //       console.log('엑세스토큰만료');
-  //       axios({
-  //         method: 'get',
-  //         url: `${process.env.REACT_APP_API_URL}/refresh`,
-  //         headers: {
-  //           'refresh-token': refreshToken,
-  //         },
-  //       }).then((res) => {
-  //         const token = res.headers.authorization;
-  //         const rtoken = res.headers['refresh-token'];
-  //         setCookie('accessToken', token, { path: '/', expires: tokenExpires });
-  //         setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
-  //         if (res.data === 'ROLE_ADMIN') {
-  //           setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
-  //         } else if (res.data === 'ROLE_USER') {
-  //           setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
-  //         }
-  //         console.log('hi');
-  //       });
-  //     }
-  //     return config;
-  //   },
-  //   function (error) {
-  //     return Promise.reject(error);
-  //   },
-  // );
-
-  // axios.interceptors.request.use(
-  //   function (config: any) {
-  //     const accessToken = cookie.get('accessToken');
-  //     const refreshToken = cookie.get('refreshToken');
-  //     if (!accessToken && refreshToken) {
-  //       config.headers.common['Authorization'] = `${accessToken}`;
-  //       config.headers.common['Refresh-Token'] = `${refreshToken}`;
-  //       console.log('hi');
-  //     }
-  //     return config;
-  //   },
-  //   function (error) {
-  //     return Promise.reject(error);
-  //   },
-  // );
-
   return (
     <>
       <Header />
-      {/* <button onClick={() => refresh()}>test</button> */}
       <S.Container>
         <S.Wrapper>
           <S.InputContainer>
@@ -233,7 +169,11 @@ export const SignIn = () => {
           <S.SignText>
             <S.IdCheck>
               <label>
-                <S.IdCheckInput type='checkbox' onChange={onIdChange} checked={saveId} />
+                <S.IdCheckInput
+                  type='checkbox'
+                  checked={saveIdChecked}
+                  onChange={() => onChangeSaveId()}
+                />
                 ID 저장하기
               </label>
             </S.IdCheck>
