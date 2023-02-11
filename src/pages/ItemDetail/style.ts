@@ -161,13 +161,14 @@ export const Description = styled.div`
   .ql-align-right {
     text-align: right;
   }
-  /* img {
-    width: 100%;
+  img {
+    /* object-fit: contain; */
+    max-width: 100%;
     height: auto;
-  } */
+  }
 `;
 export const DesGradation = styled.div`
-  width: 86rem;
+  width: 144rem;
   height: 16rem;
   position: absolute;
   background: linear-gradient(#ffffff 0%, rgba(255, 255, 255, 0) 100%, #ffffff 100%);
