@@ -2,10 +2,12 @@ import React, { useRef, useState } from 'react';
 import * as S from './style';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export const ViewedItem = () => {
   const [count, setCount] = useState(1);
   const [idx, setIdx] = useState([0, 1, 2]);
+  const [close, setClose] = useState(false);
   const navigate = useNavigate();
   const getString: any = localStorage.getItem('viewedItems');
   const viewedItems = useRef<any>(getString ? JSON.parse(getString) : []);
@@ -47,9 +49,12 @@ export const ViewedItem = () => {
   };
 
   return (
-    <S.Container style={{ display: viewedItems.current.length === 0 ? 'none' : '' }}>
+    <S.Container style={{ display: viewedItems.current.length === 0 || close ? 'none' : '' }}>
       <S.TitleArea>
         <S.Title>내가 본 상품</S.Title>
+        <S.closeBtnArea onClick={() => setClose(true)}>
+          <AiOutlineClose size='2rem' />
+        </S.closeBtnArea>
       </S.TitleArea>
       <S.ItemArea>
         {viewedItems.current[idx[0]] ? (
@@ -92,13 +97,13 @@ export const ViewedItem = () => {
       </S.ItemArea>
       <S.PageArea>
         <S.ArrowBox>
-          <AiOutlineLeft size='2.4rem' color='#ffffff' onClick={() => countMinus()} />
+          <AiOutlineLeft size='2rem' color='#ffffff' onClick={() => countMinus()} />
         </S.ArrowBox>
         <S.PageText>
           {count} / {totalPage.current}
         </S.PageText>
         <S.ArrowBox>
-          <AiOutlineRight size='2.4rem' color='#ffffff' onClick={() => countPlus()} />
+          <AiOutlineRight size='2rem' color='#ffffff' onClick={() => countPlus()} />
         </S.ArrowBox>
       </S.PageArea>
     </S.Container>
