@@ -38,12 +38,10 @@ export const SignIn = () => {
   const signIn = async () => {
     //엑세트토큰 쿠키만료시간
     const tokenExpires = new Date();
-    // tokenExpires.setMinutes(tokenExpires.getMinutes() + 180);
-    tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
     //리프레시토큰 쿠키만료시간
     const rtokenExpires = new Date();
-    // rtokenExpires.setMinutes(tokenExpires.getMinutes() + 360);
-    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
+    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
     try {
       await axios
         .post(
@@ -113,24 +111,6 @@ export const SignIn = () => {
     navigate('/sign-up1');
   };
 
-  //아이디저장
-  // const [saveId, setSaveId] = useState(false);
-  // useEffect(() => {
-  //   if (cookies.idSaved !== undefined) {
-  //     setId(cookies.idSaved);
-  //     setSaveId(true);
-  //   }
-  // }, []);
-
-  // const onIdChange = (e: any) => {
-  //   setSaveId(e.target.checked);
-  //   if (e.target.checked) {
-  //     // 아이디 저장 유효기간은 6달
-  //     setCookie('idSaved', id, { maxAge: 60 * 60 * 24 * 180 });
-  //   } else {
-  //     removeCookie('idSaved');
-  //   }
-  // };
   //아이디 비밀번호 찾기 모달창
   // const [isOpen, setIsOpen] = useState<boolean>(false);
   // const onOpen = () => {
