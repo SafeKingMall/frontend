@@ -81,9 +81,9 @@ export const Carts = () => {
         .fire({
           icon: 'question',
           title: `상품 종류: ${length}개
-          주문 상품 수: ${count.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}개
-          배송비: ${deliveryPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
-          최종 결제 금액: ${totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+          주문 상품 수: ${count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}개
+          배송비: ${deliveryPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          최종 결제 금액: ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
           `,
           text: '전체 상품을 구매하시겠습니까?',
           confirmButtonText: '확인',

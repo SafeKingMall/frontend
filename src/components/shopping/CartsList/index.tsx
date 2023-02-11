@@ -280,7 +280,7 @@ export const CartsList = (props: any) => {
                       {item.itemName}
                     </S.ItemNameText>
                     <S.ItemPriceText>
-                      {item.itemPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                      {item.itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
                     </S.ItemPriceText>
                   </S.ItemTextArea>
                 </S.ItemInfoArea>
@@ -291,7 +291,7 @@ export const CartsList = (props: any) => {
                   <p>
                     {(item.itemPrice * countList[idx])
                       .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     원
                   </p>
                 </S.ItemPriceArea>

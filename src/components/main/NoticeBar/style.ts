@@ -56,7 +56,7 @@ export const ArrowBox = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 25rem;
+  right: 19rem;
 `;
 export const ArrowIcon = styled.div`
   cursor: pointer;

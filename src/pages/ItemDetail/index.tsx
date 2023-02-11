@@ -302,7 +302,7 @@ export const ItemDetail = () => {
                   {itemData.viewPrice !== 1000000000
                     ? itemData.viewPrice
                       ?.toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
                     : '<가격관련 관리자 문의>'}
                 </S.Price>
               </S.PriceArea>
@@ -325,7 +325,7 @@ export const ItemDetail = () => {
                       <S.TotalPrice>
                         {(itemData.viewPrice * count)
                           .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         원
                       </S.TotalPrice>
                     </S.TotalPriceBox>

@@ -26,7 +26,7 @@ export const OrdersList = (props: any) => {
                     <S.CategoryText>{item.categoryName}</S.CategoryText>
                     <S.ItemNameText>{item.itemName}</S.ItemNameText>
                     <S.ItemPriceText>
-                      {item.itemPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                      {item.itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
                     </S.ItemPriceText>
                   </S.ItemTextArea>
                 </S.ItemInfoArea>
@@ -37,7 +37,7 @@ export const OrdersList = (props: any) => {
                   <p>
                     {(item.itemPrice * item.itemQuantity)
                       .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     원
                   </p>
                 </S.ItemPriceArea>

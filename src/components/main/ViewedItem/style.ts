@@ -13,10 +13,10 @@ export const Container = styled.div`
   border-radius: 5px 0px 0px 5px;
   box-shadow: 2px 4px 12px 4px rgba(0, 0, 0, 0.25);
   border: 0.1rem solid ${({ theme }) => theme.palette.green};
-  /* @media (max-width: 1919px) {
-    display: none;
-  } */
   opacity: 0.85;
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 export const TitleArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
