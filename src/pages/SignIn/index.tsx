@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 // import { Footer } from '../../components/common/Footer';
 // import { FindId } from '../../components/FindId';
 
 export const SignIn = () => {
   const navigate = useNavigate();
   const [, setCookie] = useCookies();
+  const swal = withReactContent(Swal);
   const cookie = new Cookies();
   const [saveIdChecked, setSaveIdChecked] = useState(cookie.get('savedId') ? true : false);
   const savedId = useRef(cookie.get('savedId'));
@@ -76,11 +79,31 @@ export const SignIn = () => {
             navigate('/');
           }
         });
-    } catch (e: any) {
-      if (e.response.data.code === 1400) {
-        alert('일치하는 회원정보가 없습니다.');
+    } catch (err: any) {
+      if (err.response.data.code === 1400) {
+        swal.fire({
+          icon: 'info',
+          text: '일치하는 회원정보가 없습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (err.response.data.code === 1401) {
+        swal.fire({
+          icon: 'info',
+          text: '휴면계정입니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
       } else {
-        alert(e.response.data.message);
+        swal.fire({
+          icon: 'warning',
+          text: err.response.data.message,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
       }
     }
   };
