@@ -22,13 +22,13 @@ export const TotalPrice = (props: any) => {
             <S.InfoTextArea>
               <S.InfoText>주문상품 수</S.InfoText>
               <S.InfoText>
-                {itemQuantity.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}개
+                {itemQuantity.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}개
               </S.InfoText>
             </S.InfoTextArea>
             <S.InfoTextArea>
               <S.InfoText>주문 금액</S.InfoText>
               <S.InfoText>
-                {itemPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                {itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
               </S.InfoText>
             </S.InfoTextArea>
             <S.InfoTextArea>
@@ -38,16 +38,14 @@ export const TotalPrice = (props: any) => {
             <S.InfoTextArea>
               <S.InfoText>배송비</S.InfoText>
               <S.InfoText>
-                {deliveryPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
+                {deliveryPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
               </S.InfoText>
             </S.InfoTextArea>
           </S.InfoTextWrap>
           <S.ResultPriceArea>
             <S.ResultPriceText>최종결제금액</S.ResultPriceText>
             <S.ResultPrice>
-              {itemPrice === 0
-                ? 0
-                : totalPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+              {itemPrice === 0 ? 0 : totalPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               <S.InfoText> 원</S.InfoText>
             </S.ResultPrice>
           </S.ResultPriceArea>

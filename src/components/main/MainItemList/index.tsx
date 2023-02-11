@@ -25,7 +25,7 @@ export const MainItemList = (props: any) => {
               <S.ItemName>{item.name}</S.ItemName>
               <S.Price>
                 {item.viewPrice !== 1000000000
-                  ? item.viewPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',') + '원'
+                  ? item.viewPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
                   : '금액표시없음'}
               </S.Price>
             </S.ItemContainer>

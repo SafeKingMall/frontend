@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
 import { Header } from '../../../components/common/Header';
 import * as S from './style';
@@ -239,7 +238,6 @@ export const SignUp3 = () => {
   return (
     <>
       <Header />
-      {/* <button onClick={test}>test</button> */}
       <S.Container>
         <S.Wrapper>
           <S.ProcessBar></S.ProcessBar>
