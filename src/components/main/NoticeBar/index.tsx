@@ -50,22 +50,24 @@ export const NoticeBar = () => {
       <S.NoticeContent>
         <S.LeftTextArea>
           <S.LeftText>공지사항</S.LeftText>
+          <S.LeftBar />
         </S.LeftTextArea>
-        <S.LeftBar />
         <S.TitleArea>
           <S.Title onClick={() => moveDetail(noticeList[count].id)}>
             {noticeList[count]?.title}
           </S.Title>
         </S.TitleArea>
-        <S.ArrowBox>
-          <S.ArrowArea onClick={() => preNotice()}>
-            <AiOutlineLeft color='#ffffff' />
-          </S.ArrowArea>
-          <S.ArrowBar />
-          <S.ArrowArea onClick={() => nextNotice()}>
-            <AiOutlineRight color='#ffffff' />
-          </S.ArrowArea>
-        </S.ArrowBox>
+        <S.ArrowArea>
+          <S.ArrowBox>
+            <S.ArrowIcon onClick={() => preNotice()}>
+              <AiOutlineLeft color='#ffffff' />
+            </S.ArrowIcon>
+            <S.ArrowBar />
+            <S.ArrowIcon onClick={() => nextNotice()}>
+              <AiOutlineRight color='#ffffff' />
+            </S.ArrowIcon>
+          </S.ArrowBox>
+        </S.ArrowArea>
       </S.NoticeContent>
     </S.NoticeBarWrap>
   );
