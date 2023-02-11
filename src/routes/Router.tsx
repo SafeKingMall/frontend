@@ -49,7 +49,7 @@ import {
 // 페이지내 메뉴가 있을 경우 케밥케이스사용(mypage-edit)
 const Router = () => {
   return (
-    <div className='App'>
+    <div className='app'>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/*' element={<NotFound />} />

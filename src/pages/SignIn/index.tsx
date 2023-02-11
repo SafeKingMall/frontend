@@ -7,7 +7,6 @@ import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-// import { Footer } from '../../components/common/Footer';
 // import { FindId } from '../../components/FindId';
 
 export const SignIn = () => {
@@ -177,7 +176,6 @@ export const SignIn = () => {
           </div>
         </S.Wrapper>
       </S.Container>
-      {/* <Footer /> */}
     </>
   );
 };

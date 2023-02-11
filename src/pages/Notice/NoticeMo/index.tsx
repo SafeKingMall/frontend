@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './style';
-import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
@@ -140,7 +139,6 @@ export const NoticeMo = () => {
           <S.NoticeButton2 onClick={() => putItemAlert()}>수정</S.NoticeButton2>
         </S.NoticeBox>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

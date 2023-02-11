@@ -4,6 +4,7 @@ import GlobalStyles from './styles/globalStyles';
 import theme from './styles/theme';
 import Router from './routes/Router';
 import { Refresh } from './components/common/hooks/Refresh';
+import { Footer } from './components/common/Footer';
 
 function App() {
   Refresh();
@@ -14,6 +15,7 @@ function App() {
       <div className='App'>
         <Router />
       </div>
+      <Footer />
     </ThemeProvider>
   );
 }

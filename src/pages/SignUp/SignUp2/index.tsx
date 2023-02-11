@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import * as S from './style';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -336,7 +335,6 @@ export const SignUp2 = () => {
           </S.BtnWrapper>
         </S.Wrapper>
       </S.Container>
-      <Footer />
     </>
   );
 };

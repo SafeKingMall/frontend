@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './style';
 import { QnAList } from '../../components/QnA/QnAList';
-import { Footer } from '../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 
@@ -23,7 +22,6 @@ export const QnA = () => {
           <S.QnAButton onClick={() => navigate('/qna-wr')}>글쓰기</S.QnAButton>
         </S.Container>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

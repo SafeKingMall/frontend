@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './style';
-import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
@@ -173,7 +172,6 @@ export const NoticeWr = () => {
           <S.NoticeButton2 onClick={() => registerAlert(reqData)}>등록</S.NoticeButton2>
         </S.NoticeBox>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

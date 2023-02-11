@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { Header } from '../../common/Header';
-import { Footer } from '../../common/Footer';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -356,7 +355,6 @@ export const Estimate = () => {
           </S.Form>
         </S.ContentWrap>
       </S.Wrap>
-      <Footer />
     </S.Container>
   );
 };

@@ -2,7 +2,6 @@
 import React from 'react';
 import * as S from './style';
 import { MyPageMenu } from '../../../../components/user/MyPageMenu';
-import { Footer } from '../../../../components/common/Footer';
 import { Header } from '../../../../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import { useMoney } from '../../../../components/common/hooks/useMoney';
@@ -234,7 +233,6 @@ export const MyPageOdDetail = () => {
           </S.QnABox>
         </S.Wrapper>
       </S.Container>
-      <Footer />
     </>
   );
 };

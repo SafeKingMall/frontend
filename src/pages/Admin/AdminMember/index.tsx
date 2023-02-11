@@ -5,7 +5,6 @@ import { EditMenu } from '../../../components/Edit/EditMenu';
 import { AdminMemberList } from '../../../components/Edit/AdimMemberList/AdminMemberList';
 import { AdimWdList } from '../../../components/Edit/AdimMemberList/AdminWdList';
 import { useState } from 'react';
-import { AdminFooter } from '../../../components/common/AdminFooter';
 
 export const AdminMember = () => {
   const [currentTab, setTab] = useState(0);
@@ -44,7 +43,6 @@ export const AdminMember = () => {
           </div>
         </S.Wrapper>
       </S.Container>
-      <AdminFooter />
     </div>
   );
 };

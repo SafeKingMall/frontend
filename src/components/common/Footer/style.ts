@@ -7,6 +7,9 @@ export const container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  bottom: 0;
+  /* transform: translateY(-100%); */
 `;
 export const LogoArea = styled.div`
   width: 35%;

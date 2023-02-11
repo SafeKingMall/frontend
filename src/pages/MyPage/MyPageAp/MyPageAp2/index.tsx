@@ -2,7 +2,6 @@
 import React from 'react';
 import * as S from './style';
 import { Header } from '../../../../components/common/Header';
-import { Footer } from '../../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -93,7 +92,6 @@ export const MyPageAp2 = () => {
                     </S.BtnWrapper>
                 </S.Wrapper>
             </S.ContentContainer>
-            <Footer />
         </S.Container>
     );
 }

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import { Agreement } from '../../../components/user/Agreement';
 import { PersonalInfo } from '../../../components/user/PersonalInfo';
@@ -147,7 +146,6 @@ export const SignUp4 = () => {
           </S.BtnWrapper>
         </S.Wrapper>
       </S.Container>
-      <Footer />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './style';
-import { AdminFooter } from '../../../../components/common/AdminFooter';
 import { Header } from '../../../../components/common/Header';
 import { EditMenu } from '../../../../components/Edit/EditMenu';
 import { useNavigate } from 'react-router-dom';
@@ -383,7 +382,6 @@ export const AdminOrderDe = () => {
           </S.QnABox>
         </S.Wrapper>
       </S.Container>
-      <AdminFooter />
     </div>
   );
 };

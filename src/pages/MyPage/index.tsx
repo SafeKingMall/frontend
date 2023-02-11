@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { MyPageMenu } from '../../components/user/MyPageMenu';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import DaumPostcode from 'react-daum-postcode';
@@ -403,7 +402,6 @@ export const MyPage = () => {
           </S.BtnWrap>
         </S.Wrapper>
       </S.Container>
-      <Footer />
       {isOpenPost && (
         <S.DaumPostBackground onClick={() => closeModal()}>
           <S.DaumPostDiv>

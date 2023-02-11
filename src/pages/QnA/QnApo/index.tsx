@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { Footer } from '../../../components/common/Footer';
 import { TfiLock } from 'react-icons/tfi';
 import { AiOutlineDownload } from 'react-icons/ai';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
@@ -247,7 +246,6 @@ export const QnAPo = () => {
         </S.PoBox>
         <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

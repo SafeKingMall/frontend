@@ -3,7 +3,6 @@ import * as S from './style';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 
@@ -52,7 +51,6 @@ export const OrderOk = () => {
           <S.GreenBtn onClick={() => navigate('/mypage-od')}>결제 내역보기</S.GreenBtn>
         </S.BtnArea>
       </S.ContentContainer>
-      <Footer />
     </S.Container>
   );
 };

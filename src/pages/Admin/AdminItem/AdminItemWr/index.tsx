@@ -12,7 +12,6 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
-import { AdminFooter } from '../../../../components/common/AdminFooter';
 
 const swal = withReactContent(Swal);
 
@@ -494,7 +493,6 @@ export const AdminItemWr = () => {
           </S.QnABox>
         </S.Wrapper>
       </S.Container>
-      <AdminFooter />
     </div>
   );
 };

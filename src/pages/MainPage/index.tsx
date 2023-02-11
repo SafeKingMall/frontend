@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import { MainBanner } from '../../components/main/MainBanner';
 import { NoticeBar } from '../../components/main/NoticeBar';
 import { MainCategory } from '../../components/main/MainCategory';
@@ -56,7 +55,6 @@ export const MainPage = () => {
         setSelectedCategory={setSelectedCategory}
       />
       <MainItemList itemList={itemList} />
-      <Footer />
     </S.Container>
   );
 };
