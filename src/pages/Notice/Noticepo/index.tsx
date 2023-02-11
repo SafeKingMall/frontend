@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { Footer } from '../../../components/common/Footer';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
@@ -198,7 +197,6 @@ export const NoticePo = () => {
         </S.PoBox>
         <S.NoticeButton onClick={() => navigate('/notice')}>목록</S.NoticeButton>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import React from 'react';
 import * as S from './style';
 import { Header } from '../../../components/common/Header';
 import { MyPageMenu } from '../../../components/user/MyPageMenu';
-import { Footer } from '../../../components/common/Footer';
 import { OrderList } from '../../../components/user/OrderList';
 
 export const MyPageOd = () => {
@@ -19,7 +18,6 @@ export const MyPageOd = () => {
           <OrderList />
         </S.Wrapper>
       </S.Container>
-      <Footer />
     </>
   );
 };

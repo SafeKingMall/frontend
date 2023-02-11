@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './style';
-import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { Header } from '../../../components/common/Header';
@@ -81,7 +80,6 @@ export const QnAPw = () => {
           <S.QnAButton2 onClick={() => inputPass(passWord)}>확인</S.QnAButton2>
         </S.QnABox>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

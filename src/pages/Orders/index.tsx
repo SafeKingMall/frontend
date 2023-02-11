@@ -7,7 +7,6 @@ import { PaymentInfo } from '../../components/shopping/PaymentInfo';
 import { TotalPrice } from '../../components/shopping/TotalPrice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -340,7 +339,6 @@ export const Orders = () => {
           <S.GreenBtn onClick={() => paymentBtnEvent()}>결제하기</S.GreenBtn>
         </S.BtnArea>
       </S.ContentContainer>
-      <Footer />
     </S.Container>
   );
 };

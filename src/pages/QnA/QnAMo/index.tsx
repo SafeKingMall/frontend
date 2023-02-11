@@ -3,7 +3,6 @@ import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
 import { useLocation } from 'react-router';
 
-import { Footer } from '../../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -393,7 +392,6 @@ export const QnAMo = () => {
           <S.QnAButton2 onClick={() => registAlert()}>수정</S.QnAButton2>
         </S.QnABox>
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

@@ -7,7 +7,6 @@ import { TotalPrice } from '../../components/shopping/TotalPrice';
 import { NoCartsItem } from '../../components/shopping/NoCartsItem';
 import axios from 'axios';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
@@ -125,7 +124,6 @@ export const Carts = () => {
       <S.Container>
         <Header />
         <NoCartsItem />
-        {/* <Footer /> */}
       </S.Container>
     ) : (
       <S.Container>
@@ -138,7 +136,6 @@ export const Carts = () => {
           <S.WhiteBtn onClick={() => selectPurchase()}>선택상품구매</S.WhiteBtn>
           <S.GreenBtn onClick={() => allPurchase()}>전체상품구매</S.GreenBtn>
         </S.BtnContainer>
-        <Footer />
       </S.Container>
     );
   return itemInCart;

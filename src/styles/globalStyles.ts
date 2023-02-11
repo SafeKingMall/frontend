@@ -13,7 +13,17 @@ export default createGlobalStyle`
   } */
 }
 html {
+  height: 100%;
   font-size: 62.5%;
+}
+body {
+  height: 100%;
+}
+#root {
+  height: 100%;
+}
+.App {
+  min-height: calc(100% - 20rem)
 }
 button {
   border: none;

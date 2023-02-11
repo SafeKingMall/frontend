@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './style';
 import { NoticeList } from '../../components/notice/NoticeList';
-import { Footer } from '../../components/common/Footer';
 // import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 
@@ -18,7 +17,6 @@ export const Notice = () => {
         <NoticeList />
         {/* <S.NoticeButton onClick={() => navigate('/notice-wr')}>글쓰기</S.NoticeButton> */}
       </S.Wrapper>
-      <Footer />
     </div>
   );
 };

@@ -13,10 +13,10 @@ export const Refresh = () => {
       if (!accessToken && refreshToken) {
         //엑세트토큰 쿠키만료시간
         const tokenExpires = new Date();
-        tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
+        tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
         //리프레시토큰 쿠키만료시간
         const rtokenExpires = new Date();
-        rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
+        rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
         await fetch(`${process.env.REACT_APP_API_URL}/refresh`, {
           headers: {
             'refresh-token': refreshToken,

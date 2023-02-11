@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
-import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
@@ -324,7 +323,6 @@ export const SignUp3 = () => {
           </S.BtnWrapper>
         </S.Wrapper>
       </S.Container>
-      <Footer />
       {isOpenPost && (
         <S.DaumPostBackground onClick={() => closeModal()}>
           <S.DaumPostDiv>

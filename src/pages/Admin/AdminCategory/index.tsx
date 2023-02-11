@@ -3,7 +3,6 @@ import * as S from './style';
 import { EditMenu } from '../../../components/Edit/EditMenu';
 import { Header } from '../../../components/common/Header';
 import { AdimCgList } from '../../../components/Edit/AdminCgList';
-import { AdminFooter } from '../../../components/common/AdminFooter';
 // import axios from 'axios';
 
 export const AdminCategory = () => {
@@ -16,7 +15,6 @@ export const AdminCategory = () => {
           <AdimCgList />
         </S.Wrapper>
       </S.Container>
-      <AdminFooter />
     </div>
   );
 };

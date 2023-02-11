@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Footer } from '../../components/common/Footer';
 import { Header } from '../../components/common/Header';
 import * as S from './style';
 
@@ -16,7 +15,6 @@ export const NotFound = () => {
         <button onClick={() => navigate(-1)}>뒤로가기</button>
         <button onClick={() => navigate('/')}>메인으로</button>
       </S.Wrapper>
-      <Footer />
     </>
   );
 };

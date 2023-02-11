@@ -9,7 +9,6 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
 import { Header } from '../../components/common/Header';
-import { Footer } from '../../components/common/Footer';
 import { Cookies } from 'react-cookie';
 import history from '../../history';
 import { TailSpin } from 'react-loader-spinner';
@@ -379,7 +378,6 @@ export const ItemDetail = () => {
           </S.ShowDesBtn>
         </S.ShowDesBtnContainer>
       </S.DesWrap>
-      <Footer />
     </S.Container>
   );
 };

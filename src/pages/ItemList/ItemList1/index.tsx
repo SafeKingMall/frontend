@@ -5,7 +5,6 @@ import axios from 'axios';
 import { List } from '../../../components/item/List';
 import { Search } from '../../../components/item/Search';
 import { Header } from '../../../components/common/Header';
-import { Footer } from '../../../components/common/Footer';
 import { TailSpin } from 'react-loader-spinner';
 
 export const ItemList1 = () => {
@@ -120,7 +119,6 @@ export const ItemList1 = () => {
         searchWord={searchWord}
       />
       {loadingData()}
-      <Footer />
     </S.Container>
   );
 };

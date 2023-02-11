@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
@@ -281,7 +280,6 @@ export const SignUp1 = () => {
           </S.BtnWrapper>
         </S.Wrapper>
       </S.ContentContainer>
-      <Footer />
     </S.Container>
   );
 };

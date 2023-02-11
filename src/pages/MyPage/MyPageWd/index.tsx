@@ -2,7 +2,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
-import { Footer } from '../../../components/common/Footer';
 import { Header } from '../../../components/common/Header';
 import { MyPageMenu } from '../../../components/user/MyPageMenu';
 import { WithdrawInfo } from '../../../components/user/WithdrawInfo';
@@ -146,7 +145,6 @@ export const MyPageWd = () => {
           </S.AreaWrap>
         </S.Wrapper>
       </S.Container>
-      <Footer />
     </>
   );
 };
