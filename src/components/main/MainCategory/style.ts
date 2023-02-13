@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 5rem;
+  /* padding: 0 5rem; */
 `;
 export const CategoryWrap = styled.div`
   width: 144rem;
