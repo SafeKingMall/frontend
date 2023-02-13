@@ -182,6 +182,7 @@ export const MyPage = () => {
           setZip(res.data.zipcode);
           setBasic(res.data.basicAddress);
           setDetail(res.data.detailedAddress);
+          console.log('getUser');
         });
     } catch (err: any) {
       navigate('/sign-in');
