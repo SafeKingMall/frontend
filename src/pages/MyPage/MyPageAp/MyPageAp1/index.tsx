@@ -55,7 +55,6 @@ export const MyPageAp1 = () => {
                     Authorization: jwt,
                 },
             }).then((res) => {
-                console.log(res);
                 setOrder(res.data.order);
                 setOrderItem(res.data.order.order_item);
                 setPayInfor(res.data.payment);
