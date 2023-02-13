@@ -17,10 +17,26 @@ export const Top = styled.div`
 
   color: #000000;
 `;
+
+export const Ladius = styled.div`
+  border-radius: 50%;
+  background-color: #a9d6b9;
+  width: 14.8rem;
+  height: 14.8rem;
+  margin-top: 4.2rem;
+  margin-bottom: 4.8rem;
+  margin-left: 22rem;
+
+  svg {
+    margin-top: 2rem;
+    margin-left: 2.3rem;
+  }
+`;
+
 export const InputContainer = styled.div`
   background-color: #fff;
   width: 59.2rem;
-  height: 26.4rem;
+  height: 9.4rem;
   border: 1px solid #efeff1;
   /* border: 0.1rem solid #fff; */
   border-radius: 1rem;
@@ -97,7 +113,7 @@ export const InputWrapper = styled.div`
     bottom: 0;
     width: 0.1rem;
     background-color: #efeff1;
-    width: 63.8rem;
+    width: 59.2rem;
     height: 0.1rem;
   }
 `;
@@ -139,7 +155,7 @@ export const ErrMsg = styled.span`
   left: 17.4rem;
 `;
 export const SearchBtn = styled.button`
-  margin: 4.8rem 0 4.8rem 0;
+  margin: 4.8rem 0 0 0;
   background-color: #289951;
   width: 312px;
   height: 80px;
@@ -183,7 +199,7 @@ export const TextWrapper = styled.div`
   }
 `;
 export const LoginBtn = styled.div`
-  margin-top: 4.8rem;
+  margin-top: 0.8rem;
   /* margin-bottom: 12rem; */
   width: 59.2rem;
   /* border: 0.1rem solid #000; */

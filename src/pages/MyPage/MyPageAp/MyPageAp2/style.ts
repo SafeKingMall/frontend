@@ -11,10 +11,8 @@ export const Wrapper = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 144rem;
-  /* height: 109.6rem; */
   margin-bottom: 12rem;
 `;
 
@@ -40,7 +38,6 @@ export const Mid = styled.div`
   p {
     color: ${({ theme }) => theme.palette.green};
     font-size: 2.4rem;
-    weight: 700;
   }
 `;
 
@@ -53,49 +50,66 @@ export const InputContainer = styled.div`
     font-size: 2.4rem;
     padding-bottom: 1.2rem;
     /* width: 144rem; */
+    margin-bottom: 2rem;
   }
 `;
 
+//체크박스
 export const RefundReason = styled.div`
   padding: 3.1rem 5rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  div {
-    display: flex;
-    font-size: 2.4rem;
-    padding: 1.2rem 0rem;
-  }
+
   input[type='checkbox'] {
-    border-radius: 50%;
-    border: 1px solid ${({ theme }) => theme.palette.lightgray};
     appearance: none;
-    width: 2.4rem;
-    height: 2.4rem;
-    margin-right: 2.4rem;
+    border: 0.3rem solid gainsboro;
+    border-radius: 0.35rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 5rem;
+
+    :checked {
+      border-color: transparent;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+      background-size: 100% 100%;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-color: ${({ theme }) => theme.palette.green};
+    }
   }
+
+  label {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 2rem 0rem;
+  }
+
+  p {
+    margin-left: 1rem;
+    font-size: 2.4rem;
+  }
+
   input[type='text'] {
+    margin-left: 1rem;
+    font-size: 2rem;
     width: 129.2rem;
     height: 4rem;
     border: 1px solid ${({ theme }) => theme.palette.lightgray};
     ::placeholder {
+      padding: 0.5rem;
       color: ${({ theme }) => theme.palette.txtgray};
     }
   }
 `;
 
-// export const InputText = styled.input`
-//   border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-// `;
-
 export const BtnWrapper = styled.div`
   margin-top: 4.8rem;
-  /* margin-bottom: 12rem; */
   width: 64rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   > button {
     background-color: #fff;
-    /* border: 0.1rem solid #000; */
     border-radius: 10rem;
     width: 31.2rem;
     height: 8rem;
@@ -107,7 +121,6 @@ export const BtnWrapper = styled.div`
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
-      /* identical to box height */
 
       color: #289951;
     }

@@ -4,9 +4,11 @@ import * as S from './style';
 import { Header } from '../../../../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 
 export const MyPageAp3 = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
 
 
     return (
@@ -23,7 +25,7 @@ export const MyPageAp3 = () => {
                         </S.Mid>
                         <S.Last>
                             <p>
-                                특정
+                                {state.refundItem}
                             </p>
                             <p>상품이 환불 요청되었습니다. </p>
                         </S.Last>

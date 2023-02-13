@@ -135,7 +135,9 @@ export const MyPageOdDetail = () => {
           </tr>
           <tr>
             <th>입금자명</th>
-            <td>{memberInfo.name}</td>
+            <td>
+              {/* {memberInfo.name} */}
+            </td>
             <th>카드사</th>
             <td>{payInfor.card_company || ''}</td>
           </tr>

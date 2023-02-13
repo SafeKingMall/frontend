@@ -292,6 +292,7 @@ export const AdminItemWr = () => {
         });
     }
   };
+
   //등록 api
   const registerApi = async () => {
     if (selectedFiles === null) {
@@ -318,9 +319,9 @@ export const AdminItemWr = () => {
           viewYn: sendhide,
         },
       }).then((res) => {
-        navigate('/admin-item-po', {
+        navigate('/itemdetail', {
           state: {
-            data: res.data,
+            itemId: res.data,
           },
         });
       });
@@ -371,9 +372,9 @@ export const AdminItemWr = () => {
       },
       data: formData,
     }).then((res) => {
-      navigate('/admin-item-po', {
+      navigate('/itemdetail', {
         state: {
-          data: id,
+          itemId: res.data,
         },
       });
     });

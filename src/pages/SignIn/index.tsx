@@ -7,7 +7,7 @@ import { useCookies, Cookies } from 'react-cookie';
 import { Header } from '../../components/common/Header';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-// import { FindId } from '../../components/FindId';
+import { SearchUser } from '../../components/modal/SearchUser';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -111,10 +111,10 @@ export const SignIn = () => {
   };
 
   //아이디 비밀번호 찾기 모달창
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const onOpen = () => {
-  //   setIsOpen(!isOpen);
-  // };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const onOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
@@ -157,10 +157,8 @@ export const SignIn = () => {
               </label>
             </S.IdCheck>
             <S.Span>
-              {/* <S.SpanList onClick={onOpen}> 아이디 / 비밀번호 찾기</S.SpanList> */}
-              {/* {isOpen && (
-                <FindId onOpen={onOpen} />
-              )} */}
+              <S.SpanList onClick={onOpen}> 아이디 / 비밀번호 찾기</S.SpanList>
+              {isOpen && <SearchUser onOpen={onOpen} setIsOpen={setIsOpen} />}
 
               <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>
             </S.Span>
