@@ -21,6 +21,14 @@ export const OrderList = (props: any) => {
         });
     };
 
+    const moveMypageAp = (item: any) => {
+        navigate('/mypage-ap1', {
+            state: {
+                data: item,
+            },
+        });
+    };
+
     const [itemList, setItemList] = useState([]);
     const [sort] = useState(`sort=date,desc`);
     // 페이지 숫자
@@ -63,7 +71,6 @@ export const OrderList = (props: any) => {
                     Authorization: jwt,
                 },
             }).then((res) => {
-                console.log(res)
                 setItemList(res.data.orders);
                 setTotalPages(res.data.total_elements);
                 setListLength(res.data.total_elements);
@@ -95,7 +102,7 @@ export const OrderList = (props: any) => {
                                                 : '배송취소'}
                                 </div>
                                 <div>
-                                    <S.RefundBtn onClick={() => navigate('/mypage-ap1')}>요청하기</S.RefundBtn>
+                                    <S.RefundBtn onClick={() => moveMypageAp(el.id)}>요청하기</S.RefundBtn>
 
                                 </div>
                             </S.Container>

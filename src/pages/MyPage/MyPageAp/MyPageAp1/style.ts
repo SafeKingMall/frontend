@@ -126,6 +126,10 @@ export const Table2 = styled.table`
   }
 `;
 
+export const ImgFlex = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+`;
+
 export const Table = styled.table`
   width: 144rem;
   font-size: 2rem;

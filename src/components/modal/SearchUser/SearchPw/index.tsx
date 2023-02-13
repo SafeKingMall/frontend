@@ -1,25 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
+import { CiLock } from 'react-icons/ci';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 interface SearchPwForm {
   id: string;
-  email: string;
-  code: string;
+
 }
 export const SearchPw = () => {
-  //아이디 이메일 인증번호
+  const swal = withReactContent(Swal);
+  //아이디 
   const [id, setId] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   //유효성 검사
   const [isId, setIsId] = useState<boolean>(false);
-  const [isEmail, setIsEmail] = useState<boolean>(false);
-  const [isCode, setIsCode] = useState<boolean>(false);
+  // const [isCode, setIsCode] = useState<boolean>(false);
   //에러메세지
   const [idMsg, setIdMsg] = useState<string>('');
-  const [emailMsg, setEmailMsg] = useState<string>('');
-  //결과창
-  const [result, setResult] = useState<boolean>(false);
+  //타이머
+  const [timer, setTimer] = useState(false);
+  // const [minutes, set]
+
 
   //아이디
   const onId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,109 +49,89 @@ export const SearchPw = () => {
       setIsId(true);
     }
   };
-  //이메일
-  const onEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const emailCurrent = e.target.value;
-    setEmail(emailCurrent);
-    const eRegex =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-    if (emailCurrent === '') {
-      setEmailMsg('이메일을 입력해주세요');
-      setIsEmail(false);
-    } else if (!eRegex.test(emailCurrent)) {
-      setEmailMsg(`'Safeking@naver.com'의 형식으로 입력해주세요`);
-      setIsEmail(false);
-    } else {
-      setEmailMsg('');
-      setIsEmail(true);
-    }
-  };
+  const [disTrue, setDisTrue] = useState(true);
+
+
+
+  //30분 시간 뒤에
+  const thirdTimer = async () => {
+    await setDisTrue(false)
+    await setTimeout(() =>
+      setDisTrue(!disTrue), 30000)
+  }
+
   //disabled btn
-  const disabled = !(isId && isEmail && isCode);
-  //아이디 찾기
-  const onSearchPw = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const disabled = !(isId);
+  //비밀번호 찾기
+  const onSearchPw = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log('searchId');
-    setResult(true);
-  };
+    try {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/temporaryPassword`,
+        data: {
+          "username": id,
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+          swal.fire({
+            icon: 'success',
+            text: '임시비밀번호가 발급되었습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        }
+      });
+    } catch (err: any) {
+      swal.fire({
+        icon: 'warning',
+        text: err.response.data.message,
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    };
+  }
+
+  const submitBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onSearchPw(e)
+    setDisTrue(false)
+    setTimeout(() =>
+      setDisTrue(true), 30000)
+  }
+
   return (
     <>
       <S.Wrapper>
         <S.Top>
-          회원가입에 등록한 이메일을 통해
-          <br /> 회원님의 비밀번호를 찾을 수 있습니다.
+          회원가입에 등록한 휴대전화번호로
+          <br /> 임시 비밀번호가 발급받을 수 있습니다.
         </S.Top>
         <form>
+          <S.Ladius>
+            <CiLock size='100' color='white' fontWeight='900' />
+          </S.Ladius>
           <S.InputContainer>
             <S.InputWrapper>
               <label>아이디</label>
-              <input placeholder='safeking123' onChange={onId} />
+              <input placeholder='아이디를 입력해주세요.' onChange={onId} />
               <S.ErrMsg>{idMsg}</S.ErrMsg>
-              {/* {isIdCheck ? (
-                  <button style={idDisabled} onClick={onIdCheck}>
-                    확인
-                  </button>
-                ) : (
-                  <button>확인2</button>
-                )} */}
-
-              {/* // <S.ErrMsg>{idMsg}</S.ErrMsg> */}
-              {/* <div>
-                  {isIdCheck ? (
-                    <AiOutlineCheckCircle style={{ color: '#289951' }} />
-                  ) : (
-                    <AiOutlineCheckCircle />
-                  )}
-                </div> */}
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>이메일</label>
-              <input
-                placeholder='safeking@naver.com'
-                onChange={onEmail}
-                // onChange={onPw}
-              />
-              <S.SendBtn>인증메일 발송</S.SendBtn>
-              <S.ErrMsg>{emailMsg}</S.ErrMsg>
-              {/* <S.ErrMsg>{passwordMsg}</S.ErrMsg>
-                <p>{isPassword ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}</p> */}
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>인증번호</label>
-              <input
-                placeholder='1234'
-                autoComplete='off'
-                // onChange={onPwCheck}
-              />
-              <S.chekcBtn>
-                {/* // style={idDisabled} onClick={onIdCheck} */}
-                확인
-              </S.chekcBtn>
-              {/* <S.ErrMsg>{passwordCheckMsg}</S.ErrMsg>
-                <p>{isPasswordCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}</p> */}
             </S.InputWrapper>
           </S.InputContainer>
         </form>
-        <S.SearchBtn disabled={disabled} onClick={onSearchPw}>
-          비밀번호 찾기
-        </S.SearchBtn>
-        {result ? (
-          <S.Result>
-            <S.TextWrapper>
-              <div>userId</div>
-              <div>
-                회원님의 임시 비밀번호입니다.
-                <br /> 로그인 후 반드시,
-                <br /> 비밀번호를 변경해주세요.
-              </div>
-            </S.TextWrapper>
-            <S.LoginBtn>로그인하기</S.LoginBtn>
-          </S.Result>
-        ) : (
-          ''
-        )}
+        {disTrue ? <S.SearchBtn disabled={disabled} onClick={(e) => submitBtn(e)}>
+          임시 비밀번호 발급
+        </S.SearchBtn> :
+          <S.SearchBtn disabled>
+            임시 비밀번호 발급
+          </S.SearchBtn>
+        }
+
+
+        <S.LoginBtn>로그인하기</S.LoginBtn>
+
       </S.Wrapper>
     </>
   );

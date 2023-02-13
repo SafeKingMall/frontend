@@ -231,7 +231,11 @@ export const AdminItemPo = () => {
           viewYn: hideBtn === false ? 'N' : 'Y',
         },
       }).then((res) => {
-        navigate('/admin-item');
+        navigate('/itemdetail', {
+          state: {
+            itemId: itemId,
+          },
+        });
       });
     } else {
       await axios({
@@ -278,7 +282,11 @@ export const AdminItemPo = () => {
       },
       data: formData,
     }).then((res) => {
-      navigate('/admin-item');
+      navigate('/itemdetail', {
+        state: {
+          itemId: itemId,
+        },
+      });
     });
   };
 
