@@ -56,6 +56,8 @@ export const AdminItemPo = () => {
   const [hideBtn, setHideBtn] = useState(true);
   //에디터용 type
   const [adminItem] = useState('adminItem');
+  //새로운 파일
+  const [getFileName, setGetFileName] = useState('' as any);
   //파일 삭제 id
   // const [
   //   // deleteId,
@@ -93,7 +95,7 @@ export const AdminItemPo = () => {
         setCateSelect(res.data.categoryName);
         setDescriptEdit(res.data.description);
 
-        setSelectedFiles(res.data.fileName);
+        setGetFileName(res.data.fileName);
         setHideBtn(res.data.viewYn === 'N' ? false : true);
       });
     };
@@ -165,15 +167,17 @@ export const AdminItemPo = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-    } else if (quantityNum === '' || quantityNum === '0') {
-      swal.fire({
-        icon: 'warning',
-        text: '상품수량을 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (descriptEdit === '') {
+    }
+    // else if (quantityNum === '' || quantityNum === '0') {
+    //   swal.fire({
+    //     icon: 'warning',
+    //     text: '상품수량을 입력해주세요.',
+    //     confirmButtonText: '확인',
+    //     confirmButtonColor: '#289951',
+    //     width: 400,
+    //   });
+    // }
+    else if (descriptEdit === '') {
       swal.fire({
         icon: 'warning',
         text: '상품설명을 입력해주세요.',
@@ -273,19 +277,28 @@ export const AdminItemPo = () => {
     }
     formData.append('itemId', id);
 
-    axios({
-      method: 'POST',
+    await axios({
+      method: 'delete',
       url: `${process.env.REACT_APP_API_URL}/admin/itemPhoto/${id}`,
       headers: {
         Authorization: jwt,
         'Content-Type': 'multipart/form-data',
       },
-      data: formData,
     }).then((res) => {
-      navigate('/itemdetail', {
-        state: {
-          itemId: itemId,
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_URL}/admin/itemPhoto/${id}`,
+        headers: {
+          Authorization: jwt,
+          'Content-Type': 'multipart/form-data',
         },
+        data: formData,
+      }).then((res) => {
+        navigate('/itemdetail', {
+          state: {
+            itemId: itemId,
+          },
+        });
       });
     });
   };
@@ -330,8 +343,24 @@ export const AdminItemPo = () => {
   //   }
   // };
 
+  //getFileName
+  // const onDeleteFile = () => {
+  //   return setGetFileName('');
+  // };
+  //받아온 파일 삭제하기
+  // const attachFile2 = () => {
+  //   return (
+  //     <S.DivImg>
+  //       <div>{getFileName}</div>
+  //       <button onClick={() => onDeleteFile()}>
+  //         <VscClose size='30' />
+  //       </button>
+  //     </S.DivImg>
+  //   );
+  // };
+
   const attachFile =
-    selectedImages &&
+    // selectedImages &&
     selectedImages.map((image: any) => {
       return (
         <S.DivImg key={image}>
@@ -484,12 +513,22 @@ export const AdminItemPo = () => {
                   개{quantityNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
                 </td>
               </tr>
+
               <tr>
                 <td>썸네일 이미지</td>
                 <td colSpan={3}>
                   <S.TableDiv>
-                    {selectedImages.length !== 0 ? (
-                      <div>{attachFile}</div>
+                    {selectedImages.length !== 0 || getFileName !== '' ? (
+                      getFileName !== '' ? (
+                        <S.DivImg>
+                          <div>{getFileName}</div>
+                          <button onClick={() => setGetFileName('')}>
+                            <VscClose size='30' />
+                          </button>
+                        </S.DivImg>
+                      ) : (
+                        <div>{attachFile}</div>
+                      )
                     ) : (
                       <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
                     )}

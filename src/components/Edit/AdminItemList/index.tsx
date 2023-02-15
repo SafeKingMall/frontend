@@ -67,54 +67,54 @@ export const AdminItemList = (props: any) => {
     getData();
   }, [sort, searchItem, size, page, categoryName, jwt]);
 
-  //삭제 알림창
-  const deleteItemAlert = (itemId: number, name: string) => {
-    swal
-      .fire({
-        icon: 'question',
-        text: `${name} 상품을 삭제하시겠습니까? 
-        삭제하면 복구가 불가능합니다. `,
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          deleteApi(itemId);
-          swal.fire({
-            icon: 'success',
-            text: `${name} 상품이 삭제되었습니다.`,
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
-      });
-  };
+  // //삭제 알림창
+  // const deleteItemAlert = (itemId: number, name: string) => {
+  //   swal
+  //     .fire({
+  //       icon: 'question',
+  //       text: `${name} 상품을 삭제하시겠습니까?
+  //       삭제하면 복구가 불가능합니다. `,
+  //       confirmButtonText: '확인',
+  //       confirmButtonColor: '#289951',
+  //       showCancelButton: true,
+  //       cancelButtonText: '취소',
+  //       width: 400,
+  //     })
+  //     .then((result) => {
+  //       if (result.isConfirmed) {
+  //         deleteApi(itemId);
+  //         swal.fire({
+  //           icon: 'success',
+  //           text: `${name} 상품이 삭제되었습니다.`,
+  //           confirmButtonText: '확인',
+  //           confirmButtonColor: '#289951',
+  //           width: 400,
+  //         });
+  //       }
+  //     });
+  // };
 
-  //삭제api
-  const deleteApi = async (itemId: any) => {
-    await axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}/admin/item/${itemId}`,
-      headers: {
-        Authorization: jwt,
-      },
-    });
+  // //삭제api
+  // const deleteApi = async (itemId: any) => {
+  //   await axios({
+  //     method: 'delete',
+  //     url: `${process.env.REACT_APP_API_URL}/admin/item/${itemId}`,
+  //     headers: {
+  //       Authorization: jwt,
+  //     },
+  //   });
 
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/admin/item/list?size=${size}&page=${page}&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      setItemList(res.data.content);
-      setTotalPages(res.data.totalElements);
-    });
-  };
+  //   await axios({
+  //     method: 'get',
+  //     url: `${process.env.REACT_APP_API_URL}/admin/item/list?size=${size}&page=${page}&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
+  //     headers: {
+  //       Authorization: jwt,
+  //     },
+  //   }).then((res) => {
+  //     setItemList(res.data.content);
+  //     setTotalPages(res.data.totalElements);
+  //   });
+  // };
 
   const DataList2 = (data: any) => {
     return (
@@ -126,8 +126,8 @@ export const AdminItemList = (props: any) => {
                 <div onClick={() => moveItemDetail(el)}>{el.id}</div>
                 <div onClick={() => moveItemDetail(el)}>{el.name}</div>
                 <div onClick={() => moveItemDetail(el)}>{el.categoryName}</div>
-                <S.AdminButton2 onClick={() => moveAdminItemPo(el)}>수정</S.AdminButton2>
-                <S.AdminButton onClick={() => deleteItemAlert(el.id, el.name)}>삭제</S.AdminButton>
+                <S.AdminButton onClick={() => moveAdminItemPo(el)}>수정</S.AdminButton>
+                {/* <S.AdminButton onClick={() => deleteItemAlert(el.id, el.name)}>삭제</S.AdminButton> */}
               </S.Container>
             );
           })

@@ -91,6 +91,7 @@ export const AdminButton = styled.button`
   font-size: 1.6rem;
   width: 6.4rem;
   height: 4rem;
+  margin-left: 7.5rem;
   align-items: center;
   border: 0.1rem solid ${({ theme }) => theme.palette.green};
 `;

@@ -16,7 +16,7 @@ export const NoticeList = (props: any) => {
   const navigate = useNavigate();
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
-  const admin = cookies.get('admin');
+  const loginUser = cookies.get('loginUser');
 
   // 들어온 데이터 넣는것
   const [itemList, setItemList] = useState([]);
@@ -166,7 +166,11 @@ export const NoticeList = (props: any) => {
           totalPages={totalPages}
         />
       </div>
-      {admin ? <S.NoticeButton onClick={() => moveNoticewr()}>글쓰기</S.NoticeButton> : ''}
+      {loginUser === 'admin' ? (
+        <S.NoticeButton onClick={() => moveNoticewr()}>글쓰기</S.NoticeButton>
+      ) : (
+        ''
+      )}
     </S.Wrapper>
   );
   // }

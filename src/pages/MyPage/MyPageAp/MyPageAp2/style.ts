@@ -58,11 +58,17 @@ export const InputContainer = styled.div`
 export const RefundReason = styled.div`
   padding: 3.1rem 5rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  label {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 2rem 0rem;
+  }
 
   input[type='checkbox'] {
     appearance: none;
     border: 0.3rem solid gainsboro;
-    border-radius: 0.35rem;
+    /* border-radius: 0.35rem; */
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 5rem;
@@ -75,13 +81,6 @@ export const RefundReason = styled.div`
       background-repeat: no-repeat;
       background-color: ${({ theme }) => theme.palette.green};
     }
-  }
-
-  label {
-    display: flex;
-    align-items: center;
-    user-select: none;
-    padding: 2rem 0rem;
   }
 
   p {

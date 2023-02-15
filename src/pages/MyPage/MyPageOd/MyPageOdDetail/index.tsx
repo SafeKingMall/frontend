@@ -131,21 +131,21 @@ export const MyPageOdDetail = () => {
             <th>결제방식</th>
             <td>{payInfor.pay_method || ''}</td>
             <th>결제금액</th>
-            <td>{MoneyNumber(data1.price) || ''}</td>
+            <td>{MoneyNumber(payInfor.amount) || ''}</td>
           </tr>
           <tr>
             <th>입금자명</th>
             <td>
-              {/* {memberInfo.name} */}
+              {payInfor.buyer_name}
             </td>
             <th>카드사</th>
             <td>{payInfor.card_company || ''}</td>
           </tr>
           <tr>
             <th>현금영수증방식</th>
-            <td>{''}</td>
+            <td>{payInfor.cash_receipt_method}</td>
             <th>사업자 번호</th>
-            <td>{''}</td>
+            <td>{payInfor.business_license_number}</td>
           </tr>
         </tbody>
       </S.Table>
@@ -167,7 +167,7 @@ export const MyPageOdDetail = () => {
 
               <div>
                 <h4> 주문 번호 |&nbsp;</h4>
-                <span>{data1.id || ''}</span>
+                <span>{data1.merchant_uid || ''}</span>
               </div>
               <div>
                 <h4> 주문 일시 |&nbsp;</h4>

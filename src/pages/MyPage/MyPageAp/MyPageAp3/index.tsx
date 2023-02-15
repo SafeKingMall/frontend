@@ -11,6 +11,14 @@ export const MyPageAp3 = () => {
     const { state } = useLocation();
 
 
+    const moveRefundDe = () => {
+        navigate('/mypage-rf-detail', {
+            state: {
+                data: state.orderId
+            }
+        })
+    }
+
     return (
         <S.Container>
             <Header />
@@ -25,14 +33,15 @@ export const MyPageAp3 = () => {
                         </S.Mid>
                         <S.Last>
                             <p>
-                                {state.refundItem}
+                                {state.orderDate}에 주문하신
                             </p>
-                            <p>상품이 환불 요청되었습니다. </p>
+
+                            <div><p>[{state.refundItem}] &nbsp;</p> <p>상품이 환불 요청되었습니다.</p> </div>
                         </S.Last>
                     </S.InputContainer>
                     <S.BtnWrapper>
-                        <button onClick={() => navigate('/mypage-ap2')}>이전 단계</button>
-                        <button >
+                        {/* <button onClick={() => navigate('/mypage-ap2')}>이전 단계</button> */}
+                        <button onClick={moveRefundDe}>
                             취소내역보기
                         </button>
                     </S.BtnWrapper>
