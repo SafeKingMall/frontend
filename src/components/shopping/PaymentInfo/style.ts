@@ -78,7 +78,6 @@ export const BankTransferPath2 = styled(BankTransferPath1)`
 `;
 export const PaymentDesArea = styled.div`
   width: 100%;
-  height: 11.5rem;
   margin-bottom: 4rem;
   padding-left: 2.4rem;
   padding-bottom: 2.4rem;
@@ -86,6 +85,7 @@ export const PaymentDesArea = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  line-height: 2.2rem;
 `;
 export const PaymentDes = styled.p`
   font-size: 1.6rem;

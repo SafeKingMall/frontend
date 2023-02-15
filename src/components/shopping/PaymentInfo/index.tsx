@@ -1,8 +1,11 @@
+/* eslint-disable */
 import React from 'react';
 import * as S from './style';
 import { GoCreditCard } from 'react-icons/go';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { SiNaver } from 'react-icons/si';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const greenColor = '#289951';
 const grayColor = '#999999';
@@ -12,10 +15,20 @@ const btnActive = {
 };
 
 export const PaymentInfo = (props: any) => {
+  const swal = withReactContent(Swal);
   const paymentState = props.paymentState;
   const setPaymentState = props.setPaymentState;
   const changePayment = (value: string) => {
     setPaymentState(value);
+  };
+  const alertInfo = () => {
+    swal.fire({
+      icon: 'info',
+      text: '현재는 신용카드만 이용이 가능합니다.',
+      confirmButtonText: '확인',
+      confirmButtonColor: '#289951',
+      width: 400,
+    });
   };
   return (
     <S.Container>
@@ -43,7 +56,8 @@ export const PaymentInfo = (props: any) => {
               id='virtualAccount'
               name='payment'
               value='virtualAccount'
-              onChange={(e) => changePayment(e.target.value)}
+              // onChange={(e) => changePayment(e.target.value)}
+              onClick={() => alertInfo()}
             />
             <S.PayRadioLabel htmlFor='virtualAccount'>
               <S.PayIconArea>
@@ -99,7 +113,8 @@ export const PaymentInfo = (props: any) => {
               id='bankTransfer'
               name='payment'
               value='bankTransfer'
-              onChange={(e) => changePayment(e.target.value)}
+              // onChange={(e) => changePayment(e.target.value)}
+              onClick={() => alertInfo()}
             />
             <S.PayRadioLabel htmlFor='bankTransfer'>
               <S.PayIconArea>
@@ -126,7 +141,8 @@ export const PaymentInfo = (props: any) => {
               id='kakaoPay'
               name='payment'
               value='kakaoPay'
-              onChange={(e) => changePayment(e.target.value)}
+              // onChange={(e) => changePayment(e.target.value)}
+              onClick={() => alertInfo()}
             />
             <S.PayRadioLabel htmlFor='kakaoPay'>
               <S.PayIconArea>
@@ -143,7 +159,8 @@ export const PaymentInfo = (props: any) => {
               id='naverPay'
               name='payment'
               value='naverPay'
-              onChange={(e) => changePayment(e.target.value)}
+              // onChange={(e) => changePayment(e.target.value)}
+              onClick={() => alertInfo()}
             />
             <S.PayRadioLabel htmlFor='naverPay'>
               <S.PayIconArea>
@@ -157,7 +174,8 @@ export const PaymentInfo = (props: any) => {
               id='payco'
               name='payment'
               value='payco'
-              onChange={(e) => changePayment(e.target.value)}
+              // onChange={(e) => changePayment(e.target.value)}
+              onClick={() => alertInfo()}
             />
             <S.PayRadioLabel htmlFor='payco'>
               <S.PayIconArea>
@@ -183,16 +201,16 @@ export const PaymentInfo = (props: any) => {
         </S.PaymentSelectArea>
         <S.PaymentDesArea>
           <S.PaymentDes>- 신용카드 할부는 100,000원 이상일 경우에만 가능합니다.</S.PaymentDes>
-          <S.PaymentDes>
+          {/* <S.PaymentDes>
             - 가상계좌 발급 시, 12시간 이내에 입금완료해주셔야 배송이 진행됩니다.
-          </S.PaymentDes>
+          </S.PaymentDes> */}
           <S.PaymentDes>
             - 정확한 결제와 주문완료를 위하여 주문완료 페이지가 보여지기 전에 현재창과 결제창을
             닫지마십시오.
           </S.PaymentDes>
-          <S.PaymentDes>
+          {/* <S.PaymentDes>
             - 세금계산서 발행을 원하실 경우, 고객센터 &gt; 문의하기에서 신청해주시기 바랍니다.
-          </S.PaymentDes>
+          </S.PaymentDes> */}
         </S.PaymentDesArea>
       </S.PaymentContainer>
     </S.Container>
