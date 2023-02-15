@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  /* background-color: mistyrose; */
-  width: 64rem;
-  height: 27.2rem;
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 144rem;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-
-  color: #212121;
-  border: 1px solid #efeff1;
-  border-radius: 10px;
-  padding: 2rem 2.4rem 0 2.4rem;
-  white-space: pre-line;
-  overflow-y: scroll;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem 0;
 
   a,
   a.visited {
@@ -804,25 +801,6 @@ export const Wrapper = styled.div`
     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E');
   }
 `;
-export const ViewAll = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  min-width: 70rem;
-  height: 90%;
-  background-color: #ffffff;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
-  overflow-y: scroll;
-  padding: 2.4rem;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  white-space: pre-line;
-  color: #212121;
-  border: 1px solid #999999;
+export const Wrap = styled.div`
+  width: 90rem;
 `;

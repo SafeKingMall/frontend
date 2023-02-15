@@ -30,11 +30,31 @@ export const TextArea = styled.div`
   align-items: center;
 `;
 export const TextBox = styled.div`
-  height: 12rem;
+  /* height: 12rem; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  align-items: center;
   font-size: 1.8rem;
   font-weight: 400;
   color: #252525;
+  line-height: 2.8rem;
+`;
+export const TextLine = styled.span`
+  display: flex;
+  align-items: center;
+`;
+export const Bar = styled.div`
+  height: 1.8rem;
+  width: 0.15rem;
+  background-color: #888888;
+  display: inline-block;
+  margin: 0 1rem;
+`;
+export const LinkText = styled.span`
+  font-weight: 600;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
 `;
