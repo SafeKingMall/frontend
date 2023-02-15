@@ -12,6 +12,7 @@ import { Header } from '../../components/common/Header';
 import { Cookies } from 'react-cookie';
 import history from '../../history';
 import { TailSpin } from 'react-loader-spinner';
+import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
 
 const swal = withReactContent(Swal);
 
@@ -363,11 +364,12 @@ export const ItemDetail = () => {
             />
           </S.DesLoadingBox>
         ) : (
-          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : 194 }}>
+          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : '19.4rem' }}>
             <S.Description
               id='description'
               dangerouslySetInnerHTML={{ __html: itemData.description }}
-            />
+            >
+            </S.Description>
             <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
           </S.DesContainer>
         )}
@@ -377,6 +379,9 @@ export const ItemDetail = () => {
             <AiOutlineDown style={{ width: 28, height: 24 }} />
           </S.ShowDesBtn>
         </S.ShowDesBtnContainer>
+        <S.ExchangeInfoArea>
+          {ExchangeInfoContent()}
+        </S.ExchangeInfoArea>
       </S.DesWrap>
     </S.Container>
   );
