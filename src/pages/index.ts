@@ -42,3 +42,5 @@ export { SignUp2 } from './SignUp/SignUp2';
 export { SignUp3 } from './SignUp/SignUp3';
 export { SignUp4 } from './SignUp/SignUp4';
 export { NotFound } from './NotFound';
+export { PrivacyPolicy } from './PrivacyPolicy';
+export { TermsOfService } from './TermsOfService';

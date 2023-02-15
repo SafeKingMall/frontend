@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  /* background-color: mistyrose; */
-  width: 64rem;
-  height: 27.2rem;
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 144rem;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-
-  color: #212121;
-  border: 1px solid #efeff1;
-  border-radius: 10px;
-  padding: 2rem 2.4rem 0 2.4rem;
-  white-space: pre-line;
-  overflow-y: scroll;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem 0;
 
   a,
   a.visited {
@@ -276,7 +273,6 @@ export const Wrapper = styled.div`
     font-size: 0.875rem;
     empty-cells: show;
   }
-
   .simple-table td {
     height: 29px;
     min-width: 120px;
@@ -291,7 +287,6 @@ export const Wrapper = styled.div`
     background: rgb(247, 246, 243);
     color: black;
   }
-
   .simple-table-header {
     font-weight: 500;
   }
@@ -478,310 +473,243 @@ export const Wrapper = styled.div`
     font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
       'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
-
   .code {
     font-family: 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono', Courier, monospace;
   }
-
   .serif {
     font-family: Lyon-Text, Georgia, ui-serif, serif;
   }
-
   .mono {
     font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
   }
-
   .pdf .sans {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
       'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji',
       'Noto Color Emoji', 'Noto Sans CJK JP';
   }
-
   .pdf:lang(zh-CN) .sans {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
       'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji',
       'Noto Color Emoji', 'Noto Sans CJK SC';
   }
-
   .pdf:lang(zh-TW) .sans {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
       'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji',
       'Noto Color Emoji', 'Noto Sans CJK TC';
   }
-
   .pdf:lang(ko-KR) .sans {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
       'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji',
       'Noto Color Emoji', 'Noto Sans CJK KR';
   }
-
   .pdf .code {
     font-family: Source Code Pro, 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
       Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
   }
-
   .pdf:lang(zh-CN) .code {
     font-family: Source Code Pro, 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
       Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
   }
-
   .pdf:lang(zh-TW) .code {
     font-family: Source Code Pro, 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
       Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
   }
-
   .pdf:lang(ko-KR) .code {
     font-family: Source Code Pro, 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
       Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
   }
-
   .pdf .serif {
     font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji',
       'Noto Serif CJK JP';
   }
-
   .pdf:lang(zh-CN) .serif {
     font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji',
       'Noto Serif CJK SC';
   }
-
   .pdf:lang(zh-TW) .serif {
     font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji',
       'Noto Serif CJK TC';
   }
-
   .pdf:lang(ko-KR) .serif {
     font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji',
       'Noto Serif CJK KR';
   }
-
   .pdf .mono {
     font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji',
       'Noto Color Emoji', 'Noto Sans Mono CJK JP';
   }
-
   .pdf:lang(zh-CN) .mono {
     font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji',
       'Noto Color Emoji', 'Noto Sans Mono CJK SC';
   }
-
   .pdf:lang(zh-TW) .mono {
     font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji',
       'Noto Color Emoji', 'Noto Sans Mono CJK TC';
   }
-
   .pdf:lang(ko-KR) .mono {
     font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji',
       'Noto Color Emoji', 'Noto Sans Mono CJK KR';
   }
-
   .highlight-default {
     color: rgba(55, 53, 47, 1);
   }
-
   .highlight-gray {
     color: rgba(120, 119, 116, 1);
     fill: rgba(120, 119, 116, 1);
   }
-
   .highlight-brown {
     color: rgba(159, 107, 83, 1);
     fill: rgba(159, 107, 83, 1);
   }
-
   .highlight-orange {
     color: rgba(217, 115, 13, 1);
     fill: rgba(217, 115, 13, 1);
   }
-
   .highlight-yellow {
     color: rgba(203, 145, 47, 1);
     fill: rgba(203, 145, 47, 1);
   }
-
   .highlight-teal {
     color: rgba(68, 131, 97, 1);
     fill: rgba(68, 131, 97, 1);
   }
-
   .highlight-blue {
     color: rgba(51, 126, 169, 1);
     fill: rgba(51, 126, 169, 1);
   }
-
   .highlight-purple {
     color: rgba(144, 101, 176, 1);
     fill: rgba(144, 101, 176, 1);
   }
-
   .highlight-pink {
     color: rgba(193, 76, 138, 1);
     fill: rgba(193, 76, 138, 1);
   }
-
   .highlight-red {
     color: rgba(212, 76, 71, 1);
     fill: rgba(212, 76, 71, 1);
   }
-
   .highlight-gray_background {
     background: rgba(241, 241, 239, 1);
   }
-
   .highlight-brown_background {
     background: rgba(244, 238, 238, 1);
   }
-
   .highlight-orange_background {
     background: rgba(251, 236, 221, 1);
   }
-
   .highlight-yellow_background {
     background: rgba(251, 243, 219, 1);
   }
-
   .highlight-teal_background {
     background: rgba(237, 243, 236, 1);
   }
-
   .highlight-blue_background {
     background: rgba(231, 243, 248, 1);
   }
-
   .highlight-purple_background {
     background: rgba(244, 240, 247, 0.8);
   }
-
   .highlight-pink_background {
     background: rgba(249, 238, 243, 0.8);
   }
-
   .highlight-red_background {
     background: rgba(253, 235, 236, 1);
   }
-
   .block-color-default {
     color: inherit;
     fill: inherit;
   }
-
   .block-color-gray {
     color: rgba(120, 119, 116, 1);
     fill: rgba(120, 119, 116, 1);
   }
-
   .block-color-brown {
     color: rgba(159, 107, 83, 1);
     fill: rgba(159, 107, 83, 1);
   }
-
   .block-color-orange {
     color: rgba(217, 115, 13, 1);
     fill: rgba(217, 115, 13, 1);
   }
-
   .block-color-yellow {
     color: rgba(203, 145, 47, 1);
     fill: rgba(203, 145, 47, 1);
   }
-
   .block-color-teal {
     color: rgba(68, 131, 97, 1);
     fill: rgba(68, 131, 97, 1);
   }
-
   .block-color-blue {
     color: rgba(51, 126, 169, 1);
     fill: rgba(51, 126, 169, 1);
   }
-
   .block-color-purple {
     color: rgba(144, 101, 176, 1);
     fill: rgba(144, 101, 176, 1);
   }
-
   .block-color-pink {
     color: rgba(193, 76, 138, 1);
     fill: rgba(193, 76, 138, 1);
   }
-
   .block-color-red {
     color: rgba(212, 76, 71, 1);
     fill: rgba(212, 76, 71, 1);
   }
-
   .block-color-gray_background {
     background: rgba(241, 241, 239, 1);
   }
-
   .block-color-brown_background {
     background: rgba(244, 238, 238, 1);
   }
-
   .block-color-orange_background {
     background: rgba(251, 236, 221, 1);
   }
-
   .block-color-yellow_background {
     background: rgba(251, 243, 219, 1);
   }
-
   .block-color-teal_background {
     background: rgba(237, 243, 236, 1);
   }
-
   .block-color-blue_background {
     background: rgba(231, 243, 248, 1);
   }
-
   .block-color-purple_background {
     background: rgba(244, 240, 247, 0.8);
   }
-
   .block-color-pink_background {
     background: rgba(249, 238, 243, 0.8);
   }
-
   .block-color-red_background {
     background: rgba(253, 235, 236, 1);
   }
-
   .select-value-color-pink {
     background-color: rgba(245, 224, 233, 1);
   }
-
   .select-value-color-purple {
     background-color: rgba(232, 222, 238, 1);
   }
-
   .select-value-color-green {
     background-color: rgba(219, 237, 219, 1);
   }
-
   .select-value-color-gray {
     background-color: rgba(227, 226, 224, 1);
   }
-
   .select-value-color-opaquegray {
     background-color: rgba(255, 255, 255, 0.0375);
   }
-
   .select-value-color-orange {
     background-color: rgba(250, 222, 201, 1);
   }
-
   .select-value-color-brown {
     background-color: rgba(238, 224, 218, 1);
   }
-
   .select-value-color-red {
     background-color: rgba(255, 226, 221, 1);
   }
-
   .select-value-color-yellow {
     background-color: rgba(253, 236, 200, 1);
   }
-
   .select-value-color-blue {
     background-color: rgba(211, 229, 239, 1);
   }
@@ -804,25 +732,6 @@ export const Wrapper = styled.div`
     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E');
   }
 `;
-export const ViewAll = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  min-width: 70rem;
-  height: 90%;
-  background-color: #ffffff;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
-  overflow-y: scroll;
-  padding: 2.4rem;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  white-space: pre-line;
-  color: #212121;
-  border: 1px solid #999999;
+export const Wrap = styled.div`
+  width: 90rem;
 `;
