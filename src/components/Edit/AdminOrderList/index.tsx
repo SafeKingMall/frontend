@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -95,20 +96,20 @@ export const AdminOrderList = (props: any) => {
                   {el.payment.status === 'PAID'
                     ? '결제완료'
                     : el.payment.status === 'READY'
-                    ? '결제대기'
-                    : el.payment.status === 'CANCEL'
-                    ? '결제취소'
-                    : '결제실패'}
+                      ? '결제대기'
+                      : el.payment.status === 'CANCEL'
+                        ? '결제취소'
+                        : '결제실패'}
                 </div>
 
                 <div>
                   {el.delivery.status === 'COMPLETE'
                     ? '배송완료'
                     : el.delivery.status === 'IN_DELIVERY'
-                    ? '배송 중'
-                    : el.delivery.status === 'PREPARATION'
-                    ? '배송 준비'
-                    : '배송취소'}
+                      ? '배송 중'
+                      : el.delivery.status === 'PREPARATION'
+                        ? '배송 준비'
+                        : '배송취소'}
                 </div>
                 <div>{registDate(el.date)}</div>
                 <div>

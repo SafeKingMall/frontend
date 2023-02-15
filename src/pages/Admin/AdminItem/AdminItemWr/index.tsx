@@ -374,7 +374,7 @@ export const AdminItemWr = () => {
     }).then((res) => {
       navigate('/itemdetail', {
         state: {
-          itemId: res.data,
+          itemId: id,
         },
       });
     });

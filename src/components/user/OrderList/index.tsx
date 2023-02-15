@@ -155,12 +155,12 @@ export const OrderList = (props: any) => {
             <S.Mid>주문 내역</S.Mid>
             <S.SearchBox>
                 <S.SearchFirst>
-                    <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
+                    {/* <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
                         <option value=''>전체 주문처리상태</option>
                         <option value='READY'>주문접수</option>
                         <option value='COMPLETE'>주문완료</option>
                         <option value='CANCEL'>주문취소</option>
-                    </S.DeliSelect>
+                    </S.DeliSelect> */}
 
                     <S.DayButton onClick={Now}>오늘</S.DayButton>
                     <S.DayButton onClick={OneWeek}>1주일</S.DayButton>

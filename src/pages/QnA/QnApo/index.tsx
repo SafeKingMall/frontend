@@ -116,6 +116,8 @@ export const QnAPo = () => {
         memberId,
         itemQnaId: itemId,
       },
+    }).then((res) => {
+      setAnswerContents('');
     });
 
     await axios({
@@ -182,15 +184,45 @@ export const QnAPo = () => {
 
   //삭제 api
   const deleteApi = async (id: number) => {
-    await axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}/user/itemQna/${id}`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      navigate('/qna');
+    if (qnaFile.length !== 0) {
+      await axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna/${id}`,
+        headers: {
+          Authorization: jwt,
+        },
+      })
+        .then((res) => {
+          deleteFile();
+        })
+        .then((res) => {
+          navigate('/qna');
+        });
+    } else {
+      await axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/user/itemQna/${id}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        navigate('/qna');
+      });
+    }
+  };
+
+  //첨부파일 삭제 api
+  const deleteFile = async () => {
+    await qnaFile.map((el: any) => {
+      return axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/file/${el.id}`,
+        headers: {
+          Authorization: jwt,
+        },
+      });
     });
+    // await navigate('/qna');
   };
 
   return (
@@ -237,10 +269,13 @@ export const QnAPo = () => {
           <div>{data.answer !== undefined ? answer2(answer) : ''}</div>
           <S.Comment>
             <div>댓글쓰기</div>
-            <S.ComemntInput
-              placeholder='댓글을 입력해주세요.'
-              onChange={(e: any) => setAnswerContents(e.target.value)}
-            />
+            <S.TextDiv>
+              <textarea
+                placeholder='댓글을 입력해주세요.'
+                value={answerContents}
+                onChange={(e: any) => setAnswerContents(e.target.value)}
+              />
+            </S.TextDiv>
             <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
           </S.Comment>
         </S.PoBox>

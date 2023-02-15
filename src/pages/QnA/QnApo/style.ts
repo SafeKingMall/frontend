@@ -139,21 +139,30 @@ export const Content2 = styled.div`
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 
-export const ComemntInput = styled.input`
+export const TextDiv = styled.div`
   border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
   width: 144rem;
   height: 20rem;
   font-size: 2.4rem;
-  padding: 4rem 20rem 13.8rem 4rem;
   position: relative;
   margin-bottom: 4.8rem;
   cursor: pointer;
-  ::placeholder {
-    color: ${({ theme }) => theme.palette.txtgray};
+
+  textarea {
+    padding: 3rem;
+    width: 120rem;
+    height: 19rem;
+    border: none;
     font-size: 2.4rem;
-    /* width: 144rem; */
-    padding: 4rem 20rem 13.8rem 4rem;
-    /* padding: 4rem 120rem 13.8rem 0rem; */
+    resize: none;
+    overflow: hidden;
+    ::placeholder {
+      color: ${({ theme }) => theme.palette.txtgray};
+    }
+  }
+
+  textarea:focus {
+    outline: none;
   }
 `;
 
@@ -175,8 +184,10 @@ export const QnAButton2 = styled.button`
 
 export const Comment = styled.div`
   div {
-    padding: 4.8rem 1rem 1.6rem 1rem;
-    font-size: 3.2rem;
+    &:first-child {
+      padding: 4.8rem 1rem 1.6rem 1rem;
+      font-size: 3.2rem;
+    }
   }
 `;
 

@@ -20,7 +20,7 @@ export const MyPageRfDetail = () => {
     const cookies = new Cookies();
     const jwt = cookies.get('accessToken');
     const navigate = useNavigate();
-    const { MoneyNumber } = useMoney();
+    const { MoneyNumber, MoneyNumber2 } = useMoney();
 
     const { state } = useLocation();
     const itemId = state.data;
@@ -49,7 +49,9 @@ export const MyPageRfDetail = () => {
             await axios({
                 method: 'get',
                 // /user/order/detail/${itemId}
-                url: `${process.env.REACT_APP_API_URL}/user/order/detail/${itemId}`,
+                // /user/payment/detail/{orderId}
+                // /user/payment/cancel/ask/{orderId}
+                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/detail/${itemId}`,
                 headers: {
                     Authorization: jwt,
                 },
@@ -108,17 +110,19 @@ export const MyPageRfDetail = () => {
                     </tr>
                     <tr>
                         <th>취소 요청자</th>
-                        <td>{memberInfo.name || ''}</td>
+                        <td>
+                            {payInfor.buyer_name || ''}
+                        </td>
                         <th>연락처</th>
-                        <td>{deliInfor.phone_number || ''}</td>
+                        <td>{payInfor.buyer_tel || ''}</td>
                     </tr>
                     <tr>
                         <th>취소사유</th>
-                        <td colSpan={3}>{data1.cancel_reason || ''}</td>
+                        <td colSpan={3}>{payInfor.cancel_reason || ''}</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td colSpan={3}>{deliInfor.address || ''}</td>
+                        <td colSpan={3}>{payInfor.buyer_addr || ''}</td>
                     </tr>
                 </tbody>
             </S.Table>
@@ -133,21 +137,21 @@ export const MyPageRfDetail = () => {
                 <tbody>
                     <tr>
                         <th>환불금액</th>
-                        <td>{MoneyNumber(data1.price) || ''}</td>
+                        <td>{payInfor.cancel_amount === 0 ? '0원' : MoneyNumber(payInfor.cancel_amount) || ''}</td>
                         <th>환불수단</th>
-                        <td>{MoneyNumber(deliInfor.cost)}</td>
+                        <td>{payInfor.pay_method}</td>
                     </tr>
                     <tr>
                         <th>배송비</th>
-                        <td>{MoneyNumber(deliInfor.cost)}</td>
+                        <td>{deliInfor.cost === 0 ? '0원' : MoneyNumber(deliInfor.cost)}</td>
                         <th>카드사</th>
                         <td>{payInfor.card_company || ''}</td>
                     </tr>
                     <tr>
-                        <th>반품비</th>
-                        <td>{MoneyNumber(deliInfor.cost)}</td>
+                        <th>환불비</th>
+                        <td>0원</td>
                         <th>환불 완료금액</th>
-                        <td>{MoneyNumber(data1.price - deliInfor.cost) || ''}</td>
+                        <td>{payInfor.cancel_amount === 0 && deliInfor.cost === 0 ? '0원' : MoneyNumber(payInfor.cancel_amount + deliInfor.cost) || ''}</td>
                     </tr>
                 </tbody>
             </S.Table>
@@ -170,7 +174,7 @@ export const MyPageRfDetail = () => {
                             <div>
                                 <h4> 주문 번호 |&nbsp;</h4>
 
-                                <span>{data1.id || ''}</span>
+                                <span>{data1.merchant_uid || ''}</span>
                             </div>
                             <div>
                                 <h4> 주문 일시 |&nbsp;</h4>
@@ -203,9 +207,9 @@ export const MyPageRfDetail = () => {
                                             </td>
 
                                             <td>{al.name}</td>
+                                            <td>{MoneyNumber(al.order_price) || ''}</td>
+                                            <td>{MoneyNumber2(al.count) || ''}</td>
                                             <td>{MoneyNumber(al.price) || ''}</td>
-                                            <td>{al.count || ''}</td>
-                                            <td>{MoneyNumber(al.price * al.count) || ''}</td>
                                             <td>{payValue(payMentStatus)}</td>
                                             <td>{deliValue(deliveryStatus)}</td>
 

@@ -15,7 +15,7 @@ export const MyPageAp1 = () => {
     const jwt = cookies.get('accessToken');
 
     const { state } = useLocation();
-    const orderId = state.data;
+
 
     const navigate = useNavigate();
     const { MoneyNumber } = useMoney();
@@ -30,8 +30,10 @@ export const MyPageAp1 = () => {
     const [orderItem, setOrderItem] = useState([] as any);
     //주문정보
     const [order, setOrder] = useState('' as any);
-
+    //상품번호
     const [refundItem, setRefundItem] = useState('' as string)
+    //상품 주문 날짜 
+    const [orderDate, setOrderDate] = useState('' as any);
 
     //mypage-ap2에 값 보내주기
     const moveMypageAp2 = () => {
@@ -40,7 +42,8 @@ export const MyPageAp1 = () => {
                 orderId: state.data,
                 merchant_uid: order.merchant_uid,
                 imp_uid: payInfor.imp_uid,
-                refundItem: refundItem
+                refundItem: refundItem,
+                orderDate: orderDate
             },
         });
     }
@@ -50,7 +53,7 @@ export const MyPageAp1 = () => {
         const getData = async () => {
             await axios({
                 method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/ask/${orderId}`,
+                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/ask/${state.data}`,
                 headers: {
                     Authorization: jwt,
                 },
@@ -59,7 +62,8 @@ export const MyPageAp1 = () => {
                 setOrderItem(res.data.order.order_item);
                 setPayInfor(res.data.payment);
                 setDeliInfor(res.data.delivery);
-                setRefundItem(`${res.data.order.date.slice(0, 11)}[${res.data.order.merchant_uid}]`)
+                setRefundItem(res.data.order.merchant_uid);
+                setOrderDate(res.data.order.date);
             });
 
         };

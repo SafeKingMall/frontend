@@ -51,6 +51,15 @@ export const Mid = styled.div`
 export const Last = styled.div`
   text-align: center;
   font-size: 2.4rem;
+  div {
+    display: flex;
+    padding-top: 1rem;
+    p {
+      &:first-child {
+        color: ${({ theme }) => theme.palette.green};
+      }
+    }
+  }
 `;
 
 export const ImgIcon = styled.div`
@@ -63,38 +72,17 @@ export const ImgIcon = styled.div`
 
 export const BtnWrapper = styled.div`
   margin-top: 4.8rem;
-  /* margin-bottom: 12rem; */
-  width: 64rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   > button {
-    background-color: #fff;
-    /* border: 0.1rem solid #000; */
     border-radius: 10rem;
     width: 31.2rem;
     height: 8rem;
     font-size: 2.4rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 3rem;
-    :first-child {
-      border: 0.1rem solid #289951;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
-      /* identical to box height */
-
-      color: #289951;
-    }
-    :last-child {
-      background-color: #289951;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
-      color: #ffffff;
-      :disabled {
-        background-color: #aaaaaa;
-      }
-    }
+    background-color: #289951;
+    color: #ffffff;
   }
 `;

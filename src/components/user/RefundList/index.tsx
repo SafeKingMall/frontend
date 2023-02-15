@@ -55,14 +55,14 @@ export const RefundList = (props: any) => {
         const getData = async () => {
             await axios({
                 method: 'get',
-
-                url: `${process.env.REACT_APP_API_URL}/user/order/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&paymentStatus=CANCEL
+                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&paymentStatus=CANCEL
             `,
                 headers: {
                     Authorization: jwt,
                 },
             }).then((res) => {
-                setItemList(res.data.orders);
+
+                setItemList(res.data.order);
                 setTotalPages(res.data.total_elements);
                 setListLength(res.data.total_elements);
             });
@@ -86,7 +86,7 @@ export const RefundList = (props: any) => {
                                 </div>
                                 <div>{el.order_item.name}</div>
                                 <div>{el.count}</div>
-                                <div>{MoneyNumber(el.price)}</div>
+                                <div>{MoneyNumber(el.payment.price)}</div>
                                 <div>
                                     {el.payment.status === 'ready'
                                         ? '미결제'
@@ -146,11 +146,11 @@ export const RefundList = (props: any) => {
             <S.Mid>환불 내역</S.Mid>
             <S.SearchBox>
                 <S.SearchFirst>
-                    <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
+                    {/* <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
                         <option value=''>전체 처리상태</option>
                         <option value='PAID'>확인중</option>
                         <option value='CANCEL'>취소완료</option>
-                    </S.DeliSelect>
+                    </S.DeliSelect> */}
 
                     <S.DayButton onClick={Now}>오늘</S.DayButton>
                     <S.DayButton onClick={OneWeek}>1주일</S.DayButton>

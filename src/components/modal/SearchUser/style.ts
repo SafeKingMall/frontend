@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PopUpContainer = styled.div`
   position: fixed;
+  z-index: 1;
   top: 0;
   bottom: 0;
   left: 0;

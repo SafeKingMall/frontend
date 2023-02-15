@@ -26,7 +26,7 @@ export const AdminOrderDe = () => {
   const { state } = useLocation();
   const itemId = state.data;
 
-  const payList = { PAID: '결제완료', CANCEL: '결제취소', READY: '결제대기', FAILED: '결제실패' };
+  // const payList = { PAID: '결제완료', CANCEL: '결제취소', READY: '결제대기', FAILED: '결제실패' };
   const deliveryList = {
     COMPLETE: '배송완료',
     IN_DELIVERY: '배송중',
@@ -124,20 +124,20 @@ export const AdminOrderDe = () => {
   // const deliComValue = deliComOrderStatus1(data)[0][0];
 
   //결제
-  const PayhandleSelect = (e: any) => {
-    setPayMentStatus(e.target.value);
-  };
+  // const PayhandleSelect = (e: any) => {
+  //   setPayMentStatus(e.target.value);
+  // };
 
-  const PaysSelect = () => (
-    <S.OrderSelect required onChange={PayhandleSelect} value={payMentStatus}>
-      <S.NoneOption value={payMentStatus || ''}>{payValue(payMentStatus)}</S.NoneOption>
-      {Object.entries(payList).map(([key, value]) => (
-        <option value={key} key={key}>
-          {value}
-        </option>
-      ))}
-    </S.OrderSelect>
-  );
+  // const PaysSelect = () => (
+  //   <S.OrderSelect required onChange={PayhandleSelect} value={payMentStatus}>
+  //     <S.NoneOption value={payMentStatus || ''}>{payValue(payMentStatus)}</S.NoneOption>
+  //     {Object.entries(payList).map(([key, value]) => (
+  //       <option value={key} key={key}>
+  //         {value}
+  //       </option>
+  //     ))}
+  //   </S.OrderSelect>
+  // );
 
   //배달
 
@@ -331,7 +331,8 @@ export const AdminOrderDe = () => {
                         <td>{al.count || ''}</td>
                         <td>{MoneyNumber(al.price * al.count) || ''}</td>
                         <td>
-                          <PaysSelect />
+                          {/* <PaysSelect /> */}
+                          {payValue(payMentStatus)}
                         </td>
                         <td>
                           <DeliverySelect />
