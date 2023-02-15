@@ -3,7 +3,7 @@ import * as S from './style';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { OrdersList } from '../../components/shopping/OrdersList';
 import { AddressInfo } from '../../components/shopping/AddressInfo';
-// import { PaymentInfo } from '../../components/shopping/PaymentInfo';
+import { PaymentInfo } from '../../components/shopping/PaymentInfo';
 import { TotalPrice } from '../../components/shopping/TotalPrice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
 import { Cookies } from 'react-cookie';
+import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
 
 const swal = withReactContent(Swal);
 declare global {
@@ -28,7 +29,7 @@ export const Orders = () => {
   const [receiverVal, setReceiverVal] = useState('');
   const [emailVal, setEmailVal] = useState('');
   const [phoneVal, setPhoneVal] = useState('');
-  // const [paymentState, setPaymentState] = useState('');
+  const [paymentState, setPaymentState] = useState('');
   const { state } = useLocation();
   const navigate = useNavigate();
   const stepTitle = '주문·결제';
@@ -169,15 +170,14 @@ export const Orders = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-      // }
-      //  else if (paymentState === '') {
-      //   swal.fire({
-      //     icon: 'info',
-      //     text: '결제방식을 선택해주세요.',
-      //     confirmButtonText: '확인',
-      //     confirmButtonColor: '#289951',
-      //     width: 400,
-      //   });
+    } else if (paymentState === '') {
+      swal.fire({
+        icon: 'info',
+        text: '결제방식을 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
     } else {
       swal
         .fire({
@@ -327,7 +327,8 @@ export const Orders = () => {
           phoneVal={phoneVal}
           setPhoneVal={setPhoneVal}
         />
-        {/* <PaymentInfo paymentState={paymentState} setPaymentState={setPaymentState} /> */}
+        <S.ExchangeInfoArea>{ExchangeInfoContent()}</S.ExchangeInfoArea>
+        <PaymentInfo paymentState={paymentState} setPaymentState={setPaymentState} />
         <TotalPrice resultList={data} />
         <S.CheckArea>
           <S.CheckBox checked={checkToggle} onChange={() => changeCheckToggle()} />
