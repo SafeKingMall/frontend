@@ -157,9 +157,9 @@ export const SignIn = () => {
               </label>
             </S.IdCheck>
             <S.Span>
-              <S.SpanList onClick={onOpen}> 아이디 / 비밀번호 찾기</S.SpanList>
-              {isOpen && <SearchUser onOpen={onOpen} setIsOpen={setIsOpen} />}
-
+              <S.SpanList onClick={onOpen} style={{ marginRight: '2rem' }}>
+                아이디 / 비밀번호 찾기
+              </S.SpanList>
               <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>
             </S.Span>
           </S.SignText>
@@ -174,6 +174,9 @@ export const SignIn = () => {
           </div>
         </S.Wrapper>
       </S.Container>
+      <S.ModalBackground style={{ display: isOpen ? '' : 'none' }} onClick={() => onOpen()}>
+        <SearchUser setIsOpen={setIsOpen} />
+      </S.ModalBackground>
     </>
   );
 };

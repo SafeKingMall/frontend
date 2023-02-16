@@ -12,6 +12,7 @@ interface SearchPwForm {
 
 }
 export const SearchPw = (props: any) => {
+  const setIsOpen = props.setIsOpen;
   const swal = withReactContent(Swal);
   //아이디 
   const [id, setId] = useState<string>('');
@@ -109,18 +110,18 @@ export const SearchPw = (props: any) => {
           회원가입에 등록한 휴대전화번호로
           <br /> 임시 비밀번호가 발급받을 수 있습니다.
         </S.Top>
-        <form>
-          <S.Ladius>
-            <CiLock size='100' color='white' fontWeight='900' />
-          </S.Ladius>
-          <S.InputContainer>
-            <S.InputWrapper>
-              <label>아이디</label>
-              <input placeholder='아이디를 입력해주세요.' onChange={onId} />
-              <S.ErrMsg>{idMsg}</S.ErrMsg>
-            </S.InputWrapper>
-          </S.InputContainer>
-        </form>
+        {/* <form> */}
+        <S.Ladius>
+          <CiLock size='100' color='white' fontWeight='900' />
+        </S.Ladius>
+        <S.InputContainer>
+          <S.InputWrapper>
+            <label>아이디</label>
+            <input placeholder='아이디를 입력해주세요.' onChange={onId} />
+            <S.ErrMsg>{idMsg}</S.ErrMsg>
+          </S.InputWrapper>
+        </S.InputContainer>
+        {/* </form> */}
         {disTrue ? <S.SearchBtn disabled={disabled} onClick={(e) => submitBtn(e)}>
           임시 비밀번호 발급
         </S.SearchBtn> :
@@ -130,7 +131,7 @@ export const SearchPw = (props: any) => {
         }
 
 
-        <S.LoginBtn onClick={() => props.onOpen()}>로그인하기</S.LoginBtn>
+        <S.LoginBtn onClick={() => setIsOpen(false)}>로그인하기</S.LoginBtn>
 
       </S.Wrapper>
     </>
