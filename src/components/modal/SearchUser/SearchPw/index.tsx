@@ -11,7 +11,7 @@ interface SearchPwForm {
   id: string;
 
 }
-export const SearchPw = () => {
+export const SearchPw = (props: any) => {
   const swal = withReactContent(Swal);
   //아이디 
   const [id, setId] = useState<string>('');
@@ -130,7 +130,7 @@ export const SearchPw = () => {
         }
 
 
-        <S.LoginBtn>로그인하기</S.LoginBtn>
+        <S.LoginBtn onClick={() => props.onOpen()}>로그인하기</S.LoginBtn>
 
       </S.Wrapper>
     </>

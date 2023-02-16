@@ -322,6 +322,18 @@ export const QnAMo = () => {
     }
   };
 
+  const SwalInput = () => {
+    if (selectedImages.length !== 0) {
+      swal.fire({
+        icon: 'warning',
+        text: '첨부파일은 하나만 등록 가능합니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -374,14 +386,17 @@ export const QnAMo = () => {
                   ) : (
                     <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
                   )}
-                  <S.ChangeButton>업로드</S.ChangeButton>
-                  <input
-                    type='file'
-                    name='images'
-                    onChange={onSelectFile}
-                    multiple
-                    accept='.png, .jpg, .pdf, .hwp,image/*'
-                  />
+                  <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
+                  {selectedImages.length !== 0 ? (
+                    ''
+                  ) : (
+                    <input
+                      type='file'
+                      name='images'
+                      onChange={onSelectFile}
+                      accept='.png, .jpg,image/*'
+                    />
+                  )}
                 </S.TableDiv>
               </td>
             </tr>
