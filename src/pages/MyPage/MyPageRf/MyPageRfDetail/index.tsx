@@ -151,7 +151,7 @@ export const MyPageRfDetail = () => {
                         <th>환불비</th>
                         <td>0원</td>
                         <th>환불 완료금액</th>
-                        <td>{payInfor.cancel_amount === 0 && deliInfor.cost === 0 ? '0원' : MoneyNumber(payInfor.cancel_amount + deliInfor.cost) || ''}</td>
+                        <td>{payInfor.cancel_amount === 0 ? '0원' : MoneyNumber(payInfor.cancel_amount) || ''}</td>
                     </tr>
                 </tbody>
             </S.Table>

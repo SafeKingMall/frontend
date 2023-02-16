@@ -84,7 +84,7 @@ export const MyPageAp2 = () => {
                     custom_cancel_reason: selfInput,
                     imp_uid: state.imp_uid,
                     merchant_uid: state.merchant_uid,
-                    return_fee: 2500
+                    return_fee: 0
                 }
             }).then((res) => {
                 if (res.status === 200) {
