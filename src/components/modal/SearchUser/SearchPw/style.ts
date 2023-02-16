@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   /* background-color: lavenderblush; */
   width: 64rem;
-  height: 94.9rem;
+  height: 90rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 export const Top = styled.div`
   margin: 4.8rem 0 4.8rem 0;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 2rem;
+  line-height: 2.4rem;
   text-align: center;
 
   color: #000000;
@@ -25,11 +25,13 @@ export const Ladius = styled.div`
   height: 14.8rem;
   margin-top: 4.2rem;
   margin-bottom: 4.8rem;
-  margin-left: 22rem;
+  /* margin-left: 22rem; */
+  display: flex;
+  ${({ theme }) => theme.common.flexCenter}
 
   svg {
-    margin-top: 2rem;
-    margin-left: 2.3rem;
+    /* margin-top: 2rem;
+    margin-left: 2.3rem; */
   }
 `;
 
@@ -37,7 +39,7 @@ export const InputContainer = styled.div`
   background-color: #fff;
   width: 59.2rem;
   height: 9.4rem;
-  border: 1px solid #efeff1;
+  border: 0.1rem solid #efeff1;
   /* border: 0.1rem solid #fff; */
   border-radius: 1rem;
   & > div:last-child {
@@ -147,8 +149,8 @@ export const chekcBtn = styled.button`
 `;
 export const ErrMsg = styled.span`
   font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
   color: #ff003e;
   position: absolute;
   top: 6.1rem;
@@ -157,13 +159,13 @@ export const ErrMsg = styled.span`
 export const SearchBtn = styled.button`
   margin: 4.8rem 0 0 0;
   background-color: #289951;
-  width: 312px;
-  height: 80px;
+  width: 31.2rem;
+  height: 8rem;
   background: #289951;
-  border-radius: 100px;
+  border-radius: 10rem;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
   color: #ffffff;
   :disabled {
     background-color: #aaa;
@@ -183,16 +185,16 @@ export const TextWrapper = styled.div`
     padding-top: 4rem;
     margin-bottom: 4rem;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 2rem;
+    line-height: 2.4rem;
     text-align: center;
 
     color: #000000;
   }
   & > div:nth-child(2) {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 28px;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
     text-align: center;
 
     color: #000000;

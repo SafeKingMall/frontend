@@ -82,8 +82,7 @@ export const SearchId = (props: any) => {
   };
 
   //인증번호 발송
-  const sendPhoneAuth = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const sendPhoneAuth = async () => {
     try {
       await axios({
         method: 'post',
@@ -125,7 +124,7 @@ export const SearchId = (props: any) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          return sendPhoneAuth;
+          sendPhoneAuth();
         }
       });
   };
@@ -190,75 +189,75 @@ export const SearchId = (props: any) => {
           회원가입에 등록한 휴대전화번호를 통해
           <br /> 회원님의 아이디를 찾을 수 있습니다.
         </S.Top>
-        <form>
-          <S.InputContainer>
-            <S.InputWrapper>
-              <label>이름</label>
-              <input
-                placeholder='이름을 입력해주세요.'
-                value={name}
-                onChange={(e) => {
-                  onChangeName(e.target.value);
-                }}
-                onBlur={(e) => {
-                  blurName(e.target.value);
-                }}
-                maxLength={50}
-              />
-              <S.ErrMsg>{nameVal}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>휴대폰 번호</label>
-              <input
-                placeholder='전화번호를 입력해주세요.'
-                value={phone}
-                onChange={(e) => onChangePhone(e.target.value)}
-                maxLength={11}
-                disabled={codeCheck}
-              />
-              <S.ErrMsg>{phoneVal}</S.ErrMsg>
+        {/* <form> */}
+        <S.InputContainer>
+          <S.InputWrapper>
+            <label>이름</label>
+            <input
+              placeholder='이름을 입력해주세요.'
+              value={name}
+              onChange={(e) => {
+                onChangeName(e.target.value);
+              }}
+              onBlur={(e) => {
+                blurName(e.target.value);
+              }}
+              maxLength={50}
+            />
+            <S.ErrMsg>{nameVal}</S.ErrMsg>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <label>휴대폰 번호</label>
+            <input
+              placeholder='전화번호를 입력해주세요.'
+              value={phone}
+              onChange={(e) => onChangePhone(e.target.value)}
+              maxLength={11}
+              disabled={codeCheck}
+            />
+            <S.ErrMsg>{phoneVal}</S.ErrMsg>
+            {timer ? (
+              <S.SendBtn style={sendBtnStyle} onClick={resend} disabled={!phoneCheck}>
+                재발송
+              </S.SendBtn>
+            ) : (
+              <S.SendBtn
+                style={sendBtnStyle}
+                onClick={sendPhoneAuth}
+                disabled={!phoneCheck || codeCheck}
+              >
+                인증번호 발송
+              </S.SendBtn>
+            )}
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <label>인증번호</label>
+            <input
+              value={code}
+              onChange={(e) => onChangeCode(e.target.value)}
+              maxLength={15}
+              disabled={codeCheck}
+            />
+            <S.AuthTimer>
               {timer ? (
-                <S.SendBtn style={sendBtnStyle} onClick={resend} disabled={!phoneCheck}>
-                  재발송
-                </S.SendBtn>
+                <Timer
+                  minutes={minutes}
+                  setMinutes={setMinutes}
+                  seconds={seconds}
+                  setSeconds={setSeconds}
+                  timer={timer}
+                  setTimer={setTimer}
+                />
               ) : (
-                <S.SendBtn
-                  style={sendBtnStyle}
-                  onClick={sendPhoneAuth}
-                  disabled={!phoneCheck || codeCheck}
-                >
-                  인증번호 발송
-                </S.SendBtn>
+                ''
               )}
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>인증번호</label>
-              <input
-                value={code}
-                onChange={(e) => onChangeCode(e.target.value)}
-                maxLength={15}
-                disabled={codeCheck}
-              />
-              <S.AuthTimer>
-                {timer ? (
-                  <Timer
-                    minutes={minutes}
-                    setMinutes={setMinutes}
-                    seconds={seconds}
-                    setSeconds={setSeconds}
-                    timer={timer}
-                    setTimer={setTimer}
-                  />
-                ) : (
-                  ''
-                )}
-              </S.AuthTimer>
-              <S.CheckBtn style={confirmBtnStyle} onClick={phoneAuthConfirm} disabled={!timer}>
-                확인
-              </S.CheckBtn>
-            </S.InputWrapper>
-          </S.InputContainer>
-        </form>
+            </S.AuthTimer>
+            <S.CheckBtn style={confirmBtnStyle} onClick={phoneAuthConfirm} disabled={!timer}>
+              확인
+            </S.CheckBtn>
+          </S.InputWrapper>
+        </S.InputContainer>
+        {/* </form> */}
         <S.SearchBtn disabled={disabled} onClick={onSearchId}>
           아이디 찾기
         </S.SearchBtn>

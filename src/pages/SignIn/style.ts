@@ -165,3 +165,11 @@ export const SocialBtn = styled.button`
   background-color: #fff;
   box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
 `;
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
