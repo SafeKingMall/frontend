@@ -380,6 +380,18 @@ export const AdminItemWr = () => {
     });
   };
 
+  const SwalInput = () => {
+    if (selectedImages.length !== 0) {
+      swal.fire({
+        icon: 'warning',
+        text: '썸네일은 하나만 등록 가능합니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -464,14 +476,18 @@ export const AdminItemWr = () => {
                       <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
                     )}
 
-                    <S.ChangeButton>업로드</S.ChangeButton>
-                    <input
-                      type='file'
-                      name='images'
-                      onChange={(e: any) => sendFileAlret(e)}
-                      // multiple
-                      accept='.png, .jpg,image/*'
-                    />
+                    <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
+                    {selectedImages.length !== 0 ? (
+                      ''
+                    ) : (
+                      <input
+                        type='file'
+                        name='images'
+                        onChange={(e: any) => sendFileAlret(e)}
+                        // multiple
+                        accept='.png, .jpg,image/*'
+                      />
+                    )}
                   </S.TableDiv>
                 </td>
               </tr>

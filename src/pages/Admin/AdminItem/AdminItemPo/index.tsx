@@ -413,6 +413,18 @@ export const AdminItemPo = () => {
     setCateSelect(e.target.value);
   };
 
+  const SwalInput = () => {
+    if (getFileName !== '') {
+      swal.fire({
+        icon: 'warning',
+        text: '썸네일은 하나만 등록 가능합니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+
   // 목록 선택시
   const backBtn = () => {
     swal
@@ -533,13 +545,17 @@ export const AdminItemPo = () => {
                       <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
                     )}
 
-                    <S.ChangeButton>업로드</S.ChangeButton>
-                    <input
-                      type='file'
-                      name='images'
-                      onChange={onSelectFile}
-                      accept='.png, .jpg,image/*'
-                    />
+                    <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
+                    {selectedImages.length !== 0 ? (
+                      ''
+                    ) : (
+                      <input
+                        type='file'
+                        name='images'
+                        onChange={onSelectFile}
+                        accept='.png, .jpg,image/*'
+                      />
+                    )}
                   </S.TableDiv>
                 </td>
               </tr>

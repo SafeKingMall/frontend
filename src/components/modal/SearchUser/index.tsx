@@ -20,7 +20,7 @@ export const SearchUser = (props: any) => {
         <SearchId setTab={setTab} onOpen={props.onOpen} setUserId={setUserId} userId={userId} />
       ),
     },
-    { name: '비밀번호 찾기', content: <SearchPw /> },
+    { name: '비밀번호 찾기', content: <SearchPw onOpen={props.onOpen} /> },
   ];
 
   return (
