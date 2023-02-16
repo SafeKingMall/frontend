@@ -3,20 +3,19 @@ import styled from 'styled-components';
 export const PopUpContainer = styled.div`
   position: fixed;
   z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: rgb(0, 0, 0, 0.5);
-  padding-top: 20rem;
+  /* padding-top: 20rem; */
   /* padding-left: 1%; */
 `;
 
 export const PopUpBody = styled.div`
-  width: 64rem;
-  height: 102.9rem;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
-  margin: auto;
+  /* margin: auto; */
 
   flex-direction: column;
   align-items: center;

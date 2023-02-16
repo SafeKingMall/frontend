@@ -60,7 +60,7 @@ export const List = (props: any) => {
   return (
     <S.Container>
       <S.ItemArea>
-        {itemList.length ? (
+        {itemList?.length ? (
           itemList.map((item: any) => {
             return (
               <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
