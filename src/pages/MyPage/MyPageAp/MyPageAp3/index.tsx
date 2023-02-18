@@ -5,18 +5,38 @@ import { Header } from '../../../../components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useLocation } from 'react-router';
+import { Cookies } from 'react-cookie';
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const MyPageAp3 = () => {
+    const cookies = new Cookies();
     const navigate = useNavigate();
     const { state } = useLocation();
 
 
     const moveRefundDe = () => {
-        navigate('/mypage-rf-detail', {
-            state: {
-                data: state.orderId
-            }
-        })
+        if (cookies.get('refreshToken')) {
+            navigate('/mypage-rf-detail', {
+                state: {
+                    data: state.orderId
+                }
+            })
+        } else {
+            navigate('/sign-in');
+            swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+            });
+        }
+
     }
 
     return (

@@ -67,26 +67,40 @@ export const AdminOrderDe = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/order/detail/${itemId}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setData1(res.data.order);
-        setPayMentStatus(res.data.order.payment.status);
-        setDeliveryStatus(res.data.order.delivery.status);
-        setDeliInfor(res.data.order.delivery);
-        setItemInfor(res.data.order.order_items);
-        setPayInfor(res.data.order.payment);
-        setAdminMemo(res.data.order.admin_memo);
-        setDeliNumber(res.data.order.delivery.invoice_number);
-        setDeliComStatus(res.data.order.delivery.company);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/order/detail/${itemId}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setData1(res.data.order);
+          setPayMentStatus(res.data.order.payment.status);
+          setDeliveryStatus(res.data.order.delivery.status);
+          setDeliInfor(res.data.order.delivery);
+          setItemInfor(res.data.order.order_items);
+          setPayInfor(res.data.order.payment);
+          setAdminMemo(res.data.order.admin_memo);
+          setDeliNumber(res.data.order.delivery.invoice_number);
+          setDeliComStatus(res.data.order.delivery.company);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [itemId, jwt]);
+  }, [itemId, jwt, navigate]);
 
   const payValue = (data: any) => {
     if (data === 'PAID') {
@@ -238,14 +252,25 @@ export const AdminOrderDe = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          modifyApi(itemId);
-          swal.fire({
-            icon: 'success',
-            text: '수정되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            modifyApi(itemId);
+            swal.fire({
+              icon: 'success',
+              text: '수정되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };

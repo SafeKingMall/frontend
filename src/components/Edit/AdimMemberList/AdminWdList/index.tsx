@@ -4,10 +4,17 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { Searchcompo2 } from '../../../often/Searchcompo2';
 import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
+import { useNavigate } from 'react-router-dom';
+
+const swal = withReactContent(Swal);
 
 export const AdimWdList = (props: any) => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+  const navigate = useNavigate();
   const [memberList, setMemberList] = useState([]);
   //회원명 (search할때 쓰일듯)
   const [memberName, setMemberName] = useState('');
@@ -17,7 +24,7 @@ export const AdimWdList = (props: any) => {
   const [totalPages, setTotalPages] = useState(0);
   const [size] = useState(7);
   // select 옵션 선택
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('name');
   // select 박스
   const [searchText, setSearchText] = useState('');
   //검색리스트 길이
@@ -25,20 +32,34 @@ export const AdimWdList = (props: any) => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/member/withDrawlList?size=${size}&page=${page}&name=${memberName}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setMemberList(res.data.content);
-        setTotalPages(res.data.totalElements);
-        setListLength(res.data.numberOfElements);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/member/withDrawlList?size=${size}&page=${page}&name=${memberName}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setMemberList(res.data.content);
+          setTotalPages(res.data.totalElements);
+          setListLength(res.data.numberOfElements);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 812) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [jwt, memberName, size, page]);
+  }, [jwt, memberName, size, page, navigate]);
 
   const searchParameters = Object.keys(Object.assign({}, ...memberList));
 
@@ -77,7 +98,6 @@ export const AdimWdList = (props: any) => {
   const optionList = (filterItems: any) => {
     return (
       <S.Select onChange={(e) => setFilter(e.target.value)}>
-        <option value=''>선택해주세요</option>
         <option value='name'>회원명</option>
       </S.Select>
     );

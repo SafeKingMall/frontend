@@ -34,7 +34,7 @@ export const AdminItemPo = () => {
 
   const [moneyNum, setMoneyNum2] = useState('');
   const [quantityNum, setquantityNum2] = useState('');
-  const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
+  // const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
   // 안찍힌 숫자들
   const [sendMoneyNum, setSendMoneyNum] = useState(0 as Number);
@@ -69,39 +69,53 @@ export const AdminItemPo = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/category/list`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setCategoryId(res.data.content);
-      });
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/item/${state.data}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setItemName(res.data.name);
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/category/list`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setCategoryId(res.data.content);
+        });
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/item/${state.data}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setItemName(res.data.name);
 
-        setMoneyNum2(res.data.price);
-        setquantityNum2(res.data.quantity);
+          setMoneyNum2(res.data.price);
+          setquantityNum2(res.data.quantity);
 
-        setSendMoneyNum(res.data.price);
-        setSendQuantityNum(res.data.quantity);
-        setCateSelect(res.data.categoryName);
-        setDescriptEdit(res.data.description);
+          setSendMoneyNum(res.data.price);
+          setSendQuantityNum(res.data.quantity);
+          setCateSelect(res.data.categoryName);
+          setDescriptEdit(res.data.description);
 
-        setGetFileName(res.data.fileName);
-        setHideBtn(res.data.viewYn === 'N' ? false : true);
-      });
+          setGetFileName(res.data.fileName);
+          setHideBtn(res.data.viewYn === 'N' ? false : true);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.data, jwt]);
+  }, [state.data, jwt, navigate]);
 
   const clickHide = () => {
     setHideBtn(!hideBtn);
@@ -111,15 +125,7 @@ export const AdminItemPo = () => {
 
   //수정알람
   const registerAlert = () => {
-    if (patternSpc.test(itemName)) {
-      swal.fire({
-        icon: 'warning',
-        text: '특수문자를 제외한 상품명을 올바르게 기입해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (itemName === '') {
+    if (itemName === '') {
       swal.fire({
         icon: 'warning',
         text: '상품명을 입력해주세요.',
@@ -198,14 +204,25 @@ export const AdminItemPo = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            modifyApi();
-            swal.fire({
-              icon: 'success',
-              text: '상품이 수정되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              modifyApi();
+              swal.fire({
+                icon: 'success',
+                text: '상품이 수정되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }
@@ -460,11 +477,6 @@ export const AdminItemPo = () => {
                     value={itemName}
                     onChange={(e: any) => setItemName(e.target.value)}
                   />
-                  {patternSpc.test(itemName) ? (
-                    <S.RedDiv>특수문자를 제외한 상품명을 올바르게 기입해주세요.</S.RedDiv>
-                  ) : (
-                    ''
-                  )}
                 </td>
                 <td>카테고리</td>
                 <td>

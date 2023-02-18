@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Cookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const swal = withReactContent(Swal);
 
@@ -31,28 +32,42 @@ export const AdimCgList = () => {
   //등록 모달창
   const [popupTogle1, setPopupTogle1] = useState(false);
 
+  const navigate = useNavigate();
+
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/category/list?sort=sort,asc`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setItemList(res.data.content);
-        setSortCate(res.data.content.length);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/category/list?sort=sort,asc`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setItemList(res.data.content);
+          setSortCate(res.data.content.length);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+      }
     };
     getData();
-  }, [jwt]);
+  }, [jwt, navigate]);
 
   //등록알람
 
-  //수정알람
   const registerItemAlert = () => {
     if (itemList.length < 7) {
       swal
@@ -67,14 +82,25 @@ export const AdimCgList = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            registerApi();
-            swal.fire({
-              icon: 'success',
-              text: '카테고리가 등록됐습니다..',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              registerApi();
+              swal.fire({
+                icon: 'success',
+                text: '카테고리가 등록됐습니다..',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     } else {
@@ -130,37 +156,59 @@ export const AdimCgList = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          deleteApi(id, idx);
-          swal.fire({
-            icon: 'success',
-            text: `${name} 카테고리가 삭제됐습니다.`,
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            deleteApi(id, idx);
+            swal.fire({
+              icon: 'success',
+              text: `${name} 카테고리가 삭제됐습니다.`,
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };
 
   //삭제 api
   const deleteApi = async (id: number, idx: number) => {
-    await axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}/admin/category/${id}`,
-      headers: {
-        Authorization: jwt,
-      },
-    });
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/admin/category/list?sort=sort,asc`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      setItemList(res.data.content);
-      setSortCate(res.data.content.length);
-    });
+    if (cookies.get('refreshToken')) {
+      await axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/admin/category/${id}`,
+        headers: {
+          Authorization: jwt,
+        },
+      });
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/category/list?sort=sort,asc`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setItemList(res.data.content);
+        setSortCate(res.data.content.length);
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   //수정알람
@@ -177,14 +225,25 @@ export const AdimCgList = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          putApi(id, sort);
-          swal.fire({
-            icon: 'success',
-            text: '카테고리명이 변경되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            putApi(id, sort);
+            swal.fire({
+              icon: 'success',
+              text: '카테고리명이 변경되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };
@@ -231,14 +290,25 @@ export const AdimCgList = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          changeCateApi();
-          swal.fire({
-            icon: 'success',
-            text: '카테고리 순서가 변경되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            changeCateApi();
+            swal.fire({
+              icon: 'success',
+              text: '카테고리 순서가 변경되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };

@@ -110,14 +110,25 @@ export const QnAWr = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            registApi(selectedFiles);
-            swal.fire({
-              icon: 'success',
-              text: '게사판이 등록되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              registApi(selectedFiles);
+              swal.fire({
+                icon: 'success',
+                text: '게사판이 등록되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }

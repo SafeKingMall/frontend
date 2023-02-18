@@ -16,11 +16,22 @@ export const AdminItemList = (props: any) => {
   const jwt = cookies.get('accessToken');
   const navigate = useNavigate();
   const moveAdminItemPo = (itemId: any) => {
-    navigate('/admin-item-po', {
-      state: {
-        data: itemId.id,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/admin-item-po', {
+        state: {
+          data: itemId.id,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   const moveItemDetail = (itemId: any) => {
@@ -43,7 +54,7 @@ export const AdminItemList = (props: any) => {
   const [size] = useState(7);
   const [categoryName, setCategoryName] = useState('');
   // select 옵션 선택
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('itemName');
   // select 박스
   const [searchText, setSearchText] = useState('');
 
@@ -52,20 +63,33 @@ export const AdminItemList = (props: any) => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/item/list?size=${size}&page=${page}&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setItemList(res.data.content);
-        setTotalPages(res.data.totalElements);
-        setListLength(res.data.numberOfElements);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/item/list?size=${size}&page=${page}&${sort}&categoryName=${categoryName}&itemName=${searchItem}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setItemList(res.data.content);
+          setTotalPages(res.data.totalElements);
+          setListLength(res.data.numberOfElements);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+      }
     };
     getData();
-  }, [sort, searchItem, size, page, categoryName, jwt]);
+  }, [sort, searchItem, size, page, categoryName, jwt, navigate]);
 
   // //삭제 알림창
   // const deleteItemAlert = (itemId: number, name: string) => {
@@ -151,7 +175,6 @@ export const AdminItemList = (props: any) => {
   const OptionList = () => {
     return (
       <S.Select onChange={(e: any) => setFilter(e.target.value)}>
-        <option value=''>선택해주세요</option>
         <option value='itemName'>상품명</option>
         <option value='categoryName'>카테고리명</option>
       </S.Select>
@@ -159,15 +182,7 @@ export const AdminItemList = (props: any) => {
   };
 
   const search = () => {
-    if (filter === '') {
-      swal.fire({
-        icon: 'warning',
-        text: '체크박스를 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (filter === 'itemName') {
+    if (filter === 'itemName') {
       setSearchItem(searchText);
       setCategoryName('');
     } else if (filter === 'categoryName') {
@@ -175,6 +190,22 @@ export const AdminItemList = (props: any) => {
       setCategoryName(searchText);
     }
   };
+
+  const refreshRoute = () => {
+    if (cookies.get('refreshToken')) {
+      navigate('/admin-item-wr');
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+
   //   if (props.error) {
   //     return <>{props.error.message}</>;
   // } else if (!props.loaded) {
@@ -200,7 +231,7 @@ export const AdminItemList = (props: any) => {
           totalPages={totalPages}
         />
       </div>
-      <S.QnAButton onClick={() => navigate('/admin-item-wr')}>등록</S.QnAButton>
+      <S.QnAButton onClick={() => refreshRoute()}>등록</S.QnAButton>
     </S.Wrapper>
   );
   // }

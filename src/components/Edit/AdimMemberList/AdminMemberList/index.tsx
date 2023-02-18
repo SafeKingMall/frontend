@@ -9,12 +9,14 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { useNavigate } from 'react-router-dom';
 
 const swal = withReactContent(Swal);
 
 export const AdminMemberList = (props: any) => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
+  const navigate = useNavigate();
   // 들어온 데이터 넣는것
   const [memberList, setMemberList] = useState([]);
   const [sort] = useState(`sort=memberId,asc`);
@@ -42,20 +44,34 @@ export const AdminMemberList = (props: any) => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setListLength(res.data.numberOfElements);
-        setMemberList(res.data.content);
-        setTotalPages(res.data.totalElements);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setListLength(res.data.numberOfElements);
+          setMemberList(res.data.content);
+          setTotalPages(res.data.totalElements);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [sort, memberName, size, page, jwt, filter]);
+  }, [sort, memberName, size, page, jwt, filter, navigate]);
 
   //체크박스
   const handleSingleCheck = (checked: any, id: any) => {
@@ -170,14 +186,25 @@ export const AdminMemberList = (props: any) => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            deleteMember();
-            swal.fire({
-              icon: 'success',
-              text: '회원을 탈퇴하였습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              deleteMember();
+              swal.fire({
+                icon: 'success',
+                text: '회원을 탈퇴하였습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }
@@ -185,35 +212,46 @@ export const AdminMemberList = (props: any) => {
 
   //탈퇴get
   const deleteMember = async () => {
-    await checkItems.map((el: any) => {
-      return axios({
+    if (cookies.get('refreshToken')) {
+      checkItems.map((el: any) => {
+        return axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/withdrawal/${el}`,
+          headers: {
+            Authorization: jwt,
+          },
+        });
+      });
+
+      await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/withdrawal/${el}`,
+        url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
         headers: {
           Authorization: jwt,
         },
       });
-    });
 
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
-      headers: {
-        Authorization: jwt,
-      },
-    });
-
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      setMemberList(res.data.content);
-      setTotalPages(res.data.totalElements);
-      setCheckItems([]);
-    });
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/admin/member/list?size=${size}&page=${page}&${sort}&name=${memberName}&status=${filter}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setMemberList(res.data.content);
+        setTotalPages(res.data.totalElements);
+        setCheckItems([]);
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   //   if (props.error) {

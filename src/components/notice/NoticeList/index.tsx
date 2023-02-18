@@ -6,11 +6,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { Cookies } from 'react-cookie';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import '../../../css/alert.css';
+// import Swal from 'sweetalert2';
+// import withReactContent from 'sweetalert2-react-content';
+// import '../../../css/alert.css';
 
-const swal = withReactContent(Swal);
+// const swal = withReactContent(Swal);
 
 export const NoticeList = (props: any) => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export const NoticeList = (props: any) => {
   const [categoryName, setCategoryName] = useState('');
   //토큰
   // select 옵션 선택
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('title');
   // select 박스
   const [searchText, setSearchText] = useState('');
   const [reqData, setReqData] = useState(``);
@@ -52,12 +52,16 @@ export const NoticeList = (props: any) => {
     });
   };
   const moveNoticewr = () => {
-    navigate('/notice-wr', {
-      state: {
-        reqData: reqData,
-        size: size,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/notice-wr', {
+        state: {
+          reqData: reqData,
+          size: size,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+    }
   };
 
   useEffect(() => {
@@ -114,7 +118,7 @@ export const NoticeList = (props: any) => {
   const OptionList = () => {
     return (
       <S.Select onChange={(e: any) => setFilter(e.target.value)}>
-        <option value=''>선택해주세요</option>
+        {/* <option value=''>선택해주세요</option> */}
         <option value='title'>제목</option>
         <option value='createDate'>작성일</option>
       </S.Select>
@@ -122,15 +126,7 @@ export const NoticeList = (props: any) => {
   };
 
   const search = () => {
-    if (filter === '') {
-      swal.fire({
-        icon: 'warning',
-        text: '체크박스를 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (filter === 'title') {
+    if (filter === 'title') {
       setSearchItem('');
 
       setCategoryName(searchText);

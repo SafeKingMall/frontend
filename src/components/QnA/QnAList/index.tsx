@@ -27,7 +27,7 @@ export const QnAList = (props: any) => {
   const [size] = useState(7);
   // //토큰
   // // select 옵션 선택
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('title');
   // // select 박스
   const [searchText, setSearchText] = useState('');
   // // 데이터들
@@ -57,11 +57,22 @@ export const QnAList = (props: any) => {
 
   const navigate = useNavigate();
   const moveQnApw = (item: any) => {
-    navigate('/qna-pw', {
-      state: {
-        data: item,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/qna-pw', {
+        state: {
+          data: item,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   const { registDate2 } = useDateFormat();
@@ -104,7 +115,6 @@ export const QnAList = (props: any) => {
   const optionList = () => {
     return (
       <S.Select onChange={(e: any) => setFilter(e.target.value)}>
-        <option value=''>선택해주세요</option>
         <option value='title'>제목</option>
         <option value='memberId'>작성자</option>
         <option value='createDate'>등록일</option>
@@ -113,15 +123,7 @@ export const QnAList = (props: any) => {
   };
 
   const search = () => {
-    if (filter === '') {
-      swal.fire({
-        icon: 'warning',
-        text: '체크박스를 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (filter === 'title') {
+    if (filter === 'title') {
       setTitle(searchText);
       setLastModifiedDate('');
       setMemberId('');

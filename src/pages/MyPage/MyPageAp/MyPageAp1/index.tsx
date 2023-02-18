@@ -8,6 +8,11 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router';
 import { useMoney } from '../../../../components/common/hooks/useMoney';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const MyPageAp1 = () => {
 
@@ -37,38 +42,65 @@ export const MyPageAp1 = () => {
 
     //mypage-ap2에 값 보내주기
     const moveMypageAp2 = () => {
-        navigate('/mypage-ap2', {
-            state: {
-                orderId: state.data,
-                merchant_uid: order.merchant_uid,
-                imp_uid: payInfor.imp_uid,
-                refundItem: refundItem,
-                orderDate: orderDate
-            },
-        });
+        if (cookies.get('refreshToken')) {
+            navigate('/mypage-ap2', {
+                state: {
+                    orderId: state.data,
+                    merchant_uid: order.merchant_uid,
+                    imp_uid: payInfor.imp_uid,
+                    refundItem: refundItem,
+                    orderDate: orderDate
+                },
+            });
+        } else {
+            navigate('/sign-in');
+            swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+            });
+        }
+
     }
 
 
     useEffect(() => {
         const getData = async () => {
-            await axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/ask/${state.data}`,
-                headers: {
-                    Authorization: jwt,
-                },
-            }).then((res) => {
-                setOrder(res.data.order);
-                setOrderItem(res.data.order.order_item);
-                setPayInfor(res.data.payment);
-                setDeliInfor(res.data.delivery);
-                setRefundItem(res.data.order.merchant_uid);
-                setOrderDate(res.data.order.date);
-            });
+            try {
+                await axios({
+                    method: 'get',
+                    url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/ask/${state.data}`,
+                    headers: {
+                        Authorization: jwt,
+                    },
+                }).then((res) => {
+                    setOrder(res.data.order);
+                    setOrderItem(res.data.order.order_item);
+                    setPayInfor(res.data.payment);
+                    setDeliInfor(res.data.delivery);
+                    setRefundItem(res.data.order.merchant_uid);
+                    setOrderDate(res.data.order.date);
+                });
+
+            } catch (err: any) {
+                // if (err.response.status === 403) {
+                navigate('/sign-in');
+                swal.fire({
+                    icon: 'warning',
+                    text: '로그인이 만료되었습니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    cancelButtonText: '취소',
+                    width: 400,
+                });
+                // }
+            }
 
         };
         getData();
-    }, [jwt]);
+    }, [jwt, navigate]);
 
     const payValue = (data: any) => {
         if (data === 'PAID') {

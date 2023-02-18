@@ -7,6 +7,11 @@ import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { useMoney } from '../../common/hooks/useMoney';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const RefundList = (props: any) => {
     const { registDate2 } = useDateFormat();
@@ -14,11 +19,23 @@ export const RefundList = (props: any) => {
 
     const navigate = useNavigate();
     const moveRefundDe = (item: any) => {
-        navigate('/mypage-rf-detail', {
-            state: {
-                data: item,
-            },
-        });
+        if (cookies.get('refreshToken')) {
+            navigate('/mypage-rf-detail', {
+                state: {
+                    data: item,
+                },
+            });
+        } else {
+            navigate('/sign-in');
+            swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+            });
+        }
+
     };
 
     const [itemList, setItemList] = useState([]);
@@ -53,23 +70,38 @@ export const RefundList = (props: any) => {
 
     useEffect(() => {
         const getData = async () => {
-            await axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&paymentStatus=CANCEL
-            `,
-                headers: {
-                    Authorization: jwt,
-                },
-            }).then((res) => {
+            try {
+                await axios({
+                    method: 'get',
+                    url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&paymentStatus=CANCEL
+                `,
+                    headers: {
+                        Authorization: jwt,
+                    },
+                }).then((res) => {
 
-                setItemList(res.data.order);
-                setTotalPages(res.data.total_elements);
-                setListLength(res.data.total_elements);
-            });
+                    setItemList(res.data.order);
+                    setTotalPages(res.data.total_elements);
+                    setListLength(res.data.total_elements);
+                });
+
+            } catch (err: any) {
+                // if (err.response.status === 403) {
+                navigate('/sign-in');
+                swal.fire({
+                    icon: 'warning',
+                    text: '로그인이 만료되었습니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    cancelButtonText: '취소',
+                    width: 400,
+                });
+                // }
+            }
 
         };
         getData();
-    }, [jwt, size, sort, page, startDay, finishDay, payStatus]);
+    }, [jwt, size, sort, page, startDay, finishDay, payStatus, navigate]);
 
     const dataList2 = (data: any) => {
         return (
@@ -88,11 +120,11 @@ export const RefundList = (props: any) => {
                                 <div>{el.count}</div>
                                 <div>{MoneyNumber(el.payment.price)}</div>
                                 <div>
-                                    {el.payment.status === 'ready'
-                                        ? '미결제'
-                                        : el.payment.status === 'paid'
+                                    {el.payment.status === 'READY'
+                                        ? '결제대기'
+                                        : el.payment.status === 'PAID'
                                             ? '결제완료'
-                                            : el.payment.status === 'cancelled'
+                                            : el.payment.status === 'CANCEL'
                                                 ? '결제취소'
                                                 : '결제실패'}
                                 </div>

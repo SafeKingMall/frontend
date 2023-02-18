@@ -3,11 +3,11 @@ import * as S from './style';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Pagination } from '../pagination';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import '../../../css/alert.css';
+// import Swal from 'sweetalert2';
+// import withReactContent from 'sweetalert2-react-content';
+// import '../../../css/alert.css';
 
-const swal = withReactContent(Swal);
+// const swal = withReactContent(Swal);
 
 export const Searchcompo2 = (props: any) => {
   //현재페이지
@@ -21,17 +21,7 @@ export const Searchcompo2 = (props: any) => {
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
   const onChangeText = (e: any) => {
-    if (props.filter === '') {
-      swal.fire({
-        icon: 'warning',
-        text: '체크박스를 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else {
-      props.setSearchText(e.target.value);
-    }
+    props.setSearchText(e.target.value);
   };
   const onKeyDownEnter = (e: any) => {
     if (e.key === 'Enter') {

@@ -36,30 +36,44 @@ export const QnAMo = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setTitle(res.data.title);
-        setContents(res.data.contents);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setTitle(res.data.title);
+          setContents(res.data.contents);
+        });
 
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
-        headers: {
-          Authorization: jwt,
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((res) => {
-        setSelectedImages(res.data);
-      });
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
+          headers: {
+            Authorization: jwt,
+            'Content-Type': 'multipart/form-data',
+          },
+        }).then((res) => {
+          setSelectedImages(res.data);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [itemId, jwt]);
+  }, [itemId, jwt, navigate]);
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
@@ -109,15 +123,26 @@ export const QnAMo = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            setSelectedImages(selectedImages.filter((e) => e !== image));
-            deleteFile(id);
-            swal.fire({
-              icon: 'success',
-              text: '파일이 삭제되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              setSelectedImages(selectedImages.filter((e) => e !== image));
+              deleteFile(id);
+              swal.fire({
+                icon: 'success',
+                text: '파일이 삭제되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }
@@ -201,14 +226,25 @@ export const QnAMo = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            registApi();
-            swal.fire({
-              icon: 'success',
-              text: '게사판이 수정되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              registApi();
+              swal.fire({
+                icon: 'success',
+                text: '게사판이 수정되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }
