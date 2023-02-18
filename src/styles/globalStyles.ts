@@ -20,6 +20,7 @@ html {
 body {
   height: 100%;
   -webkit-text-size-adjust : none;
+  position: relative;
 }
 #root {
   height: 100%;

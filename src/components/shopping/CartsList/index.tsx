@@ -163,33 +163,37 @@ export const CartsList = (props: any) => {
 
   //개별 아이템 바로구매
   const moveOrders = (itemId: any) => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '해당상품을 구매하러 가시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          await axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/user/cart`,
-            headers: {
-              Authorization: jwt,
-            },
-          }).then((res) => {
-            navigate('/orders', {
-              state: {
-                data: res.data.content.filter((el: any) => el.id === itemId),
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '해당상품을 구매하러 가시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            await axios({
+              method: 'get',
+              url: `${process.env.REACT_APP_API_URL}/user/cart`,
+              headers: {
+                Authorization: jwt,
               },
+            }).then((res) => {
+              navigate('/orders', {
+                state: {
+                  data: res.data.content.filter((el: any) => el.id === itemId),
+                },
+              });
             });
-          });
-        }
-      });
+          }
+        });
+    }
   };
 
   //전체선택 체크박스 이벤트

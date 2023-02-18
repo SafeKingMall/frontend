@@ -28,11 +28,10 @@ export const ItemDetail = () => {
   const purchaseBtn = useRef(<div />);
   const viewedItem = useRef<any>({});
   const cookies = new Cookies();
-  const rtoken = cookies.get('refreshToken');
 
   //구매하기
   const moveOrders = useCallback(() => {
-    if (!rtoken) {
+    if (!cookies.get('refreshToken')) {
       navigate('/sign-in');
     } else {
       swal
@@ -71,7 +70,7 @@ export const ItemDetail = () => {
           }
         });
     }
-  }, [navigate, state, rtoken]);
+  }, [navigate, state, cookies]);
 
   useEffect(() => {
     if (!loading) {
@@ -216,7 +215,7 @@ export const ItemDetail = () => {
   };
 
   const addCart = async () => {
-    if (!rtoken) {
+    if (!cookies.get('refreshToken')) {
       navigate('/sign-in');
     } else {
       await axios({

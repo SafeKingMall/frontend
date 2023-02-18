@@ -37,10 +37,10 @@ export const SignIn = () => {
   const signIn = async () => {
     //엑세트토큰 쿠키만료시간
     const tokenExpires = new Date();
-    tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
     //리프레시토큰 쿠키만료시간
     const rtokenExpires = new Date();
-    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
+    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
     try {
       await axios
         .post(

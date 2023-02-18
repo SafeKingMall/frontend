@@ -24,16 +24,16 @@ export const Search = (props: any) => {
     //   setSelectSort('가격 높은 순');
     // }
     if (e.target.value === '가격 높은 순') {
-      setSort(`sort=viewPrice,desc&sort=name,asc`);
+      setSort(`sort=viewPrice,desc&sort=createDate,desc`);
       setSelectSort('가격 높은 순');
     } else if (e.target.value === '가격 낮은 순') {
-      setSort(`sort=viewPrice,asc&sort=name,asc`);
+      setSort(`sort=viewPrice,asc&sort=createDate,desc`);
       setSelectSort('가격 낮은 순');
     } else if (e.target.value === '최신 순') {
-      setSort(`sort=createDate,desc&sort=name,asc`);
+      setSort(`sort=createDate,desc&sort=id,desc`);
       setSelectSort('최신 순');
     } else if (e.target.value === '이름 순') {
-      setSort(`sort=name,asc&sort=id,asc`);
+      setSort(`sort=name,asc&sort=createDate,desc`);
       setSelectSort('이름 순');
     }
   };

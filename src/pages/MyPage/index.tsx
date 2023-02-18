@@ -184,7 +184,17 @@ export const MyPage = () => {
           setDetail(res.data.detailedAddress);
         });
     } catch (err: any) {
-      navigate('/sign-in');
+      if (err.response.status === 403) {
+        navigate('/sign-in');
+      } else {
+        swal.fire({
+          icon: 'warning',
+          text: err.response.data.message,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      }
     }
   };
   useEffect(() => {
