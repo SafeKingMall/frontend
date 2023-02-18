@@ -28,40 +28,65 @@ export const QnAPo = () => {
   const jwt = cookies.get('accessToken');
 
   const moveNoticepo = (item: any) => {
-    navigate('/qna-mo', {
-      state: {
-        itemId: itemId,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/qna-mo', {
+        state: {
+          itemId: itemId,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setData(res.data);
-        setMemberId(res.data.memberId);
-        setAnswer(res.data.answer);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/itemQna/${itemId}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setData(res.data);
+          setMemberId(res.data.memberId);
+          setAnswer(res.data.answer);
+        });
 
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
-        headers: {
-          Authorization: jwt,
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((res) => {
-        setQnaFile(res.data);
-      });
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/file/list/itemQna/${itemId}`,
+          headers: {
+            Authorization: jwt,
+            'Content-Type': 'multipart/form-data',
+          },
+        }).then((res) => {
+          setQnaFile(res.data);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [itemId, jwt]);
+  }, [itemId, jwt, navigate]);
 
   // 댓글 등록 알람
   const answerAlert = () => {
@@ -86,18 +111,29 @@ export const QnAPo = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            registAnswer();
-            swal
-              .fire({
-                icon: 'success',
-                text: '댓글이 등록되었습니다.',
+            if (cookies.get('refreshToken')) {
+              registAnswer();
+              swal
+                .fire({
+                  icon: 'success',
+                  text: '댓글이 등록되었습니다.',
+                  confirmButtonText: '확인',
+                  confirmButtonColor: '#289951',
+                  width: 400,
+                })
+                .then((res) => {
+                  setAnswerContents('');
+                });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#289951',
                 width: 400,
-              })
-              .then((res) => {
-                setAnswerContents('');
               });
+            }
           }
         });
     }
@@ -170,14 +206,25 @@ export const QnAPo = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          deleteApi(id);
-          swal.fire({
-            icon: 'success',
-            text: '게시판이 삭제되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            deleteApi(id);
+            swal.fire({
+              icon: 'success',
+              text: '게시판이 삭제되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };

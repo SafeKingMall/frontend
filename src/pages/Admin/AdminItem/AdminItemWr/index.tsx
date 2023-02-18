@@ -40,7 +40,7 @@ export const AdminItemWr = () => {
   const jwt = cookies.get('accessToken');
   // 유효성 검사 (특수문자)
 
-  const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
+  // const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
   const clickHide = () => {
     setHideBtn(!hideBtn);
@@ -52,45 +52,35 @@ export const AdminItemWr = () => {
   };
 
   const sendFileAlret = (e: any) => {
-    if (selectedFiles > 1) {
-      swal.fire({
-        icon: 'warning',
-        text: '특수문자를 제외한 상품명을 올바르게 기입해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else {
-      e.preventDefault();
-      e.persist();
-      const selectedFiles = e.target.files;
-      const fileUrlList = [...selectedFiles];
+    e.preventDefault();
+    e.persist();
+    const selectedFiles = e.target.files;
+    const fileUrlList = [...selectedFiles];
 
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const nowUrl = URL.createObjectURL(selectedFiles[i]);
-        fileUrlList.push(nowUrl);
-      }
-
-      // 업로드하는 파일 개수 제한하는 것
-      // if (fileUrlList.length > 1) {
-      //   fileUrlList.slice(0, 1);
-      // }
-
-      // if (selectedImages.length > 1) {
-      //   selectedImages.slice(0, 1);
-      // }
-
-      setSelectedFiles(fileUrlList);
-
-      const selectedFileArray: any = Array.from(selectedFiles);
-
-      const imageArray = selectedFileArray.map((file: any) => {
-        return file.name;
-      });
-
-      setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
-      e.target.value = '';
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const nowUrl = URL.createObjectURL(selectedFiles[i]);
+      fileUrlList.push(nowUrl);
     }
+
+    // 업로드하는 파일 개수 제한하는 것
+    // if (fileUrlList.length > 1) {
+    //   fileUrlList.slice(0, 1);
+    // }
+
+    // if (selectedImages.length > 1) {
+    //   selectedImages.slice(0, 1);
+    // }
+
+    setSelectedFiles(fileUrlList);
+
+    const selectedFileArray: any = Array.from(selectedFiles);
+
+    const imageArray = selectedFileArray.map((file: any) => {
+      return file.name;
+    });
+
+    setSelectedImages((previousImages: any) => previousImages.concat(imageArray));
+    e.target.value = '';
   };
 
   const attachFile =
@@ -171,31 +161,37 @@ export const AdminItemWr = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/category/list`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setCategoryId(res.data.content);
-        setSendId(res.data.content[0].id);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/category/list`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setCategoryId(res.data.content);
+          setSendId(res.data.content[0].id);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [jwt]);
+  }, [jwt, navigate]);
 
   //등록 알림창
   const registerAlert = () => {
-    if (patternSpc.test(itemName)) {
-      swal.fire({
-        icon: 'warning',
-        text: '특수문자를 제외한 상품명을 올바르게 기입해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (itemName === '') {
+    if (itemName === '') {
       swal.fire({
         icon: 'warning',
         text: '상품명을 입력해주세요.',
@@ -280,14 +276,25 @@ export const AdminItemWr = () => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            registerApi();
-            swal.fire({
-              icon: 'success',
-              text: '상품이 등록되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            if (cookies.get('refreshToken')) {
+              registerApi();
+              swal.fire({
+                icon: 'success',
+                text: '상품이 등록되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            } else {
+              navigate('/sign-in');
+              swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
         });
     }
@@ -408,11 +415,6 @@ export const AdminItemWr = () => {
                     placeholder='상품명을 입력해주세요'
                     onChange={(e: any) => setItemName(e.target.value)}
                   />
-                  {patternSpc.test(itemName) ? (
-                    <S.RedDiv>특수문자를 제외한 상품명을 올바르게 기입해주세요.</S.RedDiv>
-                  ) : (
-                    ''
-                  )}
                 </td>
                 <td>카테고리</td>
                 <td>

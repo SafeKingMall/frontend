@@ -23,30 +23,41 @@ export const QnAPw = () => {
   const [passWord, setPassWord] = useState('' as any);
 
   const inputPass = async (passWord: any) => {
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/itemQna/password/${data}/${passWord}`,
-      headers: {
-        Authorization: jwt,
-        'Content-Type': `application/json`,
-      },
-    })
-      .then((res) => {
-        navigate('/qna-po', {
-          state: {
-            data: data,
-          },
-        });
+    if (cookies.get('refreshToken')) {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/itemQna/password/${data}/${passWord}`,
+        headers: {
+          Authorization: jwt,
+          'Content-Type': `application/json`,
+        },
       })
-      .catch((err) => {
-        swal.fire({
-          icon: 'warning',
-          text: '비밀번호가 틀렸습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          width: 400,
+        .then((res) => {
+          navigate('/qna-po', {
+            state: {
+              data: data,
+            },
+          });
+        })
+        .catch((err) => {
+          swal.fire({
+            icon: 'warning',
+            text: '비밀번호가 틀렸습니다.',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
         });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
       });
+    }
   };
 
   const onKeyDownEnter = (e: any) => {

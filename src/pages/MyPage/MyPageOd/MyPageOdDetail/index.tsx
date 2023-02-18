@@ -10,11 +10,11 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Cookies } from 'react-cookie';
-// import Swal from 'sweetalert2';
-// import withReactContent from 'sweetalert2-react-content';
-// import '../../../css/alert.css';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../../css/alert.css';
 
-// const swal = withReactContent(Swal);
+const swal = withReactContent(Swal);
 
 export const MyPageOdDetail = () => {
   const cookies = new Cookies();
@@ -45,27 +45,42 @@ export const MyPageOdDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/user/order/detail/${itemId}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setData1(res.data.order);
-        setPayMentStatus(res.data.order.payment.status);
-        setDeliveryStatus(res.data.order.delivery.status);
-        setDeliInfor(res.data.order.delivery);
-        setItemInfor(res.data.order.order_items);
-        setPayInfor(res.data.order.payment);
-        setDeliNumber(res.data.order.delivery.invoice_number);
-        setDeliComStatus(res.data.order.delivery.company);
-        setOrderDay(res.data.order.date);
-        setMemberInfo(res.data.member)
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/user/order/detail/${itemId}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setData1(res.data.order);
+          setPayMentStatus(res.data.order.payment.status);
+          setDeliveryStatus(res.data.order.delivery.status);
+          setDeliInfor(res.data.order.delivery);
+          setItemInfor(res.data.order.order_items);
+          setPayInfor(res.data.order.payment);
+          setDeliNumber(res.data.order.delivery.invoice_number);
+          setDeliComStatus(res.data.order.delivery.company);
+          setOrderDay(res.data.order.date);
+          setMemberInfo(res.data.member)
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
+
     };
     getData();
-  }, [itemId, jwt]);
+  }, [itemId, jwt, navigate]);
 
   const payValue = (data: any) => {
     if (data === 'PAID') {
@@ -152,6 +167,21 @@ export const MyPageOdDetail = () => {
     </div>
   );
 
+  const refreshRoute = () => {
+    if (cookies.get('refreshToken')) {
+      navigate('/mypage-od')
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+  };
+
   return (
     <>
       <Header />
@@ -231,7 +261,7 @@ export const MyPageOdDetail = () => {
           </S.Section2Wrapper>
 
           <S.QnABox>
-            <S.QnAButton onClick={() => navigate('/mypage-od')}>목록</S.QnAButton>
+            <S.QnAButton onClick={() => refreshRoute()}>목록</S.QnAButton>
           </S.QnABox>
         </S.Wrapper>
       </S.Container>

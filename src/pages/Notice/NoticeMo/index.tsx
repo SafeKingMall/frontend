@@ -39,19 +39,33 @@ export const NoticeMo = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/admin/notice/${itemId}`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setTitle(res.data.title);
-        setContent(res.data.contents);
-      });
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/admin/notice/${itemId}`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setTitle(res.data.title);
+          setContent(res.data.contents);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
     };
     getData();
-  }, [itemId, jwt]);
+  }, [itemId, jwt, navigate]);
 
   //수정알람
   const putItemAlert = () => {
@@ -67,14 +81,25 @@ export const NoticeMo = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          registerApi();
-          swal.fire({
-            icon: 'success',
-            text: '게시판이 수정되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
+          if (cookies.get('refreshToken')) {
+            registerApi();
+            swal.fire({
+              icon: 'success',
+              text: '게시판이 수정되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };

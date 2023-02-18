@@ -7,6 +7,11 @@ import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { useMoney } from '../../common/hooks/useMoney';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../css/alert.css';
+
+const swal = withReactContent(Swal);
 
 export const AdminOrderList = (props: any) => {
   const { registDate, registDate2 } = useDateFormat();
@@ -14,11 +19,23 @@ export const AdminOrderList = (props: any) => {
 
   const navigate = useNavigate();
   const moveQnApw = (item: any) => {
-    navigate('/admin-order-de', {
-      state: {
-        data: item,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/admin-order-de', {
+        state: {
+          data: item,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
+
   };
 
   const [itemList, setItemList] = useState([]);
@@ -59,22 +76,37 @@ export const AdminOrderList = (props: any) => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios({
-        method: 'get',
+      try {
+        await axios({
+          method: 'get',
 
-        url: `${process.env.REACT_APP_API_URL}/admin/order/list?sort=${sort}&page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&keyword=${keyWord}&deliveryStatus=${deliStatus}&paymentStats=${payStatus}
-        `,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setItemList(res.data.orders);
-        setTotalPages(res.data.total_elements);
-        setListLength(res.data.total_elements);
-      });
+          url: `${process.env.REACT_APP_API_URL}/admin/order/list?sort=${sort}&page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&keyword=${keyWord}&deliveryStatus=${deliStatus}&paymentStats=${payStatus}
+          `,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setItemList(res.data.orders);
+          setTotalPages(res.data.total_elements);
+          setListLength(res.data.total_elements);
+        });
+      } catch (err: any) {
+        // if (err.response.status === 403) {
+        navigate('/sign-in');
+        swal.fire({
+          icon: 'warning',
+          text: '로그인이 만료되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          cancelButtonText: '취소',
+          width: 400,
+        });
+        // }
+      }
+
     };
     getData();
-  }, [jwt, size, sort, page, startDay, finishDay, keyWord, deliStatus, payStatus]);
+  }, [jwt, size, sort, page, startDay, finishDay, keyWord, deliStatus, payStatus, navigate]);
 
   const dataList2 = (data: any) => {
     return (

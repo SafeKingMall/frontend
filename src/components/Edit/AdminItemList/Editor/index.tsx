@@ -78,7 +78,7 @@ export const EditorWr = (props: any) => {
         container: [
           ['link', 'image', 'video'],
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
-          ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', 'formula'],
+          ['bold', 'italic', 'underline', 'strike'],
           [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
           [{ align: [] }, { color: [] }, { background: [] }],
         ],
@@ -96,9 +96,6 @@ export const EditorWr = (props: any) => {
     'italic',
     'underline',
     'strike',
-    'blockquote',
-    'code-block',
-    'formula',
     'list',
     'bullet',
     'indent',

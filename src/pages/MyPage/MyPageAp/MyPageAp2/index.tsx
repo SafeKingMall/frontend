@@ -30,11 +30,23 @@ export const MyPageAp2 = () => {
 
 
     const moveMypageAp1 = () => {
-        navigate('/mypage-ap1', {
-            state: {
-                data: state.orderId
-            },
-        });
+        if (cookies.get('refreshToken')) {
+            navigate('/mypage-ap1', {
+                state: {
+                    data: state.orderId
+                },
+            });
+        } else {
+            navigate('/sign-in');
+            swal.fire({
+                icon: 'warning',
+                text: '로그인이 만료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+            });
+        }
+
     }
 
 
@@ -53,7 +65,19 @@ export const MyPageAp2 = () => {
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                    refundApi();
+                    if (cookies.get('refreshToken')) {
+                        refundApi();
+
+                    } else {
+                        navigate('/sign-in');
+                        swal.fire({
+                            icon: 'warning',
+                            text: '로그인이 만료되었습니다.',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#289951',
+                            width: 400,
+                        });
+                    }
 
                 }
             });

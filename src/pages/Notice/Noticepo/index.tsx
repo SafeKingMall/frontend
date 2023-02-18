@@ -32,13 +32,24 @@ export const NoticePo = () => {
     });
   };
   const moveNoticeMo = (item: any) => {
-    navigate('/notice-Mo', {
-      state: {
-        itemId: item,
-        data: itemList,
-        reqData: reqData,
-      },
-    });
+    if (cookies.get('refreshToken')) {
+      navigate('/notice-Mo', {
+        state: {
+          itemId: item,
+          data: itemList,
+          reqData: reqData,
+        },
+      });
+    } else {
+      navigate('/sign-in');
+      swal.fire({
+        icon: 'warning',
+        text: '로그인이 만료되었습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    }
   };
 
   const [data, setDate] = useState('' as any);
@@ -99,15 +110,26 @@ export const NoticePo = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          deleteApi(id);
-          swal.fire({
-            icon: 'success',
-            text: '게시판이 삭제되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-          navigate('/notice');
+          if (cookies.get('refreshToken')) {
+            deleteApi(id);
+            swal.fire({
+              icon: 'success',
+              text: '게시판이 삭제되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+            navigate('/notice');
+          } else {
+            navigate('/sign-in');
+            swal.fire({
+              icon: 'warning',
+              text: '로그인이 만료되었습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
         }
       });
   };
