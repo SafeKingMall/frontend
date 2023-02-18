@@ -24,88 +24,51 @@ export const Carts = () => {
 
   //선택상품구매
   const selectPurchase = () => {
-    if (resultList.length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
     } else {
-      swal
-        .fire({
-          icon: 'question',
-          text: '선택하신 상품을 구매하시겠습니까?',
+      if (resultList.length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
           confirmButtonText: '확인',
           confirmButtonColor: '#289951',
-          showCancelButton: true,
-          cancelButtonText: '취소',
           width: 400,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            navigate('/orders', {
-              state: {
-                data: resultList,
-              },
-            });
-          }
         });
+      } else {
+        swal
+          .fire({
+            icon: 'question',
+            text: '선택하신 상품을 구매하시겠습니까?',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            showCancelButton: true,
+            cancelButtonText: '취소',
+            width: 400,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              navigate('/orders', {
+                state: {
+                  data: resultList,
+                },
+              });
+            }
+          });
+      }
     }
   };
 
   //전체상품구매
   const allPurchase = async () => {
-    let length;
-    let count;
-    let itemPrice;
-    const deliveryPay = 2500;
-    let totalPrice;
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      length = res.data.content.length;
-      count = res.data.content.reduce((pre: any, cur: any) => {
-        return (pre += cur.itemQuantity);
-      }, 0);
-      itemPrice = res.data.content.reduce((pre: any, cur: any) => {
-        return (pre += cur.itemPrice * cur.itemQuantity);
-      }, 0);
-      totalPrice = itemPrice + deliveryPay;
-      swal
-        .fire({
-          icon: 'question',
-          title: `상품 종류: ${length}개
-          주문 상품 수: ${count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}개
-          배송비: ${deliveryPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
-          최종 결제 금액: ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
-          `,
-          text: '전체 상품을 구매하시겠습니까?',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          showCancelButton: true,
-          cancelButtonText: '취소',
-          width: 400,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            navigate('/orders', {
-              state: {
-                data: res.data.content,
-              },
-            });
-          }
-        });
-    });
-  };
-
-  useEffect(() => {
-    const getData = async () => {
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      let length;
+      let count;
+      let itemPrice;
+      const deliveryPay = 2500;
+      let totalPrice;
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
@@ -113,12 +76,71 @@ export const Carts = () => {
           Authorization: jwt,
         },
       }).then((res) => {
-        setData(res.data.content);
-        setResultList(res.data.content);
+        length = res.data.content.length;
+        count = res.data.content.reduce((pre: any, cur: any) => {
+          return (pre += cur.itemQuantity);
+        }, 0);
+        itemPrice = res.data.content.reduce((pre: any, cur: any) => {
+          return (pre += cur.itemPrice * cur.itemQuantity);
+        }, 0);
+        totalPrice = itemPrice + deliveryPay;
+        swal
+          .fire({
+            icon: 'question',
+            title: `상품 종류: ${length}개
+          주문 상품 수: ${count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}개
+          배송비: ${deliveryPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          최종 결제 금액: ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          `,
+            text: '전체 상품을 구매하시겠습니까?',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            showCancelButton: true,
+            cancelButtonText: '취소',
+            width: 400,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              navigate('/orders', {
+                state: {
+                  data: res.data.content,
+                },
+              });
+            }
+          });
       });
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
+          headers: {
+            Authorization: jwt,
+          },
+        }).then((res) => {
+          setData(res.data.content);
+          setResultList(res.data.content);
+        });
+      } catch (err: any) {
+        if (err.response.status === 403) {
+          navigate('/sign-in');
+        } else {
+          swal.fire({
+            icon: 'warning',
+            text: err.response.data.message,
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            width: 400,
+          });
+        }
+      }
     };
     getData();
-  }, [jwt]);
+  }, [jwt, navigate]);
   const itemInCart =
     data.length === 0 ? (
       <S.Container>

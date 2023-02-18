@@ -11,7 +11,7 @@ export const ItemList2 = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [selectNav, setSelectNav] = useState('');
   const [itemList, setItemList] = useState([]);
-  const [sort, setSort] = useState(`sort=viewPrice,desc&sort=name,asc`);
+  const [sort, setSort] = useState(`sort=viewPrice,desc&sort=createDate,desc`);
   const [searchItem, setSearchItem] = useState('');
   const [reqData, setReqData] = useState(``);
   const [page, setPage] = useState(0);

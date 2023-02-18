@@ -54,7 +54,13 @@ export const ItemImg = styled.img`
   height: 13rem;
   border: 0.1rem solid #dddddd;
 `;
-export const ItemName = styled.span`
+export const ItemName = styled.div`
+  width: 13rem;
+  display: inline-block;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   font-size: 1.5rem;
   font-weight: 400;
   color: #999999;

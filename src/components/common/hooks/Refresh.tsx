@@ -13,10 +13,10 @@ export const Refresh = () => {
       if (!accessToken && refreshToken) {
         //엑세트토큰 쿠키만료시간
         const tokenExpires = new Date();
-        tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
+        tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
         //리프레시토큰 쿠키만료시간
         const rtokenExpires = new Date();
-        rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
+        rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
         await fetch(`${process.env.REACT_APP_API_URL}/refresh`, {
           headers: {
             'refresh-token': refreshToken,
@@ -37,6 +37,7 @@ export const Refresh = () => {
             } else if (data === 'ROLE_USER') {
               setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
+            console.log('리프레쉬');
           });
       }
       return config;
