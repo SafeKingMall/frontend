@@ -37,7 +37,6 @@ export const Refresh = () => {
             } else if (data === 'ROLE_USER') {
               setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
-            console.log('리프레쉬');
           });
       }
       return config;
