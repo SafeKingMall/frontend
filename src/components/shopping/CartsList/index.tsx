@@ -115,26 +115,30 @@ export const CartsList = (props: any) => {
 
   //선택 아이템 삭제
   const deleteSelectItem = async () => {
-    let items = checkedList.map((item: any) => 'itemId=' + item.id + '&');
-    let itemsString = items.join('');
-    await axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
-      headers: {
-        Authorization: jwt,
-      },
-    });
-    await axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/user/cart`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then((res) => {
-      setData(res.data.content);
-      setCountList(res.data.content.map((el: any) => el.itemQuantity));
-      setCheckedList([]);
-    });
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      let items = checkedList.map((item: any) => 'itemId=' + item.id + '&');
+      let itemsString = items.join('');
+      await axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
+        headers: {
+          Authorization: jwt,
+        },
+      });
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/user/cart`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setData(res.data.content);
+        setCountList(res.data.content.map((el: any) => el.itemQuantity));
+        setCheckedList([]);
+      });
+    }
   };
 
   useEffect(() => {

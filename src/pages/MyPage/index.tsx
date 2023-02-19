@@ -284,59 +284,63 @@ export const MyPage = () => {
   ]);
 
   const changeUserData = async () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '회원정보를 수정하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            await axios({
-              method: 'PUT',
-              url: `${process.env.REACT_APP_API_URL}/user/update`,
-              headers: {
-                Authorization: cookies.get('accessToken'),
-              },
-              data: {
-                name: name,
-                birth: birth,
-                representativeName: ceo,
-                phoneNumber: phone,
-                companyRegistrationNumber: saupja,
-                corporateRegistrationNumber: beobin,
-                zipcode: zip,
-                basicAddress: basic,
-                detailedAddress: detail,
-              },
-            }).then((res) => {
-              if (res.status === 200) {
-                swal.fire({
-                  icon: 'success',
-                  text: '수정되었습니다.',
-                  confirmButtonText: '확인',
-                  confirmButtonColor: '#289951',
-                  width: 400,
-                });
-                getUser();
-              }
-            });
-          } catch (err: any) {
-            swal.fire({
-              icon: 'warning',
-              text: err.response.data.message,
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '회원정보를 수정하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              await axios({
+                method: 'PUT',
+                url: `${process.env.REACT_APP_API_URL}/user/update`,
+                headers: {
+                  Authorization: cookies.get('accessToken'),
+                },
+                data: {
+                  name: name,
+                  birth: birth,
+                  representativeName: ceo,
+                  phoneNumber: phone,
+                  companyRegistrationNumber: saupja,
+                  corporateRegistrationNumber: beobin,
+                  zipcode: zip,
+                  basicAddress: basic,
+                  detailedAddress: detail,
+                },
+              }).then((res) => {
+                if (res.status === 200) {
+                  swal.fire({
+                    icon: 'success',
+                    text: '수정되었습니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    width: 400,
+                  });
+                  getUser();
+                }
+              });
+            } catch (err: any) {
+              swal.fire({
+                icon: 'warning',
+                text: err.response.data.message,
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
           }
-        }
-      });
+        });
+    }
   };
   return (
     <>
