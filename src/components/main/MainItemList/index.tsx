@@ -18,16 +18,20 @@ export const MainItemList = (props: any) => {
         {itemList.map((item: any) => {
           return (
             <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
-              {/* <S.ItemImgArea> */}
               <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
-              {/* </S.ItemImgArea> */}
-              <S.Category>{item.categoryName}</S.Category>
-              <S.ItemName>{item.name}</S.ItemName>
-              <S.Price>
-                {item.viewPrice !== 1000000000
-                  ? item.viewPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
-                  : '금액표시없음'}
-              </S.Price>
+              <S.ItemTextArea>
+                <div style={{ marginTop: '2rem' }}>
+                  <S.Category>{item.categoryName}</S.Category>
+                  <S.ItemName>{item.name}</S.ItemName>
+                </div>
+                <div>
+                  <S.Price>
+                    {item.viewPrice !== 1000000000
+                      ? item.viewPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
+                      : '금액표시없음'}
+                  </S.Price>
+                </div>
+              </S.ItemTextArea>
             </S.ItemContainer>
           );
         })}
