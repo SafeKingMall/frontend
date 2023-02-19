@@ -1,15 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 
 export const Nav = (props: any) => {
   const navigate = useNavigate();
   const categoryList = props.categoryList;
   let selectNav = props.selectNav;
-  const location = window.location.pathname;
-  const onChangeNav = (url: string) => {
-    if (location !== url) {
-      navigate(url);
+  const location = useLocation();
+  const onChangeNav = (path: string) => {
+    if (location.pathname === path) {
+      window.location.reload();
+    } else {
+      navigate(path);
     }
   };
   return (

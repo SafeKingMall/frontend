@@ -22,6 +22,12 @@ export const MyPageWd = () => {
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState(false);
 
+  useEffect(() => {
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    }
+  });
+
   const onChangeId = (e: string) => {
     setId(e);
     validationId(e);
@@ -55,50 +61,54 @@ export const MyPageWd = () => {
   }, [idCheck, passwordCheck]);
 
   const deleteEvent = () => {
-    swal
-      .fire({
-        icon: 'question',
-        text: '회원 탈퇴하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            await axios({
-              method: 'post',
-              url: `${process.env.REACT_APP_API_URL}/user/withdrawal`,
-              headers: {
-                Authorization: cookies.get('accessToken'),
-              },
-              data: {
-                inputUsername: id,
-                password: password,
-              },
-            }).then((res) => {
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '회원 탈퇴하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              await axios({
+                method: 'post',
+                url: `${process.env.REACT_APP_API_URL}/user/withdrawal`,
+                headers: {
+                  Authorization: cookies.get('accessToken'),
+                },
+                data: {
+                  inputUsername: id,
+                  password: password,
+                },
+              }).then((res) => {
+                swal.fire({
+                  icon: 'success',
+                  text: '탈퇴 완료되었습니다.',
+                  confirmButtonText: '확인',
+                  confirmButtonColor: '#289951',
+                  width: 400,
+                });
+                navigate('/');
+              });
+            } catch (err: any) {
               swal.fire({
-                icon: 'success',
-                text: '탈퇴 완료되었습니다.',
+                icon: 'warning',
+                text: err.response.data.message,
                 confirmButtonText: '확인',
                 confirmButtonColor: '#289951',
                 width: 400,
               });
-              navigate('/');
-            });
-          } catch (err: any) {
-            swal.fire({
-              icon: 'warning',
-              text: err.response.data.message,
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            }
           }
-        }
-      });
+        });
+    }
   };
 
   return (
@@ -119,7 +129,7 @@ export const MyPageWd = () => {
             <WithdrawInfo2 />
           </S.AreaWrap>
           <S.AreaWrap>
-            <S.Mid>탈퇴사유</S.Mid>
+            <S.Mid>회원정보</S.Mid>
             <S.InputWrapper>
               <div>
                 <label>아이디</label>

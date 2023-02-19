@@ -7,14 +7,15 @@ import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router-dom';
 
 const PWREGEX = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{3,20}$/;
 const SYMBOL = /[^!@#$%^&*0-9a-zA-Z]/;
 
 export const MyPagePw = () => {
+  const navigate = useNavigate();
   const swal = withReactContent(Swal);
   const cookies = new Cookies();
-  // const jwt = cookies.get('accessToken');
   const [disable, setDisable] = useState(true);
 
   //비밀번호, 새 비밀번호, 비밀번호 확인
@@ -29,6 +30,12 @@ export const MyPagePw = () => {
   const [pwCheck, setPwCheck] = useState(false);
   const [newPwCheck, setNewPwCheck] = useState(false);
   const [newPwConfirmCheck, setNewPwConfirmCheck] = useState(false);
+
+  useEffect(() => {
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    }
+  });
 
   const onChangePw = (e: string) => {
     setPw(e);
@@ -90,11 +97,6 @@ export const MyPagePw = () => {
       setNewPwConfirmVal('');
     }
   };
-  // useEffect(() => {
-  //   if (!jwt) {
-  //     navigate('/sign-in');
-  //   }
-  // });
 
   useEffect(() => {
     if (pwCheck && newPwCheck && newPwConfirmCheck) {
@@ -105,49 +107,54 @@ export const MyPagePw = () => {
   }, [pwCheck, newPwCheck, newPwConfirmCheck]);
 
   const changeBtnEvent = async () => {
-    await swal
-      .fire({
-        icon: 'question',
-        text: '비밀번호를 변경하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          await axios({
-            method: 'PATCH',
-            url: `${process.env.REACT_APP_API_URL}/user/update/password`,
-            headers: {
-              Authorization: cookies.get('accessToken'),
-            },
-            data: {
-              previousPassword: pw,
-              password: newPw,
-            },
-          })
-            .then((res) => {
-              swal.fire({
-                icon: 'success',
-                text: '변경되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      swal
+        .fire({
+          icon: 'question',
+          text: '비밀번호를 변경하시겠습니까?',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          showCancelButton: true,
+          cancelButtonText: '취소',
+          width: 400,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            await axios({
+              method: 'PATCH',
+              url: `${process.env.REACT_APP_API_URL}/user/update/password`,
+              headers: {
+                Authorization: cookies.get('accessToken'),
+              },
+              data: {
+                previousPassword: pw,
+                password: newPw,
+              },
             })
-            .catch((err) => {
-              swal.fire({
-                icon: 'warning',
-                text: err.response.data.message,
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
+              .then((res) => {
+                swal.fire({
+                  icon: 'success',
+                  text: '변경되었습니다.',
+                  confirmButtonText: '확인',
+                  confirmButtonColor: '#289951',
+                  width: 400,
+                });
+                window.location.reload();
+              })
+              .catch((err) => {
+                swal.fire({
+                  icon: 'warning',
+                  text: err.response.data.message,
+                  confirmButtonText: '확인',
+                  confirmButtonColor: '#289951',
+                  width: 400,
+                });
               });
-            });
-        }
-      });
+          }
+        });
+    }
   };
 
   return (

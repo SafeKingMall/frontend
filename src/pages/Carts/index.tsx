@@ -20,7 +20,6 @@ export const Carts = () => {
   const [resultList, setResultList] = useState<any>('');
   const [data, setData] = useState<any>('');
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
 
   //선택상품구매
   const selectPurchase = () => {
@@ -73,7 +72,7 @@ export const Carts = () => {
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
       }).then((res) => {
         length = res.data.content.length;
@@ -119,7 +118,7 @@ export const Carts = () => {
           method: 'get',
           url: `${process.env.REACT_APP_API_URL}/user/cart?page=0&size=20`,
           headers: {
-            Authorization: jwt,
+            Authorization: cookies.get('accessToken'),
           },
         }).then((res) => {
           setData(res.data.content);
@@ -140,7 +139,8 @@ export const Carts = () => {
       }
     };
     getData();
-  }, [jwt, navigate]);
+    // eslint-disable-next-line
+  }, [navigate]);
   const itemInCart =
     data.length === 0 ? (
       <S.Container>

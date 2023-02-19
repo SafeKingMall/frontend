@@ -200,7 +200,7 @@ export const PaymentInfo = (props: any) => {
           </S.PayBtn>
         </S.PaymentSelectArea>
         <S.PaymentDesArea>
-          <S.PaymentDes>- 신용카드 할부는 100,000원 이상일 경우에만 가능합니다.</S.PaymentDes>
+          <S.PaymentDes>- 신용카드 할부는 50,000원 이상일 경우에만 가능합니다.</S.PaymentDes>
           {/* <S.PaymentDes>
             - 가상계좌 발급 시, 12시간 이내에 입금완료해주셔야 배송이 진행됩니다.
           </S.PaymentDes> */}
@@ -208,9 +208,9 @@ export const PaymentInfo = (props: any) => {
             - 정확한 결제와 주문완료를 위하여 주문완료 페이지가 보여지기 전에 현재창과 결제창을
             닫지마십시오.
           </S.PaymentDes>
-          {/* <S.PaymentDes>
-            - 세금계산서 발행을 원하실 경우, 고객센터 &gt; 문의하기에서 신청해주시기 바랍니다.
-          </S.PaymentDes> */}
+          <S.PaymentDes>
+            - 결제창을 열고 30분 안에 결제를 진행해주세요. 30분 경과 시 자동으로 메인페이지로 이동됩니다.
+          </S.PaymentDes>
         </S.PaymentDesArea>
       </S.PaymentContainer>
     </S.Container>

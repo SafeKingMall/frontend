@@ -13,6 +13,14 @@ export const OrderOk = () => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
 
+  const movePaymentInfo = () => {
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
+    } else {
+      navigate('/mypage-od');
+    }
+  };
+
   useEffect(() => {
     const deleteCartItem = async () => {
       let items = state.paymentDataId.map((itemId: any) => 'itemId=' + itemId + '&');
@@ -48,7 +56,7 @@ export const OrderOk = () => {
         </S.OrderInfoWrap>
         <S.BtnArea>
           <S.WhiteBtn onClick={() => navigate('/')}>쇼핑 계속하기</S.WhiteBtn>
-          <S.GreenBtn onClick={() => navigate('/mypage-od')}>결제 내역보기</S.GreenBtn>
+          <S.GreenBtn onClick={() => movePaymentInfo()}>결제 내역보기</S.GreenBtn>
         </S.BtnArea>
       </S.ContentContainer>
     </S.Container>

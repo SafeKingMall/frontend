@@ -34,13 +34,13 @@ export const SignIn = () => {
     setPw(e);
   };
   //로그인
-  const signIn = async () => {
+  const login = async () => {
     //엑세트토큰 쿠키만료시간
     const tokenExpires = new Date();
-    tokenExpires.setMinutes(tokenExpires.getMinutes() + 1);
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
     //리프레시토큰 쿠키만료시간
     const rtokenExpires = new Date();
-    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 5);
+    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
     try {
       await axios
         .post(
@@ -105,6 +105,12 @@ export const SignIn = () => {
     }
   };
 
+  const onKeyDownEnter = (e: any) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  };
+
   //회원가입
   const navigateSignUp = () => {
     navigate('/sign-up1');
@@ -141,7 +147,11 @@ export const SignIn = () => {
                 <label htmlFor='password'>패스워드</label>
               </S.LabelWrap>
               <S.InputWrap>
-                <S.InputForm type='password' onChange={(e) => onChangePw(e.target.value)} />
+                <S.InputForm
+                  type='password'
+                  onChange={(e) => onChangePw(e.target.value)}
+                  onKeyDown={(e) => onKeyDownEnter(e)}
+                />
               </S.InputWrap>
             </S.InputLine>
           </S.InputContainer>
@@ -164,7 +174,7 @@ export const SignIn = () => {
             </S.Span>
           </S.SignText>
           <div>
-            <S.Btn onClick={() => signIn()}>로그인</S.Btn>
+            <S.Btn onClick={() => login()}>로그인</S.Btn>
             {/* <S.Social>
               <S.SocialBtn onClick={test}>구글로 로그인하기</S.SocialBtn>
               <S.SocialBtn onClick={test} style={{ backgroundColor: '#FDDC3F' }}>

@@ -11,7 +11,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
-import { Cookies } from 'react-cookie';
+import { Cookies, useCookies } from 'react-cookie';
 import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
 
 const swal = withReactContent(Swal);
@@ -35,7 +35,8 @@ export const Orders = () => {
   const stepTitle = '주문·결제';
   const data = state.data;
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
+  const [, setCookie] = useCookies();
+  // const jwt = cookies.get('accessToken');
 
   //사용자 주문 다건조회
   // useEffect(() => {
@@ -75,125 +76,171 @@ export const Orders = () => {
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/user/delivery`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
-      }).then((res) => {
-        setUserData(res.data.delivery);
-      });
+      })
+        .then((res) => {
+          setUserData(res.data.delivery);
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
+            navigate('/sign-in');
+          } else {
+            swal.fire({
+              icon: 'warning',
+              text: err.response.data.message,
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          }
+        });
     };
     getData();
-  }, [jwt]);
+    // eslint-disable-next-line
+  }, [navigate]);
 
   const changeCheckToggle = () => {
     setCheckToggle(!checkToggle);
   };
 
+  //토큰 재발급
+  const reissuance = async () => {
+    //엑세트토큰 쿠키만료시간
+    const tokenExpires = new Date();
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
+    //리프레시토큰 쿠키만료시간
+    const rtokenExpires = new Date();
+    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
+    await axios({
+      method: 'get',
+      url: `${process.env.REACT_APP_API_URL}/refresh`,
+      headers: {
+        'refresh-token': cookies.get('refreshToken'),
+      },
+    }).then((res) => {
+      const token = res.headers['authorization'];
+      const rtoken = res.headers['refresh-token'];
+      setCookie('accessToken', token, { path: '/', expires: tokenExpires });
+      setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
+      if (res.data === 'ROLE_ADMIN') {
+        setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+      } else if (res.data === 'ROLE_USER') {
+        setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+      }
+    });
+  };
+
   //결제버튼 클릭시 이벤트 (약관동의, 빈 input검사, 유효성검사, 결제정보 순)
   const paymentBtnEvent = () => {
-    if (checkToggle === false) {
-      swal.fire({
-        icon: 'info',
-        text: '약관에 동의해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[0].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '받는 분을 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[1].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '이메일을 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[2].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '휴대전화를 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[3].length === 0 || text[4].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '주소를 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[5].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '상세주소를 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (text[6].length === 0) {
-      swal.fire({
-        icon: 'info',
-        text: '배송시 요청사항을 선택 또는 입력해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (receiverVal !== '') {
-      swal.fire({
-        icon: 'info',
-        text: '받는 분의 입력 양식을 확인해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (emailVal !== '') {
-      swal.fire({
-        icon: 'info',
-        text: '이메일의 입력 양식을 확인해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (phoneVal !== '') {
-      swal.fire({
-        icon: 'info',
-        text: '휴대전화의 입력 양식을 확인해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
-    } else if (paymentState === '') {
-      swal.fire({
-        icon: 'info',
-        text: '결제방식을 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+    if (!cookies.get('refreshToken')) {
+      navigate('/sign-in');
     } else {
-      swal
-        .fire({
-          icon: 'question',
-          text: '결제하시겠습니까?',
+      if (checkToggle === false) {
+        swal.fire({
+          icon: 'info',
+          text: '약관에 동의해주세요.',
           confirmButtonText: '확인',
           confirmButtonColor: '#289951',
-          showCancelButton: true,
-          cancelButtonText: '취소',
           width: 400,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            payment();
-          }
         });
+      } else if (text[0].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '받는 분을 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (text[1].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '이메일을 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (text[2].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '휴대전화를 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (text[3].length === 0 || text[4].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '주소를 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (text[5].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '상세주소를 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (text[6].length === 0) {
+        swal.fire({
+          icon: 'info',
+          text: '배송시 요청사항을 선택 또는 입력해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (receiverVal !== '') {
+        swal.fire({
+          icon: 'info',
+          text: '받는 분의 입력 양식을 확인해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (emailVal !== '') {
+        swal.fire({
+          icon: 'info',
+          text: '이메일의 입력 양식을 확인해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (phoneVal !== '') {
+        swal.fire({
+          icon: 'info',
+          text: '휴대전화의 입력 양식을 확인해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else if (paymentState === '') {
+        swal.fire({
+          icon: 'info',
+          text: '결제방식을 선택해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else {
+        swal
+          .fire({
+            icon: 'question',
+            text: '결제하시겠습니까?',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            showCancelButton: true,
+            cancelButtonText: '취소',
+            width: 400,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              payment();
+            }
+          });
+      }
     }
   };
 
@@ -214,12 +261,11 @@ export const Orders = () => {
       };
       return itemObj;
     });
-
     await axios({
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}/user/order`,
       headers: {
-        Authorization: jwt,
+        Authorization: cookies.get('accessToken'),
       },
       data: {
         receiver: text[0],
@@ -244,6 +290,10 @@ export const Orders = () => {
           buyer_addr: `${text[4]} ${text[5]}`,
           buyer_postcode: text[3],
         };
+        reissuance();
+        setTimeout(() => {
+          window.location.replace('/');
+        }, 30 * 60 * 1000);
         IMP.request_pay(paymentData, callBack);
       })
       .catch((err) => {
@@ -263,7 +313,7 @@ export const Orders = () => {
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/user/payment`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
         data: {
           success: res.success,
@@ -291,7 +341,7 @@ export const Orders = () => {
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/user/payment/cancel/auth`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
         data: {
           success: res.success,
