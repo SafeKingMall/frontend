@@ -148,6 +148,7 @@ export const SignUp1 = () => {
       }).then((res) => {
         if (res.data === true) {
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             text: '사용가능한 아이디입니다.',
             confirmButtonText: '확인',
@@ -157,6 +158,7 @@ export const SignUp1 = () => {
           setIdCheck(true);
         } else {
           swal.fire({
+            heightAuto: false,
             icon: 'warning',
             text: '이미 사용중인 아이디입니다.',
             confirmButtonText: '확인',
@@ -167,6 +169,7 @@ export const SignUp1 = () => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',
@@ -198,6 +201,7 @@ export const SignUp1 = () => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',

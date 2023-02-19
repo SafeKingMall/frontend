@@ -103,6 +103,7 @@ export const AdminItemPo = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -127,6 +128,7 @@ export const AdminItemPo = () => {
   const registerAlert = () => {
     if (itemName === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '상품명을 입력해주세요.',
         confirmButtonText: '확인',
@@ -135,6 +137,7 @@ export const AdminItemPo = () => {
       });
     } else if (cateSelect === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '카테고리를 선택해주세요.',
         confirmButtonText: '확인',
@@ -143,6 +146,7 @@ export const AdminItemPo = () => {
       });
     } else if (moneyNum === '.') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '상품가격을 숫자로 입력해주세요.',
         confirmButtonText: '확인',
@@ -151,6 +155,7 @@ export const AdminItemPo = () => {
       });
     } else if (moneyNum === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '상품가격을 입력해주세요.',
         confirmButtonText: '확인',
@@ -159,6 +164,7 @@ export const AdminItemPo = () => {
       });
     } else if (moneyNum.length < 3) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '최소가격은 100원부터 입니다.',
         confirmButtonText: '확인',
@@ -167,6 +173,7 @@ export const AdminItemPo = () => {
       });
     } else if (quantityNum === '.') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '상품수량을 숫자로 입력해주세요.',
         confirmButtonText: '확인',
@@ -175,7 +182,7 @@ export const AdminItemPo = () => {
       });
     }
     // else if (quantityNum === '' || quantityNum === '0') {
-    //   swal.fire({
+    //   swal.fire({heightAuto: false,
     //     icon: 'warning',
     //     text: '상품수량을 입력해주세요.',
     //     confirmButtonText: '확인',
@@ -185,6 +192,7 @@ export const AdminItemPo = () => {
     // }
     else if (descriptEdit === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '상품설명을 입력해주세요.',
         confirmButtonText: '확인',
@@ -194,6 +202,7 @@ export const AdminItemPo = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '상품을 수정하시겠습니까?',
           confirmButtonText: '확인',
@@ -207,6 +216,7 @@ export const AdminItemPo = () => {
             if (cookies.get('refreshToken')) {
               modifyApi();
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '상품이 수정되었습니다.',
                 confirmButtonText: '확인',
@@ -216,6 +226,7 @@ export const AdminItemPo = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -433,6 +444,7 @@ export const AdminItemPo = () => {
   const SwalInput = () => {
     if (getFileName !== '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '썸네일은 하나만 등록 가능합니다.',
         confirmButtonText: '확인',
@@ -446,6 +458,7 @@ export const AdminItemPo = () => {
   const backBtn = () => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '상품 수정을 취소하시겠습니까?',
         confirmButtonText: '확인',

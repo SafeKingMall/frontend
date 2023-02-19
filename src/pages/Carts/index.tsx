@@ -28,6 +28,7 @@ export const Carts = () => {
     } else {
       if (resultList.length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
           confirmButtonText: '확인',
@@ -37,6 +38,7 @@ export const Carts = () => {
       } else {
         swal
           .fire({
+            heightAuto: false,
             icon: 'question',
             text: '선택하신 상품을 구매하시겠습니까?',
             confirmButtonText: '확인',
@@ -85,6 +87,7 @@ export const Carts = () => {
         totalPrice = itemPrice + deliveryPay;
         swal
           .fire({
+            heightAuto: false,
             icon: 'question',
             title: `상품 종류: ${length}개
           주문 상품 수: ${count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}개
@@ -129,6 +132,7 @@ export const Carts = () => {
           navigate('/sign-in');
         } else {
           swal.fire({
+            heightAuto: false,
             icon: 'warning',
             text: err.response.data.message,
             confirmButtonText: '확인',

@@ -87,6 +87,7 @@ export const Orders = () => {
             navigate('/sign-in');
           } else {
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: err.response.data.message,
               confirmButtonText: '확인',
@@ -138,6 +139,7 @@ export const Orders = () => {
     } else {
       if (checkToggle === false) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '약관에 동의해주세요.',
           confirmButtonText: '확인',
@@ -146,6 +148,7 @@ export const Orders = () => {
         });
       } else if (text[0].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '받는 분을 입력해주세요.',
           confirmButtonText: '확인',
@@ -154,6 +157,7 @@ export const Orders = () => {
         });
       } else if (text[1].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '이메일을 입력해주세요.',
           confirmButtonText: '확인',
@@ -162,6 +166,7 @@ export const Orders = () => {
         });
       } else if (text[2].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '휴대전화를 입력해주세요.',
           confirmButtonText: '확인',
@@ -170,6 +175,7 @@ export const Orders = () => {
         });
       } else if (text[3].length === 0 || text[4].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '주소를 입력해주세요.',
           confirmButtonText: '확인',
@@ -178,6 +184,7 @@ export const Orders = () => {
         });
       } else if (text[5].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '상세주소를 입력해주세요.',
           confirmButtonText: '확인',
@@ -186,6 +193,7 @@ export const Orders = () => {
         });
       } else if (text[6].length === 0) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '배송시 요청사항을 선택 또는 입력해주세요.',
           confirmButtonText: '확인',
@@ -194,6 +202,7 @@ export const Orders = () => {
         });
       } else if (receiverVal !== '') {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '받는 분의 입력 양식을 확인해주세요.',
           confirmButtonText: '확인',
@@ -202,6 +211,7 @@ export const Orders = () => {
         });
       } else if (emailVal !== '') {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '이메일의 입력 양식을 확인해주세요.',
           confirmButtonText: '확인',
@@ -210,6 +220,7 @@ export const Orders = () => {
         });
       } else if (phoneVal !== '') {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '휴대전화의 입력 양식을 확인해주세요.',
           confirmButtonText: '확인',
@@ -218,6 +229,7 @@ export const Orders = () => {
         });
       } else if (paymentState === '') {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '결제방식을 선택해주세요.',
           confirmButtonText: '확인',
@@ -227,6 +239,7 @@ export const Orders = () => {
       } else {
         swal
           .fire({
+            heightAuto: false,
             icon: 'question',
             text: '결제하시겠습니까?',
             confirmButtonText: '확인',
@@ -298,6 +311,7 @@ export const Orders = () => {
       })
       .catch((err) => {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: err.response.data.message,
           confirmButtonText: '확인',
@@ -350,6 +364,7 @@ export const Orders = () => {
         },
       }).then((response) => {
         swal.fire({
+          heightAuto: false,
           icon: 'error',
           text: res.error_msg,
           confirmButtonText: '확인',

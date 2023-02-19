@@ -188,6 +188,7 @@ export const MyPage = () => {
         navigate('/sign-in');
       } else {
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: err.response.data.message,
           confirmButtonText: '확인',
@@ -289,6 +290,7 @@ export const MyPage = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '회원정보를 수정하시겠습니까?',
           confirmButtonText: '확인',
@@ -320,6 +322,7 @@ export const MyPage = () => {
               }).then((res) => {
                 if (res.status === 200) {
                   swal.fire({
+                    heightAuto: false,
                     icon: 'success',
                     text: '수정되었습니다.',
                     confirmButtonText: '확인',
@@ -331,6 +334,7 @@ export const MyPage = () => {
               });
             } catch (err: any) {
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: err.response.data.message,
                 confirmButtonText: '확인',

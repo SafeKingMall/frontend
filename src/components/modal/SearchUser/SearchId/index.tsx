@@ -101,6 +101,7 @@ export const SearchId = (props: any) => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',
@@ -114,6 +115,7 @@ export const SearchId = (props: any) => {
     e.preventDefault();
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '인증번호를 재발송하시겠습니까?',
         confirmButtonText: '확인',
@@ -144,6 +146,7 @@ export const SearchId = (props: any) => {
       }).then((res) => {
         if (res.status === 200) {
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             text: '확인되었습니다.',
             confirmButtonText: '확인',
@@ -157,6 +160,7 @@ export const SearchId = (props: any) => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',

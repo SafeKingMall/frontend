@@ -23,6 +23,7 @@ export const PaymentInfo = (props: any) => {
   };
   const alertInfo = () => {
     swal.fire({
+      heightAuto: false,
       icon: 'info',
       text: '현재는 신용카드만 이용이 가능합니다.',
       confirmButtonText: '확인',

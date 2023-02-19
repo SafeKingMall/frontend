@@ -39,6 +39,7 @@ export const MyPageAp2 = () => {
         } else {
             navigate('/sign-in');
             swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -55,6 +56,7 @@ export const MyPageAp2 = () => {
         // notClickBtn()
         await swal
             .fire({
+                heightAuto: false,
                 icon: 'question',
                 text: '환불신청 하시겠습니까?',
                 confirmButtonText: '확인',
@@ -71,6 +73,7 @@ export const MyPageAp2 = () => {
                     } else {
                         navigate('/sign-in');
                         swal.fire({
+                            heightAuto: false,
                             icon: 'warning',
                             text: '로그인이 만료되었습니다.',
                             confirmButtonText: '확인',
@@ -113,6 +116,7 @@ export const MyPageAp2 = () => {
             }).then((res) => {
                 if (res.status === 200) {
                     swal.fire({
+                        heightAuto: false,
                         icon: 'success',
                         text: '환불 신청이 완료되었습니다.',
                         confirmButtonText: '확인',
@@ -131,6 +135,7 @@ export const MyPageAp2 = () => {
             })
         } catch (err: any) {
             swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: err.response.data.message,
                 confirmButtonText: '확인',

@@ -89,6 +89,7 @@ export const AdminOrderDe = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -242,6 +243,7 @@ export const AdminOrderDe = () => {
   const putItemAlert = (itemId: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '수정하시겠습니까?',
         confirmButtonText: '확인',
@@ -255,6 +257,7 @@ export const AdminOrderDe = () => {
           if (cookies.get('refreshToken')) {
             modifyApi(itemId);
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '수정되었습니다.',
               confirmButtonText: '확인',
@@ -264,6 +267,7 @@ export const AdminOrderDe = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',

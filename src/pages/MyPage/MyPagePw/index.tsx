@@ -112,6 +112,7 @@ export const MyPagePw = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '비밀번호를 변경하시겠습니까?',
           confirmButtonText: '확인',
@@ -135,6 +136,7 @@ export const MyPagePw = () => {
             })
               .then((res) => {
                 swal.fire({
+                  heightAuto: false,
                   icon: 'success',
                   text: '변경되었습니다.',
                   confirmButtonText: '확인',
@@ -145,6 +147,7 @@ export const MyPagePw = () => {
               })
               .catch((err) => {
                 swal.fire({
+                  heightAuto: false,
                   icon: 'warning',
                   text: err.response.data.message,
                   confirmButtonText: '확인',
