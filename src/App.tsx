@@ -7,6 +7,7 @@ import { Refresh } from './components/common/hooks/Refresh';
 import { Footer } from './components/common/Footer';
 
 function App() {
+  // document.body.classList.remove('swal2-height-auto');
   Refresh();
   return (
     <ThemeProvider theme={theme}>

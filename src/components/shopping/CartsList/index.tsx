@@ -38,6 +38,7 @@ export const CartsList = (props: any) => {
   const deleteItemAlert = (itemId: number, idx: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '장바구니에서 삭제하시겠습니까?',
         confirmButtonText: '확인',
@@ -50,6 +51,7 @@ export const CartsList = (props: any) => {
         if (result.isConfirmed) {
           deleteItem(itemId, idx);
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             text: '장바구니에서 삭제되었습니다.',
             confirmButtonText: '확인',
@@ -81,6 +83,7 @@ export const CartsList = (props: any) => {
   const deleteSelectItemAlert = () => {
     if (checkedList.length === 0) {
       swal.fire({
+        heightAuto: false,
         icon: 'info',
         text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
         confirmButtonText: '확인',
@@ -90,6 +93,7 @@ export const CartsList = (props: any) => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '선택상품을 장바구니에서 삭제하시겠습니까?',
           confirmButtonText: '확인',
@@ -102,6 +106,7 @@ export const CartsList = (props: any) => {
           if (result.isConfirmed) {
             deleteSelectItem();
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '선택상품이 장바구니에서 삭제되었습니다.',
               confirmButtonText: '확인',
@@ -172,6 +177,7 @@ export const CartsList = (props: any) => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '해당상품을 구매하러 가시겠습니까?',
           confirmButtonText: '확인',

@@ -169,6 +169,7 @@ export const Estimate = () => {
     setTimeout(() => {
       navigate(-1);
       swal.fire({
+        heightAuto: false,
         icon: 'success',
         text: '견적서요청이 완료되었습니다.',
         confirmButtonText: '확인',

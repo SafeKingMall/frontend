@@ -43,6 +43,7 @@ export const NoticePo = () => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',
@@ -100,6 +101,7 @@ export const NoticePo = () => {
   const deleteItemAlert = (id: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '게시판을 삭제하시겠습니까?',
         confirmButtonText: '확인',
@@ -113,6 +115,7 @@ export const NoticePo = () => {
           if (cookies.get('refreshToken')) {
             deleteApi(id);
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '게시판이 삭제되었습니다.',
               confirmButtonText: '확인',
@@ -123,6 +126,7 @@ export const NoticePo = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',
@@ -144,6 +148,7 @@ export const NoticePo = () => {
       },
     }).catch((err) => {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '관리자만 삭제가능합니다.',
         confirmButtonText: '확인',

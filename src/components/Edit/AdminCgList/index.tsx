@@ -54,6 +54,7 @@ export const AdimCgList = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -72,6 +73,7 @@ export const AdimCgList = () => {
     if (itemList.length < 7) {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '카테고리명를 등록하시겠습니까?',
           confirmButtonText: '확인',
@@ -85,6 +87,7 @@ export const AdimCgList = () => {
             if (cookies.get('refreshToken')) {
               registerApi();
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '카테고리가 등록됐습니다..',
                 confirmButtonText: '확인',
@@ -94,6 +97,7 @@ export const AdimCgList = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -105,6 +109,7 @@ export const AdimCgList = () => {
         });
     } else {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '카테고리 갯수가 초과하였습니다.',
         confirmButtonText: '확인',
@@ -146,6 +151,7 @@ export const AdimCgList = () => {
   const deleteItemAlert = (id: number, name: string, idx: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: `${name} 카테고리를 삭제하겠습니까? 삭제하면 복구가 불가능합니다.`,
         confirmButtonText: '확인',
@@ -159,6 +165,7 @@ export const AdimCgList = () => {
           if (cookies.get('refreshToken')) {
             deleteApi(id, idx);
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: `${name} 카테고리가 삭제됐습니다.`,
               confirmButtonText: '확인',
@@ -168,6 +175,7 @@ export const AdimCgList = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',
@@ -202,6 +210,7 @@ export const AdimCgList = () => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',
@@ -215,6 +224,7 @@ export const AdimCgList = () => {
   const putItemAlert = (id: number, sort: number, idx: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '카테고리명을 변경하시겠습니까?',
         confirmButtonText: '확인',
@@ -228,6 +238,7 @@ export const AdimCgList = () => {
           if (cookies.get('refreshToken')) {
             putApi(id, sort);
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '카테고리명이 변경되었습니다.',
               confirmButtonText: '확인',
@@ -237,6 +248,7 @@ export const AdimCgList = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',
@@ -280,6 +292,7 @@ export const AdimCgList = () => {
   const cateItemAlert = () => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '카테고리 순서를 변경하시겠습니까? ',
         confirmButtonText: '확인',
@@ -293,6 +306,7 @@ export const AdimCgList = () => {
           if (cookies.get('refreshToken')) {
             changeCateApi();
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '카테고리 순서가 변경되었습니다.',
               confirmButtonText: '확인',
@@ -302,6 +316,7 @@ export const AdimCgList = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',

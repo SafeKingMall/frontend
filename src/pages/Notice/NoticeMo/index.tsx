@@ -54,6 +54,7 @@ export const NoticeMo = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -71,6 +72,7 @@ export const NoticeMo = () => {
   const putItemAlert = () => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '게시판을 수정하시겠습니까?',
         confirmButtonText: '확인',
@@ -84,6 +86,7 @@ export const NoticeMo = () => {
           if (cookies.get('refreshToken')) {
             registerApi();
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '게시판이 수정되었습니다.',
               confirmButtonText: '확인',
@@ -93,6 +96,7 @@ export const NoticeMo = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',

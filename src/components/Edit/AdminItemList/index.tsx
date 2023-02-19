@@ -25,6 +25,7 @@ export const AdminItemList = (props: any) => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',
@@ -79,6 +80,7 @@ export const AdminItemList = (props: any) => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -94,7 +96,7 @@ export const AdminItemList = (props: any) => {
   // //삭제 알림창
   // const deleteItemAlert = (itemId: number, name: string) => {
   //   swal
-  //     .fire({
+  //     .fire({heightAuto: false,
   //       icon: 'question',
   //       text: `${name} 상품을 삭제하시겠습니까?
   //       삭제하면 복구가 불가능합니다. `,
@@ -107,7 +109,7 @@ export const AdminItemList = (props: any) => {
   //     .then((result) => {
   //       if (result.isConfirmed) {
   //         deleteApi(itemId);
-  //         swal.fire({
+  //         swal.fire({heightAuto: false,
   //           icon: 'success',
   //           text: `${name} 상품이 삭제되었습니다.`,
   //           confirmButtonText: '확인',
@@ -197,6 +199,7 @@ export const AdminItemList = (props: any) => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',

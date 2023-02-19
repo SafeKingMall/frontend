@@ -22,6 +22,7 @@ export const Timer = (props: any) => {
           if (minutes === 0) {
             setTimer(false);
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '인증시간이 만료되었습니다.',
               confirmButtonText: '확인',

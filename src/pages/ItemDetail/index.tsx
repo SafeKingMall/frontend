@@ -36,6 +36,7 @@ export const ItemDetail = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '결제 페이지로 이동하시겠습니까?',
           confirmButtonText: '확인',
@@ -231,6 +232,7 @@ export const ItemDetail = () => {
       })
         .then(() => {
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             title: '성공',
             text: '장바구니에 추가되었습니다.',
@@ -242,6 +244,7 @@ export const ItemDetail = () => {
         .catch((err) => {
           if (err.response.data.code === 301) {
             swal.fire({
+              heightAuto: false,
               icon: 'info',
               text: '동일한 상품이 장바구니에 있습니다.',
               confirmButtonText: '확인',
@@ -250,6 +253,7 @@ export const ItemDetail = () => {
             });
           } else if (err.response.data.code === 100) {
             swal.fire({
+              heightAuto: false,
               icon: 'info',
               text: '장바구니가 가득 찼습니다. (최대 20개)',
               confirmButtonText: '확인',

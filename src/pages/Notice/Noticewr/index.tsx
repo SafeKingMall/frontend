@@ -42,6 +42,7 @@ export const NoticeWr = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -59,6 +60,7 @@ export const NoticeWr = () => {
   const registerAlert = (reqData: any) => {
     if (title === '' || content === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '내용을 기입해주세요',
         confirmButtonText: '확인',
@@ -68,6 +70,7 @@ export const NoticeWr = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '게시판을 등록하시겠습니까?',
           confirmButtonText: '확인',
@@ -81,6 +84,7 @@ export const NoticeWr = () => {
             if (cookies.get('refreshToken')) {
               registerApi(reqData);
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '게시판이 등록되었습니다.',
                 confirmButtonText: '확인',
@@ -90,6 +94,7 @@ export const NoticeWr = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -128,6 +133,7 @@ export const NoticeWr = () => {
     if (title !== '' || content !== '') {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
           confirmButtonText: '확인',
@@ -144,6 +150,7 @@ export const NoticeWr = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `공지사항 등록을 취소하시겠습니까?`,
           confirmButtonText: '확인',

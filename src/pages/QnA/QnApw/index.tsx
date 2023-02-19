@@ -41,6 +41,7 @@ export const QnAPw = () => {
         })
         .catch((err) => {
           swal.fire({
+            heightAuto: false,
             icon: 'warning',
             text: '비밀번호가 틀렸습니다.',
             confirmButtonText: '확인',
@@ -51,6 +52,7 @@ export const QnAPw = () => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',

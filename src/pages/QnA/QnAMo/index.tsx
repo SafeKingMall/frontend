@@ -62,6 +62,7 @@ export const QnAMo = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -112,6 +113,7 @@ export const QnAMo = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `기존의 파일을 삭제하시겠습니까?   
           삭제하시면 복구가 불가능합니다.`,
@@ -127,6 +129,7 @@ export const QnAMo = () => {
               setSelectedImages(selectedImages.filter((e) => e !== image));
               deleteFile(id);
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '파일이 삭제되었습니다.',
                 confirmButtonText: '확인',
@@ -136,6 +139,7 @@ export const QnAMo = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -188,6 +192,7 @@ export const QnAMo = () => {
   const registAlert = () => {
     if (title === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '제목을 입력해주세요.',
         confirmButtonText: '확인',
@@ -197,6 +202,7 @@ export const QnAMo = () => {
     }
     if (contents === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '내용을 입력해주세요.',
         confirmButtonText: '확인',
@@ -206,6 +212,7 @@ export const QnAMo = () => {
     }
     if (password === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '비밀번호를 입력해주세요.',
         confirmButtonText: '확인',
@@ -216,6 +223,7 @@ export const QnAMo = () => {
     if (title !== '' && contents !== '' && password !== '') {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '게시판을 수정하시겠습니까?',
           confirmButtonText: '확인',
@@ -229,6 +237,7 @@ export const QnAMo = () => {
             if (cookies.get('refreshToken')) {
               registApi();
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '게사판이 수정되었습니다.',
                 confirmButtonText: '확인',
@@ -238,6 +247,7 @@ export const QnAMo = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -326,6 +336,7 @@ export const QnAMo = () => {
     if (title !== '' && contents !== '') {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
           confirmButtonText: '확인',
@@ -342,6 +353,7 @@ export const QnAMo = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `문의하기 등록을 취소하시겠습니까?`,
           confirmButtonText: '확인',
@@ -361,6 +373,7 @@ export const QnAMo = () => {
   const SwalInput = () => {
     if (selectedImages.length !== 0) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '첨부파일은 하나만 등록 가능합니다.',
         confirmButtonText: '확인',

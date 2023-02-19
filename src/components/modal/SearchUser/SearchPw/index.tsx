@@ -77,6 +77,7 @@ export const SearchPw = (props: any) => {
       }).then((res) => {
         if (res.status === 200) {
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             text: '임시비밀번호가 발급되었습니다.',
             confirmButtonText: '확인',
@@ -87,6 +88,7 @@ export const SearchPw = (props: any) => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',

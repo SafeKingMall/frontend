@@ -217,6 +217,7 @@ export const SignUp3 = () => {
           });
       } else {
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           title: '올바르지 않은 방식입니다.',
           text: '회원가입을 다시 진행해주세요.',
@@ -227,6 +228,7 @@ export const SignUp3 = () => {
       }
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',

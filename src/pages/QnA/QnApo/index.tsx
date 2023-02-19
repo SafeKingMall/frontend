@@ -37,6 +37,7 @@ export const QnAPo = () => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',
@@ -75,6 +76,7 @@ export const QnAPo = () => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -92,6 +94,7 @@ export const QnAPo = () => {
   const answerAlert = () => {
     if (answerContents === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '내용을 입력해주세요.',
         confirmButtonText: '확인',
@@ -101,6 +104,7 @@ export const QnAPo = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '댓글을 등록하시겠습니까?',
           confirmButtonText: '확인',
@@ -115,6 +119,7 @@ export const QnAPo = () => {
               registAnswer();
               swal
                 .fire({
+                  heightAuto: false,
                   icon: 'success',
                   text: '댓글이 등록되었습니다.',
                   confirmButtonText: '확인',
@@ -127,6 +132,7 @@ export const QnAPo = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -196,6 +202,7 @@ export const QnAPo = () => {
   const deleteItemAlert = (id: number) => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '게시판을 삭제하시겠습니까?',
         confirmButtonText: '확인',
@@ -209,6 +216,7 @@ export const QnAPo = () => {
           if (cookies.get('refreshToken')) {
             deleteApi(id);
             swal.fire({
+              heightAuto: false,
               icon: 'success',
               text: '게시판이 삭제되었습니다.',
               confirmButtonText: '확인',
@@ -218,6 +226,7 @@ export const QnAPo = () => {
           } else {
             navigate('/sign-in');
             swal.fire({
+              heightAuto: false,
               icon: 'warning',
               text: '로그인이 만료되었습니다.',
               confirmButtonText: '확인',

@@ -66,6 +66,7 @@ export const MyPageWd = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '회원 탈퇴하시겠습니까?',
           confirmButtonText: '확인',
@@ -89,6 +90,7 @@ export const MyPageWd = () => {
                 },
               }).then((res) => {
                 swal.fire({
+                  heightAuto: false,
                   icon: 'success',
                   text: '탈퇴 완료되었습니다.',
                   confirmButtonText: '확인',
@@ -99,6 +101,7 @@ export const MyPageWd = () => {
               });
             } catch (err: any) {
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: err.response.data.message,
                 confirmButtonText: '확인',

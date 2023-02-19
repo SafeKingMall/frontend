@@ -60,6 +60,7 @@ export const AdminMemberList = (props: any) => {
         // if (err.response.status === 403) {
         navigate('/sign-in');
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: '로그인이 만료되었습니다.',
           confirmButtonText: '확인',
@@ -152,6 +153,7 @@ export const AdminMemberList = (props: any) => {
   const search = () => {
     if (filter === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '체크박스를 선택해주세요.',
         confirmButtonText: '확인',
@@ -167,6 +169,7 @@ export const AdminMemberList = (props: any) => {
   const deleteMemberAlert = () => {
     if (checkItems.length === 0) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '탈퇴시킬 회원을 선택해주세요.',
         confirmButtonText: '확인',
@@ -176,6 +179,7 @@ export const AdminMemberList = (props: any) => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '회원을 탈퇴시키겠습니까? ',
           confirmButtonText: '확인',
@@ -189,6 +193,7 @@ export const AdminMemberList = (props: any) => {
             if (cookies.get('refreshToken')) {
               deleteMember();
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '회원을 탈퇴하였습니다.',
                 confirmButtonText: '확인',
@@ -198,6 +203,7 @@ export const AdminMemberList = (props: any) => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -245,6 +251,7 @@ export const AdminMemberList = (props: any) => {
     } else {
       navigate('/sign-in');
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '로그인이 만료되었습니다.',
         confirmButtonText: '확인',

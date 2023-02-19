@@ -79,6 +79,7 @@ export const SignIn = () => {
     } catch (err: any) {
       if (err.response.data.code === 1400) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '일치하는 회원정보가 없습니다.',
           confirmButtonText: '확인',
@@ -87,6 +88,7 @@ export const SignIn = () => {
         });
       } else if (err.response.data.code === 1401) {
         swal.fire({
+          heightAuto: false,
           icon: 'info',
           text: '휴면계정입니다.',
           confirmButtonText: '확인',
@@ -95,6 +97,7 @@ export const SignIn = () => {
         });
       } else {
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           text: err.response.data.message,
           confirmButtonText: '확인',

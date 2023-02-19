@@ -25,6 +25,7 @@ export const Header = () => {
   const logout = () => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '로그아웃하시겠습니까?',
         confirmButtonText: '확인',

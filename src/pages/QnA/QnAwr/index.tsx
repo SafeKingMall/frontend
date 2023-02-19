@@ -71,6 +71,7 @@ export const QnAWr = () => {
   const registAlert = (selectedFiles: any) => {
     if (title === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '제목을 입력해주세요.',
         confirmButtonText: '확인',
@@ -80,6 +81,7 @@ export const QnAWr = () => {
     }
     if (passWord === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '비밀번호를 입력해주세요.',
         confirmButtonText: '확인',
@@ -89,6 +91,7 @@ export const QnAWr = () => {
     }
     if (contents === '') {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '내용을 입력해주세요.',
         confirmButtonText: '확인',
@@ -100,6 +103,7 @@ export const QnAWr = () => {
     if (title !== '' && contents !== '' && passWord !== '') {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: '게시판을 등록하시겠습니까?',
           confirmButtonText: '확인',
@@ -113,6 +117,7 @@ export const QnAWr = () => {
             if (cookies.get('refreshToken')) {
               registApi(selectedFiles);
               swal.fire({
+                heightAuto: false,
                 icon: 'success',
                 text: '게사판이 등록되었습니다.',
                 confirmButtonText: '확인',
@@ -122,6 +127,7 @@ export const QnAWr = () => {
             } else {
               navigate('/sign-in');
               swal.fire({
+                heightAuto: false,
                 icon: 'warning',
                 text: '로그인이 만료되었습니다.',
                 confirmButtonText: '확인',
@@ -210,6 +216,7 @@ export const QnAWr = () => {
     if (title !== '' || contents !== '' || selectedFiles !== 'null') {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `작성된 내용이 있습니다. 내용은 저장되지 않습니다. 취소하시겠습니까?`,
           confirmButtonText: '확인',
@@ -226,6 +233,7 @@ export const QnAWr = () => {
     } else {
       swal
         .fire({
+          heightAuto: false,
           icon: 'question',
           text: `문의하기 등록을 취소하시겠습니까?`,
           confirmButtonText: '확인',
@@ -245,6 +253,7 @@ export const QnAWr = () => {
   const SwalInput = () => {
     if (selectedImages.length !== 0) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: '첨부파일은 하나만 등록 가능합니다.',
         confirmButtonText: '확인',

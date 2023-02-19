@@ -120,6 +120,7 @@ export const SignUp2 = () => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',
@@ -132,6 +133,7 @@ export const SignUp2 = () => {
   const resend = () => {
     swal
       .fire({
+        heightAuto: false,
         icon: 'question',
         text: '인증번호를 재발송하시겠습니까?',
         confirmButtonText: '확인',
@@ -160,6 +162,7 @@ export const SignUp2 = () => {
       }).then((res) => {
         if (res.status === 200) {
           swal.fire({
+            heightAuto: false,
             icon: 'success',
             text: '확인되었습니다.',
             confirmButtonText: '확인',
@@ -172,6 +175,7 @@ export const SignUp2 = () => {
       });
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',
@@ -213,6 +217,7 @@ export const SignUp2 = () => {
         });
       } else {
         swal.fire({
+          heightAuto: false,
           icon: 'warning',
           title: '올바르지 않은 방식입니다.',
           text: '회원가입을 다시 진행해주세요.',
@@ -223,6 +228,7 @@ export const SignUp2 = () => {
       }
     } catch (err: any) {
       swal.fire({
+        heightAuto: false,
         icon: 'warning',
         text: err.response.data.message,
         confirmButtonText: '확인',
