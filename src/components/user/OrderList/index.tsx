@@ -42,13 +42,35 @@ export const OrderList = (props: any) => {
 
     };
 
-    const moveMypageAp = (item: any) => {
+    const moveMypageAp = (item: any, status: any) => {
         if (cookies.get('refreshToken')) {
-            navigate('/mypage-ap1', {
-                state: {
-                    data: item,
-                },
-            });
+            if (status === 'COMPLETE') {
+                swal.fire({
+                    heightAuto: false,
+                    icon: 'warning',
+                    text: '배송완료는 환불신청이 안됩니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    width: 400,
+                });
+            }
+            else if (status === 'CANCEL') {
+                swal.fire({
+                    heightAuto: false,
+                    icon: 'warning',
+                    text: '배송실패는 환불신청이 안됩니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    width: 400,
+                });
+            } else {
+                navigate('/mypage-ap1', {
+                    state: {
+                        data: item,
+                    },
+                });
+            }
+
         } else {
             navigate('/sign-in');
             cookies.remove('accessToken');
@@ -158,7 +180,7 @@ export const OrderList = (props: any) => {
                                                 : '배송취소'}
                                 </div>
                                 <div>
-                                    <S.RefundBtn onClick={() => moveMypageAp(el.id)}>요청하기</S.RefundBtn>
+                                    <S.RefundBtn onClick={() => moveMypageAp(el.id, el.delivery.status)}>요청하기</S.RefundBtn>
 
                                 </div>
                             </S.Container>
