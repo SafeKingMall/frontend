@@ -13,7 +13,7 @@ export const Refresh = () => {
       if (!accessToken && refreshToken) {
         //엑세트토큰 쿠키만료시간
         const tokenExpires = new Date();
-        tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
+        tokenExpires.setMinutes(tokenExpires.getMinutes() + 20);
         //리프레시토큰 쿠키만료시간
         const rtokenExpires = new Date();
         rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);

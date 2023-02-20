@@ -102,7 +102,7 @@ export const Orders = () => {
   const reissuance = async () => {
     //엑세트토큰 쿠키만료시간
     const tokenExpires = new Date();
-    tokenExpires.setMinutes(tokenExpires.getMinutes() + 10);
+    tokenExpires.setMinutes(tokenExpires.getMinutes() + 20);
     //리프레시토큰 쿠키만료시간
     const rtokenExpires = new Date();
     rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
@@ -303,7 +303,7 @@ export const Orders = () => {
         reissuance();
         setTimeout(() => {
           window.location.replace('/');
-        }, 9 * 60 * 1000);
+        }, 15 * 60 * 1000);
         IMP.request_pay(paymentData, callBack);
       })
       .catch((err) => {
