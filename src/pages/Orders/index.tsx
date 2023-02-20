@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { OrdersStep } from '../../components/shopping/OrdersStep';
 import { OrdersList } from '../../components/shopping/OrdersList';
@@ -36,7 +36,8 @@ export const Orders = () => {
   const data = state.data;
   const cookies = new Cookies();
   const [, setCookie] = useCookies();
-  // const jwt = cookies.get('accessToken');
+  // const [jwt, setJwt] = useState<any>('');
+  const jwt = useRef<any>('');
 
   //사용자 주문 다건조회
   // useEffect(() => {
@@ -83,18 +84,10 @@ export const Orders = () => {
           setUserData(res.data.delivery);
         })
         .catch((err) => {
-          if (err.response.status === 403) {
-            navigate('/sign-in');
-          } else {
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: err.response.data.message,
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
-          }
+          cookies.remove('accessToken');
+          cookies.remove('refreshToken');
+          cookies.remove('loginUser');
+          navigate('/sign-in');
         });
     };
     getData();
@@ -129,12 +122,17 @@ export const Orders = () => {
       } else if (res.data === 'ROLE_USER') {
         setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
       }
+      console.log('재발급');
+      jwt.current = token;
     });
   };
 
   //결제버튼 클릭시 이벤트 (약관동의, 빈 input검사, 유효성검사, 결제정보 순)
   const paymentBtnEvent = () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       if (checkToggle === false) {
@@ -306,50 +304,79 @@ export const Orders = () => {
         reissuance();
         setTimeout(() => {
           window.location.replace('/');
-        }, 30 * 60 * 1000);
+        }, 9 * 60 * 1000);
         IMP.request_pay(paymentData, callBack);
       })
       .catch((err) => {
-        swal.fire({
-          heightAuto: false,
-          icon: 'info',
-          text: err.response.data.message,
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          width: 400,
-        });
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
+        navigate('/sign-in');
       });
   };
 
   const callBack = async (res: any) => {
     if (res.success) {
-      await axios({
-        method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/user/payment`,
+      console.log(jwt.current);
+      // await axios({
+      //   method: 'post',
+      //   url: `${process.env.REACT_APP_API_URL}/user/payment`,
+      //   headers: {
+      //     Authorization: cookies.get('accessToken'),
+      //   },
+      //   data: {
+      //     success: res.success,
+      //     imp_uid: res.imp_uid,
+      //     merchant_uid: res.merchant_uid,
+      //     paid_amount: res.paid_amount,
+      //   },
+      // }).then((response) => {
+      // const createDate = new Date();
+      // const year = createDate.getFullYear();
+      // const month = createDate.getMonth() + 1;
+      // const date = createDate.getDate();
+      // const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
+      // const paymentDataId = data.map((el: any) => el.id);
+      // console.log('검증완료');
+      // navigate('/orderok', {
+      //   state: {
+      //     merchant_uid: response.data.response.merchant_uid,
+      //     dt: dt,
+      //     paymentDataId: paymentDataId,
+      //   },
+      // });
+      // });
+      await fetch(`${process.env.REACT_APP_API_URL}/user/payment`, {
+        method: 'POST',
         headers: {
-          Authorization: cookies.get('accessToken'),
+          'Content-Type': 'application/json',
+          Authorization: jwt.current,
         },
-        data: {
+        body: JSON.stringify({
           success: res.success,
           imp_uid: res.imp_uid,
           merchant_uid: res.merchant_uid,
           paid_amount: res.paid_amount,
-        },
-      }).then((response) => {
-        const createDate = new Date();
-        const year = createDate.getFullYear();
-        const month = createDate.getMonth() + 1;
-        const date = createDate.getDate();
-        const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
-        const paymentDataId = data.map((el: any) => el.id);
-        navigate('/orderok', {
-          state: {
-            merchant_uid: response.data.response.merchant_uid,
-            dt: dt,
-            paymentDataId: paymentDataId,
-          },
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const createDate = new Date();
+          const year = createDate.getFullYear();
+          const month = createDate.getMonth() + 1;
+          const date = createDate.getDate();
+          //eslint-disable-next-line
+          const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
+          const paymentDataId = data.map((el: any) => el.id);
+          console.log('검증완료');
+          navigate('/orderok', {
+            state: {
+              merchant_uid: data.response.merchant_uid,
+              dt: dt,
+              paymentDataId: paymentDataId,
+            },
+          });
         });
-      });
     } else {
       await axios({
         method: 'post',

@@ -24,6 +24,9 @@ export const Carts = () => {
   //선택상품구매
   const selectPurchase = () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       if (resultList.length === 0) {
@@ -63,6 +66,9 @@ export const Carts = () => {
   //전체상품구매
   const allPurchase = async () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       let length;
@@ -128,18 +134,10 @@ export const Carts = () => {
           setResultList(res.data.content);
         });
       } catch (err: any) {
-        if (err.response.status === 403) {
-          navigate('/sign-in');
-        } else {
-          swal.fire({
-            heightAuto: false,
-            icon: 'warning',
-            text: err.response.data.message,
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
+        navigate('/sign-in');
       }
     };
     getData();

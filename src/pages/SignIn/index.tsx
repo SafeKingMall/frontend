@@ -125,6 +125,12 @@ export const SignIn = () => {
     setIsOpen(!isOpen);
   };
 
+  // useEffect(() => {
+  //   cookie.remove('accessToken');
+  //   cookie.remove('refreshToken');
+  //   cookie.remove('loginUser');
+  // }, []);
+
   return (
     <>
       <Header />

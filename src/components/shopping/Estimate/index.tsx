@@ -13,7 +13,6 @@ export const Estimate = () => {
   const navigate = useNavigate();
   const swal = withReactContent(Swal);
   const cookies = new Cookies();
-  const rtoken = cookies.get('refreshToken');
   const [disable, setDisable] = useState(true);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -149,22 +148,33 @@ export const Estimate = () => {
       await axios({
         method: 'get',
         url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
-      }).then((res) => {
-        setCategoryList(res.data.content);
-        if (state) {
-          setCategory(state.categoryName);
-          setCategoryCheck(true);
-          setItemName(state.itemName);
-          setItemNameCheck(true);
-        }
-      });
+      })
+        .then((res) => {
+          setCategoryList(res.data.content);
+          if (state) {
+            setCategory(state.categoryName);
+            setCategoryCheck(true);
+            setItemName(state.itemName);
+            setItemNameCheck(true);
+          }
+        })
+        .catch((err) => {
+          cookies.remove('accessToken');
+          cookies.remove('refreshToken');
+          cookies.remove('loginUser');
+          navigate('/sign-in');
+        });
     };
-    if (!rtoken) {
+    if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       getData();
     }
-  }, [state, rtoken, navigate]);
+    // eslint-disable-next-line
+  }, [state, navigate]);
   const sendMail = () => {
     setTimeout(() => {
       navigate(-1);

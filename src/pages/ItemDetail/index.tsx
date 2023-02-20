@@ -32,44 +32,58 @@ export const ItemDetail = () => {
   //구매하기
   const moveOrders = useCallback(() => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
-      swal
-        .fire({
+      if (cookies.get('loginUser') === 'admin') {
+        swal.fire({
           heightAuto: false,
-          icon: 'question',
-          text: '결제 페이지로 이동하시겠습니까?',
+          icon: 'info',
+          text: '관리자는 구매하기버튼을 이용할 수 없습니다.',
           confirmButtonText: '확인',
           confirmButtonColor: '#289951',
-          showCancelButton: true,
-          cancelButtonText: '취소',
           width: 400,
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            await axios({
-              method: 'get',
-              url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
-            }).then((res) => {
-              navigate('/orders', {
-                state: {
-                  data: [
-                    {
-                      categoryName: res.data.categoryName,
-                      id: res.data.id,
-                      itemName: res.data.name,
-                      itemPrice: res.data.viewPrice,
-                      itemQuantity: Number(
-                        (document.getElementById(state.itemId) as HTMLInputElement).value,
-                      ),
-                      thumbNail: res.data.fileName,
-                    },
-                  ],
-                },
-              });
-            });
-          }
         });
+      } else {
+        swal
+          .fire({
+            heightAuto: false,
+            icon: 'question',
+            text: '결제 페이지로 이동하시겠습니까?',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            showCancelButton: true,
+            cancelButtonText: '취소',
+            width: 400,
+          })
+          .then(async (result) => {
+            if (result.isConfirmed) {
+              await axios({
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+              }).then((res) => {
+                navigate('/orders', {
+                  state: {
+                    data: [
+                      {
+                        categoryName: res.data.categoryName,
+                        id: res.data.id,
+                        itemName: res.data.name,
+                        itemPrice: res.data.viewPrice,
+                        itemQuantity: Number(
+                          (document.getElementById(state.itemId) as HTMLInputElement).value,
+                        ),
+                        thumbNail: res.data.fileName,
+                      },
+                    ],
+                  },
+                });
+              });
+            }
+          });
+      }
     }
   }, [navigate, state, cookies]);
 
@@ -217,6 +231,9 @@ export const ItemDetail = () => {
 
   const addCart = async () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       await axios({
@@ -260,6 +277,20 @@ export const ItemDetail = () => {
               confirmButtonColor: '#289951',
               width: 400,
             });
+          } else if (err.response.data.code === 300) {
+            swal.fire({
+              heightAuto: false,
+              icon: 'info',
+              text: '관리자는 장바구니를 이용할 수 없습니다.',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#289951',
+              width: 400,
+            });
+          } else {
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
+            navigate('/sign-in');
           }
         });
     }

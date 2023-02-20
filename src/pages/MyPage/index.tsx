@@ -183,19 +183,11 @@ export const MyPage = () => {
           setBasic(res.data.basicAddress);
           setDetail(res.data.detailedAddress);
         });
-    } catch (err: any) {
-      if (err.response.status === 403) {
-        navigate('/sign-in');
-      } else {
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: err.response.data.message,
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          width: 400,
-        });
-      }
+    } catch (err) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
+      navigate('/sign-in');
     }
   };
   useEffect(() => {
@@ -286,6 +278,9 @@ export const MyPage = () => {
 
   const changeUserData = async () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       swal
@@ -333,14 +328,10 @@ export const MyPage = () => {
                 }
               });
             } catch (err: any) {
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: err.response.data.message,
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
+              navigate('/sign-in');
             }
           }
         });
