@@ -274,6 +274,7 @@ export const AdminItemPo = () => {
             itemId: itemId,
           },
         });
+        window.location.reload();
       });
     } else {
       await axios({
