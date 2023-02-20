@@ -330,7 +330,7 @@ export const Orders = () => {
         }),
       })
         .then((response) => response.json())
-        .then((data) => {
+        .then((resData) => {
           const createDate = new Date();
           const year = createDate.getFullYear();
           const month = createDate.getMonth() + 1;
@@ -340,7 +340,7 @@ export const Orders = () => {
           const paymentDataId = data.map((el: any) => el.id);
           navigate('/orderok', {
             state: {
-              merchant_uid: data.response.merchant_uid,
+              merchant_uid: resData.response.merchant_uid,
               dt: dt,
               paymentDataId: paymentDataId,
             },
