@@ -36,6 +36,9 @@ export const QnAPo = () => {
       });
     } else {
       navigate('/sign-in');
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       swal.fire({
         heightAuto: false,
         icon: 'warning',
@@ -75,6 +78,9 @@ export const QnAPo = () => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -88,6 +94,7 @@ export const QnAPo = () => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId, jwt, navigate]);
 
   // 댓글 등록 알람
@@ -131,6 +138,9 @@ export const QnAPo = () => {
                 });
             } else {
               navigate('/sign-in');
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
               swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -225,6 +235,9 @@ export const QnAPo = () => {
             });
           } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',

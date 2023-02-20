@@ -47,6 +47,9 @@ export const AdimWdList = (props: any) => {
       } catch (err: any) {
         // if (err.response.status === 812) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -60,6 +63,7 @@ export const AdimWdList = (props: any) => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt, memberName, size, page, navigate]);
 
   const searchParameters = Object.keys(Object.assign({}, ...memberList));

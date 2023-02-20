@@ -59,6 +59,9 @@ export const AdminMemberList = (props: any) => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -72,6 +75,7 @@ export const AdminMemberList = (props: any) => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort, memberName, size, page, jwt, filter, navigate]);
 
   //체크박스
@@ -202,6 +206,9 @@ export const AdminMemberList = (props: any) => {
               });
             } else {
               navigate('/sign-in');
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
               swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -250,6 +257,9 @@ export const AdminMemberList = (props: any) => {
       });
     } else {
       navigate('/sign-in');
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       swal.fire({
         heightAuto: false,
         icon: 'warning',

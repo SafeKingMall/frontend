@@ -79,6 +79,9 @@ export const AdminItemList = (props: any) => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -91,6 +94,7 @@ export const AdminItemList = (props: any) => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort, searchItem, size, page, categoryName, jwt, navigate]);
 
   // //삭제 알림창
@@ -198,6 +202,9 @@ export const AdminItemList = (props: any) => {
       navigate('/admin-item-wr');
     } else {
       navigate('/sign-in');
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       swal.fire({
         heightAuto: false,
         icon: 'warning',

@@ -54,6 +54,9 @@ export const MyPageAp1 = () => {
             });
         } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -88,6 +91,9 @@ export const MyPageAp1 = () => {
             } catch (err: any) {
                 // if (err.response.status === 403) {
                 navigate('/sign-in');
+                cookies.remove('accessToken');
+                cookies.remove('refreshToken');
+                cookies.remove('loginUser');
                 swal.fire({
                     heightAuto: false,
                     icon: 'warning',

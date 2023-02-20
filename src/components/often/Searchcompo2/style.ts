@@ -21,19 +21,12 @@ export const SearchArea = styled.div`
   display: flex;
   justify-content: flex-end;
   /* margin-top: 10.2rem; */
+  @media screen and (max-width: 400px) {
+    height: 13rem;
+    margin-bottom: 5%;
+  }
 `;
-export const Select = styled.select`
-  margin-right: 0.8rem;
-  width: 12.5rem;
-  height: 4rem;
-  border: 0.1rem solid #ddd;
-  font-size: 1.2rem;
-  padding: 0 0.8rem;
-  font-weight: 400;
-  background-color: #fefefe;
-  color: #686868;
-  outline: none;
-`;
+
 export const SearchBar = styled.input`
   width: 24rem;
   height: 4rem;
@@ -44,14 +37,24 @@ export const SearchBar = styled.input`
   border: 0.1rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
+  @media screen and (max-width: 400px) {
+    width: 67%;
+    height: 13rem;
+    ::placeholder {
+      color: transparent;
+    }
+  }
 `;
 
 export const SearchButton = styled.button`
   width: 4rem;
   height: 4rem;
   background-color: #289951;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 400px) {
+    width: 9%;
+    height: 13rem;
+  }
 `;

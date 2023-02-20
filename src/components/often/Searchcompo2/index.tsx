@@ -3,6 +3,7 @@ import * as S from './style';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Pagination } from '../pagination';
+import { useMediaQuery } from 'react-responsive';
 // import Swal from 'sweetalert2';
 // import withReactContent from 'sweetalert2-react-content';
 // import '../../../css/alert.css';
@@ -14,6 +15,7 @@ export const Searchcompo2 = (props: any) => {
   const [currentPage, setCurrentPage] = useState(props.page + 1);
   //페이지당 보여지는 리스트
   const [itemsPerPage] = useState(props.size);
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
 
   //브라우저상 보여지는 한계 숫자
   const [pageNumberLimit] = useState(5);
@@ -51,7 +53,11 @@ export const Searchcompo2 = (props: any) => {
             autoComplete='off'
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
-            <AiOutlineSearch size='2.8rem' color='#ffffff' />
+            {isDesktopOrMobile !== true ? (
+              <AiOutlineSearch size='2.8rem' color='#ffffff' />
+            ) : (
+              <AiOutlineSearch size='10rem' color='#ffffff' />
+            )}
           </S.SearchButton>
         </S.SearchArea>
       </S.Container>

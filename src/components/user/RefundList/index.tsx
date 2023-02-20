@@ -27,6 +27,9 @@ export const RefundList = (props: any) => {
             });
         } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -89,6 +92,9 @@ export const RefundList = (props: any) => {
             } catch (err: any) {
                 // if (err.response.status === 403) {
                 navigate('/sign-in');
+                cookies.remove('accessToken');
+                cookies.remove('refreshToken');
+                cookies.remove('loginUser');
                 swal.fire({
                     heightAuto: false,
                     icon: 'warning',
