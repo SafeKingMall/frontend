@@ -52,16 +52,16 @@ export const NoticeList = (props: any) => {
     });
   };
   const moveNoticewr = () => {
-    if (cookies.get('refreshToken')) {
-      navigate('/notice-wr', {
-        state: {
-          reqData: reqData,
-          size: size,
-        },
-      });
-    } else {
-      navigate('/sign-in');
-    }
+    // if (cookies.get('refreshToken')) {
+    navigate('/notice-wr', {
+      state: {
+        reqData: reqData,
+        size: size,
+      },
+    });
+    // } else {
+    // navigate('/sign-in');
+    // }
   };
 
   useEffect(() => {

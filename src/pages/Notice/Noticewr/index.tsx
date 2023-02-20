@@ -28,30 +28,29 @@ export const NoticeWr = () => {
 
   useEffect(() => {
     const getData = async () => {
-      try {
-        await axios({
-          method: 'get',
-          url: `${process.env.REACT_APP_API_URL}/notice/list?size=${size}&page=0&${reqData}`,
-          headers: {
-            Authorization: jwt,
-          },
-        }).then((res) => {
-          setSendId(res.data.content[0].id);
-        });
-      } catch (err: any) {
-        // if (err.response.status === 403) {
-        navigate('/sign-in');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
-      }
+      // try {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/notice/list?size=${size}&page=0&${reqData}`,
+        headers: {
+          Authorization: jwt,
+        },
+      }).then((res) => {
+        setSendId(res.data.content[0].id);
+      });
+      // } catch (err: any) {
+      //   // if (err.response.status === 403) {
+      //   navigate('/sign-in');
+      //   swal.fire({
+      //     icon: 'warning',
+      //     text: '로그인이 만료되었습니다.',
+      //     confirmButtonText: '확인',
+      //     confirmButtonColor: '#289951',
+      //     cancelButtonText: '취소',
+      //     width: 400,
+      //   });
+      //   // }
+      // }
     };
     getData();
   }, [jwt, reqData, size, navigate]);

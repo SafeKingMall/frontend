@@ -171,8 +171,8 @@ export const DayInput = styled.input`
     opacity: 1;
     display: block;
     background: url('/img/calendar.png') center/100% no-repeat white;
-    width: 54px;
-    height: 54px;
+    width: 26%;
+    height: 100%;
     cursor: pointer;
   }
 `;
