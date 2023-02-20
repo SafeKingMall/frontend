@@ -85,7 +85,7 @@ export const ItemDetail = () => {
           });
       }
     }
-  }, [navigate, state, cookies]);
+  }, [navigate, state]);
 
   useEffect(() => {
     if (!loading) {
