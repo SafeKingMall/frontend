@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 400px) {
+    padding: 0;
+    width: 80%;
+    font-size: 70%;
+  }
 `;
 
 export const Container = styled.div`
@@ -32,6 +37,7 @@ export const Container = styled.div`
   }
   @media screen and (max-width: 400px) {
     justify-content: space-between;
+    width: 115rem;
     div {
       &:first-child {
         display: none;
@@ -71,6 +77,7 @@ export const NoticeTitle = styled.div`
   }
   @media screen and (max-width: 400px) {
     padding: 0;
+    width: 80%;
     div {
       display: none;
     }
