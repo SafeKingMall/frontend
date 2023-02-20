@@ -11,7 +11,7 @@ export const NoticeBarWrap = styled.div`
   font-size: 2.4rem;
   font-weight: 500;
   color: #ffffff;
-  border-top: 0.05rem solid #ffffff;
+  border-top: 0.1px solid rgba(255, 255, 255, 0.7);
 `;
 export const NoticeContent = styled.div`
   width: 100%;
