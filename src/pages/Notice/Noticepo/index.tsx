@@ -42,9 +42,7 @@ export const NoticePo = () => {
       });
     } else {
       navigate('/sign-in');
-      cookies.remove('accessToken');
-      cookies.remove('refreshToken');
-      cookies.remove('loginUser');
+
       swal.fire({
         heightAuto: false,
         icon: 'warning',
@@ -117,20 +115,8 @@ export const NoticePo = () => {
         if (result.isConfirmed) {
           if (cookies.get('refreshToken')) {
             deleteApi(id);
-            swal.fire({
-              heightAuto: false,
-              icon: 'success',
-              text: '게시판이 삭제되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
-            navigate('/notice');
           } else {
             navigate('/sign-in');
-            cookies.remove('accessToken');
-            cookies.remove('refreshToken');
-            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',
@@ -152,16 +138,28 @@ export const NoticePo = () => {
       headers: {
         Authorization: jwt,
       },
-    }).catch((err) => {
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '관리자만 삭제가능합니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
+    })
+      .then((res) => {
+        swal.fire({
+          heightAuto: false,
+          icon: 'success',
+          text: '게시판이 삭제되었습니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+        navigate('/notice');
+      })
+      .catch((err) => {
+        swal.fire({
+          heightAuto: false,
+          icon: 'warning',
+          text: '관리자만 삭제가능합니다.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
       });
-    });
   };
 
   const { registDate2 } = useDateFormat();
