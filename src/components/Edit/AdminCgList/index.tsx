@@ -53,6 +53,9 @@ export const AdimCgList = () => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -65,6 +68,7 @@ export const AdimCgList = () => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt, navigate]);
 
   //등록알람
@@ -96,6 +100,9 @@ export const AdimCgList = () => {
               });
             } else {
               navigate('/sign-in');
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
               swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -174,6 +181,9 @@ export const AdimCgList = () => {
             });
           } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',
@@ -209,6 +219,9 @@ export const AdimCgList = () => {
       });
     } else {
       navigate('/sign-in');
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       swal.fire({
         heightAuto: false,
         icon: 'warning',
@@ -247,6 +260,9 @@ export const AdimCgList = () => {
             });
           } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',
@@ -315,6 +331,9 @@ export const AdimCgList = () => {
             });
           } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',

@@ -30,6 +30,14 @@ export const Container = styled.div`
       text-align: right;
     }
   }
+  @media screen and (max-width: 400px) {
+    justify-content: space-between;
+    div {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
 `;
 
 export const DataList = styled.ul`
@@ -44,7 +52,7 @@ export const NoticeTitle = styled.div`
   flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.whitegreen};
-  align-items: end;
+  /* align-items: end; */
   padding: 2.4rem 5rem 2.4rem 5.4rem;
   align-items: center;
   border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
@@ -61,10 +69,16 @@ export const NoticeTitle = styled.div`
       flex-grow: 0;
     }
   }
+  @media screen and (max-width: 400px) {
+    padding: 0;
+    div {
+      display: none;
+    }
+  }
 `;
 
 export const Select = styled.select`
-  margin-right: 0.8rem;
+  /* margin-right: 0.8rem; */
   width: 12.5rem;
   height: 4rem;
   border: 0.1rem solid #ddd;
@@ -74,6 +88,11 @@ export const Select = styled.select`
   background-color: #fefefe;
   color: #686868;
   outline: none;
+  @media screen and (max-width: 400px) {
+    width: 29%;
+    height: 13rem;
+    margin-right: 1%;
+  }
 `;
 
 export const NoticeButton = styled.button`
@@ -85,6 +104,11 @@ export const NoticeButton = styled.button`
   font-size: 1.5rem;
   position: absolute;
   bottom: 18%;
+  @media screen and (max-width: 400px) {
+    width: 24%;
+    height: 15rem;
+    margin-left: 56%;
+  }
 `;
 export const NoSearchItem = styled.div`
   ${({ theme }) => theme.common.flexCenter};

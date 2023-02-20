@@ -1,8 +1,11 @@
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import * as S from './style';
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export const Pagination = (props: any) => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+
   const numberColor = '#289951';
   const numbertxtColor = 'white';
   const totalColor = {
@@ -64,7 +67,7 @@ export const Pagination = (props: any) => {
           onClick={handlePrevbtn}
           disabled={props.currentPage === pages[0] ? true : false}
         >
-          <AiOutlineLeft size='30' />
+          {isDesktopOrMobile !== true ? <AiOutlineLeft size='30' /> : <AiOutlineLeft size='20' />}
         </S.ButtonPageNumbers>
       </S.LiPageNumbers>
       {renderPageNumbers}
@@ -73,7 +76,7 @@ export const Pagination = (props: any) => {
           onClick={handleNextbtn}
           disabled={props.currentPage === pages[pages.length - 1] ? true : false}
         >
-          <AiOutlineRight size='30' />
+          {isDesktopOrMobile !== true ? <AiOutlineRight size='30' /> : <AiOutlineRight size='20' />}
         </S.ButtonPageNumbers>
       </S.LiPageNumbers>
     </S.PageNumbers>

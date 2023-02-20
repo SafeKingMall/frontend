@@ -61,6 +61,9 @@ export const QnAMo = () => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -74,6 +77,7 @@ export const QnAMo = () => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId, jwt, navigate]);
 
   const onSelectFile = (e: any) => {
@@ -138,6 +142,9 @@ export const QnAMo = () => {
               });
             } else {
               navigate('/sign-in');
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
               swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -246,6 +253,9 @@ export const QnAMo = () => {
               });
             } else {
               navigate('/sign-in');
+              cookies.remove('accessToken');
+              cookies.remove('refreshToken');
+              cookies.remove('loginUser');
               swal.fire({
                 heightAuto: false,
                 icon: 'warning',

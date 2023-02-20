@@ -38,6 +38,9 @@ export const MyPageAp2 = () => {
             });
         } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
                 heightAuto: false,
                 icon: 'warning',
@@ -72,6 +75,9 @@ export const MyPageAp2 = () => {
 
                     } else {
                         navigate('/sign-in');
+                        cookies.remove('accessToken');
+                        cookies.remove('refreshToken');
+                        cookies.remove('loginUser');
                         swal.fire({
                             heightAuto: false,
                             icon: 'warning',

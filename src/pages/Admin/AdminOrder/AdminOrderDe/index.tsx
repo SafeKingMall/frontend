@@ -88,6 +88,9 @@ export const AdminOrderDe = () => {
       } catch (err: any) {
         // if (err.response.status === 403) {
         navigate('/sign-in');
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
         swal.fire({
           heightAuto: false,
           icon: 'warning',
@@ -101,6 +104,7 @@ export const AdminOrderDe = () => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId, jwt, navigate]);
 
   const payValue = (data: any) => {
@@ -266,6 +270,9 @@ export const AdminOrderDe = () => {
             });
           } else {
             navigate('/sign-in');
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
             swal.fire({
               heightAuto: false,
               icon: 'warning',
