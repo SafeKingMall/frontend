@@ -122,7 +122,6 @@ export const Orders = () => {
       } else if (res.data === 'ROLE_USER') {
         setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
       }
-      console.log('재발급');
       jwt.current = token;
     });
   };
@@ -317,35 +316,6 @@ export const Orders = () => {
 
   const callBack = async (res: any) => {
     if (res.success) {
-      console.log(jwt.current);
-      // await axios({
-      //   method: 'post',
-      //   url: `${process.env.REACT_APP_API_URL}/user/payment`,
-      //   headers: {
-      //     Authorization: cookies.get('accessToken'),
-      //   },
-      //   data: {
-      //     success: res.success,
-      //     imp_uid: res.imp_uid,
-      //     merchant_uid: res.merchant_uid,
-      //     paid_amount: res.paid_amount,
-      //   },
-      // }).then((response) => {
-      // const createDate = new Date();
-      // const year = createDate.getFullYear();
-      // const month = createDate.getMonth() + 1;
-      // const date = createDate.getDate();
-      // const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
-      // const paymentDataId = data.map((el: any) => el.id);
-      // console.log('검증완료');
-      // navigate('/orderok', {
-      //   state: {
-      //     merchant_uid: response.data.response.merchant_uid,
-      //     dt: dt,
-      //     paymentDataId: paymentDataId,
-      //   },
-      // });
-      // });
       await fetch(`${process.env.REACT_APP_API_URL}/user/payment`, {
         method: 'POST',
         headers: {
@@ -368,7 +338,6 @@ export const Orders = () => {
           //eslint-disable-next-line
           const dt = `${year}.${month >= 10 ? month : '0' + month}.${date >= 10 ? date : '0' + date}`;
           const paymentDataId = data.map((el: any) => el.id);
-          console.log('검증완료');
           navigate('/orderok', {
             state: {
               merchant_uid: data.response.merchant_uid,
