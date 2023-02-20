@@ -17,85 +17,42 @@ export const CartsList = (props: any) => {
   const [checkedList, setCheckedList] = useState<any>([]);
   const [countList, setCountList] = useState<any>(data.map((el: any) => el.itemQuantity));
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
 
   //장바구니 아이템 개수 수정
   const itemCountEvent = async (itemId: number, itemCount: number) => {
-    await axios({
-      method: 'patch',
-      url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
-      headers: {
-        Authorization: jwt,
-      },
-      data: {
-        itemId: itemId,
-        count: itemCount,
-      },
-    });
+    try {
+      await axios({
+        method: 'patch',
+        url: `${process.env.REACT_APP_API_URL}/user/cartItem`,
+        headers: {
+          Authorization: cookies.get('accessToken'),
+        },
+        data: {
+          itemId: itemId,
+          count: itemCount,
+        },
+      });
+    } catch (err) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
+      navigate('/sign-in');
+    }
   };
 
   //개별 아이템 삭제 알림
   const deleteItemAlert = (itemId: number, idx: number) => {
-    swal
-      .fire({
-        heightAuto: false,
-        icon: 'question',
-        text: '장바구니에서 삭제하시겠습니까?',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        showCancelButton: true,
-        cancelButtonText: '취소',
-        width: 400,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          deleteItem(itemId, idx);
-          swal.fire({
-            heightAuto: false,
-            icon: 'success',
-            text: '장바구니에서 삭제되었습니다.',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#289951',
-            width: 400,
-          });
-        }
-      });
-  };
-
-  //개별 아이템 삭제
-  const deleteItem = async (itemId: number, idx: number) => {
-    await axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}/user/cartItem?itemId=${itemId}`,
-      headers: {
-        Authorization: jwt,
-      },
-    }).then(() => {
-      setData([...data.slice(0, idx), ...data.slice(idx + 1)]);
-      setCountList(
-        [...data.slice(0, idx), ...data.slice(idx + 1)].map((el: any) => el.itemQuantity),
-      );
-      setCheckedList(checkedList.filter((el: any) => el.id !== itemId));
-    });
-  };
-
-  //선택 아이템 삭제 알림
-  const deleteSelectItemAlert = () => {
-    if (checkedList.length === 0) {
-      swal.fire({
-        heightAuto: false,
-        icon: 'info',
-        text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+    if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
+      navigate('/sign-in');
     } else {
       swal
         .fire({
           heightAuto: false,
           icon: 'question',
-          text: '선택상품을 장바구니에서 삭제하시겠습니까?',
+          text: '장바구니에서 삭제하시겠습니까?',
           confirmButtonText: '확인',
           confirmButtonColor: '#289951',
           showCancelButton: true,
@@ -104,11 +61,11 @@ export const CartsList = (props: any) => {
         })
         .then((result) => {
           if (result.isConfirmed) {
-            deleteSelectItem();
+            deleteItem(itemId, idx);
             swal.fire({
               heightAuto: false,
               icon: 'success',
-              text: '선택상품이 장바구니에서 삭제되었습니다.',
+              text: '장바구니에서 삭제되었습니다.',
               confirmButtonText: '확인',
               confirmButtonColor: '#289951',
               width: 400,
@@ -118,31 +75,111 @@ export const CartsList = (props: any) => {
     }
   };
 
+  //개별 아이템 삭제
+  const deleteItem = async (itemId: number, idx: number) => {
+    await axios({
+      method: 'delete',
+      url: `${process.env.REACT_APP_API_URL}/user/cartItem?itemId=${itemId}`,
+      headers: {
+        Authorization: cookies.get('accessToken'),
+      },
+    })
+      .then(() => {
+        setData([...data.slice(0, idx), ...data.slice(idx + 1)]);
+        setCountList(
+          [...data.slice(0, idx), ...data.slice(idx + 1)].map((el: any) => el.itemQuantity),
+        );
+        setCheckedList(checkedList.filter((el: any) => el.id !== itemId));
+      })
+      .catch(() => {
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
+        navigate('/sign-in');
+      });
+  };
+
+  //선택 아이템 삭제 알림
+  const deleteSelectItemAlert = () => {
+    if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
+      navigate('/sign-in');
+    } else {
+      if (checkedList.length === 0) {
+        swal.fire({
+          heightAuto: false,
+          icon: 'info',
+          text: '선택한 상품이 없습니다. 상품을 선택해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else {
+        swal
+          .fire({
+            heightAuto: false,
+            icon: 'question',
+            text: '선택상품을 장바구니에서 삭제하시겠습니까?',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#289951',
+            showCancelButton: true,
+            cancelButtonText: '취소',
+            width: 400,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              deleteSelectItem();
+              swal.fire({
+                heightAuto: false,
+                icon: 'success',
+                text: '선택상품이 장바구니에서 삭제되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#289951',
+                width: 400,
+              });
+            }
+          });
+      }
+    }
+  };
+
   //선택 아이템 삭제
   const deleteSelectItem = async () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       let items = checkedList.map((item: any) => 'itemId=' + item.id + '&');
       let itemsString = items.join('');
-      await axios({
-        method: 'delete',
-        url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
-        headers: {
-          Authorization: jwt,
-        },
-      });
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/user/cart`,
-        headers: {
-          Authorization: jwt,
-        },
-      }).then((res) => {
-        setData(res.data.content);
-        setCountList(res.data.content.map((el: any) => el.itemQuantity));
-        setCheckedList([]);
-      });
+      try {
+        await axios({
+          method: 'delete',
+          url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
+          headers: {
+            Authorization: cookies.get('accessToken'),
+          },
+        });
+        await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}/user/cart`,
+          headers: {
+            Authorization: cookies.get('accessToken'),
+          },
+        }).then((res) => {
+          setData(res.data.content);
+          setCountList(res.data.content.map((el: any) => el.itemQuantity));
+          setCheckedList([]);
+        });
+      } catch (err) {
+        cookies.remove('accessToken');
+        cookies.remove('refreshToken');
+        cookies.remove('loginUser');
+        navigate('/sign-in');
+      }
     }
   };
 
@@ -173,6 +210,9 @@ export const CartsList = (props: any) => {
   //개별 아이템 바로구매
   const moveOrders = (itemId: any) => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       swal
@@ -192,15 +232,22 @@ export const CartsList = (props: any) => {
               method: 'get',
               url: `${process.env.REACT_APP_API_URL}/user/cart`,
               headers: {
-                Authorization: jwt,
+                Authorization: cookies.get('accessToken'),
               },
-            }).then((res) => {
-              navigate('/orders', {
-                state: {
-                  data: res.data.content.filter((el: any) => el.id === itemId),
-                },
+            })
+              .then((res) => {
+                navigate('/orders', {
+                  state: {
+                    data: res.data.content.filter((el: any) => el.id === itemId),
+                  },
+                });
+              })
+              .catch((err) => {
+                cookies.remove('accessToken');
+                cookies.remove('refreshToken');
+                cookies.remove('loginUser');
+                navigate('/sign-in');
               });
-            });
           }
         });
     }

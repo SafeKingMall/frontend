@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
@@ -11,7 +11,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const swal = withReactContent(Swal);
   const cookies = new Cookies();
-  const loginUser = cookies.get('loginUser');
+  const loginUser = useRef(cookies.get('loginUser'));
   const location = useLocation();
 
   const moveLocation = (path: string) => {
@@ -56,8 +56,8 @@ export const Header = () => {
       </S.NavArea>
       <S.UserContentArea>
         <S.UserContentBox>
-          {loginUser ? (
-            loginUser === 'admin') ? (
+          {loginUser.current ? (
+            loginUser.current === 'admin') ? (
             <S.GreenBtn onClick={() => moveLocation('/admin-member')}>관리자모드</S.GreenBtn>
           ) : (
             <S.IconBox>
@@ -67,7 +67,7 @@ export const Header = () => {
           ) : (
             ''
           )}
-          {loginUser ? (
+          {loginUser.current ? (
             <S.GrayBtn onClick={() => logout()}>로그아웃</S.GrayBtn>
           ) : (
             <S.GreenBtn onClick={() => navigate('/sign-in')}>로그인</S.GreenBtn>

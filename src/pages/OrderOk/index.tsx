@@ -11,10 +11,12 @@ export const OrderOk = () => {
   const stepTitle = '주문완료';
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const jwt = cookies.get('accessToken');
 
   const movePaymentInfo = () => {
     if (!cookies.get('refreshToken')) {
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
       navigate('/sign-in');
     } else {
       navigate('/mypage-od');
@@ -29,12 +31,13 @@ export const OrderOk = () => {
         method: 'delete',
         url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
         headers: {
-          Authorization: jwt,
+          Authorization: cookies.get('accessToken'),
         },
       });
     };
     deleteCartItem();
-  }, [jwt, state]);
+    // eslint-disable-next-line
+  }, [state]);
 
   return (
     <S.Container>
