@@ -9,12 +9,12 @@ export const Wrapper = styled.div`
 `;
 
 export const Select = styled.select`
-  margin-right: 0.8rem;
-  width: 12.5rem;
-  height: 4rem;
-  border: 0.1rem solid #ddd;
-  font-size: 1.2rem;
-  padding: 0 0.8rem;
+  margin-right: 0.08rem;
+  width: 1.25rem;
+  height: 0.4rem;
+  border: 0.01rem solid #ddd;
+  font-size: 0.12rem;
+  padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
   color: #686868;
@@ -22,18 +22,18 @@ export const Select = styled.select`
 `;
 
 export const DataList = styled.div`
-  margin-bottom: 2.4rem;
+  margin-bottom: 0.24rem;
 `;
 
 export const AdminTitle = styled.div`
-  width: 144rem;
-  margin-top: 2.4rem;
+  width: 14.4rem;
+  margin-top: 0.24rem;
   display: flex;
   background-color: ${({ theme }) => theme.palette.whitegreen};
-  padding: 2.4rem 12rem 2.4rem 5.4rem;
+  padding: 0.24rem 1.2rem 0.24rem 0.54rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 1.85;
@@ -46,12 +46,12 @@ export const AdminTitle = styled.div`
 
 export const Container = styled.div`
   cursor: pointer;
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   align-items: center;
-  padding: 2.4rem 9rem 2.4rem 5.8rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2.4rem;
+  padding: 0.24rem 0.9rem 0.24rem 0.58rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 2;
@@ -64,39 +64,39 @@ export const Container = styled.div`
 
 export const AdminButton = styled.button`
   color: ${({ theme }) => theme.palette.green};
-  font-size: 1.6rem;
-  width: 6.4rem;
-  height: 4rem;
+  font-size: 0.16rem;
+  width: 0.64rem;
+  height: 0.4rem;
   align-items: center;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
 `;
 
 export const AdminButton2 = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 1.6rem;
-  width: 6.4rem;
-  height: 4rem;
-  margin-right: 0.8rem;
+  font-size: 0.16rem;
+  width: 0.64rem;
+  height: 0.4rem;
+  margin-right: 0.08rem;
   align-items: center;
 `;
 
 export const QnAButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin-left: 130rem;
-  width: 13rem;
-  height: 5rem;
-  font-size: 1.5rem;
+  margin-left: 13rem;
+  width: 1.3rem;
+  height: 0.5rem;
+  font-size: 0.15rem;
   position: absolute;
   bottom: 18%;
 `;
 
 export const NoSearchItem = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 144rem;
-  height: 30rem;
-  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
-  font-size: 2.4rem;
+  width: 14.4rem;
+  height: 3rem;
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
+  font-size: 0.24rem;
   font-weight: 500;
 `;

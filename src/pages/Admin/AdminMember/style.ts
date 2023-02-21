@@ -12,23 +12,23 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 10.2rem;
+  margin-top: 1.02rem;
 `;
 
 export const AdminMembertitle = styled.div`
-  width: 144rem;
-  margin-top: 2.4rem;
+  width: 14.4rem;
+  margin-top: 0.24rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.darkgreen};
   align-items: end;
-  padding: 2.4rem 5rem 2.4rem 5.4rem;
+  padding: 0.24rem 0.5rem 0.24rem 0.54rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.green};
+  border-bottom: 0.03rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 2.1;
@@ -46,10 +46,10 @@ export const AdminMembertitle = styled.div`
 `;
 
 export const BigTitle = styled.div`
-  font-size: 2.4rem;
-  width: 14rem;
+  font-size: 0.24rem;
+  width: 1.4rem;
   font-weight: 700;
-  margin-top: 10rem;
+  margin-top: 1rem;
   position: absolute;
 `;
 
@@ -57,21 +57,21 @@ export const TabMenu = styled.div`
   display: flex;
   list-style: none;
   cursor: pointer;
-  margin-right: 115rem;
-  top: 10rem;
+  margin-right: 11.5rem;
+  top: 1rem;
   .submenu {
     display: flex;
-    height: 3rem;
-    font-size: 2.4rem;
+    height: 0.3rem;
+    font-size: 0.24rem;
     font-weight: 700;
-    padding-left: 3.2rem;
-    padding-right: 3.2rem;
+    padding-left: 0.32rem;
+    padding-right: 0.32rem;
     &:first-child {
-      border-right: 0.2rem solid black;
-      width: 11rem;
+      border-right: 0.02rem solid black;
+      width: 1.1rem;
     }
     &:last-child {
-      width: 20rem;
+      width: 2rem;
     }
   }
 

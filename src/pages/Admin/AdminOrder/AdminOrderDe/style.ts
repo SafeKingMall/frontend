@@ -15,28 +15,28 @@ export const Wrapper = styled.div`
 
 export const AdminWrapper = styled.div`
   display: flex;
-  padding-left: 3.7rem;
-  font-size: 2rem;
+  padding-left: 0.37rem;
+  font-size: 0.2rem;
   h3 {
-    margin-right: 0.3rem;
+    margin-right: 0.03rem;
   }
   div {
-    padding-top: 0.2rem;
+    padding-top: 0.02rem;
   }
 `;
 
 export const AdminTitle = styled.div`
-  width: 144rem;
-  margin-top: 2.4rem;
+  width: 14.4rem;
+  margin-top: 0.24rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
-  padding: 2.4rem 5rem 2.4rem 5.4rem;
+  padding: 0.24rem 0.5rem 0.24rem 0.54rem;
   align-items: center;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 2.1;
@@ -58,82 +58,82 @@ export const NoneOption = styled.option`
 `;
 
 export const Table = styled.table`
-  width: 128rem;
-  font-size: 2rem;
+  width: 12.8rem;
+  font-size: 0.2rem;
   border-collapse: collapse;
-  margin-bottom: 4rem;
+  margin-bottom: 0.4rem;
 
   th {
-    height: 7.1rem;
+    height: 0.71rem;
     background-color: #d4ebdc;
-    width: 16.6rem;
+    width: 1.66rem;
     font-weight: normal;
   }
 
   td,
   tr {
-    height: 7.1rem;
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-    padding: 2rem;
+    height: 0.71rem;
+    border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    padding: 0.2rem;
   }
 `;
 
 export const OrderSelect = styled.select`
-  width: 12.8rem;
-  height: 4rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2rem;
+  width: 1.28rem;
+  height: 0.4rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.2rem;
 `;
 
 export const OrderInput = styled.input`
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2rem;
-  width: 15.7rem;
-  height: 3.7rem;
-  margin-top: 0.2rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.2rem;
+  width: 1.57rem;
+  height: 0.37rem;
+  margin-top: 0.02rem;
   text-align: right;
-  padding-right: 0.5rem;
+  padding-right: 0.05rem;
 `;
 
 export const OrderH2 = styled.h2`
-  font-size: 2.4rem;
-  padding-bottom: 2.4rem;
-  margin-left: 2.4rem;
-  margin-top: 4rem;
-  width: 125rem;
+  font-size: 0.24rem;
+  padding-bottom: 0.24rem;
+  margin-left: 0.24rem;
+  margin-top: 0.4rem;
+  width: 12.5rem;
 `;
 
 export const OrderDiv = styled.div`
-  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.txt};
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.txt};
 `;
 
 export const OrderDiv2 = styled.div`
   display: flex;
-  padding: 1.6rem 0rem;
-  margin-left: 83rem;
+  padding: 0.16rem 0rem;
+  margin-left: 8.3rem;
 `;
 
 export const Table2 = styled.table`
-  width: 128rem;
-  font-size: 2rem;
+  width: 12.8rem;
+  font-size: 0.2rem;
   border-collapse: collapse;
   text-align: center;
 
   td,
   tr {
-    height: 7.1rem;
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    height: 0.71rem;
+    border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
     &:first-child,
     &:nth-child(2) {
-      border-left: 0.1rem solid white;
+      border-left: 0.01rem solid white;
     }
-    border-left: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
     &:first-child {
-      height: 6.4rem;
+      height: 0.64rem;
     }
-    padding: 0.5rem 0rem;
+    padding: 0.05rem 0rem;
   }
 
   tr {
@@ -141,13 +141,13 @@ export const Table2 = styled.table`
       background-color: #d4ebdc;
       td {
         &:nth-child(2) {
-          border-left: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+          border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
         }
       }
     }
     td {
       &:last-child {
-        width: 20.5rem;
+        width: 2.05rem;
       }
     }
   }
@@ -156,36 +156,36 @@ export const Table2 = styled.table`
 //관리자 메모
 
 export const AdminTextarea = styled.textarea`
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  width: 128rem;
-  height: 21.6rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  width: 12.8rem;
+  height: 2.16rem;
   resize: none;
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 0.2rem;
+  padding: 0.1rem;
 `;
 
 export const QnAButton = styled.button`
   color: ${({ theme }) => theme.palette.green};
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
-  margin-right: 0.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  margin-right: 0.08rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
 `;
 
 export const QnAButton2 = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
 `;
 
 export const QnABox = styled.div`
-  margin-top: 1.2rem;
-  margin-bottom: 15rem;
-  margin-left: 106rem;
-  width: 30rem;
+  margin-top: 0.12rem;
+  margin-bottom: 1.5rem;
+  margin-left: 10.6rem;
+  width: 3rem;
 `;

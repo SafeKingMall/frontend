@@ -2,24 +2,24 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
-  width: 30rem;
-  padding: 1rem;
-  margin-top: 8rem;
+  width: 3rem;
+  padding: 0.1rem;
+  margin-top: 0.8rem;
   display: flex;
   flex-direction: column;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
 `;
 
 export const StyledLink = styled(Link)`
   box-sizing: border-box;
   display: block;
-  padding: 1rem 1rem;
-  width: 15rem;
-  height: 3rem;
+  padding: 0.1rem 0.1rem;
+  width: 1.5rem;
+  height: 0.3rem;
   margin: 0 auto;
   text-align: center;
   color: black;
-  margin-bottom: 4rem;
+  margin-bottom: 0.4rem;
   &:focus {
     color: ${(props) => props.theme.palette.green};
   }

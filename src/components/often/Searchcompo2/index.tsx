@@ -3,19 +3,17 @@ import * as S from './style';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Pagination } from '../pagination';
-import { useMediaQuery } from 'react-responsive';
-// import Swal from 'sweetalert2';
-// import withReactContent from 'sweetalert2-react-content';
-// import '../../../css/alert.css';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import '../../../css/alert.css';
 
-// const swal = withReactContent(Swal);
+const swal = withReactContent(Swal);
 
 export const Searchcompo2 = (props: any) => {
   //현재페이지
   const [currentPage, setCurrentPage] = useState(props.page + 1);
   //페이지당 보여지는 리스트
   const [itemsPerPage] = useState(props.size);
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
 
   //브라우저상 보여지는 한계 숫자
   const [pageNumberLimit] = useState(5);
@@ -23,7 +21,17 @@ export const Searchcompo2 = (props: any) => {
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
   const onChangeText = (e: any) => {
-    props.setSearchText(e.target.value);
+    if (props.filter === '') {
+      swal.fire({
+        icon: 'warning',
+        text: '체크박스를 선택해주세요.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#289951',
+        width: 400,
+      });
+    } else {
+      props.setSearchText(e.target.value);
+    }
   };
   const onKeyDownEnter = (e: any) => {
     if (e.key === 'Enter') {
@@ -53,11 +61,7 @@ export const Searchcompo2 = (props: any) => {
             autoComplete='off'
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
-            {isDesktopOrMobile !== true ? (
-              <AiOutlineSearch size='2.8rem' color='#ffffff' />
-            ) : (
-              <AiOutlineSearch size='10rem' color='#ffffff' />
-            )}
+            <AiOutlineSearch size='2.8rem' color='#ffffff' />
           </S.SearchButton>
         </S.SearchArea>
       </S.Container>

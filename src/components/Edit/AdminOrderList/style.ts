@@ -11,29 +11,29 @@ export const Wrapper = styled.div`
 `;
 
 export const BigTitle = styled.div`
-  font-size: 2.4rem;
-  width: 128rem;
+  font-size: 0.24rem;
+  width: 12.8rem;
   font-weight: 700;
-  margin-left: 2.2rem;
+  margin-left: 0.22rem;
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 2.4rem;
+  margin-bottom: 0.24rem;
 `;
 
 export const AdminOrdertitle = styled.div`
-  width: 128rem;
-  margin-top: 2.4rem;
+  width: 12.8rem;
+  margin-top: 0.24rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
-  padding: 1.7rem 1.5rem 1.7rem 3.2rem;
+  padding: 0.17rem 0.15rem 0.17rem 0.32rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 1.3;
@@ -54,7 +54,7 @@ export const AdminOrdertitle = styled.div`
       flex-grow: 3;
       div {
         &:last-child {
-          font-size: 1.5rem;
+          font-size: 0.15rem;
         }
       }
     }
@@ -65,40 +65,40 @@ export const AdminOrdertitle = styled.div`
 `;
 export const Container = styled.div`
   cursor: pointer;
-  width: 128rem;
+  width: 12.8rem;
   display: flex;
   align-items: center;
-  padding: 2.4rem 1.5rem 2.4rem 5.8rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2.4rem;
+  padding: 0.24rem 0.15rem 0.24rem 0.58rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
-      width: 7rem;
+      width: 0.7rem;
       text-align: left;
     }
     &:nth-child(2) {
-      width: 20rem;
+      width: 2rem;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 18rem;
+      width: 1.8rem;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 13rem;
+      width: 1.3rem;
       text-align: center;
     }
     &:nth-child(5) {
-      width: 13rem;
+      width: 1.3rem;
 
       text-align: center;
     }
     &:nth-child(6) {
-      width: 28rem;
+      width: 2.8rem;
       text-align: center;
     }
     &:nth-child(7) {
-      width: 23rem;
+      width: 2.3rem;
       text-align: right;
     }
   }
@@ -108,20 +108,20 @@ export const Container = styled.div`
 
 export const SearchBox = styled.div`
   background-color: ${({ theme }) => theme.palette.lightgray};
-  width: 128rem;
-  height: 15.2rem;
-  padding: 2.4rem;
-  margin-bottom: 4rem;
-  margin-top: 8.2rem;
+  width: 12.8rem;
+  height: 1.52rem;
+  padding: 0.24rem;
+  margin-bottom: 0.4rem;
+  margin-top: 0.82rem;
 `;
 
 export const DayButton = styled.button`
-  width: 9.2rem;
-  height: 4rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  width: 0.92rem;
+  height: 0.4rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   background-color: white;
-  font-size: 2rem;
-  margin-right: 0.8rem;
+  font-size: 0.2rem;
+  margin-right: 0.08rem;
 `;
 
 export const SearchSecon = styled.div`
@@ -135,12 +135,12 @@ export const SearchThird = styled.div`
 `;
 
 export const DayInput = styled.input`
-  width: 23.6rem;
-  height: 4rem;
-  font-size: 2rem;
-  margin-left: 0.8rem;
-  padding-left: 0.5rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgreen};
+  width: 2.36rem;
+  height: 0.4rem;
+  font-size: 0.2rem;
+  margin-left: 0.08rem;
+  padding-left: 0.05rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgreen};
   ::-webkit-calendar-picker-indicator {
     opacity: 1;
     display: block;
@@ -152,53 +152,53 @@ export const DayInput = styled.input`
 `;
 
 export const Tilde = styled.div`
-  font-size: 2rem;
-  margin-left: 1.6rem;
-  margin-right: 0.8rem;
+  font-size: 0.2rem;
+  margin-left: 0.16rem;
+  margin-right: 0.08rem;
 `;
 
 export const SearchFive = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1.6rem;
+  margin-top: 0.16rem;
 `;
 
 export const SearchH2 = styled.h2`
-  font-size: 2.4rem;
-  margin-right: 2.8rem;
+  font-size: 0.24rem;
+  margin-right: 0.28rem;
 `;
 
 export const SearchInput = styled.input`
-  width: 46.5rem;
-  height: 4.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-  margin-right: 1.6rem;
-  padding-left: 0.8rem;
-  font-size: 2rem;
+  width: 4.65rem;
+  height: 0.48rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  margin-right: 0.16rem;
+  padding-left: 0.08rem;
+  font-size: 0.2rem;
 `;
 
 export const DeliSelect = styled.select`
-  width: 18.4rem;
-  height: 4.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2rem;
-  margin-right: 0.8rem;
-  padding-left: 2.2rem;
+  width: 1.84rem;
+  height: 0.48rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.2rem;
+  margin-right: 0.08rem;
+  padding-left: 0.22rem;
 `;
 
 export const SearchButton = styled.button`
-  width: 11.2rem;
-  height: 4.8rem;
+  width: 1.12rem;
+  height: 0.48rem;
   background-color: ${({ theme }) => theme.palette.green};
-  font-size: 2rem;
+  font-size: 0.2rem;
   color: white;
 `;
 
 export const NoSearchItem = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 128rem;
-  height: 30rem;
-  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
-  font-size: 2.4rem;
+  width: 12.8rem;
+  height: 3rem;
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
+  font-size: 0.24rem;
   font-weight: 500;
 `;

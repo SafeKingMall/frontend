@@ -12,55 +12,55 @@ export const Wrapper = styled.div`
 export const Container = styled.div``;
 
 export const BigTitle = styled.div`
-  font-size: 2.4rem;
-  width: 144rem;
+  font-size: 0.24rem;
+  width: 14.4rem;
   font-weight: 700;
-  margin-top: 8rem;
+  margin-top: 0.8rem;
 `;
 
 export const DragList = styled.div`
   cursor: pointer;
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   align-items: center;
-  padding: 2.4rem 2.4rem 2.4rem 5.8rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2.4rem;
+  padding: 0.24rem 0.24rem 0.24rem 0.58rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
-      width: 15rem;
+      width: 1.5rem;
     }
     &:nth-child(2) {
-      width: 50rem;
+      width: 5rem;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 60rem;
+      width: 6rem;
       text-align: center;
     }
   }
 `;
 
 export const AdminCgBtn = styled.button`
-  width: 6rem;
-  height: 4rem;
-  margin-left: 0.5rem;
+  width: 0.6rem;
+  height: 0.4rem;
+  margin-left: 0.05rem;
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
 `;
 
 export const AdminCgBtn2 = styled.button`
-  width: 6rem;
-  height: 4rem;
-  margin-left: 0.5rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  width: 0.6rem;
+  height: 0.4rem;
+  margin-left: 0.05rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
   color: ${({ theme }) => theme.palette.green};
 `;
 
 export const AdminCgtitle = styled.div`
   // height: 100%;
-  width: 144rem;
-  margin-top: 2.4rem;
+  width: 14.4rem;
+  margin-top: 0.24rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -68,10 +68,10 @@ export const AdminCgtitle = styled.div`
   background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
   //   justify-content: space-between;
-  padding: 2.4rem 5rem 2.4rem 5.4rem;
+  padding: 0.24rem 0.5rem 0.24rem 0.54rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 2.1;
@@ -89,15 +89,15 @@ export const AdminCgtitle = styled.div`
 `;
 
 export const CgBtnBox = styled.div`
-  margin-top: 2.4rem;
-  width: 144rem;
+  margin-top: 0.24rem;
+  width: 14.4rem;
   text-align: right;
 `;
 
 export const AdminCgBtn3 = styled.button`
-  width: 8.4rem;
-  height: 4rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  width: 0.84rem;
+  height: 0.4rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
   color: ${({ theme }) => theme.palette.green};
 `;
 
@@ -109,13 +109,13 @@ export const PopUpContainer = styled.div`
   left: 0;
   right: 0;
   background-color: rgb(0, 0, 0, 0.5);
-  padding-top: 40rem;
+  padding-top: 4rem;
   /* padding-left: 1%; */
 `;
 
 export const PopUpBody = styled.div`
-  width: 87rem;
-  height: 35rem;
+  width: 8.7rem;
+  height: 3.5rem;
   background-color: #fff;
   margin: auto;
   flex-direction: column;
@@ -123,10 +123,10 @@ export const PopUpBody = styled.div`
   text-align: center;
   div {
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 0.4rem;
     h2 {
-      padding-top: 4.8rem;
-      font-size: 2.4rem;
+      padding-top: 0.48rem;
+      font-size: 0.24rem;
     }
   }
 `;
@@ -136,42 +136,42 @@ export const PopUpHeader = styled.div`
 `;
 
 export const AdminCgBtn4 = styled.button`
-  width: 28.4rem;
-  height: 5.6rem;
-  margin-left: 0.5rem;
-  font-size: 2rem;
-  border-radius: 5rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  width: 2.84rem;
+  height: 0.56rem;
+  margin-left: 0.05rem;
+  font-size: 0.2rem;
+  border-radius: 0.5rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
   color: ${({ theme }) => theme.palette.green};
 `;
 
 export const AdminCgBtn5 = styled.button`
-  width: 28.4rem;
-  border-radius: 5rem;
-  font-size: 2rem;
-  height: 5.6rem;
-  margin-left: 0.5rem;
+  width: 2.84rem;
+  border-radius: 0.5rem;
+  font-size: 0.2rem;
+  height: 0.56rem;
+  margin-left: 0.05rem;
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
 `;
 
 export const ModalInput = styled.input`
-  width: 72rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  height: 8rem;
-  border-radius: 2rem;
-  margin-top: 4rem;
+  width: 7.2rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  height: 0.8rem;
+  border-radius: 0.2rem;
+  margin-top: 0.4rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 0.2rem;
 `;
 
 export const ModalInput2 = styled.input`
-  width: 72rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  height: 8rem;
-  border-radius: 2rem;
+  width: 7.2rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  height: 0.8rem;
+  border-radius: 0.2rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 0.2rem;
   ::placeholder {
     color: black;
   }

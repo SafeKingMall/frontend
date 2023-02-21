@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  height: 47rem;
-  font-size: 4rem;
-  margin-bottom: 14.8rem;
+  height: 4.7rem;
+  font-size: 0.4rem;
+  margin-bottom: 1.48rem;
   text-align: center;
-  padding-top: 23rem;
+  padding-top: 2.3rem;
   color: white;
   font-weight: 900;
   background-image: url('/img/QnABannerImg.png');
@@ -23,44 +23,44 @@ export const Wrapper = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 144rem;
-  height: 92.3rem;
-  font-size: 2.8rem;
-  margin-top: 14.8rem;
+  width: 14.4rem;
+  height: 9.23rem;
+  font-size: 0.28rem;
+  margin-top: 1.48rem;
   border-collapse: collapse;
   td,
   tr {
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   }
   tr {
     &:first-child {
-      height: 11.2rem;
+      height: 1.12rem;
     }
     &:nth-child(2) {
-      height: 11.2rem;
+      height: 1.12rem;
     }
     td {
       &:first-child {
         background-color: #d4ebdc;
-        width: 22.4rem;
+        width: 2.24rem;
         text-align: center;
       }
     }
   }
   tr {
     &:nth-child(3) {
-      height: 58.3rem;
+      height: 5.83rem;
     }
     &:last-child {
-      height: 11.2rem;
+      height: 1.12rem;
       td {
         &:last-child {
           position: relative;
           input {
             position: absolute;
-            top: 2.7rem;
-            right: 2.8rem;
+            top: 0.27rem;
+            right: 0.28rem;
           }
         }
       }
@@ -69,27 +69,27 @@ export const Table = styled.table`
 `;
 
 export const TableInput = styled.input`
-  width: 118.4rem;
-  height: 8rem;
-  font-size: 3.2rem;
-  margin-left: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  padding: 1.2rem;
+  width: 11.84rem;
+  height: 0.8rem;
+  font-size: 0.32rem;
+  margin-left: 0.12rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  padding: 0.12rem;
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
-    font-size: 2.4rem;
+    font-size: 0.24rem;
   }
 `;
 
 export const ChangeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 2.4rem;
-  width: 12.8rem;
-  height: 5.2rem;
+  font-size: 0.24rem;
+  width: 1.28rem;
+  height: 0.52rem;
   cursor: pointer;
-  margin-left: 102.5rem;
-  margin-top: -1rem;
+  margin-left: 10.25rem;
+  margin-top: -0.1rem;
   position: absolute;
   z-index: 1;
   display: flex;
@@ -99,12 +99,12 @@ export const ChangeButton = styled.button`
 `;
 
 export const TableDiv = styled.div`
-  width: 118.4rem;
+  width: 11.84rem;
   /* height: 8rem; */
-  font-size: 2.5rem;
-  margin-left: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  padding: 1.8rem;
+  font-size: 0.25rem;
+  margin-left: 0.12rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  padding: 0.18rem;
   display: flex;
   input {
     position: relative;
@@ -112,72 +112,72 @@ export const TableDiv = styled.div`
     opacity: 0;
     z-index: 2;
     cursor: pointer;
-    height: 5rem;
-    max-width: 12.8rem;
+    height: 0.5rem;
+    max-width: 1.28rem;
   }
 `;
 export const DivImg = styled.div`
   justify-content: space-between;
   display: flex;
-  border-radius: 3rem;
-  border: 0.1rem solid #efeff1;
+  border-radius: 0.3rem;
+  border: 0.01rem solid #efeff1;
   display: flex;
-  padding: 1rem;
+  padding: 0.1rem;
   background-color: #efeff1;
   align-items: center;
   font-weight: 400;
   button {
-    margin-left: 0.5rem;
+    margin-left: 0.05rem;
     color: gray;
     background-color: white;
-    border-radius: 5rem;
-    height: 3rem;
+    border-radius: 0.5rem;
+    height: 0.3rem;
   }
 `;
 
 export const NotDownload = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  font-size: 0.24rem;
 `;
 
 export const TableTextarea = styled.textarea`
-  width: 118.4rem;
-  min-height: 53.8rem;
-  margin-left: 1.2rem;
-  padding: 1.2rem;
-  font-size: 3.2rem;
+  width: 11.84rem;
+  min-height: 5.38rem;
+  margin-left: 0.12rem;
+  padding: 0.12rem;
+  font-size: 0.32rem;
   outline: none;
   resize: none;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
-    font-size: 2.4rem;
-    padding-top: 25rem;
+    font-size: 0.24rem;
+    padding-top: 2.5rem;
   }
 `;
 
 export const QnAButton = styled.button`
   color: ${({ theme }) => theme.palette.green};
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
-  margin-right: 0.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  margin-right: 0.08rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
 `;
 
 export const QnAButton2 = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
 `;
 
 export const QnABox = styled.div`
-  margin-top: 1.2rem;
-  margin-bottom: 16rem;
-  margin-left: 116rem;
-  width: 30rem;
+  margin-top: 0.12rem;
+  margin-bottom: 1.6rem;
+  margin-left: 11.6rem;
+  width: 3rem;
 `;
