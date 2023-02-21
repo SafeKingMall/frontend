@@ -176,7 +176,7 @@ export const SignIn = () => {
               </label>
             </S.IdCheck>
             <S.Span>
-              <S.SpanList onClick={onOpen} style={{ marginRight: '2rem' }}>
+              <S.SpanList onClick={onOpen} style={{ marginRight: '0.2rem' }}>
                 아이디 / 비밀번호 찾기
               </S.SpanList>
               <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>

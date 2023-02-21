@@ -398,7 +398,7 @@ export const ItemDetail = () => {
             />
           </S.DesLoadingBox>
         ) : (
-          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : '19.4rem' }}>
+          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : '1.94rem' }}>
             <S.Description
               id='description'
               dangerouslySetInnerHTML={{ __html: itemData.description }}

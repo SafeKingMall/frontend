@@ -26,7 +26,7 @@ body {
   height: 100%;
 }
 .App {
-  min-height: calc(100% - 20rem)
+  min-height: calc(100% - 2rem)
 }
 button {
   border: none;

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  font-size: 3rem;
+  font-size: 0.3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   & > button {
-    margin: 0 0 3rem 0;
+    margin: 0 0 0.3rem 0;
     width: 284px;
     height: 80px;
 

@@ -172,7 +172,7 @@ export const AddressInfo = (props: any) => {
               defaultChecked
               onChange={(e) => radioChange(e.target.value)}
             ></S.AddSelcetRadio>
-            <S.RadioLabel htmlFor='basicAdd' style={{ marginRight: '1.6rem' }}>
+            <S.RadioLabel htmlFor='basicAdd' style={{ marginRight: '0.16rem' }}>
               기본 배송지
             </S.RadioLabel>
             <S.AddSelcetRadio
@@ -232,7 +232,7 @@ export const AddressInfo = (props: any) => {
           <S.ValidationArea>
             <S.Validation>{phoneVal}</S.Validation>
           </S.ValidationArea>
-          <S.InputArea style={{ marginBottom: '1.6rem' }}>
+          <S.InputArea style={{ marginBottom: '0.16rem' }}>
             <S.InputTitleArea>
               <S.InputTitle>주소</S.InputTitle>
             </S.InputTitleArea>
@@ -245,14 +245,14 @@ export const AddressInfo = (props: any) => {
             />
             <S.AddSearchBtn onClick={() => openModal()}>주소찾기</S.AddSearchBtn>
           </S.InputArea>
-          <S.InputArea style={{ marginBottom: '3.5rem' }}>
+          <S.InputArea style={{ marginBottom: '0.35rem' }}>
             <S.InputBasic
               type='text'
               placeholder='주소를 입력해주세요.'
               value={text[4] || ''}
               onChange={(e) => textChange(e.target.value, 4)}
               readOnly
-              style={{ marginLeft: '20.1rem' }}
+              style={{ marginLeft: '2.01rem' }}
             />
             <S.InputDetailAdd
               type='text'

@@ -53,7 +53,7 @@ export const ViewedItem = () => {
       <S.TitleArea>
         <S.Title>내가 본 상품</S.Title>
         <S.closeBtnArea onClick={() => setClose(true)}>
-          <AiOutlineClose size='2rem' />
+          <AiOutlineClose size='0.2rem' />
         </S.closeBtnArea>
       </S.TitleArea>
       <S.ItemArea>
@@ -97,13 +97,13 @@ export const ViewedItem = () => {
       </S.ItemArea>
       <S.PageArea>
         <S.ArrowBox>
-          <AiOutlineLeft size='2rem' color='#ffffff' onClick={() => countMinus()} />
+          <AiOutlineLeft size='0.2rem' color='#ffffff' onClick={() => countMinus()} />
         </S.ArrowBox>
         <S.PageText>
           {count} / {totalPage.current}
         </S.PageText>
         <S.ArrowBox>
-          <AiOutlineRight size='2rem' color='#ffffff' onClick={() => countPlus()} />
+          <AiOutlineRight size='0.2rem' color='#ffffff' onClick={() => countPlus()} />
         </S.ArrowBox>
       </S.PageArea>
     </S.Container>

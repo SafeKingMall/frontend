@@ -6,35 +6,35 @@ export const Container = styled.div`
   height: 100%;
 `;
 export const PaymentContainer = styled.div`
-  width: 144rem;
-  height: 36.3rem;
-  margin-bottom: 4rem;
+  width: 14.4rem;
+  height: 3.63rem;
+  margin-bottom: 0.4rem;
 `;
 export const TitleArea = styled.div`
   width: 100%;
-  height: 6.2rem;
-  margin-top: 5.8rem;
-  padding-bottom: 2.4rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  height: 0.62rem;
+  margin-top: 0.58rem;
+  padding-bottom: 0.24rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 export const Title = styled.h1`
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.txt};
-  margin: 0 3.2rem;
+  margin: 0 0.32rem;
 `;
 export const PaymentSelectArea = styled.div`
   width: 100%;
-  height: 12.8rem;
-  padding: 2.4rem 3.2rem;
+  height: 1.28rem;
+  padding: 0.24rem 0.32rem;
   display: flex;
 `;
 export const PayBtn = styled.div`
-  width: 12rem;
-  height: 8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  margin-right: 1.6rem;
-  font-size: 1.6rem;
+  width: 1.2rem;
+  height: 0.8rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  margin-right: 0.16rem;
+  font-size: 0.16rem;
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
 `;
@@ -51,7 +51,7 @@ export const PayRadioLabel = styled.label`
 `;
 export const PayIconArea = styled.div`
   width: 100%;
-  height: 4rem;
+  height: 0.4rem;
   ${({ theme }) => theme.common.flexCenter};
 `;
 export const VirtualPath1 = styled.path`
@@ -60,17 +60,17 @@ export const VirtualPath1 = styled.path`
 export const VirtualPath2 = styled.path`
   stroke: #999999;
   fill: none;
-  stroke-width: 0.15rem;
+  stroke-width: 0.015rem;
 `;
 export const VirtualRect = styled.rect`
   fill: #fff;
-  stroke-width: 0.05rem;
+  stroke-width: 0.005rem;
   stroke: #999;
 `;
 export const BankTransferPath1 = styled.path`
   fill: none;
   stroke: #999;
-  stroke-width: 0.15rem;
+  stroke-width: 0.015rem;
 `;
 export const BankTransferPath2 = styled(BankTransferPath1)`
   stroke-linecap: round;
@@ -78,17 +78,17 @@ export const BankTransferPath2 = styled(BankTransferPath1)`
 `;
 export const PaymentDesArea = styled.div`
   width: 100%;
-  margin-bottom: 4rem;
-  padding-left: 2.4rem;
-  padding-bottom: 2.4rem;
+  margin-bottom: 0.4rem;
+  padding-left: 0.24rem;
+  padding-bottom: 0.24rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  line-height: 2.2rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  line-height: 0.22rem;
 `;
 export const PaymentDes = styled.p`
-  font-size: 1.6rem;
+  font-size: 0.16rem;
   font-weight: 400;
   color: #000000;
 `;

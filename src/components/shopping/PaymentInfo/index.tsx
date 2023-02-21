@@ -65,7 +65,7 @@ export const PaymentInfo = (props: any) => {
                 <svg
                   id='virtualAccountIcon'
                   viewBox='0 0 39.5 27.5'
-                  style={{ width: '4.3rem', height: '4rem' }}
+                  style={{ width: '0.43rem', height: '0.4rem' }}
                 >
                   <S.VirtualPath2
                     style={{ stroke: paymentState === 'virtualAccount' ? greenColor : '' }}
@@ -122,7 +122,7 @@ export const PaymentInfo = (props: any) => {
                 <svg
                   id='bankTransferIcon'
                   viewBox='0 0 39.5 31.79'
-                  style={{ width: '4.3rem', height: '4rem' }}
+                  style={{ width: '0.43rem', height: '0.4rem' }}
                 >
                   <S.BankTransferPath1
                     style={{ stroke: paymentState === 'bankTransfer' ? greenColor : '' }}
@@ -184,8 +184,8 @@ export const PaymentInfo = (props: any) => {
                   id='paycoIcon'
                   viewBox='0 0 224.43 50.79'
                   style={{
-                    width: '7rem',
-                    height: '4rem',
+                    width: '0.7rem',
+                    height: '0.4rem',
                     fill: paymentState === 'payco' ? greenColor : grayColor,
                   }}
                 >

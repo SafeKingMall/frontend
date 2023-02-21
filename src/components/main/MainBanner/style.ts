@@ -10,12 +10,12 @@ export const Container = styled.div`
 `;
 export const CustomSlider = styled(Slider)`
   .slick-list {
-    height: 56rem;
+    height: 5.6rem;
   }
 `;
 export const BannerWrap = styled.div`
   width: 100%;
-  height: 56rem;
+  height: 5.6rem;
   position: relative;
   ${({ theme }) => theme.common.flexCenter};
 `;
@@ -43,7 +43,7 @@ const fadeIn = keyframes`
   }
 `;
 export const SmallText = styled.span<{ slide: boolean }>`
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   font-weight: 700;
   color: #fdffaf;
   ${(props) =>
@@ -57,7 +57,7 @@ export const SmallText = styled.span<{ slide: boolean }>`
         `}
 `;
 export const BigText = styled.span<{ slide: boolean }>`
-  font-size: 6.4rem;
+  font-size: 0.64rem;
   font-weight: 700;
   color: #ffffff;
   ${(props) =>

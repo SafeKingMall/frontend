@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 144rem;
+  min-width: 14.4rem;
 `;
 export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
@@ -12,9 +12,9 @@ export const ContentContainer = styled.div`
   height: 100%;
 `;
 export const CheckArea = styled.div`
-  width: 144rem;
-  margin: 2.6rem 0 4.9rem 0;
-  padding: 0 1.2rem;
+  width: 14.4rem;
+  margin: 0.26rem 0 0.49rem 0;
+  padding: 0 0.12rem;
   display: flex;
   align-items: center;
 `;
@@ -22,39 +22,39 @@ export const CheckBox = styled.input.attrs(() => ({
   type: 'checkbox',
 }))`
   accent-color: ${({ theme }) => theme.palette.green};
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 0.32rem;
+  height: 0.32rem;
 `;
 export const CheckText = styled.span`
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
-  margin-left: 1.6rem;
+  margin-left: 0.16rem;
 `;
 export const BtnArea = styled.div`
-  width: 144rem;
+  width: 14.4rem;
   ${({ theme }) => theme.common.flexCenter};
-  margin-bottom: 12rem;
+  margin-bottom: 1.2rem;
 `;
 export const Btn = styled.button`
-  width: 28rem;
-  height: 8rem;
-  border-radius: 10rem;
-  font-size: 2.4rem;
+  width: 2.8rem;
+  height: 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.24rem;
   font-weight: 700;
 `;
 export const WhiteBtn = styled(Btn)`
-  border: 0.2rem solid ${({ theme }) => theme.palette.green};
+  border: 0.02rem solid ${({ theme }) => theme.palette.green};
   background-color: #ffffff;
   color: ${({ theme }) => theme.palette.green};
-  margin-right: 1.6rem;
+  margin-right: 0.16rem;
 `;
 export const GreenBtn = styled(Btn)`
   background-color: ${({ theme }) => theme.palette.green};
   color: #ffffff;
 `;
 export const ExchangeInfoArea = styled.div`
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,12 +63,12 @@ export const ExchangeInfoArea = styled.div`
     width: 80%;
   }
   .page {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
     width: 100%;
   }
   .page-body {
     width: 100%;
-    padding-left: 2.4rem;
+    padding-left: 0.24rem;
   }
   a,
   a.visited {
@@ -91,26 +91,26 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 0.25rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.75em;
   }
 
   h1 {
-    font-size: 1.875rem;
-    margin-top: 1.875rem;
+    font-size: 0.1875rem;
+    margin-top: 0.1875rem;
   }
 
   h2 {
-    font-size: 3.2rem;
-    margin-top: 4rem;
+    font-size: 0.32rem;
+    margin-top: 0.4rem;
     font-weight: 500;
   }
 
   h3 {
-    font-size: 1.25rem;
-    margin-top: 1.25rem;
+    font-size: 0.125rem;
+    margin-top: 0.125rem;
   }
 
   .source {
@@ -122,7 +122,7 @@ export const ExchangeInfoArea = styled.div`
 
   .callout {
     border-radius: 3px;
-    padding: 1rem;
+    padding: 0.1rem;
   }
 
   figure {
@@ -170,7 +170,7 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .collection-content {
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
   }
 
   .column-list {
@@ -192,21 +192,21 @@ export const ExchangeInfoArea = styled.div`
 
   .table_of_contents-item {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
     line-height: 1.3;
-    padding: 0.125rem;
+    padding: 0.0125rem;
   }
 
   .table_of_contents-indent-1 {
-    margin-left: 1.5rem;
+    margin-left: 0.15rem;
   }
 
   .table_of_contents-indent-2 {
-    margin-left: 3rem;
+    margin-left: 0.3rem;
   }
 
   .table_of_contents-indent-3 {
-    margin-left: 4.5rem;
+    margin-left: 0.45rem;
   }
 
   .table_of_contents-link {
@@ -329,7 +329,7 @@ export const ExchangeInfoArea = styled.div`
 
   .simple-table {
     margin-top: 1em;
-    font-size: 2rem;
+    font-size: 0.2rem;
     empty-cells: show;
   }
 
@@ -373,7 +373,7 @@ export const ExchangeInfoArea = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: 100%;
-    margin-right: 0.5rem;
+    margin-right: 0.05rem;
   }
 
   .user-icon-inner {
@@ -393,8 +393,8 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .page-header-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 0.3rem;
+    margin-bottom: 0.1rem;
   }
 
   .page-header-icon-with-cover {

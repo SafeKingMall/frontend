@@ -61,8 +61,8 @@ export const Header = () => {
             <S.GreenBtn onClick={() => moveLocation('/admin-member')}>관리자모드</S.GreenBtn>
           ) : (
             <S.IconBox>
-              <AiOutlineUser size='3rem' onClick={() => moveLocation('/mypage')} style={{ cursor: 'pointer' }} />
-              <AiOutlineShopping size='3rem' onClick={() => moveLocation('/carts')} style={{ cursor: 'pointer' }} />
+              <AiOutlineUser size='0.3rem' onClick={() => moveLocation('/mypage')} style={{ cursor: 'pointer' }} />
+              <AiOutlineShopping size='0.3rem' onClick={() => moveLocation('/carts')} style={{ cursor: 'pointer' }} />
             </S.IconBox>
           ) : (
             ''

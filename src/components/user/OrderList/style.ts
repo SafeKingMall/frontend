@@ -11,147 +11,147 @@ export const Wrapper = styled.div`
 `;
 
 export const BigTitle = styled.div`
-  font-size: 2.4rem;
-  width: 105.6rem;
+  font-size: 0.24rem;
+  width: 10.56rem;
   font-weight: 700;
 `;
 
 export const Mid = styled.div`
-  margin-bottom: 4rem;
-  width: 105.6rem;
-  padding-left: 2rem;
+  margin-bottom: 0.4rem;
+  width: 10.56rem;
+  padding-left: 0.2rem;
   font-weight: 700;
-  font-size: 2.4rem;
-  line-height: 2.9rem;
+  font-size: 0.24rem;
+  line-height: 0.29rem;
   position: relative;
   &::after {
     content: '';
     position: absolute;
     right: 0;
-    top: 4rem;
+    top: 0.4rem;
     background-color: #212121;
-    width: 105.6rem;
-    height: 0.1rem;
+    width: 10.56rem;
+    height: 0.01rem;
   }
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 2.4rem;
+  margin-bottom: 0.24rem;
 `;
 
 export const AdminOrdertitle = styled.div`
-  width: 105.6rem;
-  margin-top: 2.4rem;
+  width: 10.56rem;
+  margin-top: 0.24rem;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.palette.whitegreen};
   align-items: end;
-  padding: 1.7rem 1.5rem 1.7rem 3.2rem;
+  padding: 0.17rem 0.15rem 0.17rem 0.32rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2rem;
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.2rem;
   div {
     &:first-child {
-      width: 7rem;
+      width: 0.7rem;
       text-align: left;
     }
     &:nth-child(2) {
-      width: 14rem;
+      width: 1.4rem;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 20rem;
+      width: 2rem;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 18rem;
+      width: 1.8rem;
       text-align: center;
     }
     &:nth-child(5) {
-      width: 22rem;
+      width: 2.2rem;
 
       text-align: center;
     }
     &:nth-child(6) {
-      width: 12rem;
+      width: 1.2rem;
       text-align: center;
     }
     &:nth-child(7) {
-      width: 7rem;
+      width: 0.7rem;
     }
   }
 `;
 export const Container = styled.div`
   cursor: pointer;
-  width: 105.6rem;
+  width: 10.56rem;
   display: flex;
   align-items: center;
-  padding: 1.7rem 1.5rem 1.7rem 3.2rem;
+  padding: 0.17rem 0.15rem 0.17rem 0.32rem;
   border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2rem;
+  font-size: 0.2rem;
   div {
     &:first-child {
-      width: 7rem;
+      width: 0.7rem;
       text-align: left;
     }
     &:nth-child(2) {
-      width: 14rem;
+      width: 1.4rem;
       text-align: center;
     }
     &:nth-child(3) {
-      width: 20rem;
+      width: 2rem;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 18rem;
+      width: 1.8rem;
       text-align: center;
     }
     &:nth-child(5) {
-      width: 22rem;
+      width: 2.2rem;
 
       text-align: center;
     }
     &:nth-child(6) {
-      width: 12rem;
+      width: 1.2rem;
       text-align: center;
     }
     &:nth-child(7) {
-      width: 7rem;
+      width: 0.7rem;
       text-align: right;
     }
   }
 `;
 
 export const RefundBtn = styled.button`
-  width: 6.4rem;
-  height: 4rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  width: 0.64rem;
+  height: 0.4rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
   color: ${({ theme }) => theme.palette.green};
-  font-size: 1.6rem;
+  font-size: 0.16rem;
 `;
 
 // 검색 박스
 
 export const SearchBox = styled.div`
   background-color: ${({ theme }) => theme.palette.lightgray};
-  width: 105.6rem;
-  height: 20rem;
-  padding: 3.2rem;
-  margin-bottom: 4rem;
-  margin-top: 2rem;
+  width: 10.56rem;
+  height: 2rem;
+  padding: 0.32rem;
+  margin-bottom: 0.4rem;
+  margin-top: 0.2rem;
   align-items: center;
   justify-content: center;
 `;
 
 export const DayButton = styled.button`
-  width: 11.2rem;
-  height: 5.6rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  width: 1.12rem;
+  height: 0.56rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   background-color: white;
-  font-size: 2rem;
-  margin-right: 0.8rem;
+  font-size: 0.2rem;
+  margin-right: 0.08rem;
 `;
 
 export const SearchFirst = styled.div`
@@ -163,7 +163,7 @@ export const SearchFirst = styled.div`
 
 export const SearchSecon = styled.div`
   display: flex;
-  margin-top: 2.4rem;
+  margin-top: 0.24rem;
   align-items: center;
   justify-content: center;
 `;
@@ -172,16 +172,16 @@ export const SearchThird = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1.6rem;
+  margin-right: 0.16rem;
 `;
 
 export const DayInput = styled.input`
-  width: 23.6rem;
-  height: 5.6rem;
-  font-size: 2rem;
-  margin-left: 0.8rem;
-  padding-left: 2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgreen};
+  width: 2.36rem;
+  height: 0.56rem;
+  font-size: 0.2rem;
+  margin-left: 0.08rem;
+  padding-left: 0.2rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgreen};
   ::-webkit-calendar-picker-indicator {
     opacity: 1;
     display: block;
@@ -193,33 +193,33 @@ export const DayInput = styled.input`
 `;
 
 export const Tilde = styled.div`
-  font-size: 2rem;
-  margin-left: 1.6rem;
-  margin-right: 0.8rem;
+  font-size: 0.2rem;
+  margin-left: 0.16rem;
+  margin-right: 0.08rem;
 `;
 
 export const DeliSelect = styled.select`
-  width: 23.6rem;
-  height: 5.6rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-  font-size: 2rem;
-  margin-right: 3.6rem;
-  padding-left: 2.2rem;
+  width: 2.36rem;
+  height: 0.56rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  font-size: 0.2rem;
+  margin-right: 0.36rem;
+  padding-left: 0.22rem;
 `;
 
 export const SearchButton = styled.button`
-  width: 11.2rem;
-  height: 5.6rem;
+  width: 1.12rem;
+  height: 0.56rem;
   background-color: ${({ theme }) => theme.palette.green};
-  font-size: 2rem;
+  font-size: 0.2rem;
   color: white;
 `;
 
 export const NoSearchItem = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 105.6rem;
-  height: 30rem;
-  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
-  font-size: 2.4rem;
+  width: 10.56rem;
+  height: 3rem;
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
+  font-size: 0.24rem;
   font-weight: 500;
 `;

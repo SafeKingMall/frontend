@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 8.5rem;
+  height: 0.85rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 2rem;
+  font-size: 0.2rem;
   font-weight: 500;
   color: #212121;
 `;
@@ -16,8 +16,8 @@ export const LogoArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
 `;
 export const Logo = styled.img.attrs({ src: 'img/HeaderLogo.png' })`
-  width: 15.6rem;
-  height: 7.5rem;
+  width: 1.56rem;
+  height: 0.75rem;
   cursor: pointer;
 `;
 export const NavArea = styled.div`
@@ -30,7 +30,7 @@ export const NavArea = styled.div`
 export const Nav = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   cursor: pointer;
-  padding: 2rem 3rem;
+  padding: 0.2rem 0.3rem;
 `;
 export const UserContentArea = styled.div`
   width: 20%;
@@ -38,28 +38,28 @@ export const UserContentArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
 `;
 export const UserContentBox = styled.div`
-  width: 24rem;
+  width: 2.4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 export const IconBox = styled.div`
-  width: 10.4rem;
+  width: 1.04rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 export const GreenBtn = styled.button`
-  width: 10.4rem;
-  height: 4.8rem;
+  width: 1.04rem;
+  height: 0.48rem;
   background-color: ${({ theme }) => theme.palette.green};
-  border-radius: 0.5rem;
-  font-size: 2rem;
+  border-radius: 0.05rem;
+  font-size: 0.2rem;
   font-weight: 500;
   color: #ffffff;
 `;
 export const GrayBtn = styled(GreenBtn)`
   background-color: #ffffff;
   color: #999999;
-  border: 0.1rem solid #999999;
+  border: 0.01rem solid #999999;
 `;
