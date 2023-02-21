@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const container = styled.div`
   width: 100%;
-  height: 20rem;
+  height: 2rem;
   background-color: #a9d6b9;
   display: flex;
   align-items: center;
@@ -18,10 +18,10 @@ export const LogoArea = styled.div`
   position: relative;
 `;
 export const Logo = styled.img.attrs({ src: 'img/FooterLogo.png' })`
-  width: 22.6rem;
-  height: 10.9rem;
+  width: 2.26rem;
+  height: 1.09rem;
   position: absolute;
-  right: 11.7rem;
+  right: 1.17rem;
 `;
 export const TextArea = styled.div`
   width: 65%;
@@ -35,21 +35,21 @@ export const TextBox = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  font-size: 1.8rem;
+  font-size: 0.18rem;
   font-weight: 400;
   color: #252525;
-  line-height: 2.8rem;
+  line-height: 0.28rem;
 `;
 export const TextLine = styled.span`
   display: flex;
   align-items: center;
 `;
 export const Bar = styled.div`
-  height: 1.8rem;
-  width: 0.15rem;
+  height: 0.18rem;
+  width: 0.015rem;
   background-color: #888888;
   display: inline-block;
-  margin: 0 1rem;
+  margin: 0 0.1rem;
 `;
 export const LinkText = styled.span`
   font-weight: 600;

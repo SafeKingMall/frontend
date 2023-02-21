@@ -7,19 +7,19 @@ export const Container = styled.div`
   justify-content: center;
 `;
 export const SearchArea = styled.div`
-  width: 144rem;
-  height: 4rem;
+  width: 14.4rem;
+  height: 0.4rem;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10.2rem;
+  margin-top: 1.02rem;
 `;
 export const Select = styled.select`
-  margin-right: 0.8rem;
-  width: 12.5rem;
-  height: 4rem;
-  border: 0.1rem solid #ddd;
-  font-size: 1.2rem;
-  padding: 0 0.8rem;
+  margin-right: 0.08rem;
+  width: 1.25rem;
+  height: 0.4rem;
+  border: 0.01rem solid #ddd;
+  font-size: 0.12rem;
+  padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
   color: #686868;
@@ -27,19 +27,19 @@ export const Select = styled.select`
   cursor: pointer;
 `;
 export const SearchBar = styled.input`
-  width: 24rem;
-  height: 4rem;
-  padding-left: 1.6rem;
-  padding-right: 5.6rem;
-  font-size: 1.2rem;
+  width: 2.4rem;
+  height: 0.4rem;
+  padding-left: 0.16rem;
+  padding-right: 0.56rem;
+  font-size: 0.12rem;
   background-color: #fefefe;
-  border: 0.1rem solid #ddd;
+  border: 0.01rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
 `;
 export const SearchBtn = styled.button`
-  width: 4rem;
-  height: 4rem;
+  width: 0.4rem;
+  height: 0.4rem;
   background-color: ${({ theme }) => theme.palette.green};
   position: absolute;
   display: flex;

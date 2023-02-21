@@ -9,41 +9,41 @@ export const Container = styled.div`
 `;
 export const ItemArea = styled.div`
   height: 100%;
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 6.4rem;
+  margin-bottom: 0.64rem;
 `;
 export const ItemContainer = styled.div`
   cursor: pointer;
-  height: 50rem;
-  width: 33.6rem;
-  margin-right: 3.2rem;
-  margin-bottom: 5.6rem;
+  height: 5rem;
+  width: 3.36rem;
+  margin-right: 0.32rem;
+  margin-bottom: 0.56rem;
   &:nth-child(4n) {
     margin-right: 0;
   }
 `;
 export const ItemImg = styled.img`
-  width: 33.6rem;
-  height: 33.6rem;
+  width: 3.36rem;
+  height: 3.36rem;
   border: 1px solid #dddddd;
 `;
 export const ItemTextArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 14rem;
+  height: 1.4rem;
 `;
 export const Category = styled.p`
-  font-size: 1.6rem;
+  font-size: 0.16rem;
   /* margin-top: 2.4rem; */
 `;
 export const ItemName = styled.p`
-  font-size: 2.4rem;
-  margin-top: 1rem;
-  width: 33.6rem;
+  font-size: 0.24rem;
+  margin-top: 0.1rem;
+  width: 3.36rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -51,7 +51,7 @@ export const ItemName = styled.p`
   -webkit-box-orient: vertical;
 `;
 export const Price = styled.p`
-  font-size: 2rem;
+  font-size: 0.2rem;
   /* margin-top: 2.6rem; */
   color: ${(props) => props.theme.palette.txtgray};
 `;

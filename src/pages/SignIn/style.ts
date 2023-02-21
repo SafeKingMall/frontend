@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 export const Wrapper = styled.div`
-  margin-bottom: 6rem;
+  margin-bottom: 0.6rem;
   /* background-color: pink; */
   width: 100%;
   /* height: 900px; */
@@ -18,39 +18,39 @@ export const Wrapper = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: 15.4rem;
+  margin-top: 1.54rem;
   /* background-color: #eee; */
-  width: 54rem;
-  height: 14.2rem;
+  width: 5.4rem;
+  height: 1.42rem;
 `;
 export const IdInput = styled.div`
-  height: 7.1rem;
+  height: 0.71rem;
   display: flex;
 `;
 export const InputLine = styled.div`
-  height: 7.1rem;
+  height: 0.71rem;
   display: flex;
   position: relative;
   &::after {
     content: '';
     position: absolute;
-    right: 2rem;
+    right: 0.2rem;
     bottom: 0;
-    width: 0.1rem;
+    width: 0.01rem;
     background-color: #efeff1;
-    width: 50.1rem;
-    height: 0.1rem;
+    width: 5.01rem;
+    height: 0.01rem;
   }
 `;
 export const LabelWrap = styled.div`
-  width: 14.1rem;
-  height: 7.1rem;
+  width: 1.41rem;
+  height: 0.71rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 0.18rem;
   font-weight: 400;
-  line-height: 2.2rem;
+  line-height: 0.22rem;
   position: relative;
   &::after {
     content: '';
@@ -58,29 +58,29 @@ export const LabelWrap = styled.div`
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 0.1rem;
+    width: 0.01rem;
     background-color: #efeff1;
-    width: 0.1rem;
-    height: 2.4rem;
+    width: 0.01rem;
+    height: 0.24rem;
   }
 `;
 export const InputWrap = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 1rem;
+  margin-left: 0.1rem;
 `;
 export const InputForm = styled.input`
   border: none;
-  width: 37.6rem;
-  font-size: 2rem;
-  height: 2.4rem;
+  width: 3.76rem;
+  font-size: 0.2rem;
+  height: 0.24rem;
   :focus {
     outline: none;
   }
 `;
 export const SignText = styled.div`
-  margin-top: 1.6rem;
-  width: 50rem;
+  margin-top: 0.16rem;
+  width: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,26 +91,26 @@ export const IdCheck = styled.div`
   align-items: center;
   > label {
     display: flex;
-    font-size: 2rem;
-    line-height: 2.4rem;
+    font-size: 0.2rem;
+    line-height: 0.24rem;
     font-weight: 500;
   }
 `;
 export const IdCheckInput = styled.input`
-  margin-right: 1.2rem;
+  margin-right: 0.12rem;
   appearance: none;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 0.1rem solid #efeff1;
-  border-radius: 0.5rem;
+  width: 0.26rem;
+  height: 0.26rem;
+  border: 0.01rem solid #efeff1;
+  border-radius: 0.05rem;
   &:checked {
     background-color: #a9d6b9;
   }
 `;
 export const Span = styled.div`
   font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
+  font-size: 0.16rem;
+  line-height: 0.19rem;
   color: #000000;
   display: flex;
   align-items: center;
@@ -126,13 +126,13 @@ export const SearchModal = styled.div`
   top: 10%;
 `;
 export const Btn = styled.button`
-  margin: 4rem 0 5.6rem;
-  width: 54rem;
-  height: 9rem;
-  border-radius: 8rem;
+  margin: 0.4rem 0 0.56rem;
+  width: 5.4rem;
+  height: 0.9rem;
+  border-radius: 0.8rem;
   cursor: pointer;
-  font-size: 2.4rem;
-  line-height: 2.9rem;
+  font-size: 0.24rem;
+  line-height: 0.29rem;
   font-weight: 400;
   background-color: #289951;
   /* opacity: 0.9; */
@@ -145,25 +145,25 @@ export const Social = styled.div`
   &::after {
     content: '';
     position: absolute;
-    bottom: 10.4rem;
+    bottom: 1.04rem;
     /* right: -1.2rem; */
-    width: 54rem;
+    width: 5.4rem;
     background-color: #333;
     height: 0.5px;
   }
 `;
 export const SocialBtn = styled.button`
-  margin-right: 2.4rem;
-  margin-bottom: 1.6rem;
-  width: 25.8rem;
-  height: 6.4rem;
-  border-radius: 8rem;
+  margin-right: 0.24rem;
+  margin-bottom: 0.16rem;
+  width: 2.58rem;
+  height: 0.64rem;
+  border-radius: 0.8rem;
   cursor: pointer;
-  font-size: 1.8rem;
-  line-height: 2rem;
+  font-size: 0.18rem;
+  line-height: 0.2rem;
   font-weight: 500;
   background-color: #fff;
-  box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0rem 0.04rem 0.04rem rgba(0, 0, 0, 0.25);
 `;
 export const ModalBackground = styled.div`
   position: fixed;

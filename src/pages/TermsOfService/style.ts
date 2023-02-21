@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 144rem;
+  min-width: 14.4rem;
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: 0.18rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10rem 0;
+  margin: 1rem 0;
 
   a,
   a.visited {
@@ -33,25 +33,25 @@ export const Container = styled.div`
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 0.25rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.75em;
   }
 
   h1 {
-    font-size: 1.875rem;
-    margin-top: 1.875rem;
+    font-size: 0.1875rem;
+    margin-top: 0.1875rem;
   }
 
   h2 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
+    font-size: 0.15rem;
+    margin-top: 0.15rem;
   }
 
   h3 {
-    font-size: 1.25rem;
-    margin-top: 1.25rem;
+    font-size: 0.125rem;
+    margin-top: 0.125rem;
   }
 
   .source {
@@ -63,7 +63,7 @@ export const Container = styled.div`
 
   .callout {
     border-radius: 3px;
-    padding: 1rem;
+    padding: 0.1rem;
   }
 
   figure {
@@ -111,7 +111,7 @@ export const Container = styled.div`
   }
 
   .collection-content {
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
   }
 
   .column-list {
@@ -133,21 +133,21 @@ export const Container = styled.div`
 
   .table_of_contents-item {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
     line-height: 1.3;
-    padding: 0.125rem;
+    padding: 0.0125rem;
   }
 
   .table_of_contents-indent-1 {
-    margin-left: 1.5rem;
+    margin-left: 0.15rem;
   }
 
   .table_of_contents-indent-2 {
-    margin-left: 3rem;
+    margin-left: 0.3rem;
   }
 
   .table_of_contents-indent-3 {
-    margin-left: 4.5rem;
+    margin-left: 0.45rem;
   }
 
   .table_of_contents-link {
@@ -314,7 +314,7 @@ export const Container = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: 100%;
-    margin-right: 0.5rem;
+    margin-right: 0.05rem;
   }
 
   .user-icon-inner {
@@ -334,8 +334,8 @@ export const Container = styled.div`
   }
 
   .page-header-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 0.3rem;
+    margin-bottom: 0.1rem;
   }
 
   .page-header-icon-with-cover {
@@ -802,5 +802,5 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-  width: 90rem;
+  width: 9rem;
 `;

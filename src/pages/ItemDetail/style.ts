@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 144rem;
+  min-width: 14.4rem;
 `;
 export const DetailContainer = styled.div`
   width: 100%;
@@ -13,92 +13,92 @@ export const DetailContainer = styled.div`
   align-items: center;
 `;
 export const DetailArea = styled.div`
-  width: 144rem;
-  height: 70rem;
-  margin-top: 8.3rem;
+  width: 14.4rem;
+  height: 7rem;
+  margin-top: 0.83rem;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10.4rem;
+  margin-bottom: 1.04rem;
 `;
 export const DetailImgArea = styled.div`
-  width: 70rem;
-  height: 70rem;
-  margin-right: 4rem;
+  width: 7rem;
+  height: 7rem;
+  margin-right: 0.4rem;
   ${({ theme }) => theme.common.flexCenter};
   position: relative;
 `;
 export const DetailImg = styled.img`
-  width: 70rem;
-  height: 70rem;
-  border: 0.1rem solid #dddddd;
+  width: 7rem;
+  height: 7rem;
+  border: 0.01rem solid #dddddd;
 `;
 export const Soldout = styled.div`
   position: absolute;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 500;
   color: #ffffff;
-  width: 70rem;
-  height: 70rem;
+  width: 7rem;
+  height: 7rem;
   ${({ theme }) => theme.common.flexCenter};
   /* background-color: rgba(33, 33, 33, 0.8); */
 `;
 export const ItemTextArea = styled.div`
-  width: 66rem;
+  width: 6.6rem;
   height: 100%;
   position: relative;
 `;
 export const Category = styled.p`
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   color: ${(props) => props.theme.palette.txtblack};
 `;
 export const ItemName = styled.p`
-  font-size: 3.6rem;
-  margin-top: 1.2rem;
+  font-size: 0.36rem;
+  margin-top: 0.12rem;
   color: ${(props) => props.theme.palette.txtblack};
 `;
 export const ItemNameLine = styled.div`
   width: 100%;
-  height: 0.2rem;
+  height: 0.02rem;
   background-color: #212121;
-  margin-top: 4.8rem;
+  margin-top: 0.48rem;
   box-shadow: 0px 2px 6px 0px #00000080;
 `;
 export const PriceArea = styled.div`
   width: 100%;
-  height: 3.8rem;
-  margin-top: 3.2rem;
+  height: 0.38rem;
+  margin-top: 0.32rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 `;
 export const Price = styled.p`
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   display: flex;
   color: #000000;
 `;
 export const BtnArea = styled.div`
-  width: 66rem;
-  height: 10.4rem;
+  width: 6.6rem;
+  height: 1.04rem;
   position: absolute;
   bottom: 0;
   display: flex;
   justify-content: space-between;
 `;
 export const Btn = styled.button`
-  width: 31.8rem;
+  width: 3.18rem;
   height: 100%;
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   font-weight: 500;
 `;
 export const BasketBtn = styled(Btn)`
   background-color: ${(props) => props.theme.palette.green};
   color: #ffffff;
-  border-radius: 0.5rem;
+  border-radius: 0.05rem;
 `;
 export const PurchaseBtn = styled(Btn)`
   background-color: #ffffff;
-  border: 0.1rem solid ${(props) => props.theme.palette.green};
-  border-radius: 0.5rem;
+  border: 0.01rem solid ${(props) => props.theme.palette.green};
+  border-radius: 0.05rem;
   color: ${(props) => props.theme.palette.green};
 `;
 export const DesContainer = styled.div`
@@ -111,49 +111,49 @@ export const DesContainer = styled.div`
 export const Description = styled.div`
   width: 100%;
   h1 {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h2 {
-    font-size: 5.6rem;
+    font-size: 0.56rem;
   }
   h3 {
-    font-size: 4.8rem;
+    font-size: 0.48rem;
   }
   h4 {
-    font-size: 4rem;
+    font-size: 0.4rem;
   }
   h5 {
-    font-size: 3.2rem;
+    font-size: 0.32rem;
   }
   h6 {
-    font-size: 2.4rem;
+    font-size: 0.24rem;
   }
   p {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
   }
   span {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
   }
   h1 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h2 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h3 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h4 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h5 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   h6 > span {
-    font-size: 6.4rem;
+    font-size: 0.64rem;
   }
   p > span {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
   }
   .ql-align-center {
     text-align: center;
@@ -168,8 +168,8 @@ export const Description = styled.div`
   }
 `;
 export const DesGradation = styled.div`
-  width: 144rem;
-  height: 16rem;
+  width: 14.4rem;
+  height: 1.6rem;
   position: absolute;
   background: linear-gradient(#ffffff 0%, rgba(255, 255, 255, 0) 100%, #ffffff 100%);
   bottom: 0;
@@ -177,62 +177,63 @@ export const DesGradation = styled.div`
 `;
 export const ShowDesBtnContainer = styled.div`
   width: 100%;
-  height: 8.1rem;
+  height: 0.81rem;
   ${({ theme }) => theme.common.flexCenter};
-  margin-top: 3.6rem;
-  margin-bottom: 20.1rem;
+  margin-top: 0.36rem;
+  margin-bottom: 2.01rem;
 `;
 export const ShowDesBtn = styled.div`
-  width: 23.9rem;
+  width: 2.39rem;
   height: 100%;
   align-items: center;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  font-size: 3.12rem;
+  font-size: 0.312rem;
   font-weight: 400;
   color: #000000;
   cursor: pointer;
 `;
 export const TotalPriceWrap = styled.div`
-  width: 66rem;
-  height: 8rem;
+  width: 6.6rem;
+  height: 0.8rem;
   position: absolute;
-  bottom: 12.8rem;
+  bottom: 1.28rem;
   display: flex;
   align-items: center;
-  border-top: 0.1rem solid #999999;
-  border-bottom: 0.1rem solid #999999;
+  border-top: 0.01rem solid #999999;
+  border-bottom: 0.01rem solid #999999;
 `;
 export const TotalPriceArea = styled.div`
   width: 100%;
   height: 100%;
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const CountBox = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 1.2rem;
-  transform: translate(0, -50%);
-  height: 4.8rem;
-  width: 18.4rem;
+  ${({ theme }) => theme.common.flexCenter};
+  margin-left: 0.12rem;
+  height: 0.48rem;
+  width: 1.84rem;
   background-color: #ffffff;
 `;
 export const CountBtn = styled.button`
-  width: 4.8rem;
+  width: 0.48rem;
   height: 100%;
-  border: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   color: #000000;
-  font-size: 2rem;
+  font-size: 0.2rem;
   font-weight: 400;
 `;
 export const CountInput = styled.input`
-  width: 8.8rem;
+  width: 0.88rem;
   height: 100%;
-  border-top: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.txtgray};
+  border-top: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   text-align: center;
-  font-size: 2rem;
+  font-size: 0.2rem;
   font-weight: 400;
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -244,21 +245,18 @@ export const CountInput = styled.input`
   }
 `;
 export const TotalPriceBox = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 1.2rem;
-  transform: translate(0, -50%);
   display: flex;
   align-items: center;
+  margin-right: 0.12rem;
 `;
 export const TotalPriceTitle = styled.span`
-  font-size: 2rem;
+  font-size: 0.2rem;
   font-weight: 700;
   color: #000000;
-  margin-right: 1.6rem;
+  margin-right: 0.16rem;
 `;
 export const TotalPrice = styled.span`
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   font-weight: 500;
   color: #ff003e;
 `;
@@ -267,37 +265,37 @@ export const DesWrap = styled.div`
   flex-direction: column;
 `;
 export const DesLine = styled.div`
-  width: 21rem;
-  height: 0.6rem;
+  width: 2.1rem;
+  height: 0.06rem;
   box-shadow: 0px 2px 6px 0px #00000080;
   background-color: ${({ theme }) => theme.palette.green};
-  margin-bottom: 15.2rem;
-  border-radius: 1.5rem;
+  margin-bottom: 1.52rem;
+  border-radius: 0.15rem;
 `;
 export const LoadingBox = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 144rem;
-  height: 78rem;
-  margin-top: 8.3rem;
-  margin-bottom: 10.4rem;
+  width: 14.4rem;
+  height: 7.8rem;
+  margin-top: 0.83rem;
+  margin-bottom: 1.04rem;
 `;
 export const DesLoadingBox = styled.div`
   width: 100%;
   ${({ theme }) => theme.common.flexCenter};
-  margin-bottom: 10.4rem;
+  margin-bottom: 1.04rem;
 `;
 export const ExchangeInfoArea = styled.div`
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12rem;
+  margin-bottom: 1.2rem;
 
   table {
     width: 80%;
   }
   .page {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
     width: 100%;
   }
   .page-body {
@@ -324,25 +322,25 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 0.25rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.75em;
   }
 
   h1 {
-    font-size: 1.875rem;
-    margin-top: 1.875rem;
+    font-size: 0.1875rem;
+    margin-top: 0.1875rem;
   }
 
   h2 {
-    font-size: 2.8rem;
-    margin-top: 4rem;
+    font-size: 0.28rem;
+    margin-top: 0.4rem;
   }
 
   h3 {
-    font-size: 1.25rem;
-    margin-top: 1.25rem;
+    font-size: 0.125rem;
+    margin-top: 0.125rem;
   }
 
   .source {
@@ -354,7 +352,7 @@ export const ExchangeInfoArea = styled.div`
 
   .callout {
     border-radius: 3px;
-    padding: 1rem;
+    padding: 0.1rem;
   }
 
   figure {
@@ -402,7 +400,7 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .collection-content {
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
   }
 
   .column-list {
@@ -424,21 +422,21 @@ export const ExchangeInfoArea = styled.div`
 
   .table_of_contents-item {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
     line-height: 1.3;
-    padding: 0.125rem;
+    padding: 0.0125rem;
   }
 
   .table_of_contents-indent-1 {
-    margin-left: 1.5rem;
+    margin-left: 0.15rem;
   }
 
   .table_of_contents-indent-2 {
-    margin-left: 3rem;
+    margin-left: 0.3rem;
   }
 
   .table_of_contents-indent-3 {
-    margin-left: 4.5rem;
+    margin-left: 0.45rem;
   }
 
   .table_of_contents-link {
@@ -561,7 +559,7 @@ export const ExchangeInfoArea = styled.div`
 
   .simple-table {
     margin-top: 1em;
-    font-size: 2rem;
+    font-size: 0.2rem;
     empty-cells: show;
   }
 
@@ -605,7 +603,7 @@ export const ExchangeInfoArea = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: 100%;
-    margin-right: 0.5rem;
+    margin-right: 0.05rem;
   }
 
   .user-icon-inner {
@@ -625,8 +623,8 @@ export const ExchangeInfoArea = styled.div`
   }
 
   .page-header-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 0.3rem;
+    margin-bottom: 0.1rem;
   }
 
   .page-header-icon-with-cover {

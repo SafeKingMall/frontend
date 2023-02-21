@@ -4,11 +4,11 @@ export const NoticeBarWrap = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 8.8rem;
+  height: 0.88rem;
   background-color: rgba(167, 237, 192, 0);
   display: flex;
   justify-content: center;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 500;
   color: #ffffff;
   border-top: 0.1px solid rgba(255, 255, 255, 0.7);
@@ -28,8 +28,8 @@ export const LeftTextArea = styled.div`
 `;
 export const LeftText = styled.span``;
 export const LeftBar = styled.div`
-  width: 0.2rem;
-  height: 4rem;
+  width: 0.02rem;
+  height: 0.4rem;
   background-color: #ffffff;
   position: absolute;
   right: 0;
@@ -56,7 +56,7 @@ export const ArrowBox = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 19rem;
+  right: 1.9rem;
 `;
 export const ArrowIcon = styled.div`
   cursor: pointer;
@@ -64,8 +64,8 @@ export const ArrowIcon = styled.div`
   align-items: center;
 `;
 export const ArrowBar = styled.div`
-  width: 0.1rem;
-  height: 1.6rem;
+  width: 0.01rem;
+  height: 0.16rem;
   background-color: #ffffff;
-  margin: 0 1.6rem;
+  margin: 0 0.16rem;
 `;

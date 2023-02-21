@@ -4,74 +4,74 @@ export const Container = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   width: 100%;
   height: 100%;
-  min-width: 144rem;
+  min-width: 14.4rem;
 `;
 export const AddContainer = styled.div`
-  width: 144rem;
+  width: 14.4rem;
   height: 100%;
 `;
 export const AddTitleContainer = styled.div`
   width: 100%;
-  height: 6.2rem;
-  margin-top: 4rem;
-  margin-bottom: 3.2rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  height: 0.62rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.32rem;
+  padding-left: 0.24rem;
+  padding-right: 0.24rem;
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   display: flex;
   justify-content: space-between;
 `;
 export const AddTitleText = styled.h1`
-  font-size: 3.2rem;
+  font-size: 0.32rem;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.txt};
 `;
 export const AddSelectArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 23.3rem;
+  width: 2.33rem;
   height: 100%;
 `;
 export const RadioLabel = styled.label`
-  font-size: 1.6rem;
+  font-size: 0.16rem;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.txt};
-  padding-left: 0.8rem;
+  padding-left: 0.08rem;
 `;
 export const AddSelcetRadio = styled.input.attrs({ type: 'radio' })`
-  width: 2rem;
-  height: 2rem;
+  width: 0.2rem;
+  height: 0.2rem;
   accent-color: ${({ theme }) => theme.palette.green};
 `;
 export const AddInputContainer = styled.div`
   width: 100%;
-  height: 77.9rem;
+  height: 7.79rem;
 `;
 export const InputArea = styled.div`
   width: 100%;
-  height: 6.4rem;
-  margin-bottom: 0.5rem;
+  height: 0.64rem;
+  margin-bottom: 0.05rem;
   display: flex;
 `;
 export const InputTitleArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 20.1rem;
+  width: 2.01rem;
   height: 100%;
-  padding: 0 2.4rem;
+  padding: 0 0.24rem;
 `;
 export const InputTitle = styled.span`
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
 `;
 export const InputBasic = styled.input`
-  width: 67.2rem;
+  width: 6.72rem;
   height: 100%;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
-  padding-left: 3.2rem;
-  padding-right: 3.2rem;
+  padding-left: 0.32rem;
+  padding-right: 0.32rem;
   color: ${({ theme }) => theme.palette.txt};
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   background-color: #ffffff;
 `;
 // export const InputPhone = styled(InputBasic)`
@@ -85,70 +85,70 @@ export const InputBasic = styled.input`
 //   }
 // `;
 export const InputZipcode = styled(InputBasic)`
-  width: 52rem;
-  margin-right: 0.8rem;
+  width: 5.2rem;
+  margin-right: 0.08rem;
 `;
 export const AddSearchBtn = styled.button`
-  width: 14.4rem;
+  width: 1.44rem;
   height: 100%;
   background-color: ${({ theme }) => theme.palette.green};
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
   color: #ffffff;
 `;
 export const InputDetailAdd = styled(InputBasic)`
-  width: 52rem;
-  margin-left: 1.6rem;
+  width: 5.2rem;
+  margin-left: 0.16rem;
 `;
 export const ShippingDesArea = styled(InputArea)`
-  height: 4.3rem;
-  margin-bottom: 2.4rem;
-  padding-left: 20.1rem;
+  height: 0.43rem;
+  margin-bottom: 0.24rem;
+  padding-left: 2.01rem;
   display: flex;
   flex-direction: column;
 `;
 export const ShippingSelect = styled.select`
-  width: 67.2rem;
+  width: 6.72rem;
   height: 100%;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
-  padding-left: 3.2rem;
-  padding-right: 3.2rem;
+  padding-left: 0.32rem;
+  padding-right: 0.32rem;
   color: ${({ theme }) => theme.palette.txt};
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   background-color: #ffffff;
 `;
 export const ShippingDes = styled.span`
-  font-size: 1.6rem;
+  font-size: 0.16rem;
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
 `;
 export const OrderReqArea = styled(InputArea)`
-  height: 21.3rem;
-  padding: 2.4rem 0;
-  border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  height: 2.13rem;
+  padding: 0.24rem 0;
+  border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 export const OrderReqTitleArea = styled(InputTitleArea)`
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 1.7rem;
+  padding-top: 0.17rem;
 `;
 export const OrderReqInput = styled.textarea`
-  width: 67.2rem;
+  width: 6.72rem;
   height: 100%;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   font-weight: 400;
-  padding: 1.7rem 3.2rem;
+  padding: 0.17rem 0.32rem;
   color: ${({ theme }) => theme.palette.txt};
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   background-color: #ffffff;
   resize: none;
 `;
 export const DaumPostBackground = styled.div`
   width: 100%;
   height: 100%;
-  min-width: 144rem;
+  min-width: 14.4rem;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -164,14 +164,14 @@ export const DaumPostDiv = styled.div`
 `;
 export const ValidationArea = styled.div`
   width: 100%;
-  margin-bottom: 0.5rem;
-  padding-left: 20.1rem;
+  margin-bottom: 0.05rem;
+  padding-left: 2.01rem;
   display: flex;
   flex-direction: column;
-  height: 1.9rem;
+  height: 0.19rem;
 `;
 export const Validation = styled.span`
-  font-size: 1.6rem;
+  font-size: 0.16rem;
   font-weight: 400;
   color: red;
 `;

@@ -1,21 +1,26 @@
 .swal2-title {
-  font-size: 1.6rem !important;
-  padding-top: 1.5rem !important;
+  font-size: 0.16rem !important;
+  padding-top: 0.15rem !important;
 }
 .swal2-html-container {
-  font-size: 1.8rem !important;
+  font-size: 0.18rem !important;
   font-weight: 500 !important;
 }
 .swal2-confirm {
-  font-size: 1.4rem !important;
+  font-size: 0.14rem !important;
 }
 .swal2-cancel {
-  font-size: 1.4rem !important;
+  font-size: 0.14rem !important;
 }
 .swal2-popup {
-  border-radius: 1.2rem !important;
-  padding-bottom: 2rem !important;
+  border-radius: 0.12rem !important;
+  padding-bottom: 0.2rem !important;
+  font-size: 0.14rem !important;
 }
+/* .swal2-icon {
+  width: 0.5em !important;
+  height: 0.5em !important;
+} */
 /* body.swal2-height-auto {
   height: 100% !important;
 } */

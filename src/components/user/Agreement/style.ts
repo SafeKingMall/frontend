@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   /* background-color: mistyrose; */
-  width: 64rem;
-  height: 27.2rem;
+  width: 6.4rem;
+  height: 2.72rem;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   color: #212121;
   border: 1px solid #efeff1;
   border-radius: 10px;
-  padding: 2rem 2.4rem 0 2.4rem;
+  padding: 0.2rem 0.24rem 0 0.24rem;
   white-space: pre-line;
   overflow-y: scroll;
 
@@ -36,25 +36,25 @@ export const Wrapper = styled.div`
   }
 
   .page-title {
-    font-size: 2.5rem;
+    font-size: 0.25rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.75em;
   }
 
   h1 {
-    font-size: 1.875rem;
-    margin-top: 1.875rem;
+    font-size: 0.1875rem;
+    margin-top: 0.1875rem;
   }
 
   h2 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
+    font-size: 0.15rem;
+    margin-top: 0.15rem;
   }
 
   h3 {
-    font-size: 1.25rem;
-    margin-top: 1.25rem;
+    font-size: 0.125rem;
+    margin-top: 0.125rem;
   }
 
   .source {
@@ -66,7 +66,7 @@ export const Wrapper = styled.div`
 
   .callout {
     border-radius: 3px;
-    padding: 1rem;
+    padding: 0.1rem;
   }
 
   figure {
@@ -136,21 +136,21 @@ export const Wrapper = styled.div`
 
   .table_of_contents-item {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
     line-height: 1.3;
-    padding: 0.125rem;
+    padding: 0.0125rem;
   }
 
   .table_of_contents-indent-1 {
-    margin-left: 1.5rem;
+    margin-left: 0.15rem;
   }
 
   .table_of_contents-indent-2 {
-    margin-left: 3rem;
+    margin-left: 0.3rem;
   }
 
   .table_of_contents-indent-3 {
-    margin-left: 4.5rem;
+    margin-left: 0.45rem;
   }
 
   .table_of_contents-link {
@@ -273,7 +273,7 @@ export const Wrapper = styled.div`
 
   .simple-table {
     margin-top: 1em;
-    font-size: 0.875rem;
+    font-size: 0.0875rem;
     empty-cells: show;
   }
 
@@ -317,7 +317,7 @@ export const Wrapper = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: 100%;
-    margin-right: 0.5rem;
+    margin-right: 0.05rem;
   }
 
   .user-icon-inner {
@@ -337,8 +337,8 @@ export const Wrapper = styled.div`
   }
 
   .page-header-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 0.3rem;
+    margin-bottom: 0.1rem;
   }
 
   .page-header-icon-with-cover {
@@ -810,15 +810,15 @@ export const ViewAll = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  min-width: 70rem;
+  min-width: 7rem;
   height: 90%;
   background-color: #ffffff;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
+  border-top-left-radius: 0.1rem;
+  border-bottom-left-radius: 0.1rem;
+  border-top-right-radius: 0.03rem;
+  border-bottom-right-radius: 0.03rem;
   overflow-y: scroll;
-  padding: 2.4rem;
+  padding: 0.24rem;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;

@@ -20,21 +20,21 @@ export const Banner = styled.img.attrs({ src: 'img/ItemListBannerImg.png' })`
 export const BannerText = styled.span`
   color: #ffffff;
   font-weight: 700;
-  font-size: 4rem;
+  font-size: 0.4rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 export const NavArea = styled.div`
-  height: 8.8rem;
+  height: 0.88rem;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 export const Nav = styled.div`
   height: 100%;
-  width: 100rem;
+  width: 10rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -43,6 +43,6 @@ export const Nav = styled.div`
 export const NavText = styled.span`
   color: ${(props) => props.theme.palette.txt};
   font-weight: 500;
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   cursor: pointer;
 `;

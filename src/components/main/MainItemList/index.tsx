@@ -20,7 +20,7 @@ export const MainItemList = (props: any) => {
             <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
               <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
               <S.ItemTextArea>
-                <div style={{ marginTop: '2rem' }}>
+                <div style={{ marginTop: '0.2rem' }}>
                   <S.Category>{item.categoryName}</S.Category>
                   <S.ItemName>{item.name}</S.ItemName>
                 </div>
