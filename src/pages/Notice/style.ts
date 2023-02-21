@@ -11,21 +11,21 @@ export const Wrapper = styled.div`
 export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin-left: 130rem;
-  width: 13rem;
-  height: 5rem;
-  font-size: 1.5rem;
+  margin-left: 13rem;
+  width: 1.3rem;
+  height: 0.5rem;
+  font-size: 0.15rem;
   position: absolute;
   bottom: 18%;
 `;
 
 export const Banner = styled.div`
   /* background-color: ${({ theme }) => theme.palette.green}; */
-  height: 47rem;
-  font-size: 4rem;
-  margin-bottom: 14.8rem;
+  height: 4.7rem;
+  font-size: 0.4rem;
+  margin-bottom: 1.48rem;
   text-align: center;
-  padding-top: 23rem;
+  padding-top: 2.3rem;
   color: white;
   font-weight: 900;
   background-image: url('/img/noticeBanner.png');

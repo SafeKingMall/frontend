@@ -120,8 +120,9 @@ export const SearchPw = (props: any) => {
           <S.InputWrapper>
             <label>아이디</label>
             <input placeholder='아이디를 입력해주세요.' onChange={onId} />
-            <S.ErrMsg>{idMsg}</S.ErrMsg>
+
           </S.InputWrapper>
+          <S.ErrMsg>{idMsg}</S.ErrMsg>
         </S.InputContainer>
         {/* </form> */}
         {disTrue ? <S.SearchBtn disabled={disabled} onClick={(e) => submitBtn(e)}>

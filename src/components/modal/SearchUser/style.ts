@@ -79,13 +79,13 @@ export const TabMenu = styled.div`
   justify-content: center;
   .submenu {
     display: flex;
-    height: 8rem;
-    font-size: 2.4rem;
+    height: 0.8rem;
+    font-size: 0.24rem;
     font-weight: 700;
-    padding-left: 3.2rem;
-    padding-right: 3.2rem;
-    padding-top: 3rem;
-    width: 32rem;
+    padding-left: 0.32rem;
+    padding-right: 0.32rem;
+    padding-top: 0.3rem;
+    width: 3.2rem;
     background-color: #d4ebdc;
   }
 

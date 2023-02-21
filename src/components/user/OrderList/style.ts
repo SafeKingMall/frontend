@@ -89,7 +89,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 0.17rem 0.15rem 0.17rem 0.32rem;
-  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   font-size: 0.2rem;
   div {
     &:first-child {

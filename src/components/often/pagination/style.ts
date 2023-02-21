@@ -4,11 +4,11 @@ export const PageNumbers = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  margin-bottom: 12rem;
+  margin-bottom: 1.2rem;
 `;
 
 export const LiPageNumbers = styled.li`
-  padding: 1rem;
+  padding: 0.1rem;
   cursor: pointer;
   &:active {
     color: black;
@@ -18,7 +18,8 @@ export const LiPageNumbers = styled.li`
 export const ButtonPageNumbers = styled.button`
   background-color: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 0.17rem;
+  margin-bottom: 0.6rem;
   cursor: pointer;
   &:hover {
     color: black;
@@ -29,9 +30,9 @@ export const ButtonPageNumbers = styled.button`
 `;
 
 export const Paging2 = styled.li`
-  padding: 1rem;
+  padding: 0.1rem;
   cursor: pointer;
-  font-size: 1.7rem;
+  font-size: 0.17rem;
   color: ${({ theme }) => theme.palette.txtgray};
   &:active {
     background-color: ${({ theme }) => theme.palette.green};

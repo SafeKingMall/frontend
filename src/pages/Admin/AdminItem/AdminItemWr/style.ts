@@ -18,27 +18,27 @@ export const Wrapper = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 128rem;
+  width: 12.8rem;
   // height: 92.3rem;
-  font-size: 2.4rem;
-  margin-top: 14.8rem;
+  font-size: 0.24rem;
+  margin-top: 1.48rem;
   border-collapse: collapse;
   tr {
     &:last-child {
-      height: 27.5rem;
+      height: 2.75rem;
     }
   }
   td,
   tr {
-    border-top: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-    border-bottom: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+    border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   }
   tr {
     td {
       &:first-child,
       &:nth-child(3) {
         background-color: #d4ebdc;
-        width: 20rem;
+        width: 2rem;
         text-align: center;
       }
     }
@@ -52,16 +52,16 @@ export const Table = styled.table`
 `;
 
 export const TableInput = styled.input`
-  width: 40.4rem;
-  font-size: 2.4rem;
-  margin: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  padding: 1.2rem;
+  width: 4.04rem;
+  font-size: 0.24rem;
+  margin: 0.12rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  padding: 0.12rem;
   color: ${(props) => (props.value === '숫자로 기입해주세요' ? 'red' : 'black')};
   ::placeholder {
     text-align: left;
     color: ${({ theme }) => theme.palette.txtgray};
-    font-size: 2.4rem;
+    font-size: 0.24rem;
   }
 `;
 
@@ -70,8 +70,8 @@ export const PayInput = styled.div`
 `;
 
 export const PayP = styled.p`
-  padding-top: 2.8rem;
-  padding-right: 1rem;
+  padding-top: 0.28rem;
+  padding-right: 0.1rem;
 `;
 
 //체크박스
@@ -85,11 +85,11 @@ export const StyledLabel = styled.label`
   &:before {
     display: block;
     content: '';
-    height: 2rem;
-    width: 2rem;
+    height: 0.2rem;
+    width: 0.2rem;
     background-color: white;
-    border: 0.2rem solid gainsboro;
-    border-radius: 5rem;
+    border: 0.02rem solid gainsboro;
+    border-radius: 0.5rem;
   }
 
   &:after {
@@ -100,10 +100,10 @@ export const StyledLabel = styled.label`
     display: block;
     opacity: 0;
     content: '';
-    height: 2rem;
-    width: 2rem;
-    border: 0.2rem solid transparent;
-    border-radius: 5rem;
+    height: 0.2rem;
+    width: 0.2rem;
+    border: 0.02rem solid transparent;
+    border-radius: 0.5rem;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
     background-size: 100% 100%;
     background-position: 50%;
@@ -116,10 +116,10 @@ export const StyledInput = styled.input`
   position: absolute;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
-  height: 0.1rem;
+  height: 0.01rem;
   overflow: hidden;
   white-space: nowrap;
-  width: 0.1rem;
+  width: 0.01rem;
 
   &:checked + ${StyledLabel} {
     :after {
@@ -129,27 +129,27 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledP = styled.p`
-  margin-left: 0.5rem;
+  margin-left: 0.05rem;
   color: ${({ theme }) => theme.palette.txtgray};
-  font-size: 2rem;
+  font-size: 0.2rem;
 `;
 
 export const CheckPay = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
-  font-size: 2rem;
-  margin-left: 1.2rem;
-  margin-bottom: 1.2rem;
+  font-size: 0.2rem;
+  margin-left: 0.12rem;
+  margin-bottom: 0.12rem;
 `;
 
 //카테고리 select
 export const Select = styled.select`
-  width: 40rem;
+  width: 4rem;
   // font-size:  ${(props) => (props.value === '' ? '2rem' : '3.2rem')};
-  font-size: 2.4rem;
-  margin-left: 1.2rem;
-  padding: 1.2rem;
+  font-size: 0.24rem;
+  margin-left: 0.12rem;
+  padding: 0.12rem;
   color: ${(props) => (props.value === '' ? props.theme.palette.txtgray : '')};
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
 `;
 export const NoneOption = styled.option`
   display: none;
@@ -160,13 +160,13 @@ export const NoneOption = styled.option`
 export const ChangeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 2.4rem;
-  width: 12.8rem;
-  height: 5.2rem;
+  font-size: 0.24rem;
+  width: 1.28rem;
+  height: 0.52rem;
   cursor: pointer;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  margin-left: 90rem;
-  margin-top: -1rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  margin-left: 9rem;
+  margin-top: -0.1rem;
   position: absolute;
   z-index: 1;
   display: flex;
@@ -176,11 +176,11 @@ export const ChangeButton = styled.button`
 `;
 
 export const TableDiv = styled.div`
-  width: 90.4rem;
-  font-size: 2.5rem;
-  margin: 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
-  padding: 1.8rem;
+  width: 9.04rem;
+  font-size: 0.25rem;
+  margin: 0.12rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  padding: 0.18rem;
   display: flex;
   input {
     position: relative;
@@ -188,81 +188,81 @@ export const TableDiv = styled.div`
     opacity: 0;
     z-index: 2;
     cursor: pointer;
-    max-width: 12.8rem;
-    left: 65rem;
+    max-width: 1.28rem;
+    left: 6.5rem;
   }
 `;
 
 export const DivImg = styled.div`
   justify-content: space-between;
   display: flex;
-  border-radius: 3rem;
-  border: 0.1rem solid #efeff1;
+  border-radius: 0.3rem;
+  border: 0.01rem solid #efeff1;
   display: flex;
-  padding: 1rem;
+  padding: 0.1rem;
   background-color: #efeff1;
   align-items: center;
   font-weight: 400;
   button {
-    margin-left: 0.5rem;
+    margin-left: 0.05rem;
     color: gray;
     background-color: white;
-    border-radius: 5rem;
-    height: 3rem;
+    border-radius: 0.5rem;
+    height: 0.3rem;
   }
 `;
 
 export const NotDownload = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
-  font-size: 2.4rem;
+  font-size: 0.24rem;
 `;
 
 export const QnAButton = styled.button`
   color: ${({ theme }) => theme.palette.green};
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
-  margin-right: 0.8rem;
-  border: 0.1rem solid ${({ theme }) => theme.palette.green};
+  margin-right: 0.08rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.green};
 `;
 
 export const QnAButton2 = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  font-size: 1.6rem;
-  width: 12.8rem;
-  height: 5.6rem;
+  font-size: 0.16rem;
+  width: 1.28rem;
+  height: 0.56rem;
   align-items: center;
 `;
 
 export const QnABox = styled.div`
-  margin-top: 1.2rem;
-  margin-bottom: 16rem;
-  margin-left: 116rem;
-  width: 30rem;
+  margin-top: 0.12rem;
+  margin-bottom: 1.6rem;
+  margin-left: 11.6rem;
+  width: 3rem;
 `;
 
 export const TableTextarea = styled.textarea`
-  width: 104rem;
+  width: 10.4rem;
 
-  min-height: 53.8rem;
-  margin: 1.2rem;
-  padding: 1.2rem;
-  font-size: 2rem;
+  min-height: 5.38rem;
+  margin: 0.12rem;
+  padding: 0.12rem;
+  font-size: 0.2rem;
   outline: none;
   resize: none;
-  border: 0.1rem solid ${({ theme }) => theme.palette.lightgray};
+  border: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
-    font-size: 2.4rem;
-    padding-top: 25rem;
+    font-size: 0.24rem;
+    padding-top: 2.5rem;
   }
 `;
 
 export const RedDiv = styled.div`
   color: red;
-  font-size: 2rem;
-  padding-left: 1.2rem;
-  padding-bottom: 1.2rem;
+  font-size: 0.2rem;
+  padding-left: 0.12rem;
+  padding-bottom: 0.12rem;
 `;

@@ -10,28 +10,28 @@ export const Wrapper = styled.div`
 `;
 
 export const DataList = styled.ul`
-  margin-bottom: 10.4rem;
+  margin-bottom: 1.04rem;
 `;
 
 export const NoSearchItem = styled.div`
   ${({ theme }) => theme.common.flexCenter};
-  width: 144rem;
-  height: 30rem;
-  border-bottom: 0.2rem solid ${({ theme }) => theme.palette.green};
-  font-size: 2.4rem;
+  width: 14.4rem;
+  height: 3rem;
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
+  font-size: 0.24rem;
   font-weight: 500;
 `;
 
 export const QnATitle = styled.div`
-  width: 144rem;
-  margin-top: 2.4rem;
+  width: 14.4rem;
+  margin-top: 0.24rem;
   display: flex;
   background-color: ${({ theme }) => theme.palette.whitegreen};
-  padding: 2.4rem 5rem 2.4rem 5.4rem;
+  padding: 0.24rem 0.5rem 0.24rem 0.54rem;
   align-items: center;
-  border-top: 0.3rem solid ${({ theme }) => theme.palette.green};
+  border-top: 0.03rem solid ${({ theme }) => theme.palette.green};
   /* border-bottom: 0.3rem solid ${({ theme }) => theme.palette.txtgray}; */
-  font-size: 2.4rem;
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
       flex-grow: 1.5;
@@ -49,12 +49,12 @@ export const QnATitle = styled.div`
 `;
 
 export const Select = styled.select`
-  margin-right: 0.8rem;
-  width: 12.5rem;
-  height: 4rem;
-  border: 0.1rem solid #ddd;
-  font-size: 1.2rem;
-  padding: 0 0.8rem;
+  margin-right: 0.08rem;
+  width: 1.25rem;
+  height: 0.4rem;
+  border: 0.01rem solid #ddd;
+  font-size: 0.12rem;
+  padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
   color: #686868;
@@ -63,29 +63,29 @@ export const Select = styled.select`
 
 export const Container = styled.div`
   cursor: pointer;
-  width: 144rem;
+  width: 14.4rem;
   display: flex;
   align-items: center;
-  padding: 2.4rem 2.4rem 2.4rem 5.8rem;
-  border-bottom: 0.3rem solid ${({ theme }) => theme.palette.lightgray};
-  font-size: 2.4rem;
+  padding: 0.24rem 0.24rem 0.24rem 0.58rem;
+  border-bottom: 0.03rem solid ${({ theme }) => theme.palette.lightgray};
+  font-size: 0.24rem;
   div {
     &:nth-child(1) {
-      width: 10rem;
+      width: 1rem;
     }
     &:nth-child(2) {
       display: flex;
-      width: 65rem;
+      width: 6.5rem;
       svg {
-        margin-left: 1rem;
+        margin-left: 0.1rem;
       }
     }
     &:nth-child(3) {
-      width: 30rem;
+      width: 3rem;
       text-align: center;
     }
     &:nth-child(4) {
-      width: 30rem;
+      width: 3rem;
       text-align: right;
     }
   }
