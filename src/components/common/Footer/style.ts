@@ -30,15 +30,15 @@ export const TextArea = styled.div`
   align-items: center;
 `;
 export const TextBox = styled.div`
-  /* height: 12rem; */
+  height: 90%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   font-size: 0.18rem;
   font-weight: 400;
   color: #252525;
-  line-height: 0.28rem;
+  line-height: 0.25rem;
 `;
 export const TextLine = styled.span`
   display: flex;
@@ -57,4 +57,7 @@ export const LinkText = styled.span`
   :hover {
     text-decoration: underline;
   }
+`;
+export const TextLineGray = styled(TextLine)`
+  color: #666666;
 `;
