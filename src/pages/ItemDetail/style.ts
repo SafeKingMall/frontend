@@ -102,7 +102,7 @@ export const PurchaseBtn = styled(Btn)`
   color: ${(props) => props.theme.palette.green};
 `;
 export const DesContainer = styled.div`
-  width: 144rem;
+  width: 14.4rem;
   ${({ theme }) => theme.common.flexCenter};
   overflow: hidden;
   align-items: flex-start;
