@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/globalStyles';
 import theme from './styles/theme';
@@ -7,7 +7,16 @@ import { Refresh } from './components/common/hooks/Refresh';
 import { Footer } from './components/common/Footer';
 
 function App() {
-  // document.body.classList.remove('swal2-height-auto');
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', setScreenSize);
+  });
+  useEffect(() => {
+    setScreenSize();
+  }, []);
   Refresh();
   return (
     <ThemeProvider theme={theme}>

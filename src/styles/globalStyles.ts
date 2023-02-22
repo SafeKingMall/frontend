@@ -12,10 +12,14 @@ export default createGlobalStyle`
     display: none;
   } */
 }
+:root {
+  --vh: 100%;
+}
 html {
   height: 100%;
   font-size: 625%;
   -webkit-text-size-adjust: none;
+  /* height: calc(var(--vh, 1vh) * 100); */
 }
 body {
   height: 100%;
@@ -26,7 +30,8 @@ body {
   height: 100%;
 }
 .App {
-  min-height: calc(100% - 2rem)
+  min-height: calc(100% - 2rem);
+  /* min-height: calc(var(--vh, 1vh) * 100 - 2rem); */
 }
 button {
   border: none;
@@ -93,6 +98,9 @@ input {
 @media (max-width: 720px) {
   html {
     font-size: 275%;
+  }
+  .App {
+    height: calc(var(--vh, 1vh) * 100 - 2rem);
   }
 }
 @media (max-width: 600px) {
