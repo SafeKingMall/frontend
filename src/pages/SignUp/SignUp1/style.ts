@@ -47,18 +47,19 @@ export const InputContainer = styled.div`
   }
 `;
 export const InputWrapper = styled.div`
-  /* background-color: mistyrose; */
   height: 0.88rem;
   position: relative;
+  display: flex;
+  align-items: center;
   & > label {
-    /* background-color: thistle; */
     display: inline-block;
     width: 1.5rem;
-    height: 1.7rem;
+    height: 0.17rem;
     font-size: 0.18rem;
     font-weight: 700;
     line-height: 0.22rem;
-    padding: 0.34rem 0 0 0.3rem;
+    /* padding: 0.34rem 0 0 0.3rem; */
+    padding-left: 0.3rem;
   }
   & > input {
     background-color: #fff;
@@ -67,6 +68,7 @@ export const InputWrapper = styled.div`
     line-height: 0.22rem;
     padding-left: 0.24rem;
     width: 3.2rem;
+    height: 95%;
   }
   & > button {
     background-color: #fff;

@@ -44,16 +44,18 @@ export const InputContainer = styled.div`
 export const InputWrapper = styled.div`
   /* background-color: mistyrose; */
   height: 0.88rem;
+  display: flex;
+  align-items: center;
   position: relative;
   & > label {
     /* background-color: thistle; */
     display: inline-block;
     width: 1.5rem;
-    height: 1.7rem;
+    height: 0.17rem;
     font-size: 0.18rem;
     font-weight: 700;
     line-height: 0.22rem;
-    padding: 0.34rem 0 0 0.3rem;
+    padding-left: 0.3rem;
   }
   & > input {
     background-color: #fff;
@@ -61,7 +63,8 @@ export const InputWrapper = styled.div`
     font-weight: 400;
     line-height: 0.22rem;
     padding-left: 0.24rem;
-    width: 2.2rem;
+    width: 50%;
+    height: 95%;
   }
   /* & > div {
     background-color: lavenderblush;
