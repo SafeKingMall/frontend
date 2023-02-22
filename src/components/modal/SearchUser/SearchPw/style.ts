@@ -60,7 +60,8 @@ export const InputWrapper = styled.div`
     font-weight: 400;
     line-height: 0.22rem;
     padding-left: 0.24rem;
-    width: 3.2rem;
+    width: 70%;
+    height: 95%;
   }
 
   &::before {

@@ -46,16 +46,18 @@ export const InputContainer = styled.div`
 export const InputWrapper = styled.div`
   /* background-color: mistyrose; */
   height: 0.88rem;
+  display: flex;
+  align-items: center;
   position: relative;
   & > label {
     /* background-color: thistle; */
     display: inline-block;
     width: 2rem;
-    height: 1.7rem;
+    height: 0.17rem;
     font-size: 0.18rem;
     font-weight: 700;
     line-height: 0.22rem;
-    padding: 0.34rem 0 0 0.3rem;
+    padding-left: 0.3rem;
     > span {
       font-weight: 700;
       font-size: 12px;
@@ -84,6 +86,7 @@ export const InputWrapper = styled.div`
     line-height: 0.22rem;
     padding-left: 0.24rem;
     width: 4.2rem;
+    height: 95%;
   }
   & > p {
     color: red;

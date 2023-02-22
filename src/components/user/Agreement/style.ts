@@ -825,4 +825,5 @@ export const ViewAll = styled.div`
   white-space: pre-line;
   color: #212121;
   border: 1px solid #999999;
+  z-index: 2;
 `;
