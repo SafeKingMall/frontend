@@ -27,6 +27,11 @@ export const Footer = () => {
             주소: (07802) 서울시 강서구 공항대로 213, 보타닉파크타워-2 522호 <S.Bar /> 대표전화:
             (02) 6953-1170
           </S.TextLine>
+          <S.TextLineGray>
+            (주) 리크텍은 모든 거래에 대한 책임과 배송,교환,환불,민원등의 처리는 (주)리크텍 에서
+            진행합니다.
+          </S.TextLineGray>
+          <S.TextLineGray>민원 담당자: 김광선 / 연락처: 02-6953-1170</S.TextLineGray>
           <br />
           <S.TextLine>ⓒ safekingmall All rights reserved.</S.TextLine>
         </S.TextBox>
