@@ -115,7 +115,7 @@ export const PopUpContainer = styled.div`
 
 export const PopUpBody = styled.div`
   width: 8.7rem;
-  height: 3.5rem;
+  height: 3.8rem;
   background-color: #fff;
   margin: auto;
   flex-direction: column;
@@ -123,7 +123,6 @@ export const PopUpBody = styled.div`
   text-align: center;
   div {
     justify-content: center;
-    margin-top: 0.4rem;
     h2 {
       padding-top: 0.48rem;
       font-size: 0.24rem;
