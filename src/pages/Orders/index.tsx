@@ -117,6 +117,8 @@ export const Orders = () => {
       const rtoken = res.headers['refresh-token'];
       setCookie('accessToken', token, { path: '/', expires: tokenExpires });
       setCookie('refreshToken', rtoken, { path: '/', expires: rtokenExpires });
+      setCookie('tokenTime', tokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
+      setCookie('rtokenTime', rtokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
       if (res.data === 'ROLE_ADMIN') {
         setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
       } else if (res.data === 'ROLE_USER') {

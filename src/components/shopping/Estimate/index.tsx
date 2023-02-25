@@ -165,14 +165,14 @@ export const Estimate = () => {
           navigate('/sign-in');
         });
     };
-    if (!cookies.get('refreshToken')) {
-      cookies.remove('accessToken');
-      cookies.remove('refreshToken');
-      cookies.remove('loginUser');
-      navigate('/sign-in');
-    } else {
-      getData();
-    }
+    // if (!cookies.get('refreshToken')) {
+    //   cookies.remove('accessToken');
+    //   cookies.remove('refreshToken');
+    //   cookies.remove('loginUser');
+    //   navigate('/sign-in');
+    // } else {
+    getData();
+    // }
     // eslint-disable-next-line
   }, [state, navigate]);
   const sendMail = () => {
