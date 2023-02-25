@@ -6,6 +6,7 @@ import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { HiOutlineMenu } from 'react-icons/hi';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -45,6 +46,9 @@ export const Header = () => {
   };
   return (
     <S.Container>
+      <S.MenuBtnArea>
+        <HiOutlineMenu size='1rem' color='#212121' style={{ marginLeft: '0.8rem' }} />
+      </S.MenuBtnArea>
       <S.LogoArea>
         <S.Logo onClick={() => moveLocation('/')} />
       </S.LogoArea>

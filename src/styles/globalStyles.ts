@@ -20,6 +20,7 @@ html {
   font-size: 625%;
   -webkit-text-size-adjust: none;
   /* height: calc(var(--vh, 1vh) * 100); */
+  min-width: 240px;
 }
 body {
   height: 100%;
@@ -122,7 +123,7 @@ input {
     font-size: 125%;
   }
 }
-@media (max-width: 240px) {
+/* @media (max-width: 240px) {
   html {
     font-size: 75%;
   }
@@ -130,7 +131,6 @@ input {
 @media (max-width: 120px) {
   html {
     font-size: 25%;
-    min-width: 120px;
   }
-}
+} */
 `;
