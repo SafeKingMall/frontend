@@ -9,16 +9,36 @@ export const Container = styled.div`
   font-size: 0.2rem;
   font-weight: 500;
   color: #212121;
+  border-bottom: 0.005rem solid #777777;
+  @media (max-width: 720px) {
+    height: 1.8rem;
+  }
+`;
+export const MenuBtnArea = styled.div`
+  display: none;
+  @media (max-width: 720px) {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+  }
 `;
 export const LogoArea = styled.div`
   width: 20%;
   height: 100%;
   ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    width: 30%;
+  }
 `;
 export const Logo = styled.img.attrs({ src: 'img/HeaderLogo.png' })`
   width: 1.56rem;
   height: 0.75rem;
   cursor: pointer;
+  @media (max-width: 720px) {
+    width: 3.12rem;
+    height: 1.5rem;
+  }
 `;
 export const NavArea = styled.div`
   width: 60%;
@@ -26,6 +46,9 @@ export const NavArea = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 export const Nav = styled.div`
   ${({ theme }) => theme.common.flexCenter};
@@ -57,9 +80,18 @@ export const GreenBtn = styled.button`
   font-size: 0.2rem;
   font-weight: 500;
   color: #ffffff;
+  @media (max-width: 720px) {
+    width: 1.8rem;
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    font-size: 0.3rem;
+  }
 `;
 export const GrayBtn = styled(GreenBtn)`
   background-color: #ffffff;
   color: #999999;
   border: 0.01rem solid #999999;
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
