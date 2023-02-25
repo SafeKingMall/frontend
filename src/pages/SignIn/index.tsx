@@ -20,6 +20,7 @@ export const SignIn = () => {
     setSaveIdChecked(!saveIdChecked);
   };
   // const refreshToken = cookie.get('refreshToken');
+  // console.log(cookie.get('tokenTime'));
 
   //id, password
   const [id, setId] = useState(cookie.get('savedId') ? cookie.get('savedId') : '');
@@ -64,6 +65,8 @@ export const SignIn = () => {
             } else if (res.data === 'ROLE_USER') {
               setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
             }
+            setCookie('tokenTime', tokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
+            setCookie('rtokenTime', rtokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
             if (saveIdChecked) {
               if (savedId.current !== id) {
                 setCookie('savedId', id, { path: '/', maxAge: 60 * 60 * 24 * 180 });

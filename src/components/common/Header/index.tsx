@@ -1,6 +1,6 @@
 /* eslint-disable */
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { Cookies } from 'react-cookie';
@@ -22,6 +22,10 @@ export const Header = () => {
       navigate(path);
     }
   };
+
+  useEffect(() => {
+    loginUser.current = cookies.get('loginUser');
+  });
 
   const logout = () => {
     swal
