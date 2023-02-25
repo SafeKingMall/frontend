@@ -21,7 +21,7 @@ export const Refresh = () => {
         tokenExpires.setMinutes(tokenExpires.getMinutes() + 20);
         //리프레시토큰 쿠키만료시간
         const rtokenExpires = new Date();
-        rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
+        rtokenExpires.setMinutes(rtokenExpires.getMinutes() + 60);
         try {
           await fetch(`${process.env.REACT_APP_API_URL}/refresh`, {
             headers: {

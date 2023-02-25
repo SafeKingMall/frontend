@@ -41,7 +41,7 @@ export const SignIn = () => {
     tokenExpires.setMinutes(tokenExpires.getMinutes() + 20);
     //리프레시토큰 쿠키만료시간
     const rtokenExpires = new Date();
-    rtokenExpires.setMinutes(tokenExpires.getMinutes() + 60);
+    rtokenExpires.setMinutes(rtokenExpires.getMinutes() + 60);
     try {
       await axios
         .post(
