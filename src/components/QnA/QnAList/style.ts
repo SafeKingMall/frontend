@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: 400px) {
+    padding: 0;
+    width: 100%;
+  }
 `;
 
 export const DataList = styled.ul`
@@ -20,6 +24,11 @@ export const NoSearchItem = styled.div`
   border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
   font-size: 0.24rem;
   font-weight: 500;
+  @media screen and (max-width: 400px) {
+    width: 272%;
+    margin-left: -85%;
+    font-size: 0.5rem;
+  }
 `;
 
 export const QnATitle = styled.div`
@@ -46,6 +55,15 @@ export const QnATitle = styled.div`
       flex-grow: 0.1;
     }
   }
+  @media screen and (max-width: 400px) {
+    padding: 0;
+    width: 80%;
+    margin-top: 10%;
+
+    div {
+      display: none;
+    }
+  }
 `;
 
 export const Select = styled.select`
@@ -59,6 +77,12 @@ export const Select = styled.select`
   background-color: #fefefe;
   color: #686868;
   outline: none;
+  @media screen and (max-width: 400px) {
+    width: 29%;
+    height: 300%;
+    margin-right: 1%;
+    font-size: 0.5rem;
+  }
 `;
 
 export const Container = styled.div`
@@ -72,6 +96,9 @@ export const Container = styled.div`
   div {
     &:nth-child(1) {
       width: 1rem;
+      @media screen and (max-width: 400px) {
+        display: none;
+      }
     }
     &:nth-child(2) {
       display: flex;
@@ -81,12 +108,17 @@ export const Container = styled.div`
       }
     }
     &:nth-child(3) {
-      width: 3rem;
-      text-align: center;
-    }
-    &:nth-child(4) {
-      width: 3rem;
-      text-align: right;
+      display: flex;
+      p {
+        &:nth-child(1) {
+          width: 3rem;
+          text-align: center;
+        }
+      }
+      p {
+        width: 3rem;
+        text-align: right;
+      }
     }
   }
 `;

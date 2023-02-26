@@ -11,6 +11,11 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
+  @media screen and (max-width: 400px) {
+    font-size: 0.7rem;
+    padding-top: 14%;
+    margin-bottom: 6%;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -21,6 +26,9 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: 400px) {
+    width: 85%;
+  }
 `;
 
 export const Table = styled.table`
@@ -40,6 +48,10 @@ export const Table = styled.table`
         background-color: #d4ebdc;
         width: 2.24rem;
         text-align: center;
+        @media screen and (max-width: 400px) {
+          font-size: 0.5rem;
+          font-weight: 700;
+        }
       }
     }
   }
@@ -60,6 +72,11 @@ export const Table = styled.table`
       }
     }
   }
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    margin-left: 18%;
+    margin-top: 0;
+  }
 `;
 
 export const TableInput = styled.input`
@@ -72,6 +89,10 @@ export const TableInput = styled.input`
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 0.24rem;
+  }
+  @media screen and (max-width: 400px) {
+    width: 99%;
+    font-size: 0.4rem;
   }
 `;
 
@@ -99,6 +120,13 @@ export const NoticeButton = styled.button`
   align-items: center;
   margin-right: 0.08rem;
   border: 0.01rem solid ${({ theme }) => theme.palette.green};
+  @media screen and (max-width: 400px) {
+    width: 50%;
+    font-size: 0.5rem;
+    width: 20vw;
+    height: 5vh;
+    margin-right: 3%;
+  }
 `;
 
 export const NoticeButton2 = styled.button`
@@ -108,6 +136,11 @@ export const NoticeButton2 = styled.button`
   width: 1.28rem;
   height: 0.56rem;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+    width: 20vw;
+    height: 5vh;
+  }
 `;
 
 export const NoticeBox = styled.div`
@@ -115,4 +148,10 @@ export const NoticeBox = styled.div`
   margin-bottom: 1.6rem;
   margin-left: 11.6rem;
   width: 3rem;
+  display: flex;
+  @media screen and (max-width: 400px) {
+    margin-left: 37%;
+    width: 60%;
+    margin-top: 8%;
+  }
 `;

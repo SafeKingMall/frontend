@@ -8,12 +8,13 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const QnAWr = () => {
   const navigate = useNavigate();
-
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const cookies = new Cookies();
@@ -61,7 +62,7 @@ export const QnAWr = () => {
         <S.DivImg key={image}>
           <div>{image}</div>
           <button onClick={() => setSelectedImages(selectedImages.filter((e) => e !== image))}>
-            <VscClose size='30' />
+            {isDesktopOrMobile !== true ? <VscClose size='30' /> : <VscClose size='28' />}
           </button>
         </S.DivImg>
       );

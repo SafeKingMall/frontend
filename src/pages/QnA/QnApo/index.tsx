@@ -12,10 +12,12 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const QnAPo = () => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const { state } = useLocation();
   const navigate = useNavigate();
   const itemId = state.data;
@@ -327,7 +329,11 @@ export const QnAPo = () => {
                       target='_blank'
                       rel='noreferrer'
                     >
-                      <AiOutlineDownload size='30' />
+                      {isDesktopOrMobile !== true ? (
+                        <AiOutlineDownload size='30' />
+                      ) : (
+                        <AiOutlineDownload size='20' />
+                      )}
                     </a>
                   </div>
                 </S.FileDown>

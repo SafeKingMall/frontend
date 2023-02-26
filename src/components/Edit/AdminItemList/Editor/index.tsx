@@ -79,8 +79,8 @@ export const EditorWr = (props: any) => {
           ['link', 'image', 'video'],
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
           ['bold', 'italic', 'underline', 'strike'],
-          [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
           [{ align: [] }, { color: [] }, { background: [] }],
+          [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
         ],
         handlers: {
           image: imageHandler,
@@ -119,7 +119,7 @@ export const EditorWr = (props: any) => {
         onChange={(e: any) => props.setDescriptEdit(e)}
         modules={modules}
         formats={formats}
-        style={{ margin: '1%' }}
+        style={{ margin: '1% 0 1% 1%' }}
       />
     </>
   );

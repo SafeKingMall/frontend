@@ -14,6 +14,9 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 400px) {
+    width: 80%;
+  }
 `;
 export const SearchArea = styled.div`
   width: 14.4rem;
@@ -44,6 +47,11 @@ export const SearchBar = styled.input`
   border: 0.01rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
+  @media screen and (max-width: 400px) {
+    width: 70%;
+    height: 300%;
+    font-size: 0.5rem;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -54,4 +62,8 @@ export const SearchButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 400px) {
+    width: 10%;
+    height: 5vh;
+  }
 `;

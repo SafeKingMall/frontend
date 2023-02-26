@@ -10,10 +10,12 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
+// import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const QnAList = (props: any) => {
+  // const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   // 들어온 데이터 넣는것
@@ -93,8 +95,10 @@ export const QnAList = (props: any) => {
                   <ul>{el.title}</ul>
                   <TfiLock color='#D9D9D9' />
                 </div>
-                <div>{el.memberId}</div>
-                <div>{registDate2(el.createDate)}</div>
+                <div>
+                  <p>{el.memberId}</p>
+                  <p>{registDate2(el.createDate)}</p>
+                </div>
               </S.Container>
             );
           })
