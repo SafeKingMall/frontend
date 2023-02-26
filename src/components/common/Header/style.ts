@@ -82,9 +82,13 @@ export const IconBox = styled.div`
   }
 `;
 export const IconWrap = styled.div`
-  width: 0.75rem;
-  height: 0.75rem;
-  ${({ theme }) => theme.common.flexCenter}
+  width: 0.35rem;
+  height: 0.35rem;
+  ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
 `;
 export const GreenBtn = styled.button`
   width: 1.04rem;
