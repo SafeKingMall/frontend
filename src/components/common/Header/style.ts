@@ -65,12 +65,26 @@ export const UserContentBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media (max-width: 720px) {
+    width: 75%;
+    margin-right: 0.8rem;
+    /* justify-content: space-between; */
+  }
 `;
 export const IconBox = styled.div`
   width: 1.04rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media (max-width: 720px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+`;
+export const IconWrap = styled.div`
+  width: 0.75rem;
+  height: 0.75rem;
+  ${({ theme }) => theme.common.flexCenter}
 `;
 export const GreenBtn = styled.button`
   width: 1.04rem;
@@ -93,5 +107,14 @@ export const GrayBtn = styled(GreenBtn)`
   border: 0.01rem solid #999999;
   @media (max-width: 720px) {
     display: none;
+  }
+`;
+export const SliderWrap = styled.div`
+  display: none;
+  @media (max-width: 720px) {
+    display: initial;
+    height: calc(var(--vh, 1vh) * 100);
+    width: 50%;
+    background-color: red;
   }
 `;

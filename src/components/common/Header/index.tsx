@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
@@ -7,6 +7,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { HiOutlineMenu } from 'react-icons/hi';
+import { SliderMenu } from '../SliderMenu';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export const Header = () => {
   const cookies = new Cookies();
   const loginUser = useRef(cookies.get('loginUser'));
   const location = useLocation();
+  const [sliderToggle, setSliderToggle] = useState(false);
 
   const moveLocation = (path: string) => {
     if (path === location.pathname) {
@@ -48,9 +50,15 @@ export const Header = () => {
         }
       });
   };
+
+  const openSlider = () => {
+    setSliderToggle(true);
+    document.body.style.cssText = 'overflow-y: hidden; width: 100%;';
+  };
   return (
     <S.Container>
-      <S.MenuBtnArea>
+      <SliderMenu sliderToggle={sliderToggle} setSliderToggle={setSliderToggle} />
+      <S.MenuBtnArea onClick={() => openSlider()}>
         <HiOutlineMenu size='1rem' color='#212121' style={{ marginLeft: '0.8rem' }} />
       </S.MenuBtnArea>
       <S.LogoArea>
@@ -69,8 +77,12 @@ export const Header = () => {
             <S.GreenBtn onClick={() => moveLocation('/admin-member')}>관리자모드</S.GreenBtn>
           ) : (
             <S.IconBox>
-              <AiOutlineUser size='0.3rem' onClick={() => moveLocation('/mypage')} style={{ cursor: 'pointer' }} />
-              <AiOutlineShopping size='0.3rem' onClick={() => moveLocation('/carts')} style={{ cursor: 'pointer' }} />
+              <S.IconWrap>
+                <AiOutlineUser size='100%' onClick={() => moveLocation('/mypage')} style={{ cursor: 'pointer' }} />
+              </S.IconWrap>
+              <S.IconWrap>
+                <AiOutlineShopping size='100%' onClick={() => moveLocation('/carts')} style={{ cursor: 'pointer' }} />
+              </S.IconWrap>
             </S.IconBox>
           ) : (
             ''
