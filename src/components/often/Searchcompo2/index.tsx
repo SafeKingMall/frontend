@@ -5,11 +5,13 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { Pagination } from '../pagination';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useMediaQuery } from 'react-responsive';
 import '../../../css/alert.css';
 
 const swal = withReactContent(Swal);
 
 export const Searchcompo2 = (props: any) => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   //현재페이지
   const [currentPage, setCurrentPage] = useState(props.page + 1);
   //페이지당 보여지는 리스트
@@ -61,7 +63,11 @@ export const Searchcompo2 = (props: any) => {
             autoComplete='off'
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
-            <AiOutlineSearch size='2.8rem' color='#ffffff' />
+            {isDesktopOrMobile !== true ? (
+              <AiOutlineSearch size='2.8rem' color='#ffffff' />
+            ) : (
+              <AiOutlineSearch size='1rem' color='#ffffff' />
+            )}
           </S.SearchButton>
         </S.SearchArea>
       </S.Container>

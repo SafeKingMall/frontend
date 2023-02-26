@@ -10,10 +10,12 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { CiLock } from 'react-icons/ci';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const QnAPw = () => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   const navigate = useNavigate();
@@ -81,10 +83,16 @@ export const QnAPw = () => {
       <S.Wrapper>
         <S.PwBox>
           <S.Ladius>
-            <CiLock size='100' color='white' fontWeight='900' />
+            {isDesktopOrMobile !== true ? (
+              <CiLock size='100' color='white' fontWeight='900' />
+            ) : (
+              <CiLock size='55' color='white' fontWeight='900' />
+            )}
           </S.Ladius>
-          <div>비공개 게시글입니다.</div>
-          <div>비밀번호를 입력해주세요.</div>
+          <S.DivWeight>
+            <div>비공개 게시글입니다.</div>
+            <div>비밀번호를 입력해주세요.</div>
+          </S.DivWeight>
           <S.QnApwInput
             onKeyDown={(e) => onKeyDownEnter(e)}
             type='password'

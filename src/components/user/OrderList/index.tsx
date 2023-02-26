@@ -10,10 +10,12 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const OrderList = (props: any) => {
+    const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
     const { registDate2 } = useDateFormat();
     const { MoneyNumber } = useMoney();
 
@@ -165,24 +167,56 @@ export const OrderList = (props: any) => {
                     data.map((el: any, index: any) => {
                         return (
                             <S.Container key={index} >
-                                <div onClick={() => moveRefundDe(el.id)}>{el.id}</div>
-                                <div onClick={() => moveRefundDe(el.id)}>{el.date.slice(0, 11)}</div>
-                                <div onClick={() => moveRefundDe(el.id)}>{el.order_item.name}</div>
-                                <div onClick={() => moveRefundDe(el.id)}>{el.count}</div>
-                                <div onClick={() => moveRefundDe(el.id)}>{MoneyNumber(el.price)}</div>
-                                <div onClick={() => moveRefundDe(el.id)}>
-                                    {el.delivery.status === 'PREPARATION'
-                                        ? '배송준비'
-                                        : el.delivery.status === 'IN_DELIVERY'
-                                            ? '배송중'
-                                            : el.delivery.status === 'COMPLETE'
-                                                ? '배송완료'
-                                                : '배송취소'}
-                                </div>
-                                <div>
-                                    <S.RefundBtn onClick={() => moveMypageAp(el.id, el.delivery.status)}>요청하기</S.RefundBtn>
+                                {isDesktopOrMobile !== true ? (<>  <div onClick={() => moveRefundDe(el.id)}>{el.id}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.date.slice(0, 11)}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.order_item.name}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.count}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{MoneyNumber(el.price)}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>
+                                        {el.delivery.status === 'PREPARATION'
+                                            ? '배송준비'
+                                            : el.delivery.status === 'IN_DELIVERY'
+                                                ? '배송중'
+                                                : el.delivery.status === 'COMPLETE'
+                                                    ? '배송완료'
+                                                    : '배송취소'}
+                                    </div>
+                                    <div>
+                                        <S.RefundBtn onClick={() => moveMypageAp(el.id, el.delivery.status)}>요청하기</S.RefundBtn>
 
-                                </div>
+                                    </div></>) : (<ul>
+                                        <div onClick={() => moveRefundDe(el.id)}>
+                                            <p>{el.date.slice(0, 11)}[{el.merchant_uid}]</p>
+                                            <p>자세히 보기 &gt;</p>
+
+                                        </div>
+                                        <div>
+                                            <img
+                                                src={el.order_item === '' ? '' : process.env.REACT_APP_BASE_URL + el.order_item.thumbnail}
+                                                width='80'
+                                                height='80'
+                                                alt={el.order_item.name}
+                                                style={{ border: '1px solid #DDDDDD' }} />
+                                            <ul>
+                                                <p >{el.order_item.name}</p>
+                                                <p >{MoneyNumber(el.price)}</p>
+                                                <p >종류 : {el.count}</p>
+                                            </ul>
+                                        </div>
+                                        <div >
+                                            {el.delivery.status === 'PREPARATION'
+                                                ? '배송준비'
+                                                : el.delivery.status === 'IN_DELIVERY'
+                                                    ? '배송중'
+                                                    : el.delivery.status === 'COMPLETE'
+                                                        ? '배송완료'
+                                                        : '배송취소'}
+                                        </div>
+                                        <div>
+                                            <S.RefundBtn onClick={() => moveMypageAp(el.id, el.delivery.status)}>환불요청</S.RefundBtn>
+
+                                        </div></ul>)}
+
                             </S.Container>
                         );
                     })
@@ -272,7 +306,7 @@ export const OrderList = (props: any) => {
                 <div>No</div>
                 <div>주문일자[번호]</div>
                 <div>상품명</div>
-                <div>수량</div>
+                <div>종류</div>
                 <div>상품구매금액</div>
                 <div>배송상태</div>
                 <div>환불요청</div>

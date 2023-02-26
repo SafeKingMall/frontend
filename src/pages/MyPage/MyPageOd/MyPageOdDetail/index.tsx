@@ -13,10 +13,12 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const MyPageOdDetail = () => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   const navigate = useNavigate();
@@ -116,13 +118,24 @@ export const MyPageOdDetail = () => {
 
       <S.Table>
         <tbody>
-          <tr>
+          {isDesktopOrMobile !== true ? (<tr>
             <th>수령인</th>
 
             <td>{deliInfor.receiver || ''}</td>
             <th>연락처</th>
             <td>{deliInfor.phone_number || ''}</td>
+          </tr>) : (<><tr>
+            <th>수령인</th>
+
+            <td>{deliInfor.receiver || ''}</td>
           </tr>
+            <tr>
+              <th>연락처</th>
+              <td>{deliInfor.phone_number || ''}</td>
+            </tr>
+          </>
+          )}
+
           <tr>
             <th>주소</th>
             <td colSpan={3}>{deliInfor.address || ''}</td>
@@ -145,7 +158,7 @@ export const MyPageOdDetail = () => {
     <div>
 
       <S.Table>
-        <tbody>
+        {isDesktopOrMobile !== true ? (<tbody>
           <tr>
             <th>결제방식</th>
             <td>{payInfor.pay_method || ''}</td>
@@ -166,7 +179,32 @@ export const MyPageOdDetail = () => {
             <th>사업자 번호</th>
             <td>{payInfor.business_license_number}</td>
           </tr>
-        </tbody>
+        </tbody>) : (<tbody>
+          <tr>
+            <th>결제방식</th>
+            <td>{payInfor.pay_method || ''}</td>
+          </tr><tr>
+            <th>결제금액</th>
+            <td>{MoneyNumber(payInfor.amount) || ''}</td>
+          </tr>
+          <tr>
+            <th>입금자명</th>
+            <td>
+              {payInfor.buyer_name}
+            </td>
+          </tr><tr>
+            <th>카드사</th>
+            <td>{payInfor.card_company || ''}</td>
+          </tr>
+          <tr>
+            <th>현금영수증방식</th>
+            <td>{payInfor.cash_receipt_method}</td>
+          </tr><tr>
+            <th>사업자 번호</th>
+            <td>{payInfor.business_license_number}</td>
+          </tr>
+        </tbody>)}
+
       </S.Table>
     </div>
   );
@@ -212,7 +250,7 @@ export const MyPageOdDetail = () => {
                 <span>{orderDay || ''}</span>
               </div>
             </S.Section1Top>
-            <S.Table2>
+            {isDesktopOrMobile !== true ? (<S.Table2>
               <tbody>
                 <tr>
                   <td colSpan={2}>상품명</td>
@@ -246,14 +284,50 @@ export const MyPageOdDetail = () => {
 
                       <td>{MoneyNumber(deliInfor.cost)}</td>
                       <td>
-                        <div>{deliComStatus || ''}</div>
-                        <div>{deliNumber}</div>
+                        <div>  {deliComStatus || ''}</div>
+                        <div> {deliNumber}</div>
                       </td>
                     </tr>
                   );
                 })}
               </tbody>
-            </S.Table2>
+            </S.Table2>) : (<S.Mobail>
+              {itemInfor.map((al: any, index: any) => {
+                return (
+                  <ul>
+                    <div >
+                      <p>주문상품</p>
+
+                    </div>
+                    <div>
+                      <img
+                        src={al === '' ? '' : process.env.REACT_APP_BASE_URL + al.thumbnail}
+                        width='70'
+                        height='70'
+                        alt={al.name}
+                        style={{ border: '1px solid #DDDDDD' }}
+                      />
+                      <ul>
+                        <p >{al.name}</p>
+                        <p >{MoneyNumber(al.price * al.count) || ''}</p>
+                        <p >수량 : {al.count || ''}</p>
+                      </ul>
+                    </div>
+                    <div >
+                      {deliValue(deliveryStatus)}
+                    </div>
+                    <div>
+                      <p>배송비</p>
+                      <p>{MoneyNumber(deliInfor.cost)}</p></div>
+                    <div>
+                      <p>송장번호</p>
+                      <p>{deliComStatus || ''}  &nbsp;{deliNumber}</p></div>
+                  </ul>
+                )
+              })}
+            </S.Mobail>)}
+
+
           </S.Section1Wrap>
           <S.OrderDiv>
             <S.OrderH2>배송 정보</S.OrderH2>

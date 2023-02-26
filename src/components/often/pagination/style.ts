@@ -27,6 +27,10 @@ export const ButtonPageNumbers = styled.button`
   &:focus {
     outline: none;
   }
+  @media screen and (max-width: 400px) {
+    margin-bottom: 0;
+    font-size: 0.5rem;
+  }
 `;
 
 export const Paging2 = styled.li`
@@ -38,5 +42,9 @@ export const Paging2 = styled.li`
     background-color: ${({ theme }) => theme.palette.green};
     cursor: pointer;
     color: white;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+    padding: 5% 10%;
   }
 `;

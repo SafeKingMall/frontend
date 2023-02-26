@@ -4,11 +4,18 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   min-width: 14.4rem;
+  @media screen and (max-width: 400px) {
+    min-width: 100%;
+    height: 100%;
+  }
 `;
 export const Wrapper = styled.div`
   margin-left: 0.2rem;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 400px) {
+    margin-left: 0;
+  }
 `;
 export const Top = styled.div`
   margin: 1rem 0 0.88rem 0;
@@ -18,4 +25,9 @@ export const Top = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    margin: 4% 0 4% 0;
+    font-size: 0.8rem;
+    font-weight: 900;
+  }
 `;

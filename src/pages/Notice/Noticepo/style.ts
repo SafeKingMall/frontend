@@ -11,6 +11,11 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
+  @media screen and (max-width: 400px) {
+    margin-bottom: 8%;
+    font-size: 0.7rem;
+    padding-top: 15%;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -20,6 +25,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 400px) {
+    width: 85%;
+  }
 `;
 
 export const NoticeButton = styled.button`
@@ -30,6 +39,12 @@ export const NoticeButton = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    margin: 5% 0 3% 95%;
+    font-size: 0.5rem;
+    width: 20vw;
+    height: 5vh;
+  }
 `;
 
 export const NoticeButton1 = styled.button`
@@ -39,6 +54,13 @@ export const NoticeButton1 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    width: 50%;
+    font-size: 0.5rem;
+    width: 20vw;
+    height: 5vh;
+    margin-right: 3%;
+  }
 `;
 
 export const NoticeButton2 = styled.button`
@@ -49,20 +71,35 @@ export const NoticeButton2 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+    width: 20vw;
+    height: 5vh;
+  }
 `;
 
 export const ButtonBox = styled.div`
   margin-top: 1.48rem;
   font-size: 0.24rem;
-  margin: 1.2rem 0rem 0rem 11.7rem;
+  margin: 1.2rem 0rem 0rem 12.85rem;
+  width: 4rem;
+  display: flex;
+  @media screen and (max-width: 400px) {
+    margin: 0 0 3% 78%;
+    width: 60%;
+  }
 `;
 
 export const PoBox = styled.div`
   width: 14.4rem;
   margin-top: 0.24rem;
   font-size: 0.24rem;
-  border-top: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  border-top: 0.05rem solid ${({ theme }) => theme.palette.green};
   border-bottom: 0.011rem solid ${({ theme }) => theme.palette.txtgray};
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    margin-left: 18%;
+  }
 `;
 
 export const TitleDiv = styled.div`
@@ -81,6 +118,16 @@ export const TitleDiv = styled.div`
       justify-content: center;
     }
   }
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    font-size: 0.4rem;
+
+    div {
+      &:first-child {
+        font-size: 0.5rem;
+      }
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -90,6 +137,84 @@ export const Content = styled.div`
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
 `;
 
+export const NextPage = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: ${({ theme }) => theme.palette.txtgray};
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  cursor: pointer;
+`;
+export const SecondDiv = styled.div`
+  text-align: right;
+  cursor: pointer;
+  div {
+    &:first-child {
+      justify-content: flex-end;
+    }
+  }
+`;
+
+export const NextTitle = styled.div`
+  cursor: pointer;
+  font-size: 0.32rem;
+  padding-bottom: 0.16rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+    padding-bottom: 5%;
+    padding-top: 4%;
+  }
+`;
+
+export const FirstDiv = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.16rem;
+  padding-bottom: 0.16rem;
+  padding-top: 0.24rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.4rem;
+  }
+`;
+
+export const DateData = styled.div`
+  cursor: pointer;
+  padding-bottom: 0.24rem;
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+`;
+
+export const NotPage = styled.div`
+  font-size: 0.32rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const NotPage2 = styled.div`
+  font-size: 0.32rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const Table = styled.table`
+  width: 14.4rem;
+  td {
+    width: 7.2rem;
+    height: 1.59rem;
+    &:first-child {
+      border-right: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+    }
+    &:last-child {
+      text-align: right;
+    }
+  }
+`;
+
+//에디터
 export const Description = styled.div`
   width: 100%;
   h1 {
@@ -146,64 +271,51 @@ export const Description = styled.div`
   img {
     width: 100%;
   }
-`;
-
-export const NextPage = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.palette.txtgray};
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
-  cursor: pointer;
-`;
-export const SecondDiv = styled.div`
-  text-align: right;
-  cursor: pointer;
-  div {
-    &:first-child {
-      justify-content: flex-end;
+  @media screen and (max-width: 400px) {
+    h1 {
+      font-size: 0.75rem;
     }
-  }
-`;
-
-export const NextTitle = styled.div`
-  cursor: pointer;
-  font-size: 0.32rem;
-  padding-bottom: 0.16rem;
-`;
-
-export const FirstDiv = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 0.16rem;
-  padding-bottom: 0.16rem;
-  padding-top: 0.24rem;
-`;
-
-export const DateData = styled.div`
-  cursor: pointer;
-  padding-bottom: 0.24rem;
-`;
-
-export const NotPage = styled.div`
-  font-size: 0.32rem;
-`;
-
-export const NotPage2 = styled.div`
-  font-size: 0.32rem;
-`;
-
-export const Table = styled.table`
-  width: 14.4rem;
-  td {
-    width: 7.2rem;
-    height: 1.59rem;
-    &:first-child {
-      border-right: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+    h2 {
+      font-size: 0.64rem;
     }
-    &:last-child {
-      text-align: right;
+    h3 {
+      font-size: 0.6rem;
+    }
+    h4 {
+      font-size: 0.55rem;
+    }
+    h5 {
+      font-size: 0.5rem;
+    }
+    h6 {
+      font-size: 0.45rem;
+    }
+    p {
+      font-size: 0.4rem;
+    }
+    span {
+      font-size: 0.4rem;
+    }
+    h1 > span {
+      font-size: 0.75rem;
+    }
+    h2 > span {
+      font-size: 0.75rem;
+    }
+    h3 > span {
+      font-size: 0.75rem;
+    }
+    h4 > span {
+      font-size: 0.75rem;
+    }
+    h5 > span {
+      font-size: 0.75rem;
+    }
+    h6 > span {
+      font-size: 0.75rem;
+    }
+    p > span {
+      font-size: 0.4rem;
     }
   }
 `;
