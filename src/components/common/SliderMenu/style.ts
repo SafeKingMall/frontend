@@ -4,18 +4,18 @@ export const Container = styled.div<{ sliderToggle: boolean }>`
   display: none;
   @media (max-width: 720px) {
     display: initial;
-    position: fixed;
+    position: absolute;
     top: 0;
     height: calc(var(--vh, 1vh) * 100);
-    /* height: 100vh; */
+    /* height: 100%; */
     width: 50%;
     background-color: #ffffff;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     box-shadow: 1px 2px 2px #ccc;
     z-index: 2;
     outline: none;
-    overflow-y: scroll;
+    overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
     ${(props) =>
@@ -32,10 +32,11 @@ export const Container = styled.div<{ sliderToggle: boolean }>`
 export const SliderBackgorund = styled.div<{ sliderToggle: boolean }>`
   display: none;
   @media (max-width: 720px) {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     height: calc(var(--vh, 1vh) * 100);
+    /* height: 100%; */
     width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
@@ -72,4 +73,13 @@ export const MenuLi = styled.li`
   display: flex;
   align-items: center;
   padding: 0 0.8rem;
+  cursor: pointer;
+`;
+export const LogoutLi = styled(MenuLi)<{ loginUser: string | undefined }>`
+  ${(props) =>
+    props.loginUser
+      ? css``
+      : css`
+          display: none;
+        `}
 `;

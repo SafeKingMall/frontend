@@ -41,9 +41,9 @@ export const Refresh = () => {
             })
             .then((data) => {
               if (data === 'ROLE_ADMIN') {
-                setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+                setCookie('loginUser', 'admin', { path: '/', expires: rtokenExpires });
               } else if (data === 'ROLE_USER') {
-                setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+                setCookie('loginUser', 'user', { path: '/', expires: rtokenExpires });
               }
             });
         } catch (err) {
