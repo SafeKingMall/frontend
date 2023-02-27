@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Swal from 'sweetalert2';
@@ -13,6 +13,7 @@ export const SliderMenu = (props: any) => {
   const cookies = new Cookies();
   const sliderToggle = props.sliderToggle;
   const setSliderToggle = props.setSliderToggle;
+  const loginUser = useRef(cookies.get('loginUser'));
 
   const moveLocation = (path: string) => {
     if (path === location.pathname) {
@@ -64,7 +65,7 @@ export const SliderMenu = (props: any) => {
           <S.MenuLi onClick={() => moveLocation('/notice')}>공지사항</S.MenuLi>
           <S.MenuLi onClick={() => moveLocation('/qna')}>문의하기</S.MenuLi>
           <S.MenuLi onClick={() => moveLocation('/estimate')}>견적서 요청</S.MenuLi>
-          <S.MenuLi onClick={() => logout()}>로그아웃</S.MenuLi>
+          <S.LogoutLi onClick={() => logout()} loginUser={loginUser.current}>로그아웃</S.LogoutLi>
         </S.MenuUl>
       </S.Container>
     </>

@@ -25,10 +25,6 @@ export const Header = () => {
     }
   };
 
-  useEffect(() => {
-    loginUser.current = cookies.get('loginUser');
-  });
-
   const logout = () => {
     swal
       .fire({

@@ -75,3 +75,11 @@ export const MenuLi = styled.li`
   padding: 0 0.8rem;
   cursor: pointer;
 `;
+export const LogoutLi = styled(MenuLi)<{ loginUser: string | undefined }>`
+  ${(props) =>
+    props.loginUser
+      ? css``
+      : css`
+          display: none;
+        `}
+`;
