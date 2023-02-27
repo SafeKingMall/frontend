@@ -120,9 +120,9 @@ export const Orders = () => {
       setCookie('tokenTime', tokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
       setCookie('rtokenTime', rtokenExpires.getTime(), { path: '/', maxAge: 60 * 60 * 24 });
       if (res.data === 'ROLE_ADMIN') {
-        setCookie('loginUser', 'admin', { path: '/', expires: tokenExpires });
+        setCookie('loginUser', 'admin', { path: '/', expires: rtokenExpires });
       } else if (res.data === 'ROLE_USER') {
-        setCookie('loginUser', 'user', { path: '/', expires: tokenExpires });
+        setCookie('loginUser', 'user', { path: '/', expires: rtokenExpires });
       }
       jwt.current = token;
     });
