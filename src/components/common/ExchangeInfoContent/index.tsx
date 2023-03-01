@@ -72,7 +72,7 @@ export const ExchangeInfoContent = () => {
             </tr>
             <tr id='df6c86fd-7816-4139-8949-4ccef7c0798d'>
               <td id='&lt;MOI' className='block-color-gray_background'>통신 판매업 번호</td>
-              <td id='|itj' className='' style={{ width: '72%' }}>1677-5623-6250-0813</td>
+              <td id='|itj' className='' style={{ width: '72%' }}>제 2023 - 서울강서 - 0867호</td>
             </tr>
             <tr id='accb0811-b400-45b9-aa37-8b09f5759095'>
               <td id='&lt;MOI' className='block-color-gray_background'>담당자</td>
