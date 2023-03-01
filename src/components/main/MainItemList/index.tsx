@@ -18,7 +18,9 @@ export const MainItemList = (props: any) => {
         {itemList.map((item: any) => {
           return (
             <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
-              <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
+              <S.ItemImgWrap>
+                <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
+              </S.ItemImgWrap>
               <S.ItemTextArea>
                 <div style={{ marginTop: '0.2rem' }}>
                   <S.Category>{item.categoryName}</S.Category>

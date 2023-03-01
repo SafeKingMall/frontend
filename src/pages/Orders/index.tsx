@@ -291,7 +291,7 @@ export const Orders = () => {
     })
       .then((res) => {
         const paymentData = {
-          pg: 'html5_inicis.INIpayTest',
+          pg: 'html5_inicis.MOI8539248',
           pay_method: 'card',
           merchant_uid: res.data.order.merchant_uid,
           amount: totalPrice,

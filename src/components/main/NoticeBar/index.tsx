@@ -64,11 +64,11 @@ export const NoticeBar = () => {
         <S.ArrowArea>
           <S.ArrowBox>
             <S.ArrowIcon onClick={() => preNotice()}>
-              <AiOutlineLeft color='#ffffff' />
+              <AiOutlineLeft color='#ffffff' size='100%' />
             </S.ArrowIcon>
             <S.ArrowBar />
             <S.ArrowIcon onClick={() => nextNotice()}>
-              <AiOutlineRight color='#ffffff' />
+              <AiOutlineRight color='#ffffff' size='100%' />
             </S.ArrowIcon>
           </S.ArrowBox>
         </S.ArrowArea>

@@ -12,12 +12,20 @@ export const CustomSlider = styled(Slider)`
   .slick-list {
     height: 5.6rem;
   }
+  @media (max-width: 720px) {
+    .slick-list {
+      height: 7rem;
+    }
+  }
 `;
 export const BannerWrap = styled.div`
   width: 100%;
   height: 5.6rem;
   position: relative;
   ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    height: 7rem;
+  }
 `;
 export const Banner = styled.img`
   width: 100%;
@@ -27,6 +35,7 @@ export const Banner1 = styled(Banner).attrs({ src: 'img/MainBanner1.png' })``;
 export const Banner2 = styled(Banner).attrs({ src: 'img/MainBanner2.png' })``;
 export const Banner3 = styled(Banner).attrs({ src: 'img/MainBanner3.png' })``;
 export const BannerTextArea = styled.div`
+  width: 100%;
   ${({ theme }) => theme.common.flexCenter};
   flex-direction: column;
   position: absolute;

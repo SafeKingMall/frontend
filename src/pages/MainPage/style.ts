@@ -8,6 +8,9 @@ export const Container = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
 `;
 export const BannerNoticeWrap = styled.div`
   position: relative;

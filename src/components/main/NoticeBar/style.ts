@@ -12,6 +12,10 @@ export const NoticeBarWrap = styled.div`
   font-weight: 500;
   color: #ffffff;
   border-top: 0.1px solid rgba(255, 255, 255, 0.7);
+  @media (max-width: 720px) {
+    height: 1.2rem;
+    font-size: 0.38rem;
+  }
 `;
 export const NoticeContent = styled.div`
   width: 100%;
@@ -33,6 +37,9 @@ export const LeftBar = styled.div`
   background-color: #ffffff;
   position: absolute;
   right: 0;
+  @media (max-width: 720px) {
+    height: 0.6rem;
+  }
 `;
 export const TitleArea = styled.div`
   /* width: 100rem; */
@@ -45,27 +52,51 @@ export const Title = styled.span`
   :hover {
     text-decoration: underline;
   }
+  display: inline-block;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 export const ArrowArea = styled.div`
   width: 20%;
+  height: 100%;
   display: flex;
   align-items: center;
   position: relative;
+  @media (max-width: 720px) {
+    justify-content: center;
+    padding-right: 5%;
+  }
 `;
 export const ArrowBox = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
   right: 1.9rem;
+  @media (max-width: 720px) {
+    position: initial;
+  }
 `;
 export const ArrowIcon = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  width: 0.24rem;
+  height: 0.24rem;
+  @media (max-width: 720px) {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 `;
 export const ArrowBar = styled.div`
   width: 0.01rem;
   height: 0.16rem;
   background-color: #ffffff;
   margin: 0 0.16rem;
+  @media (max-width: 720px) {
+    height: 0.4rem;
+    width: 0.02rem;
+    margin: 0 0.4rem;
+  }
 `;

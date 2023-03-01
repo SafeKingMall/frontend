@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
+// import { MainCategoryMobile } from '../MainCategoryMobile';
 
 export const MainCategory = (props: any) => {
   const category = props.category;
@@ -26,6 +27,15 @@ export const MainCategory = (props: any) => {
     color: '#289951',
     fontWeight: 700,
   };
+  const settings = {
+    infinite: false,
+    autoplay: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    useTransform: false,
+    arrows: true,
+  };
 
   return (
     <S.Container>
@@ -44,6 +54,23 @@ export const MainCategory = (props: any) => {
             );
           })}
         </S.CategoryNavArea>
+        {/* <MainCategoryMobile /> */}
+        <S.SliderContainer>
+          <S.CustomSlider {...settings}>
+            {category.map((el: any) => {
+              return (
+                <S.SlickCategoryWrap key={el.id}>
+                  <S.Category
+                    onClick={() => onChangeCategory(el.name)}
+                    style={selectedCategory === el.name ? selectedStyle : {}}
+                  >
+                    {el.name}
+                  </S.Category>
+                </S.SlickCategoryWrap>
+              );
+            })}
+          </S.CustomSlider>
+        </S.SliderContainer>
         <S.SelectedCategoryArea>
           <S.SelectedCategory>{selectedCategory}</S.SelectedCategory>
           <S.More onClick={() => moreList()}>더 보기 +</S.More>

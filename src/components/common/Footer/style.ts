@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const container = styled.div`
   width: 100%;
-  height: 2rem;
+  height: 2.3rem;
   background-color: #a9d6b9;
   display: flex;
   align-items: center;
@@ -11,9 +11,12 @@ export const container = styled.div`
   bottom: 0;
   /* transform: translateY(-100%); */
   @media (max-width: 720px) {
-    height: 6.3rem;
+    height: 7rem;
     flex-direction: column;
     justify-content: initial;
+  }
+  @media (max-width: 360px) {
+    height: 9rem;
   }
 `;
 export const LogoArea = styled.div`
@@ -60,8 +63,11 @@ export const TextBox = styled.div`
   line-height: 0.25rem;
   @media (max-width: 720px) {
     font-size: 0.35rem;
-    line-height: 0.49rem;
+    line-height: 0.5rem;
     height: initial;
+  }
+  @media (max-width: 360px) {
+    line-height: 0.7rem;
   }
 `;
 export const TextLine = styled.span`
