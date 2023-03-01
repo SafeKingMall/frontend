@@ -105,7 +105,6 @@ input {
     /* min-height: calc(100% - 7rem); */
     min-height: calc(var(--vh, 1vh) * 100);
     transition: min-height 0.2s ease-in;
-    margin-bottom: 0;
   }
 }
 @media (max-width: 600px) {

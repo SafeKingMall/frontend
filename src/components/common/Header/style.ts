@@ -9,7 +9,7 @@ export const Container = styled.div`
   font-size: 0.2rem;
   font-weight: 500;
   color: #212121;
-  border-bottom: 0.005rem solid #777777;
+  /* border-bottom: 0.005rem solid #777777; */
   @media (max-width: 720px) {
     height: 1.8rem;
   }

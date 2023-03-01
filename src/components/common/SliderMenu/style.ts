@@ -4,7 +4,7 @@ export const Container = styled.div<{ sliderToggle: boolean }>`
   display: none;
   @media (max-width: 720px) {
     display: initial;
-    position: absolute;
+    position: fixed;
     top: 0;
     height: calc(var(--vh, 1vh) * 100);
     /* height: 100%; */
@@ -32,7 +32,7 @@ export const Container = styled.div<{ sliderToggle: boolean }>`
 export const SliderBackgorund = styled.div<{ sliderToggle: boolean }>`
   display: none;
   @media (max-width: 720px) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: calc(var(--vh, 1vh) * 100);
