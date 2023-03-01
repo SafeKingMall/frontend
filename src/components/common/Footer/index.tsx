@@ -27,7 +27,7 @@ export const Footer = () => {
             주소: (07802) 서울시 강서구 공항대로 213,
             <S.Spacing /> 보타닉파크타워-2 522호
           </S.TextLine>
-          <S.TextLine>통신판매업번호: 1677-5623-6250-0813</S.TextLine>
+          <S.TextLine>통신판매업번호: 제 2023-서울강서-0867호</S.TextLine>
           <S.TextLine>대표전화: (02) 6953-1170</S.TextLine>
           <S.TextLineGray>
             (주) 리크텍은 모든 거래에 대한 책임과

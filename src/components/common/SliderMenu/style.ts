@@ -13,7 +13,7 @@ export const Container = styled.div<{ sliderToggle: boolean }>`
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     box-shadow: 1px 2px 2px #ccc;
-    z-index: 2;
+    z-index: 3;
     outline: none;
     overflow-y: hidden;
     -ms-overflow-style: none;
@@ -39,7 +39,7 @@ export const SliderBackgorund = styled.div<{ sliderToggle: boolean }>`
     /* height: 100%; */
     width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+    z-index: 2;
     ${(props) =>
       props.sliderToggle
         ? css`
@@ -54,7 +54,6 @@ export const LogoArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   width: 100%;
   height: 1.8rem;
-  border-bottom: 0.005rem solid #777777;
 `;
 export const Logo = styled.img.attrs({ src: 'img/HeaderLogo.png' })`
   width: 3.12rem;
