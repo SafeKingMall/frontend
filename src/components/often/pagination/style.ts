@@ -5,6 +5,9 @@ export const PageNumbers = styled.ul`
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
+  @media screen and (max-width: 400px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const LiPageNumbers = styled.li`

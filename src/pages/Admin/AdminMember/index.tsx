@@ -38,7 +38,6 @@ export const AdminMember = () => {
             })}
           </S.TabMenu>
           <div>
-            {/* <AdimWdList /> */}
             <div>{menuArr[currentTab].content}</div>
           </div>
         </S.Wrapper>

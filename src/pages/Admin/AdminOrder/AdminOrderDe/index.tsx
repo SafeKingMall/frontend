@@ -19,7 +19,6 @@ const swal = withReactContent(Swal);
 export const AdminOrderDe = () => {
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
-  // const data = db.orderdetail;
   const navigate = useNavigate();
   const { MoneyNumber } = useMoney();
 
@@ -86,21 +85,10 @@ export const AdminOrderDe = () => {
           setDeliComStatus(res.data.order.delivery.company);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
@@ -165,7 +153,7 @@ export const AdminOrderDe = () => {
   };
 
   const DeliverySelect = () => (
-    <S.OrderSelect onChange={DelihandleSelect} required value={deliveryStatus}>
+    <S.OrderSelect onChange={DelihandleSelect} required value={deliveryStatus || ''}>
       <S.NoneOption value={deliveryStatus || ''}>{deliValue(deliveryStatus)}</S.NoneOption>
       {Object.entries(deliveryList).map(([key, value]) => (
         <option value={key} key={key}>
@@ -234,7 +222,6 @@ export const AdminOrderDe = () => {
           <tr>
             <th>현금영수증방식</th>
             <td>{/* {el.memo} */}</td>
-            {/* 현금영수증방시데이터는 따로 안들어오나? */}
             <th>사업자번호</th>
             <td>{payInfor.business_number || ''}</td>
           </tr>
@@ -273,14 +260,6 @@ export const AdminOrderDe = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
           }
         }
       });
@@ -330,7 +309,7 @@ export const AdminOrderDe = () => {
               <S.OrderDiv2>
                 <S.AdminWrapper>
                   <h3>주문번호 | </h3>
-                  <div>{data1.id || ''}</div>
+                  <div>{data1.merchant_uid || ''}</div>
                 </S.AdminWrapper>
                 <S.AdminWrapper>
                   <h3>주문일시 | </h3>
@@ -366,10 +345,7 @@ export const AdminOrderDe = () => {
                         <td>{MoneyNumber(al.price) || ''}</td>
                         <td>{al.count || ''}</td>
                         <td>{MoneyNumber(al.price * al.count) || ''}</td>
-                        <td>
-                          {/* <PaysSelect /> */}
-                          {payValue(payMentStatus)}
-                        </td>
+                        <td>{payValue(payMentStatus)}</td>
                         <td>
                           <DeliverySelect />
                         </td>
@@ -381,7 +357,6 @@ export const AdminOrderDe = () => {
                             required
                             value={deliComStatus}
                           >
-                            {/* <option value=''></option> */}
                             {deliComList.map((key: any) => (
                               <option value={key || ''} key={key}>
                                 {key || ''}

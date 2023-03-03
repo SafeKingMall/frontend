@@ -29,6 +29,7 @@ export const AdminItemWr = () => {
 
   //설명부분
   const [descriptEdit, setDescriptEdit] = useState('' as any);
+  //숨기기버튼
   const [hideBtn, setHideBtn] = useState(true);
   //만약 숨기기 버튼이 눌렸으면(false)이면 N을 보내줘야함
   const [sendhide, setSendhide] = useState('' as any);
@@ -38,9 +39,6 @@ export const AdminItemWr = () => {
   const [sendId, setSendId] = useState(0 as any);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
-  // 유효성 검사 (특수문자)
-
-  // const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
   const clickHide = () => {
     setHideBtn(!hideBtn);
@@ -152,6 +150,7 @@ export const AdminItemWr = () => {
     }
   };
 
+  //카테고리 선택
   const [cateSelect, setCateSelect] = useState('');
   const selectChange = (e: any) => {
     setCateSelect(e.target.value);
@@ -175,21 +174,10 @@ export const AdminItemWr = () => {
           setSendId(res.data.content[0].id);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
@@ -308,14 +296,6 @@ export const AdminItemWr = () => {
               cookies.remove('accessToken');
               cookies.remove('refreshToken');
               cookies.remove('loginUser');
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
             }
           }
         });

@@ -13,7 +13,7 @@ export const Select = styled.select`
   width: 1.25rem;
   height: 0.4rem;
   border: 0.01rem solid #ddd;
-  font-size: 0.12rem;
+  font-size: 0.2rem;
   padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;

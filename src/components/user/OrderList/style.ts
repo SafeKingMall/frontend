@@ -189,7 +189,7 @@ export const Container = styled.div`
         font-weight: 600;
       }
       &:nth-child(4) {
-        padding: 2% 0 2% 40%;
+        padding: 2% 0 2% 43%;
       }
     }
   }
@@ -224,7 +224,7 @@ export const SearchBox = styled.div`
   justify-content: center;
   @media screen and (max-width: 400px) {
     width: 100vw;
-    height: 17.5vh;
+    height: 25vh;
     padding: 5%;
   }
 `;
@@ -270,6 +270,33 @@ export const SearchThird = styled.div`
   margin-right: 0.16rem;
   @media screen and (max-width: 400px) {
     margin-right: 0;
+    margin-top: 2.5%;
+  }
+`;
+
+export const SearchFive = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const SearchH2 = styled.h2`
+  font-size: 0.24rem;
+  margin-right: 0.28rem;
+`;
+
+export const SearchInput = styled.input`
+  width: 4.65rem;
+  height: 0.56rem;
+  border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
+  margin-right: 0.16rem;
+  padding-left: 0.08rem;
+  font-size: 0.2rem;
+  @media screen and (max-width: 400px) {
+    width: 68vw;
+    height: 5vh;
+    margin-right: 1%;
+    margin-left: 1%;
+    font-size: 0.45rem;
   }
 `;
 
@@ -289,7 +316,6 @@ export const DayInput = styled.input`
     cursor: pointer;
     @media screen and (max-width: 400px) {
       width: 30%;
-      padding-top: 1%;
     }
   }
   @media screen and (max-width: 400px) {
@@ -317,6 +343,13 @@ export const DeliSelect = styled.select`
   font-size: 0.2rem;
   margin-right: 0.36rem;
   padding-left: 0.22rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.47rem;
+    width: 22vw;
+    margin-top: 2.5%;
+    margin-left: 2%;
+    height: 5vh;
+  }
 `;
 
 export const SearchButton = styled.button`

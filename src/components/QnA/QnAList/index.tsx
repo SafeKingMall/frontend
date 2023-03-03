@@ -7,32 +7,26 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { Cookies } from 'react-cookie';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import '../../../css/alert.css';
-// import { useMediaQuery } from 'react-responsive';
-
-const swal = withReactContent(Swal);
+import { useMediaQuery } from 'react-responsive';
 
 export const QnAList = (props: any) => {
-  // const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   // 들어온 데이터 넣는것
   const [memberList, setMemberList] = useState([]);
   const [sort] = useState(`sort=createDate,desc`);
 
-  // // 페이지 숫자
+  // 페이지 숫자
   const [page, setPage] = useState(0);
-  // // 전체 페이지 확인
+  // 전체 페이지 확인
   const [totalPages, setTotalPages] = useState(0);
   const [size] = useState(7);
-  // //토큰
-  // // select 옵션 선택
+  // select 옵션 선택
   const [filter, setFilter] = useState('title');
-  // // select 박스
+  // select 박스
   const [searchText, setSearchText] = useState('');
-  // // 데이터들
+  // 데이터들
   const [title, setTitle] = useState('');
   //createDate
   const [lastModifiedDate, setLastModifiedDate] = useState('');
@@ -70,14 +64,6 @@ export const QnAList = (props: any) => {
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
       cookies.remove('loginUser');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
     }
   };
 
@@ -95,10 +81,17 @@ export const QnAList = (props: any) => {
                   <ul>{el.title}</ul>
                   <TfiLock color='#D9D9D9' />
                 </div>
-                <div>
-                  <p>{el.memberId}</p>
-                  <p>{registDate2(el.createDate)}</p>
-                </div>
+                {isDesktopOrMobile !== true ? (
+                  <div>
+                    <p>{el.memberId}</p>
+                    <p>{registDate2(el.createDate)}</p>
+                  </div>
+                ) : (
+                  <div>
+                    <ul>{el.memberId}</ul>
+                    <ul>{registDate2(el.createDate)}</ul>
+                  </div>
+                )}
               </S.Container>
             );
           })
@@ -146,11 +139,6 @@ export const QnAList = (props: any) => {
     }
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <Searchcompo2
@@ -168,5 +156,4 @@ export const QnAList = (props: any) => {
       />
     </S.Wrapper>
   );
-  // }
 };

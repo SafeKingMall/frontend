@@ -5,11 +5,6 @@ import { Searchcompo2 } from '../../often/Searchcompo2';
 import { useState } from 'react';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import '../../../css/alert.css';
-
-const swal = withReactContent(Swal);
 
 export const AdminItemList = (props: any) => {
   const cookies = new Cookies();
@@ -24,14 +19,9 @@ export const AdminItemList = (props: any) => {
       });
     } else {
       navigate('/sign-in');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
     }
   };
 
@@ -77,20 +67,10 @@ export const AdminItemList = (props: any) => {
           setListLength(res.data.numberOfElements);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
       }
     };
     getData();
@@ -205,22 +185,9 @@ export const AdminItemList = (props: any) => {
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
       cookies.remove('loginUser');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
     }
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <div>
@@ -244,5 +211,4 @@ export const AdminItemList = (props: any) => {
       <S.QnAButton onClick={() => refreshRoute()}>등록</S.QnAButton>
     </S.Wrapper>
   );
-  // }
 };

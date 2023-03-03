@@ -31,14 +31,7 @@ export const MyPageAp3 = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-            });
+
         }
 
     }
@@ -64,7 +57,6 @@ export const MyPageAp3 = () => {
                         </S.Last>
                     </S.InputContainer>
                     <S.BtnWrapper>
-                        {/* <button onClick={() => navigate('/mypage-ap2')}>이전 단계</button> */}
                         <button onClick={moveRefundDe}>
                             취소내역보기
                         </button>

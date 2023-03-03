@@ -41,7 +41,6 @@ export const SearchUser = (props: any) => {
           })}
         </S.TabMenu>
         <div>
-          {/* <AdimWdList /> */}
           <div>{menuArr[currentTab].content}</div>
         </div>
       </S.PopUpBody>

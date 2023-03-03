@@ -3,6 +3,10 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 14.4rem;
+  @media screen and (max-width: 400px) {
+    min-width: 100%;
+    height: 100%;
+  }
 `;
 export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
@@ -14,11 +18,24 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 14.4rem;
   margin-bottom: 1.2rem;
+  @media screen and (max-width: 400px) {
+    margin-left: 0;
+    width: 100vw;
+  }
 `;
 
 export const RefundH1 = styled.h3`
   font-size: 0.4rem;
   margin-top: 1.42rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 900;
+    padding: 4% 0 4% 0;
+    width: 100vw;
+    text-align: center;
+    border-bottom: 0.3vh solid ${({ theme }) => theme.palette.green};
+  }
 `;
 export const Top = styled.div`
   margin: 0.54rem 0 1.04rem 0;
@@ -26,6 +43,9 @@ export const Top = styled.div`
   height: 1.09rem;
   background-image: url('/img/Refund/Refund2.png');
   background-size: 100% 100%;
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 `;
 
 export const Mid = styled.div`
@@ -34,23 +54,43 @@ export const Mid = styled.div`
   width: 14.4rem;
   h3 {
     font-size: 0.32rem;
+    @media screen and (max-width: 400px) {
+      font-size: 0.45rem;
+    }
   }
   p {
     color: ${({ theme }) => theme.palette.green};
     font-size: 0.24rem;
+    @media screen and (max-width: 400px) {
+      font-size: 0.4rem;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    width: 100vw;
+    padding-top: 4%;
+    padding-bottom: 4%;
   }
 `;
 
 export const InputContainer = styled.div`
   width: 14.4rem;
-  border-bottom: 0.01rem solid #289951 !important;
+  border-bottom: 0.01rem solid #289951;
   border-top: 0.01rem solid #289951;
 
+  @media screen and (max-width: 400px) {
+    border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+    width: 100vw;
+  }
   h3 {
     font-size: 0.24rem;
     padding-bottom: 0.12rem;
     /* width: 144rem; */
     margin-bottom: 0.2rem;
+    @media screen and (max-width: 400px) {
+      font-size: 0.45rem;
+      padding-top: 4%;
+    }
   }
 `;
 
@@ -58,6 +98,9 @@ export const InputContainer = styled.div`
 export const RefundReason = styled.div`
   padding: 0.31rem 0.5rem;
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+  @media screen and (max-width: 400px) {
+    padding-bottom: 4%;
+  }
   label {
     display: flex;
     align-items: center;
@@ -94,8 +137,13 @@ export const RefundReason = styled.div`
     width: 12.92rem;
     height: 0.4rem;
     border: 1px solid ${({ theme }) => theme.palette.lightgray};
+    padding: 2%;
+    @media screen and (max-width: 400px) {
+      width: 100vw;
+      height: 5vh;
+      font-size: 0.4rem;
+    }
     ::placeholder {
-      padding: 0.05rem;
       color: ${({ theme }) => theme.palette.txtgray};
     }
   }
@@ -107,6 +155,9 @@ export const BtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 400px) {
+    width: 82vw;
+  }
   > button {
     background-color: #fff;
     border-radius: 1rem;
@@ -115,6 +166,10 @@ export const BtnWrapper = styled.div`
     font-size: 0.24rem;
     font-weight: 400;
     line-height: 0.3rem;
+    @media screen and (max-width: 400px) {
+      width: 40vw;
+      height: 6vh;
+    }
     :first-child {
       border: 0.01rem solid #289951;
       font-weight: 700;
@@ -122,6 +177,9 @@ export const BtnWrapper = styled.div`
       line-height: 29px;
 
       color: #289951;
+      @media screen and (max-width: 400px) {
+        font-size: 0.6rem;
+      }
     }
     :last-child {
       background-color: #289951;
@@ -129,6 +187,9 @@ export const BtnWrapper = styled.div`
       font-size: 24px;
       line-height: 29px;
       color: #ffffff;
+      @media screen and (max-width: 400px) {
+        font-size: 0.6rem;
+      }
       :disabled {
         background-color: #aaaaaa;
       }

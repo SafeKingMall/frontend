@@ -10,14 +10,17 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const RefundList = (props: any) => {
+    const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
     const { registDate2 } = useDateFormat();
     const { MoneyNumber } = useMoney();
 
     const navigate = useNavigate();
+    //환불내역 상세페이지로 이동
     const moveRefundDe = (item: any) => {
         if (cookies.get('refreshToken')) {
             navigate('/mypage-rf-detail', {
@@ -30,14 +33,7 @@ export const RefundList = (props: any) => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-            });
+
         }
 
     };
@@ -90,21 +86,11 @@ export const RefundList = (props: any) => {
                 });
 
             } catch (err: any) {
-                // if (err.response.status === 403) {
                 navigate('/sign-in');
                 cookies.remove('accessToken');
                 cookies.remove('refreshToken');
                 cookies.remove('loginUser');
-                swal.fire({
-                    heightAuto: false,
-                    icon: 'warning',
-                    text: '로그인이 만료되었습니다.',
-                    confirmButtonText: '확인',
-                    confirmButtonColor: '#289951',
-                    cancelButtonText: '취소',
-                    width: 400,
-                });
-                // }
+
             }
 
         };
@@ -117,32 +103,58 @@ export const RefundList = (props: any) => {
                 {listLength !== 0 ? (
                     data.map((el: any, index: any) => {
                         return (
-                            <S.Container key={index} onClick={() => moveRefundDe(el.id)}>
-                                <div>{el.id}</div>
-                                <div>{el.date.slice(0, 11)}</div>
-                                <div>
-                                    <p>{el.date.slice(0, 11)}</p>
-                                    <p>[{el.merchant_uid}]</p>
-                                </div>
-                                <div>{el.order_item.name}</div>
-                                <div>{el.count}</div>
-                                <div>{MoneyNumber(el.payment.price)}</div>
-                                <div>
-                                    {el.payment.status === 'READY'
-                                        ? '결제대기'
-                                        : el.payment.status === 'PAID'
-                                            ? '결제완료'
-                                            : el.payment.status === 'CANCEL'
-                                                ? '결제취소'
-                                                : '결제실패'}
-                                </div>
-                            </S.Container>
+                            <S.Container key={index} >
+                                {isDesktopOrMobile !== true ? (<>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.id}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.date.slice(0, 11)}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>
+                                        <p>{el.date.slice(0, 11)}</p>
+                                        <p>[{el.merchant_uid}]</p>
+                                    </div >
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.order_item.name}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{el.count}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>{MoneyNumber(el.payment.price)}</div>
+                                    <div onClick={() => moveRefundDe(el.id)}>
+                                        {el.payment.status === 'READY'
+                                            ? '결제대기'
+                                            : el.payment.status === 'PAID'
+                                                ? '결제완료'
+                                                : el.payment.status === 'CANCEL'
+                                                    ? '결제취소'
+                                                    : '결제실패'}
+                                    </div></>) : (<ul>
+                                        <div onClick={() => moveRefundDe(el.id)}>
+                                            <p>{el.date.slice(0, 11)}[{el.merchant_uid}]</p>
+                                            <p>자세히 보기 &gt;</p>
+
+                                        </div>
+                                        <div>
+
+                                            <ul>
+                                                <p >{el.order_item.name}</p>
+                                                <p >{MoneyNumber(el.payment.price)}</p>
+                                                <p >종류 : {el.count}</p>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            {el.payment.status === 'READY'
+                                                ? '결제대기'
+                                                : el.payment.status === 'PAID'
+                                                    ? '결제완료'
+                                                    : el.payment.status === 'CANCEL'
+                                                        ? '결제취소'
+                                                        : '결제실패'}
+                                        </div>
+                                    </ul>)
+                                }
+
+                            </S.Container >
                         );
                     })
                 ) : (
                     <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
                 )}
-            </S.DataList>
+            </S.DataList >
         );
     };
     //오늘
@@ -176,11 +188,7 @@ export const RefundList = (props: any) => {
         setFinishDay(registDate2(date));
     };
 
-    //   if (props.error) {
-    //     return <>{props.error.message}</>;
-    // } else if (!props.loaded) {
-    //     return <>loading...</>;
-    // } else {
+
     return (
         <S.Wrapper>
             <S.Mid>환불 내역</S.Mid>
@@ -219,7 +227,7 @@ export const RefundList = (props: any) => {
                     <S.SearchButton>조회</S.SearchButton>
                 </S.SearchSecon>
             </S.SearchBox>
-            <S.BigTitle>주문 상품 정보</S.BigTitle>
+            <S.BigTitle>환불 상품 정보</S.BigTitle>
             <S.AdminOrdertitle>
                 <div>No</div>
                 <div>취소일자</div>
@@ -246,5 +254,4 @@ export const RefundList = (props: any) => {
             />
         </S.Wrapper>
     );
-    // }
 };

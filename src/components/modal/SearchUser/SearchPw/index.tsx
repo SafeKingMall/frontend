@@ -6,24 +6,24 @@ import { CiLock } from 'react-icons/ci';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useMediaQuery } from 'react-responsive';
 
 interface SearchPwForm {
   id: string;
 
 }
 export const SearchPw = (props: any) => {
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
   const setIsOpen = props.setIsOpen;
   const swal = withReactContent(Swal);
   //아이디 
   const [id, setId] = useState<string>('');
   //유효성 검사
   const [isId, setIsId] = useState<boolean>(false);
-  // const [isCode, setIsCode] = useState<boolean>(false);
   //에러메세지
   const [idMsg, setIdMsg] = useState<string>('');
   //타이머
   const [timer, setTimer] = useState(false);
-  // const [minutes, set]
 
 
   //아이디
@@ -75,6 +75,7 @@ export const SearchPw = (props: any) => {
           "username": id,
         },
       }).then((res) => {
+        console.log(res)
         if (res.status === 200) {
           swal.fire({
             heightAuto: false,
@@ -112,9 +113,10 @@ export const SearchPw = (props: any) => {
           회원가입에 등록한 휴대전화번호로
           <br /> 임시 비밀번호가 발급받을 수 있습니다.
         </S.Top>
-        {/* <form> */}
         <S.Ladius>
-          <CiLock size='100' color='white' fontWeight='900' />
+          {isDesktopOrMobile !== true ? (<CiLock size='100' color='white' fontWeight='900' />)
+            : (<CiLock size='90' color='white' fontWeight='900' />)}
+
         </S.Ladius>
         <S.InputContainer>
           <S.InputWrapper>
@@ -124,7 +126,6 @@ export const SearchPw = (props: any) => {
           </S.InputWrapper>
           <S.ErrMsg>{idMsg}</S.ErrMsg>
         </S.InputContainer>
-        {/* </form> */}
         {disTrue ? <S.SearchBtn disabled={disabled} onClick={(e) => submitBtn(e)}>
           임시 비밀번호 발급
         </S.SearchBtn> :

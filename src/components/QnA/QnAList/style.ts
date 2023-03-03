@@ -71,7 +71,7 @@ export const Select = styled.select`
   width: 1.25rem;
   height: 0.4rem;
   border: 0.01rem solid #ddd;
-  font-size: 0.12rem;
+  font-size: 0.2rem;
   padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
@@ -119,6 +119,27 @@ export const Container = styled.div`
         width: 3rem;
         text-align: right;
       }
+      @media screen and (max-width: 400px) {
+        ul {
+          margin-top: 2%;
+          &:nth-child(1) {
+            padding-right: 2%;
+            text-align: left;
+            border-right: 0.2vw solid ${({ theme }) => theme.palette.gray};
+          }
+          &:nth-child(2) {
+            padding-left: 2%;
+            width: 0;
+            min-width: 20vw;
+          }
+        }
+      }
     }
+  }
+  @media screen and (max-width: 400px) {
+    width: 80vw;
+    display: grid;
+    font-size: 0.4rem;
+    padding-left: 3%;
   }
 `;

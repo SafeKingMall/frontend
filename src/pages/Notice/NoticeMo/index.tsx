@@ -51,21 +51,10 @@ export const NoticeMo = () => {
           setContent(res.data.contents);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
@@ -102,14 +91,6 @@ export const NoticeMo = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
           }
         }
       });

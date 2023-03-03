@@ -130,14 +130,6 @@ export const QnAWr = () => {
               cookies.remove('accessToken');
               cookies.remove('refreshToken');
               cookies.remove('loginUser');
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
             }
           }
         });

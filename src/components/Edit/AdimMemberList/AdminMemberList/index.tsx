@@ -22,14 +22,11 @@ export const AdminMemberList = (props: any) => {
   const [sort] = useState(`sort=memberId,asc`);
   //회원명 (search할때 쓰일듯)
   const [memberName, setMemberName] = useState('');
-  //보낼 쿼리
-  // const [reqData, setReqData] = useState(``);
   // 페이지 숫자
   const [page, setPage] = useState(0);
   // 전체 페이지 확인(전체 페이지 수만큼 페이지네이션 숫자 늘리기)
   const [totalPages, setTotalPages] = useState(0);
   const [size] = useState(7);
-  //토큰
   // select 옵션 선택
   const [filter, setFilter] = useState('');
   // select 박스
@@ -39,8 +36,6 @@ export const AdminMemberList = (props: any) => {
 
   //검색리스트 길이
   const [listLength, setListLength] = useState(0);
-
-  // const refresh = useRefresh();
 
   useEffect(() => {
     const getData = async () => {
@@ -57,21 +52,10 @@ export const AdminMemberList = (props: any) => {
           setTotalPages(res.data.totalElements);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
@@ -209,14 +193,6 @@ export const AdminMemberList = (props: any) => {
               cookies.remove('accessToken');
               cookies.remove('refreshToken');
               cookies.remove('loginUser');
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
             }
           }
         });
@@ -260,22 +236,9 @@ export const AdminMemberList = (props: any) => {
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
       cookies.remove('loginUser');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
     }
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <S.CenterContainer>
@@ -296,5 +259,4 @@ export const AdminMemberList = (props: any) => {
       <S.QnAButton onClick={() => deleteMemberAlert()}>탈퇴</S.QnAButton>
     </S.Wrapper>
   );
-  // }
 };

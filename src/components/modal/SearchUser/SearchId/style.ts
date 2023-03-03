@@ -7,15 +7,21 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 export const Top = styled.div`
   margin: 0.48rem 0 0.48rem 0;
   font-weight: 400;
   font-size: 0.2rem;
-  line-height: 0.24rem;
   text-align: center;
-
   color: #000000;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    font-size: 0.4rem;
+  }
 `;
 export const InputContainer = styled.div`
   background-color: #fff;
@@ -23,6 +29,10 @@ export const InputContainer = styled.div`
   height: 2.64rem;
   border: 0.01rem solid #efeff1;
   border-radius: 0.1rem;
+  @media screen and (max-width: 400px) {
+    width: 90%;
+    height: 100%;
+  }
 `;
 export const InputWrapper = styled.div`
   height: 0.88rem;
@@ -30,6 +40,10 @@ export const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    height: 7vh;
+  }
+
   label {
     display: inline-block;
     width: 1.5rem;
@@ -38,6 +52,10 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     line-height: 0.22rem;
     padding-left: 0.3rem;
+    @media screen and (max-width: 400px) {
+      font-size: 0.4rem;
+      width: 16.5vw;
+    }
   }
   input {
     background-color: #fff;
@@ -47,6 +65,15 @@ export const InputWrapper = styled.div`
     padding-left: 0.24rem;
     width: 3.2rem;
     height: 95%;
+    @media screen and (max-width: 400px) {
+      font-size: 0.4rem;
+      width: 42%;
+    }
+    ::placeholder {
+      @media screen and (max-width: 400px) {
+        font-size: 0.34rem;
+      }
+    }
   }
 
   & > div {
@@ -58,13 +85,7 @@ export const InputWrapper = styled.div`
     font-size: 0.28rem;
     color: #a6a6a6;
   }
-  /* & > p {
-    position: absolute;
-    top: 0.31rem;
-    right: 0.3rem;
-    font-size: 0.26rem;
-    color: #a6a6a6;
-  } */
+
   &::before {
     content: '';
     position: absolute;
@@ -86,6 +107,11 @@ export const ErrMsg = styled.span`
   position: absolute;
   top: 0.64rem;
   left: 1.74rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.3rem;
+    top: 82%;
+    left: 26%;
+  }
 `;
 export const SearchBtn = styled.button`
   margin: 0.48rem 0 0.48rem 0;
@@ -102,6 +128,11 @@ export const SearchBtn = styled.button`
   :disabled {
     background-color: #aaa;
   }
+  @media screen and (max-width: 400px) {
+    font-size: 0.4rem;
+    width: 45%;
+    height: 4.5vh;
+  }
 `;
 export const Result = styled.div``;
 export const TextWrapper = styled.div`
@@ -109,23 +140,30 @@ export const TextWrapper = styled.div`
   height: 2.2rem;
   background-color: #efeff1;
   border-radius: 0.1rem;
+  @media screen and (max-width: 400px) {
+    width: 65vw;
+    height: 18vh;
+  }
   & > div:first-child {
     padding-top: 0.4rem;
     margin-bottom: 0.4rem;
     font-weight: 500;
     font-size: 0.2rem;
-    line-height: 0.24rem;
     text-align: center;
-
     color: #000000;
+    @media screen and (max-width: 400px) {
+      font-size: 0.5rem;
+      padding-top: 13%;
+    }
   }
   & > div:nth-child(2) {
     font-weight: 400;
     font-size: 0.16rem;
-    line-height: 0.28rem;
     text-align: center;
-
     color: #000000;
+    @media screen and (max-width: 400px) {
+      font-size: 0.4rem;
+    }
   }
 `;
 export const BtnWrapper = styled.div`
@@ -134,6 +172,9 @@ export const BtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+  }
   > button {
     background-color: #fff;
     border-radius: 1rem;
@@ -142,19 +183,20 @@ export const BtnWrapper = styled.div`
     font-size: 0.24rem;
     font-weight: 400;
     line-height: 0.3rem;
+    @media screen and (max-width: 400px) {
+      width: 48%;
+      font-size: 0.4rem;
+      height: 4.5vh;
+    }
     :first-child {
       border: 0.01rem solid #289951;
       font-weight: 700;
-      font-size: 0.24rem;
-      line-height: 0.29rem;
 
       color: #289951;
     }
     :last-child {
       background-color: #289951;
       font-weight: 700;
-      font-size: 0.24rem;
-      line-height: 0.29rem;
       color: #ffffff;
       :disabled {
         background-color: #aaaaaa;
@@ -176,12 +218,26 @@ export const SendBtn = styled.button`
   position: absolute;
   top: 0.25rem;
   right: 0.24rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.3rem;
+    width: 28%;
+    height: 3vh;
+    top: 28%;
+  }
 `;
 
 export const AuthTimer = styled.div`
   position: absolute;
   top: 0.35rem;
   right: 1.15rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.4rem;
+    width: 10%;
+    height: 3vh;
+    /* top: 50%; */
+    margin-top: 5%;
+    padding-right: 1.3rem;
+  }
 `;
 
 export const CheckBtn = styled.button`
@@ -197,4 +253,10 @@ export const CheckBtn = styled.button`
   position: absolute;
   top: 0.25rem;
   right: 0.24rem;
+  @media screen and (max-width: 400px) {
+    font-size: 0.3rem;
+    width: 15%;
+    height: 3vh;
+    top: 28%;
+  }
 `;

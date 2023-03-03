@@ -84,7 +84,7 @@ export const Ladius = styled.div`
     margin-top: 0.2rem;
   }
   @media screen and (max-width: 400px) {
-    margin-left: 28%;
+    margin-left: 32%;
     width: 20vw;
     height: 10vh;
   }

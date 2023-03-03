@@ -163,6 +163,7 @@ export const NextTitle = styled.div`
     font-size: 0.5rem;
     padding-bottom: 5%;
     padding-top: 4%;
+    cursor: default;
   }
 `;
 
@@ -270,6 +271,7 @@ export const Description = styled.div`
   }
   img {
     width: 100%;
+    height: auto;
   }
   @media screen and (max-width: 400px) {
     h1 {

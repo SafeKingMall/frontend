@@ -30,14 +30,7 @@ export const AdminOrderList = (props: any) => {
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
       cookies.remove('loginUser');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+
     }
 
   };
@@ -95,21 +88,11 @@ export const AdminOrderList = (props: any) => {
           setListLength(res.data.total_elements);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
+
       }
 
     };
@@ -214,11 +197,6 @@ export const AdminOrderList = (props: any) => {
     setKeyWord(searchText);
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <S.SearchBox>
@@ -306,5 +284,4 @@ export const AdminOrderList = (props: any) => {
       />
     </S.Wrapper>
   );
-  // }
 };
