@@ -24,17 +24,9 @@ export const AdminItemPo = () => {
   const { MoneyNumber2 } = useMoney();
   //상품명
   const [itemName, setItemName] = useState('');
-  //숫자 3마디마다 ,찍기(상품가격)-브라우저 상에 나오는 숫자
-  // const [enteredNum, setEnterdNum] = useState({
-  //   moneyNum: 0,
-  //   quantityNum: 0,
-  // } as any);
-
-  // const { moneyNum, quantityNum } = enteredNum;
 
   const [moneyNum, setMoneyNum2] = useState('');
   const [quantityNum, setquantityNum2] = useState('');
-  // const patternSpc = /[~!@#$%^&*()_+|<>?:{}]/;
 
   // 안찍힌 숫자들
   const [sendMoneyNum, setSendMoneyNum] = useState(0 as Number);
@@ -44,7 +36,6 @@ export const AdminItemPo = () => {
   const [cateSelect, setCateSelect] = useState('' as any);
   //사진 업로드(화면출력용)
   const [selectedImages, setSelectedImages] = useState([]);
-  // const [qnaFile, setQnaFile] = useState([] as any);
   //서버에 보내지는 파일
   const [selectedFiles, setSelectedFiles] = useState(null as any);
 
@@ -100,27 +91,17 @@ export const AdminItemPo = () => {
           setHideBtn(res.data.viewYn === 'N' ? false : true);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.data, jwt, navigate]);
 
+  //숨기기 버튼
   const clickHide = () => {
     setHideBtn(!hideBtn);
   };
@@ -231,14 +212,6 @@ export const AdminItemPo = () => {
               cookies.remove('accessToken');
               cookies.remove('refreshToken');
               cookies.remove('loginUser');
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
             }
           }
         });
@@ -409,7 +382,7 @@ export const AdminItemPo = () => {
       );
     });
 
-  //,상품수량
+  //상품가격 , 체크 및 유효성 검사
 
   const changeEnteredNum2 = (e: any) => {
     const value = e.target.value;
@@ -427,7 +400,7 @@ export const AdminItemPo = () => {
       setMoneyNum2('');
     }
   };
-
+  //상품수량 ,체크 및 유효성 검사
   const changeEnteredNum = (e: any) => {
     const value = e.target.value;
     setSendQuantityNum(e.target.value.split(',').join(''));

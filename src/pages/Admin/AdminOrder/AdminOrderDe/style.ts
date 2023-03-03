@@ -111,7 +111,7 @@ export const OrderDiv = styled.div`
 export const OrderDiv2 = styled.div`
   display: flex;
   padding: 0.16rem 0rem;
-  margin-left: 8.3rem;
+  margin-left: 5.3rem;
 `;
 
 export const Table2 = styled.table`
@@ -130,9 +130,6 @@ export const Table2 = styled.table`
       border-left: 0.01rem solid white;
     }
     border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-    &:first-child {
-      height: 0.64rem;
-    }
     padding: 0.05rem 0rem;
   }
 
@@ -141,7 +138,23 @@ export const Table2 = styled.table`
       background-color: #d4ebdc;
       td {
         &:nth-child(2) {
+          width: 1.2rem;
           border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+        }
+        &:nth-child(3) {
+          width: 1rem;
+        }
+        &:nth-child(4) {
+          width: 1.2rem;
+        }
+        &:nth-child(5) {
+          width: 1rem;
+        }
+        &:nth-child(6) {
+          width: 1.5rem;
+        }
+        &:nth-child(7) {
+          width: 1rem;
         }
       }
     }

@@ -24,12 +24,14 @@ export const QnAButton = styled.button`
   height: 0.5rem;
   font-size: 0.15rem;
   position: absolute;
-  bottom: 18%;
+  bottom: 28%;
   @media screen and (max-width: 400px) {
     margin-left: 62%;
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;
+    position: unset;
+    margin-bottom: 10%;
   }
 `;
 

@@ -20,6 +20,7 @@ export const OrderList = (props: any) => {
     const { MoneyNumber } = useMoney();
 
     const navigate = useNavigate();
+    //마이페이지 주문내역 상세내역으로 이동
     const moveRefundDe = (item: any) => {
         if (cookies.get('refreshToken')) {
             navigate('/mypage-od-detail', {
@@ -32,25 +33,19 @@ export const OrderList = (props: any) => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-            });
+
         }
 
     };
 
+    //마이페이지 환불 신청
     const moveMypageAp = (item: any, status: any) => {
         if (cookies.get('refreshToken')) {
             if (status === 'COMPLETE') {
                 swal.fire({
                     heightAuto: false,
                     icon: 'warning',
-                    text: '배송완료는 환불신청이 안됩니다.',
+                    text: '배송완료된 상품은 환불신청이 안됩니다.',
                     confirmButtonText: '확인',
                     confirmButtonColor: '#289951',
                     width: 400,
@@ -60,7 +55,16 @@ export const OrderList = (props: any) => {
                 swal.fire({
                     heightAuto: false,
                     icon: 'warning',
-                    text: '배송실패는 환불신청이 안됩니다.',
+                    text: '배송 실패된 상품은 환불신청이 안됩니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#289951',
+                    width: 400,
+                });
+            } else if (status === 'IN_DELIVERY') {
+                swal.fire({
+                    heightAuto: false,
+                    icon: 'warning',
+                    text: '배송 중인 상품은 환불신청이 안됩니다.',
                     confirmButtonText: '확인',
                     confirmButtonColor: '#289951',
                     width: 400,
@@ -78,14 +82,7 @@ export const OrderList = (props: any) => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-            });
+
         }
 
     };
@@ -117,17 +114,22 @@ export const OrderList = (props: any) => {
     const [listLength, setListLength] = useState(0);
 
     //주문처리상태
-    const [payStatus, setPayStatus] = useState('');
+    // const [payStatus, setPayStatus] = useState('');
 
-    //상품명
-    //   const [itemName, setItemName] = useState('');
+    // 배송상태
+    const [deliStatus, setDeliStatus] = useState('');
+
+    //상품명 입력
+    const [keyWord, setKeyWord] = useState('');
+
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         const getData = async () => {
             try {
                 await axios({
                     method: 'get',
-                    url: `${process.env.REACT_APP_API_URL}/user/order/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&paymentStatus=${payStatus}
+                    url: `${process.env.REACT_APP_API_URL}/user/order/list?page=${page}&size=${size}&fromDate=${finishDay}&toDate=${startDay}&deliveryStatus=${deliStatus}&keyword=${keyWord}
                 `,
                     headers: {
                         Authorization: jwt,
@@ -138,27 +140,17 @@ export const OrderList = (props: any) => {
                     setListLength(res.data.total_elements);
                 });
             } catch (err: any) {
-                // if (err.response.status === 403) {
                 navigate('/sign-in');
                 cookies.remove('accessToken');
                 cookies.remove('refreshToken');
                 cookies.remove('loginUser');
-                swal.fire({
-                    heightAuto: false,
-                    icon: 'warning',
-                    text: '로그인이 만료되었습니다.',
-                    confirmButtonText: '확인',
-                    confirmButtonColor: '#289951',
-                    cancelButtonText: '취소',
-                    width: 400,
-                });
-                // }
+
             }
 
 
         };
         getData();
-    }, [jwt, size, sort, page, startDay, finishDay, payStatus, navigate]);
+    }, [jwt, size, sort, page, startDay, finishDay, keyWord, navigate, deliStatus,]);
 
     const dataList2 = (data: any) => {
         return (
@@ -257,16 +249,31 @@ export const OrderList = (props: any) => {
         setFinishDay(registDate2(date));
     };
 
-    //   if (props.error) {
-    //     return <>{props.error.message}</>;
-    // } else if (!props.loaded) {
-    //     return <>loading...</>;
-    // } else {
+    const onChangeText = (e: any) => {
+        setSearchText(e.target.value);
+    };
+    const onKeyDownEnter = (e: any) => {
+        if (e.key === 'Enter') {
+            search();
+            e.target.blur();
+        }
+    };
+
+    const searchClick = () => {
+        setCurrentPage(1);
+        setPage(0);
+    };
+
+    const search = () => {
+        setKeyWord(searchText);
+    };
+
+
     return (
         <S.Wrapper>
             <S.Mid>주문 내역</S.Mid>
             <S.SearchBox>
-                <S.SearchFirst>
+                {isDesktopOrMobile !== true ? (<S.SearchFirst>
                     {/* <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
                         <option value=''>전체 주문처리상태</option>
                         <option value='READY'>주문접수</option>
@@ -278,9 +285,6 @@ export const OrderList = (props: any) => {
                     <S.DayButton onClick={OneWeek}>1주일</S.DayButton>
                     <S.DayButton onClick={ThreeMonth}>3개월</S.DayButton>
                     <S.DayButton onClick={SixMonth}>6개월</S.DayButton>
-                </S.SearchFirst>
-
-                <S.SearchSecon>
                     <S.SearchThird>
                         <S.DayInput
                             type='date'
@@ -298,7 +302,79 @@ export const OrderList = (props: any) => {
                             }}
                         />
                     </S.SearchThird>
-                    <S.SearchButton>조회</S.SearchButton>
+                </S.SearchFirst>) : (<>   <S.SearchFirst>
+                    {/* <S.DeliSelect value={payStatus} onChange={(e: any) => setPayStatus(e.target.value)}>
+                        <option value=''>전체 주문처리상태</option>
+                        <option value='READY'>주문접수</option>
+                        <option value='COMPLETE'>주문완료</option>
+                        <option value='CANCEL'>주문취소</option>
+                    </S.DeliSelect> */}
+
+                    <S.DayButton onClick={Now}>오늘</S.DayButton>
+                    <S.DayButton onClick={OneWeek}>1주일</S.DayButton>
+                    <S.DayButton onClick={ThreeMonth}>3개월</S.DayButton>
+                    <S.DayButton onClick={SixMonth}>6개월</S.DayButton>
+                </S.SearchFirst>
+                    <S.SearchFirst>
+                        <S.SearchThird>
+                            <S.DayInput
+                                type='date'
+                                value={finishDay}
+                                onChange={(e: any) => {
+                                    setFinishDay(e.target.value);
+                                }}
+                            />
+                            <S.Tilde>~</S.Tilde>
+                            <S.DayInput
+                                type='date'
+                                value={startDay}
+                                onChange={(e: any) => {
+                                    setStartDay(e.target.value);
+                                }}
+                            />
+                        </S.SearchThird>
+                        <S.DeliSelect value={deliStatus} onChange={(e: any) => setDeliStatus(e.target.value)}>
+                            <option value=''>배송상태</option>
+                            <option value='PREPARATION'>배송준비</option>
+                            <option value='IN_DELIVERY'>배송중</option>
+                        </S.DeliSelect>
+                    </S.SearchFirst></>)}
+
+
+                <S.SearchSecon>
+                    {isDesktopOrMobile !== true ? (<S.SearchFive>
+                        <S.SearchH2>상품명</S.SearchH2>
+                        <S.SearchInput
+                            type='text'
+                            name='search-form'
+                            id='search-form'
+                            placeholder='Search for...'
+                            onClick={searchClick}
+                            onChange={(e: any) => onChangeText(e)}
+                            onKeyDown={(e: any) => onKeyDownEnter(e)}
+                            autoComplete='off'
+                        />
+                        <S.DeliSelect value={deliStatus} onChange={(e: any) => setDeliStatus(e.target.value)}>
+                            <option value=''>배송상태</option>
+                            <option value='PREPARATION'>배송준비</option>
+                            <option value='IN_DELIVERY'>배송중</option>
+                        </S.DeliSelect>
+                        <S.SearchButton onClick={() => search()}>검색</S.SearchButton>
+                    </S.SearchFive>) : (<S.SearchFive>
+                        <S.SearchInput
+                            type='text'
+                            name='search-form'
+                            id='search-form'
+                            placeholder='Search for...'
+                            onClick={searchClick}
+                            onChange={(e: any) => onChangeText(e)}
+                            onKeyDown={(e: any) => onKeyDownEnter(e)}
+                            autoComplete='off'
+                        />
+
+                        <S.SearchButton onClick={() => search()}>검색</S.SearchButton>
+                    </S.SearchFive>)}
+
                 </S.SearchSecon>
             </S.SearchBox>
             <S.BigTitle>주문 상품 정보</S.BigTitle>
@@ -328,5 +404,4 @@ export const OrderList = (props: any) => {
             />
         </S.Wrapper>
     );
-    // }
 };

@@ -42,15 +42,9 @@ export const NoticePo = () => {
       });
     } else {
       navigate('/sign-in');
-
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
     }
   };
 
@@ -117,14 +111,9 @@ export const NoticePo = () => {
             deleteApi(id);
           } else {
             navigate('/sign-in');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('loginUser');
           }
         }
       });

@@ -51,20 +51,10 @@ export const AdimCgList = () => {
           setSortCate(res.data.content.length);
         });
       } catch (err: any) {
-        // if (err.response.status === 403) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
       }
     };
     getData();
@@ -103,14 +93,6 @@ export const AdimCgList = () => {
               cookies.remove('accessToken');
               cookies.remove('refreshToken');
               cookies.remove('loginUser');
-              swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
             }
           }
         });
@@ -184,14 +166,6 @@ export const AdimCgList = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
           }
         }
       });
@@ -222,14 +196,6 @@ export const AdimCgList = () => {
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
       cookies.remove('loginUser');
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: '로그인이 만료되었습니다.',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
     }
   };
 
@@ -263,14 +229,6 @@ export const AdimCgList = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
           }
         }
       });
@@ -334,14 +292,6 @@ export const AdimCgList = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-              heightAuto: false,
-              icon: 'warning',
-              text: '로그인이 만료되었습니다.',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#289951',
-              width: 400,
-            });
           }
         }
       });
@@ -393,13 +343,6 @@ export const AdimCgList = () => {
     setSelected([record]);
     setPopupTogle(!popupTogle);
     setPutCateName('');
-    // if (styling === null) {
-    //   setStyling({
-    //     position: 'fixed',
-    //   });
-    // } else {
-    //   setStyling(null);
-    // }
   };
 
   const modalHandler1 = () => {

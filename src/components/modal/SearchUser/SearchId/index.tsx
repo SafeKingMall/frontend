@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import * as S from './style';
-// import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Timer } from '../../../user/Timer';
 import Swal from 'sweetalert2';
@@ -193,7 +192,6 @@ export const SearchId = (props: any) => {
           회원가입에 등록한 휴대전화번호를 통해
           <br /> 회원님의 아이디를 찾을 수 있습니다.
         </S.Top>
-        {/* <form> */}
         <S.InputContainer>
           <S.InputWrapper>
             <label>이름</label>
@@ -261,7 +259,6 @@ export const SearchId = (props: any) => {
             </S.CheckBtn>
           </S.InputWrapper>
         </S.InputContainer>
-        {/* </form> */}
         <S.SearchBtn disabled={disabled} onClick={onSearchId}>
           아이디 찾기
         </S.SearchBtn>

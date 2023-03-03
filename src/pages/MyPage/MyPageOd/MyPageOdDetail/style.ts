@@ -45,7 +45,6 @@ export const Mid = styled.div`
   line-height: 0.29rem;
   position: relative;
   border-bottom: 0.01rem solid #212121;
-
   @media screen and (max-width: 400px) {
     width: 100vw;
     padding: 3%;
@@ -197,13 +196,29 @@ export const Table2 = styled.table`
       background-color: #d4ebdc;
       td {
         &:nth-child(2) {
+          width: 1rem;
           border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
+        }
+        &:nth-child(3) {
+          width: 1rem;
+        }
+        &:nth-child(4) {
+          width: 1rem;
+        }
+        &:nth-child(5) {
+          width: 0.8rem;
+        }
+        &:nth-child(6) {
+          width: 0.8rem;
+        }
+        &:nth-child(7) {
+          width: 0.8rem;
         }
       }
     }
     td {
       &:last-child {
-        width: 2.05rem;
+        width: 2rem;
       }
     }
   }

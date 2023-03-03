@@ -30,7 +30,7 @@ export const Select = styled.select`
   width: 1.25rem;
   height: 0.4rem;
   border: 0.01rem solid #ddd;
-  font-size: 0.12rem;
+  font-size: 0.3rem;
   padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
@@ -42,7 +42,7 @@ export const SearchBar = styled.input`
   height: 0.4rem;
   padding-left: 0.16rem;
   padding-right: 0.56rem;
-  font-size: 0.12rem;
+  font-size: 0.2rem;
   background-color: #fefefe;
   border: 0.01rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};

@@ -6,11 +6,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDateFormat } from '../../common/hooks/useDateFormat';
 import { Cookies } from 'react-cookie';
-// import Swal from 'sweetalert2';
-// import withReactContent from 'sweetalert2-react-content';
-// import '../../../css/alert.css';
-
-// const swal = withReactContent(Swal);
 
 export const NoticeList = (props: any) => {
   const navigate = useNavigate();
@@ -20,7 +15,6 @@ export const NoticeList = (props: any) => {
 
   // 들어온 데이터 넣는것
   const [itemList, setItemList] = useState([]);
-  //creatdate로 sort 바꿀것
   const [sort] = useState(`sort=createDate,desc`);
   //itemName -> 상품명 (search할때 쓰일듯)
   const [searchItem, setSearchItem] = useState('');
@@ -28,18 +22,18 @@ export const NoticeList = (props: any) => {
   const [page, setPage] = useState(0);
   // 전체 페이지 확인(전체 페이지 수만큼 페이지네이션 숫자 늘리기)
   const [totalPages, setTotalPages] = useState(0);
+  //페이지 수
   const [size] = useState(7);
   const [categoryName, setCategoryName] = useState('');
-  //토큰
   // select 옵션 선택
   const [filter, setFilter] = useState('title');
   // select 박스
   const [searchText, setSearchText] = useState('');
+  //쿼리값
   const [reqData, setReqData] = useState(``);
   //검색리스트 길이
   const [listLength, setListLength] = useState(0);
 
-  // 토큰이 admin이면 notice-po로 토큰이 일반이면 notice-user-po로 연결
   const moveNoticepo = (item: any) => {
     navigate('/notice-po', {
       state: {
@@ -52,16 +46,12 @@ export const NoticeList = (props: any) => {
     });
   };
   const moveNoticewr = () => {
-    // if (cookies.get('refreshToken')) {
     navigate('/notice-wr', {
       state: {
         reqData: reqData,
         size: size,
       },
     });
-    // } else {
-    // navigate('/sign-in');
-    // }
   };
 
   useEffect(() => {
@@ -140,11 +130,6 @@ export const NoticeList = (props: any) => {
     // }
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <div>
@@ -169,5 +154,4 @@ export const NoticeList = (props: any) => {
       )}
     </S.Wrapper>
   );
-  // }
 };

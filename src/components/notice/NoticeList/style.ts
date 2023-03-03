@@ -39,6 +39,8 @@ export const Container = styled.div`
     width: 94%;
     margin-left: 3%;
     font-size: 0.45rem;
+    padding-top: 3%;
+    padding-bottom: 3%;
     div {
       &:first-child {
         display: none;
@@ -95,7 +97,7 @@ export const Select = styled.select`
   width: 1.25rem;
   height: 0.4rem;
   border: 0.01rem solid #ddd;
-  font-size: 0.12rem;
+  font-size: 0.2rem;
   padding: 0 0.08rem;
   font-weight: 400;
   background-color: #fefefe;
@@ -123,6 +125,7 @@ export const NoticeButton = styled.button`
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;
+    position: unset;
   }
 `;
 export const NoSearchItem = styled.div`

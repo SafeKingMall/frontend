@@ -10,10 +10,12 @@ import { useLocation } from 'react-router';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { useMediaQuery } from 'react-responsive';
 
 const swal = withReactContent(Swal);
 
 export const MyPageAp2 = () => {
+    const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
     const navigate = useNavigate();
     const { state } = useLocation();
 
@@ -41,14 +43,7 @@ export const MyPageAp2 = () => {
             cookies.remove('accessToken');
             cookies.remove('refreshToken');
             cookies.remove('loginUser');
-            swal.fire({
-                heightAuto: false,
-                icon: 'warning',
-                text: '로그인이 만료되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-            });
+
         }
 
     }
@@ -78,14 +73,7 @@ export const MyPageAp2 = () => {
                         cookies.remove('accessToken');
                         cookies.remove('refreshToken');
                         cookies.remove('loginUser');
-                        swal.fire({
-                            heightAuto: false,
-                            icon: 'warning',
-                            text: '로그인이 만료되었습니다.',
-                            confirmButtonText: '확인',
-                            confirmButtonColor: '#289951',
-                            width: 400,
-                        });
+
                     }
 
                 }
@@ -173,7 +161,8 @@ export const MyPageAp2 = () => {
             <Header />
             <S.ContentContainer>
                 <S.Wrapper>
-                    <S.RefundH1>환불신청</S.RefundH1>
+                    {isDesktopOrMobile !== true ? (
+                        <S.RefundH1>환불신청</S.RefundH1>) : (<S.RefundH1>사유선택</S.RefundH1>)}
                     <S.Top></S.Top>
                     <S.Mid>
                         <p>*</p>

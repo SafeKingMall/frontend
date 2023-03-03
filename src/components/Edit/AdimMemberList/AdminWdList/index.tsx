@@ -4,12 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { Searchcompo2 } from '../../../often/Searchcompo2';
 import { Cookies } from 'react-cookie';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import '../../../../css/alert.css';
 import { useNavigate } from 'react-router-dom';
-
-const swal = withReactContent(Swal);
 
 export const AdimWdList = (props: any) => {
   const cookies = new Cookies();
@@ -45,21 +40,10 @@ export const AdimWdList = (props: any) => {
           setListLength(res.data.numberOfElements);
         });
       } catch (err: any) {
-        // if (err.response.status === 812) {
         navigate('/sign-in');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         cookies.remove('loginUser');
-        swal.fire({
-          heightAuto: false,
-          icon: 'warning',
-          text: '로그인이 만료되었습니다.',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#289951',
-          cancelButtonText: '취소',
-          width: 400,
-        });
-        // }
       }
     };
     getData();
@@ -116,11 +100,6 @@ export const AdimWdList = (props: any) => {
     }
   };
 
-  //   if (props.error) {
-  //     return <>{props.error.message}</>;
-  // } else if (!props.loaded) {
-  //     return <>loading...</>;
-  // } else {
   return (
     <S.Wrapper>
       <div>
@@ -139,5 +118,4 @@ export const AdimWdList = (props: any) => {
       </div>
     </S.Wrapper>
   );
-  // }
 };
