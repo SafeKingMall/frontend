@@ -54,7 +54,7 @@ export const MainPage = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <MainItemList itemList={itemList} />
+      <MainItemList itemList={itemList} slideNavIdx={category.map((el: any) => el.name).indexOf(selectedCategory)} />
     </S.Container>
   );
 };

@@ -4,11 +4,13 @@ import * as S from './style';
 
 export const MainItemList = (props: any) => {
   const itemList = props.itemList;
+  const slideNavIdx = props.slideNavIdx;
   const navigate = useNavigate();
   const moveDetail = (item: any) => {
     navigate('/itemDetail', {
       state: {
         itemId: item.id,
+        slideNavIdx: slideNavIdx,
       },
     });
   };

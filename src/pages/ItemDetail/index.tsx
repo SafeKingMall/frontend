@@ -153,7 +153,7 @@ export const ItemDetail = () => {
             setItemData(res2.data);
             if (res2.data.viewPrice === 1000000000) {
               purchaseBtn.current = (
-                <S.PurchaseBtn
+                <S.estimateBtn
                   onClick={() =>
                     navigate('/estimate', {
                       state: {
@@ -164,7 +164,7 @@ export const ItemDetail = () => {
                   }
                 >
                   견적서 요청
-                </S.PurchaseBtn>
+                </S.estimateBtn>
               );
             } else {
               purchaseBtn.current = (
@@ -367,10 +367,11 @@ export const ItemDetail = () => {
                   </S.TotalPriceArea>
                 </S.TotalPriceWrap>
               </div>
-              <S.BtnArea>
+              <S.BtnArea style={{ justifyContent: itemData.viewPrice === 1000000000 ? 'flex-end' : 'space-between' }}>
                 <S.BasketBtn
                   style={{
-                    visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible',
+                    // visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible',
+                    display: itemData.viewPrice === 1000000000 ? 'none' : '',
                     backgroundColor: itemData.quantity ? '' : '#aaaaaa',
                   }}
                   disabled={!itemData.quantity}
