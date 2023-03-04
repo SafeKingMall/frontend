@@ -5,13 +5,21 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 1.02rem;
+  @media (max-width: 720px) {
+    padding: 0 5%;
+    margin-bottom: 0.7rem;
+    margin-top: 0.3rem;
+  }
 `;
 export const SearchArea = styled.div`
   width: 14.4rem;
-  height: 0.4rem;
   display: flex;
   justify-content: flex-end;
-  margin-top: 1.02rem;
+  @media (max-width: 720px) {
+    width: 100%;
+    /* justify-content: flex-start; */
+  }
 `;
 export const Select = styled.select`
   margin-right: 0.08rem;
@@ -25,6 +33,11 @@ export const Select = styled.select`
   color: #686868;
   outline: none;
   cursor: pointer;
+  @media (max-width: 720px) {
+    width: 25%;
+    height: 1rem;
+    font-size: 0.36rem;
+  }
 `;
 export const SearchBar = styled.input`
   width: 2.4rem;
@@ -36,6 +49,11 @@ export const SearchBar = styled.input`
   border: 0.01rem solid #ddd;
   color: ${(props) => props.theme.palette.txtblack};
   outline: none;
+  @media (max-width: 720px) {
+    width: 75%;
+    height: 1rem;
+    font-size: 0.36rem;
+  }
 `;
 export const SearchBtn = styled.button`
   width: 0.4rem;
@@ -45,4 +63,8 @@ export const SearchBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 720px) {
+    width: 1rem;
+    height: 1rem;
+  }
 `;

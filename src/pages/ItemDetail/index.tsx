@@ -299,7 +299,7 @@ export const ItemDetail = () => {
   return (
     <S.Container>
       <Header />
-      <Nav categoryList={categoryList} selectNav={itemData.categoryName} />
+      <Nav categoryList={categoryList} selectNav={itemData.categoryName} slideNavIdx={state.slideNavIdx} />
       <S.DetailContainer>
         {loading ? (
           <S.LoadingBox>

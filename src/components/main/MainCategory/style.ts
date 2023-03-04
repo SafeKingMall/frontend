@@ -76,7 +76,7 @@ export const More = styled.span`
 `;
 export const SliderContainer = styled.div`
   width: 100%;
-  height: 0.7rem;
+  height: 1.2rem;
   /* overflow-x: hidden; */
   display: none;
   font-size: 0.5rem;
@@ -89,10 +89,11 @@ export const SliderContainer = styled.div`
 `;
 export const CustomSlider = styled(Slider)`
   .slick-list {
-    height: 0.7rem;
+    height: 1.2rem;
   }
   .slick-prev {
     left: -5%;
+    top: 56%;
     background: #ffffff;
     z-index: 1;
     height: 100%;
@@ -100,6 +101,7 @@ export const CustomSlider = styled(Slider)`
   }
   .slick-next {
     right: -5%;
+    top: 56%;
     background: #ffffff;
     z-index: 1;
     height: 100%;
@@ -116,8 +118,10 @@ export const CustomSlider = styled(Slider)`
 `;
 export const SlickCategoryWrap = styled.div`
   ${({ theme }) => theme.common.flexCenter};
+  height: 1.2rem;
 `;
 export const Category = styled.span`
   padding: 0 0.3rem;
   ${({ theme }) => theme.common.flexCenter};
+  height: 1.2rem;
 `;

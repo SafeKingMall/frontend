@@ -14,6 +14,7 @@ export const List = (props: any) => {
   const totalPages = props.totalPages;
   const selectSort = props.selectSort;
   const searchWord = props.searchWord;
+  const slideNavIdx = props.slideNavIdx;
   const [scrollLoading, setScrollLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ export const List = (props: any) => {
     navigate('/itemDetail', {
       state: {
         itemId: item.id,
+        slideNavIdx: slideNavIdx,
       },
     });
   };
@@ -64,7 +66,9 @@ export const List = (props: any) => {
           itemList.map((item: any) => {
             return (
               <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
-                <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
+                <S.ItemImgWrap>
+                  <S.ItemImg src={process.env.REACT_APP_BASE_URL + item.fileName} alt={item.name} />
+                </S.ItemImgWrap>
                 <S.ItemTextArea>
                   <div style={{ marginTop: '0.2rem' }}>
                     <S.Category>{item.categoryName}</S.Category>
