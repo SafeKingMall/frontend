@@ -102,6 +102,7 @@ export const ItemList5 = () => {
           totalPages={totalPages}
           selectSort={selectSort}
           searchWord={searchWord}
+          slideNavIdx={4}
         />
       );
     }
@@ -110,7 +111,7 @@ export const ItemList5 = () => {
   return (
     <S.Container>
       <Header />
-      <Nav categoryList={categoryList} selectNav={selectNav} />
+      <Nav categoryList={categoryList} selectNav={selectNav} slideNavIdx={4} />
       <Search
         setSort={setSort}
         selectSort={selectSort}

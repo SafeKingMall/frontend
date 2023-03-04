@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from '../style';
 import { Nav } from '../../../components/item/Nav';
@@ -102,6 +103,7 @@ export const ItemList1 = () => {
           totalPages={totalPages}
           selectSort={selectSort}
           searchWord={searchWord}
+          slideNavIdx={0}
         />
       );
     }
@@ -110,7 +112,7 @@ export const ItemList1 = () => {
   return (
     <S.Container>
       <Header />
-      <Nav categoryList={categoryList} selectNav={selectNav} />
+      <Nav categoryList={categoryList} selectNav={selectNav} slideNavIdx={0} />
       <Search
         setSort={setSort}
         selectSort={selectSort}
