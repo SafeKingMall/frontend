@@ -19,13 +19,13 @@ export const OrdersStep = (props: any) => {
           <S.StepIconBox
             style={{ backgroundColor: props.stepTitle === '장바구니' ? greenColor : '' }}
           >
-            <BsCart size={56} color={props.stepTitle === '장바구니' ? whiteColor : greenColor} />
+            <BsCart size='70%' color={props.stepTitle === '장바구니' ? whiteColor : greenColor} />
           </S.StepIconBox>
           <S.StepIconBox
             style={{ backgroundColor: props.stepTitle === '주문·결제' ? greenColor : '' }}
           >
             <GoCreditCard
-              size={56}
+              size='70%'
               color={props.stepTitle === '주문·결제' ? whiteColor : greenColor}
             />
           </S.StepIconBox>
@@ -33,7 +33,7 @@ export const OrdersStep = (props: any) => {
             style={{ backgroundColor: props.stepTitle === '주문완료' ? greenColor : '' }}
           >
             <BsCartCheck
-              size={56}
+              size='70%'
               color={props.stepTitle === '주문완료' ? whiteColor : greenColor}
             />
           </S.StepIconBox>
