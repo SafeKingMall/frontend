@@ -7,8 +7,10 @@ export const NoCartsItem = () => {
   return (
     <S.Container>
       <S.Title>장바구니</S.Title>
-      <S.ListContainer>장바구니가 비어있습니다.</S.ListContainer>
-      <S.GreenBtn onClick={() => navigate('/')}>쇼핑하러 가기</S.GreenBtn>
+      <S.Group>
+        <S.ListContainer>장바구니가 비어있습니다.</S.ListContainer>
+        <S.GreenBtn onClick={() => navigate('/')}>쇼핑하러 가기</S.GreenBtn>
+      </S.Group>
     </S.Container>
   );
 };

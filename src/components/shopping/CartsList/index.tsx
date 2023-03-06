@@ -305,13 +305,16 @@ export const CartsList = (props: any) => {
         <S.ListTitleBar>
           <S.TitleCheckBoxArea>
             <S.AllCheckBox
+              id='allCheck'
               type='checkbox'
               onChange={(e) => onCheckedAll(e.target.checked)}
               checked={
                 checkedList.length === 0 ? false : checkedList.length === data.length ? true : false
               }
             />
+            <S.AllCheckBoxLabel>전체선택</S.AllCheckBoxLabel>
           </S.TitleCheckBoxArea>
+          <S.MobileSelectDel onClick={() => deleteSelectItemAlert()}>선택삭제</S.MobileSelectDel>
           <S.TitleInfoArea>상품 정보</S.TitleInfoArea>
           <S.TitleSaleArea>할인 금액</S.TitleSaleArea>
           <S.TitlePriceArea>결제 금액</S.TitlePriceArea>
@@ -321,6 +324,7 @@ export const CartsList = (props: any) => {
           return (
             <S.ItemContainer key={item.id}>
               <S.ItemContentArea>
+                {/* <S.MobileListBetween> */}
                 <S.ItemCheckBoxArea>
                   <S.ItemCheckBox
                     type='checkbox'
@@ -345,6 +349,7 @@ export const CartsList = (props: any) => {
                     </S.ItemPriceText>
                   </S.ItemTextArea>
                 </S.ItemInfoArea>
+                {/* </S.MobileListBetween> */}
                 <S.ItemSaleArea>
                   <p>-</p>
                 </S.ItemSaleArea>
@@ -356,16 +361,23 @@ export const CartsList = (props: any) => {
                     원
                   </p>
                 </S.ItemPriceArea>
-                <S.ItemSelcetArea>
-                  <S.ListPurchaseBtn onClick={() => moveOrders(item.id)}>
-                    바로구매
-                  </S.ListPurchaseBtn>
+                <S.ItemSelectArea>
+                  <S.ListPurchaseBtn onClick={() => moveOrders(item.id)}>구매</S.ListPurchaseBtn>
                   <S.ListDelBtn onClick={() => deleteItemAlert(item.id, idx)}>삭제</S.ListDelBtn>
-                </S.ItemSelcetArea>
+                </S.ItemSelectArea>
               </S.ItemContentArea>
               <S.ItemCountArea>
                 <S.CountText>수량.</S.CountText>
                 <S.CountNum>{countList[idx]}개</S.CountNum>
+                <S.MobileCountPriceArea>
+                  결제금액
+                  <S.MobileCountPrice>
+                    {(item.itemPrice * countList[idx])
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    원
+                  </S.MobileCountPrice>
+                </S.MobileCountPriceArea>
                 <S.CountBox>
                   <S.CountBtn onClick={() => countMinus(item.id, countList[idx], idx)}>
                     -
