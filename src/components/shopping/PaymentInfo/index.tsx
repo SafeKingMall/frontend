@@ -47,9 +47,9 @@ export const PaymentInfo = (props: any) => {
             />
             <S.PayRadioLabel htmlFor='card'>
               <S.PayIconArea>
-                <GoCreditCard size={40} color={paymentState === 'card' ? greenColor : grayColor} />
+                <GoCreditCard size='100%' color={paymentState === 'card' ? greenColor : grayColor} />
               </S.PayIconArea>
-              <p>신용카드</p>
+              <S.PayText>신용카드</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
           <S.PayBtn style={paymentState === 'virtualAccount' ? btnActive : {}}>
@@ -65,7 +65,7 @@ export const PaymentInfo = (props: any) => {
                 <svg
                   id='virtualAccountIcon'
                   viewBox='0 0 39.5 27.5'
-                  style={{ width: '0.43rem', height: '0.4rem' }}
+                  style={{ width: '100%', height: '80%' }}
                 >
                   <S.VirtualPath2
                     style={{ stroke: paymentState === 'virtualAccount' ? greenColor : '' }}
@@ -106,7 +106,7 @@ export const PaymentInfo = (props: any) => {
                   />
                 </svg>
               </S.PayIconArea>
-              <p>가상계좌</p>
+              <S.PayText>가상계좌</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
           <S.PayBtn style={paymentState === 'bankTransfer' ? btnActive : {}}>
@@ -122,7 +122,7 @@ export const PaymentInfo = (props: any) => {
                 <svg
                   id='bankTransferIcon'
                   viewBox='0 0 39.5 31.79'
-                  style={{ width: '0.43rem', height: '0.4rem' }}
+                  style={{ width: '100%', height: '80%' }}
                 >
                   <S.BankTransferPath1
                     style={{ stroke: paymentState === 'bankTransfer' ? greenColor : '' }}
@@ -134,7 +134,7 @@ export const PaymentInfo = (props: any) => {
                   />
                 </svg>
               </S.PayIconArea>
-              <p>계좌이체</p>
+              <S.PayText>계좌이체</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
           <S.PayBtn style={paymentState === 'kakaoPay' ? btnActive : {}}>
@@ -148,11 +148,11 @@ export const PaymentInfo = (props: any) => {
             <S.PayRadioLabel htmlFor='kakaoPay'>
               <S.PayIconArea>
                 <RiKakaoTalkFill
-                  size={40}
+                  size='100%'
                   color={paymentState === 'kakaoPay' ? greenColor : grayColor}
                 />
               </S.PayIconArea>
-              <p>카카오페이</p>
+              <S.PayText>카카오페이</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
           <S.PayBtn style={paymentState === 'naverPay' ? btnActive : {}}>
@@ -165,9 +165,9 @@ export const PaymentInfo = (props: any) => {
             />
             <S.PayRadioLabel htmlFor='naverPay'>
               <S.PayIconArea>
-                <SiNaver size={32} color={paymentState === 'naverPay' ? greenColor : grayColor} />
+                <SiNaver size='80%' color={paymentState === 'naverPay' ? greenColor : grayColor} />
               </S.PayIconArea>
-              <p>네이버페이</p>
+              <S.PayText>네이버페이</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
           <S.PayBtn style={paymentState === 'payco' ? btnActive : {}}>
@@ -184,8 +184,8 @@ export const PaymentInfo = (props: any) => {
                   id='paycoIcon'
                   viewBox='0 0 224.43 50.79'
                   style={{
-                    width: '0.7rem',
-                    height: '0.4rem',
+                    width: '100%',
+                    height: '40%',
                     fill: paymentState === 'payco' ? greenColor : grayColor,
                   }}
                 >
@@ -196,7 +196,7 @@ export const PaymentInfo = (props: any) => {
                   <path d='M172.24,25.54v-.14c0-13.96,11.01-25.4,26.17-25.4s26.03,11.29,26.03,25.25v.14c0,13.96-11.01,25.4-26.17,25.4s-26.03-11.3-26.03-25.25Zm40.9,0v-.14c0-8.42-6.17-15.43-14.87-15.43s-14.73,6.88-14.73,15.29v.14c0,8.42,6.17,15.43,14.87,15.43s14.73-6.88,14.73-15.29Z ' />
                 </svg>
               </S.PayIconArea>
-              <p>페이코</p>
+              <S.PayText>페이코</S.PayText>
             </S.PayRadioLabel>
           </S.PayBtn>
         </S.PaymentSelectArea>
