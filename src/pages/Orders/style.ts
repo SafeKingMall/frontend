@@ -4,6 +4,9 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 14.4rem;
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
 `;
 export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
@@ -17,24 +20,40 @@ export const CheckArea = styled.div`
   padding: 0 0.12rem;
   display: flex;
   align-items: center;
+  @media (max-width: 720px) {
+    width: 100%;
+    padding: 0 5%;
+    align-items: flex-start;
+  }
 `;
-export const CheckBox = styled.input.attrs(() => ({
-  type: 'checkbox',
-}))`
+export const CheckBox = styled.input.attrs(() => ({ type: 'checkbox' }))`
   accent-color: ${({ theme }) => theme.palette.green};
   width: 0.32rem;
   height: 0.32rem;
+  @media (max-width: 720px) {
+    width: 0.72rem;
+    height: 0.72rem;
+  }
 `;
 export const CheckText = styled.span`
   font-size: 0.24rem;
   font-weight: 400;
   color: ${({ theme }) => theme.palette.txt};
   margin-left: 0.16rem;
+  @media (max-width: 720px) {
+    font-size: 0.48rem;
+  }
 `;
 export const BtnArea = styled.div`
   width: 14.4rem;
   ${({ theme }) => theme.common.flexCenter};
   margin-bottom: 1.2rem;
+  @media (max-width: 720px) {
+    width: 100%;
+    padding: 0 5%;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
 `;
 export const Btn = styled.button`
   width: 2.8rem;
@@ -42,6 +61,11 @@ export const Btn = styled.button`
   border-radius: 1rem;
   font-size: 0.24rem;
   font-weight: 700;
+  @media (max-width: 720px) {
+    width: 48.75%;
+    height: 1.5rem;
+    font-size: 0.48rem;
+  }
 `;
 export const WhiteBtn = styled(Btn)`
   border: 0.02rem solid ${({ theme }) => theme.palette.green};
@@ -58,17 +82,24 @@ export const ExchangeInfoArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.2rem;
+  @media (max-width: 720px) {
+    width: 100%;
+    padding: 0 5%;
+  }
 
   table {
-    width: 80%;
+    width: 100%;
   }
   .page {
     font-size: 0.16rem;
     width: 100%;
+    @media (max-width: 720px) {
+      font-size: 0.32rem;
+    }
   }
   .page-body {
     width: 100%;
-    padding-left: 0.24rem;
   }
   a,
   a.visited {
@@ -103,9 +134,11 @@ export const ExchangeInfoArea = styled.div`
   }
 
   h2 {
-    font-size: 0.32rem;
+    font-size: 0.28rem;
     margin-top: 0.4rem;
-    font-weight: 500;
+    @media (max-width: 720px) {
+      font-size: 0.56rem;
+    }
   }
 
   h3 {
@@ -331,16 +364,17 @@ export const ExchangeInfoArea = styled.div`
     margin-top: 1em;
     font-size: 0.2rem;
     empty-cells: show;
+    @media (max-width: 720px) {
+      font-size: 0.4rem;
+    }
   }
 
   .simple-table td {
     height: 29px;
-    min-width: 120px;
   }
 
   .simple-table th {
     height: 29px;
-    min-width: 120px;
   }
 
   .simple-table-header-color {

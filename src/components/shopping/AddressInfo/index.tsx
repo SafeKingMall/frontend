@@ -26,7 +26,7 @@ export const AddressInfo = (props: any) => {
   //주소모달 열기
   const openModal = () => {
     setIsOpenPost(true);
-    document.body.style.cssText = 'overflow-y: hidden; width: 100%; padding-right: 15px;'; // 모달띄웠을떄 스크롤 막기
+    document.body.style.cssText = 'overflow-y: hidden; width: 100%;'; // 모달띄웠을떄 스크롤 막기
   };
 
   //주소모달 닫기
@@ -151,9 +151,17 @@ export const AddressInfo = (props: any) => {
   }, [addRadio, userData, setText, resetValidation]);
 
   //주소모달 스타일
+  // const postCodeStyle = {
+  //   width: '500px',
+  //   height: '460px',
+  //   padding: '7px',
+  //   backgroundColor: '#ffffff',
+  //   borderRadius: '15px',
+  //   fontSize: '16px',
+  // };
   const postCodeStyle = {
-    width: '500px',
-    height: '460px',
+    width: '100%',
+    height: '100%',
     padding: '7px',
     backgroundColor: '#ffffff',
     borderRadius: '15px',
@@ -232,27 +240,28 @@ export const AddressInfo = (props: any) => {
           <S.ValidationArea>
             <S.Validation>{phoneVal}</S.Validation>
           </S.ValidationArea>
-          <S.InputArea style={{ marginBottom: '0.16rem' }}>
+          <S.InputAddArea>
             <S.InputTitleArea>
               <S.InputTitle>주소</S.InputTitle>
             </S.InputTitleArea>
-            <S.InputZipcode
-              type='text'
-              placeholder='주소찾기를 클릭하세요.'
-              value={text[3] || ''}
-              onChange={(e) => textChange(e.target.value, 3)}
-              readOnly
-            />
-            <S.AddSearchBtn onClick={() => openModal()}>주소찾기</S.AddSearchBtn>
-          </S.InputArea>
-          <S.InputArea style={{ marginBottom: '0.35rem' }}>
-            <S.InputBasic
+            <S.ZipCodeWrap>
+              <S.InputZipcode
+                type='text'
+                placeholder='주소찾기를 클릭하세요.'
+                value={text[3] || ''}
+                onChange={(e) => textChange(e.target.value, 3)}
+                readOnly
+              />
+              <S.AddSearchBtn onClick={() => openModal()}>주소찾기</S.AddSearchBtn>
+            </S.ZipCodeWrap>
+          </S.InputAddArea>
+          <S.InputArea style={{ marginBottom: '0.32rem' }}>
+            <S.InputAdd
               type='text'
               placeholder='주소를 입력해주세요.'
               value={text[4] || ''}
               onChange={(e) => textChange(e.target.value, 4)}
               readOnly
-              style={{ marginLeft: '2.01rem' }}
             />
             <S.InputDetailAdd
               type='text'
@@ -314,7 +323,12 @@ export const AddressInfo = (props: any) => {
       {isOpenPost && (
         <S.DaumPostBackground onClick={() => closeModal()}>
           <S.DaumPostDiv>
-            <DaumPostcode style={postCodeStyle} autoClose={false} onComplete={onCompletePost} />
+            <DaumPostcode
+              className='daumPost'
+              style={postCodeStyle}
+              autoClose={false}
+              onComplete={onCompletePost}
+            />
           </S.DaumPostDiv>
         </S.DaumPostBackground>
       )}
