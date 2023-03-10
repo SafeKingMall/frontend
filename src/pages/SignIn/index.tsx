@@ -156,7 +156,7 @@ export const SignIn = () => {
             {/* 패스워드 */}
             <S.InputLine>
               <S.LabelWrap>
-                <label htmlFor='password'>패스워드</label>
+                <label htmlFor='password'>비밀번호</label>
               </S.LabelWrap>
               <S.InputWrap>
                 <S.InputForm
@@ -185,7 +185,7 @@ export const SignIn = () => {
               <S.SpanList onClick={navigateSignUp}>회원가입</S.SpanList>
             </S.Span>
           </S.SignText>
-          <div>
+          <S.BtnWrap>
             <S.Btn onClick={() => login()}>로그인</S.Btn>
             {/* <S.Social>
               <S.SocialBtn onClick={test}>구글로 로그인하기</S.SocialBtn>
@@ -193,7 +193,7 @@ export const SignIn = () => {
                 카카오로 로그인하기
               </S.SocialBtn>
             </S.Social> */}
-          </div>
+          </S.BtnWrap>
         </S.Wrapper>
       </S.Container>
       <S.ModalBackground style={{ display: isOpen ? '' : 'none' }} onClick={() => onOpen()}>
