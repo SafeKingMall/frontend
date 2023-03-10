@@ -44,3 +44,4 @@ export { SignUp4 } from './SignUp/SignUp4';
 export { NotFound } from './NotFound';
 export { PrivacyPolicy } from './PrivacyPolicy';
 export { TermsOfService } from './TermsOfService';
+export { MobilePaymentResult } from './MobilePaymentResult';

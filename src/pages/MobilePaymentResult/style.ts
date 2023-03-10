@@ -14,6 +14,24 @@ export const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
+export const TitleWrap = styled.div`
+  width: 14.4rem;
+  height: 1.6rem;
+  ${({ theme }) => theme.common.flexCenter};
+  border-bottom: 1px solid #289951;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
+`;
+export const Title = styled.h1`
+  font-size: 0.4rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.palette.txt};
+  @media (max-width: 720px) {
+    font-size: 0.72rem;
+    margin-bottom: 0;
+  }
+`;
 export const Group = styled.div`
   ${({ theme }) => theme.common.flexCenter}
   width: 100%;
@@ -79,6 +97,7 @@ export const TextArea = styled.div`
   margin-top: 0.64rem;
   @media (max-width: 720px) {
     margin-top: 1rem;
+    padding: 0 5%;
   }
 `;
 export const Text = styled.span`
