@@ -47,6 +47,7 @@ import {
   NotFound,
   PrivacyPolicy,
   TermsOfService,
+  MobilePaymentResult,
 } from '../pages';
 // 페이지내 메뉴가 있을 경우 케밥케이스사용(mypage-edit)
 const Router = () => {
@@ -83,6 +84,7 @@ const Router = () => {
         <Route path='/mypage-rf' element={<MyPageRf />} />
         <Route path='/mypage-rf-detail' element={<MyPageRfDetail />} />
         <Route path='/orderok' element={<OrderOk />} />
+        <Route path='/mobile-payment-result' element={<MobilePaymentResult />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/notice' element={<Notice />} />
         <Route path='/notice-wr' element={<NoticeWr />} />
