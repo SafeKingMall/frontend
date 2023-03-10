@@ -33,7 +33,7 @@ body {
 .App {
   /* min-height: calc(100% - 2rem); */
   min-height: calc(var(--vh, 1vh) * 100);
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 button {
   border: none;
