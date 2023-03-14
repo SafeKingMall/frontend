@@ -5,7 +5,8 @@ export const PageNumbers = styled.ul`
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
-  @media screen and (max-width: 400px) {
+  justify-content: center;
+  @media screen and (max-width: 720px) {
     margin-bottom: 0;
   }
 `;
@@ -30,7 +31,7 @@ export const ButtonPageNumbers = styled.button`
   &:focus {
     outline: none;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-bottom: 0;
     font-size: 0.5rem;
   }
@@ -46,7 +47,7 @@ export const Paging2 = styled.li`
     cursor: pointer;
     color: white;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     padding: 5% 10%;
   }

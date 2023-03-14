@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
   }
@@ -18,7 +18,7 @@ export const BigTitle = styled.div`
   font-size: 0.24rem;
   width: 10.56rem;
   font-weight: 700;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     padding-left: 3%;
     font-size: 0.45rem;
@@ -37,7 +37,7 @@ export const Mid = styled.div`
   border-bottom: 0.01rem solid #212121;
   text-align: center;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     padding-left: 3%;
     padding-top: 3%;
@@ -90,7 +90,7 @@ export const AdminOrdertitle = styled.div`
       flex-grow: 0;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     padding: 0;
     div {
@@ -137,7 +137,7 @@ export const Container = styled.div`
       text-align: right;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     cursor: default;
     > ul {
@@ -199,7 +199,7 @@ export const SearchBox = styled.div`
   margin-top: 0.2rem;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     height: 17.5vh;
     padding: 5%;
@@ -213,7 +213,7 @@ export const DayButton = styled.button`
   background-color: white;
   font-size: 0.2rem;
   margin-right: 0.08rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 40vw;
     height: 5vh;
     font-size: 0.45rem;
@@ -234,7 +234,7 @@ export const SearchSecon = styled.div`
   margin-top: 0.24rem;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-top: 3%;
     margin-left: -2.5%;
   }
@@ -245,7 +245,7 @@ export const SearchThird = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 0.16rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-right: 0;
   }
 `;
@@ -264,12 +264,12 @@ export const DayInput = styled.input`
     width: 26%;
     height: 100%;
     cursor: pointer;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       width: 30%;
       padding-top: 1%;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 30.6vw;
     height: 5vh;
     font-size: 0.4rem;
@@ -281,7 +281,7 @@ export const Tilde = styled.div`
   font-size: 0.2rem;
   margin-left: 0.16rem;
   margin-right: 0.08rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     font-weight: 700;
   }
@@ -302,7 +302,7 @@ export const SearchButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   font-size: 0.2rem;
   color: white;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 21vw;
     height: 5vh;
     font-size: 0.45rem;
@@ -317,7 +317,7 @@ export const NoSearchItem = styled.div`
   border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
   font-size: 0.24rem;
   font-weight: 500;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100vw;
     font-size: 0.45rem;
     border-bottom: 0.02rem solid ${({ theme }) => theme.palette.txtgray};

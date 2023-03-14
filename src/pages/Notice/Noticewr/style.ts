@@ -11,7 +11,7 @@ export const Banner = styled.div`
   font-weight: 900;
   background-image: url('/img/noticeBanner.png');
   background-size: 100% 100%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 14%;
     margin-bottom: 5%;
@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -48,7 +48,7 @@ export const Table = styled.table`
         background-color: #d4ebdc;
         width: 2.24rem;
         text-align: center;
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 720px) {
           font-size: 0.5rem;
           font-weight: 700;
         }
@@ -72,7 +72,7 @@ export const Table = styled.table`
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 85%;
     margin-top: 0;
   }
@@ -89,7 +89,7 @@ export const TableInput = styled.input`
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 0.24rem;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     font-size: 0.5rem;
     ::placeholder {
@@ -106,7 +106,7 @@ export const NoticeButton = styled.button`
   align-items: center;
   margin-right: 0.08rem;
   border: 0.01rem solid ${({ theme }) => theme.palette.green};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-right: 5%;
     font-size: 0.5rem;
     width: 20vw;
@@ -121,7 +121,7 @@ export const NoticeButton2 = styled.button`
   width: 1.28rem;
   height: 0.56rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;
@@ -134,7 +134,7 @@ export const NoticeBox = styled.div`
   margin-left: 11.6rem;
   width: 3rem;
   display: flex;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 50%;
     margin: 5% 0 0 50%;
   }

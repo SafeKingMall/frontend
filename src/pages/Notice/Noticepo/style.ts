@@ -11,7 +11,7 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-bottom: 8%;
     font-size: 0.7rem;
     padding-top: 15%;
@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 85%;
   }
 `;
@@ -39,7 +39,7 @@ export const NoticeButton = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin: 5% 0 3% 95%;
     font-size: 0.5rem;
     width: 20vw;
@@ -54,7 +54,7 @@ export const NoticeButton1 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 50%;
     font-size: 0.5rem;
     width: 20vw;
@@ -71,7 +71,7 @@ export const NoticeButton2 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;
@@ -84,7 +84,7 @@ export const ButtonBox = styled.div`
   margin: 1.2rem 0rem 0rem 12.85rem;
   width: 4rem;
   display: flex;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin: 0 0 3% 78%;
     width: 60%;
   }
@@ -96,7 +96,7 @@ export const PoBox = styled.div`
   font-size: 0.24rem;
   border-top: 0.05rem solid ${({ theme }) => theme.palette.green};
   border-bottom: 0.011rem solid ${({ theme }) => theme.palette.txtgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     margin-left: 18%;
   }
@@ -118,7 +118,7 @@ export const TitleDiv = styled.div`
       justify-content: center;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     font-size: 0.4rem;
 
@@ -159,7 +159,7 @@ export const NextTitle = styled.div`
   cursor: pointer;
   font-size: 0.32rem;
   padding-bottom: 0.16rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     padding-bottom: 5%;
     padding-top: 4%;
@@ -174,7 +174,7 @@ export const FirstDiv = styled.div`
   font-size: 0.16rem;
   padding-bottom: 0.16rem;
   padding-top: 0.24rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.4rem;
   }
 `;
@@ -182,21 +182,21 @@ export const FirstDiv = styled.div`
 export const DateData = styled.div`
   cursor: pointer;
   padding-bottom: 0.24rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     display: none;
   }
 `;
 
 export const NotPage = styled.div`
   font-size: 0.32rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
   }
 `;
 
 export const NotPage2 = styled.div`
   font-size: 0.32rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
   }
 `;
@@ -273,7 +273,7 @@ export const Description = styled.div`
     width: 100%;
     height: auto;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     h1 {
       font-size: 0.75rem;
     }

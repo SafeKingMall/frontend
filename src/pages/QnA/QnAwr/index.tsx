@@ -14,7 +14,7 @@ const swal = withReactContent(Swal);
 
 export const QnAWr = () => {
   const navigate = useNavigate();
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const cookies = new Cookies();

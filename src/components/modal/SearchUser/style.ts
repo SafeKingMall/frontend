@@ -18,7 +18,7 @@ export const PopUpBody = styled.div`
   ul {
     justify-content: center;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 74vw;
     height: 70vh;
   }
@@ -40,7 +40,7 @@ export const TabMenu = styled.div`
     padding-top: 0.3rem;
     width: 3.2rem;
     background-color: #d4ebdc;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       width: 37vw;
       height: 6vh;
       font-size: 0.5rem;

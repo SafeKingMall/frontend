@@ -10,7 +10,7 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 15%;
     margin-bottom: 7%;
@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
   }
@@ -45,13 +45,13 @@ export const Table = styled.table`
   tr {
     &:first-child {
       height: 1.12rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         height: 7vh;
       }
     }
     &:nth-child(2) {
       height: 1.12rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         height: 7vh;
       }
     }
@@ -69,7 +69,7 @@ export const Table = styled.table`
     }
     &:last-child {
       height: 1.12rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         height: 6vh;
       }
       td {
@@ -79,7 +79,7 @@ export const Table = styled.table`
             position: absolute;
             top: 0.27rem;
             right: 0.28rem;
-            @media screen and (max-width: 400px) {
+            @media screen and (max-width: 720px) {
               right: 1%;
             }
           }
@@ -87,7 +87,7 @@ export const Table = styled.table`
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 85%;
     height: 100%;
     margin-top: 0;
@@ -106,11 +106,11 @@ export const TableInput = styled.input`
   ::placeholder {
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 0.24rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       font-size: 0.45rem;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 85%;
     font-size: 0.45rem;
@@ -133,7 +133,7 @@ export const ChangeButton = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 75%;
     width: 15vw;
     height: 4vh;
@@ -160,13 +160,13 @@ export const TableDiv = styled.div`
     cursor: pointer;
     height: 0.5rem;
     max-width: 1.28rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       max-width: 14vw;
       height: 70%;
       padding: 0;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 85%;
   }
@@ -187,11 +187,11 @@ export const DivImg = styled.div`
     background-color: white;
     border-radius: 0.5rem;
     height: 0.3rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       height: 88%;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 50vw;
     height: 100%;
     font-size: 0.35rem;
@@ -203,7 +203,7 @@ export const DivImg = styled.div`
 export const NotDownload = styled.div`
   color: ${({ theme }) => theme.palette.txtgray};
   font-size: 0.24rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
     padding-top: 2%;
@@ -224,11 +224,11 @@ export const TableTextarea = styled.textarea`
     color: ${({ theme }) => theme.palette.txtgray};
     font-size: 0.24rem;
     padding-top: 2.5rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       font-size: 0.45rem;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 85%;
     font-size: 0.45rem;
@@ -243,7 +243,7 @@ export const QnAButton = styled.button`
   align-items: center;
   margin-right: 0.08rem;
   border: 0.01rem solid ${({ theme }) => theme.palette.green};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 15vw;
     height: 4vh;
     font-size: 0.45rem;
@@ -258,7 +258,7 @@ export const QnAButton2 = styled.button`
   width: 1.28rem;
   height: 0.56rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 15vw;
     height: 4vh;
     font-size: 0.45rem;
@@ -270,7 +270,7 @@ export const QnABox = styled.div`
   margin-bottom: 1.6rem;
   margin-left: 11.6rem;
   width: 3rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 50%;
     margin-left: 25%;
     margin-top: 7%;

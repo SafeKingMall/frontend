@@ -4,7 +4,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 export const Pagination = (props: any) => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
 
   const numberColor = '#289951';
   const numbertxtColor = 'white';

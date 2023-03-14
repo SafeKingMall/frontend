@@ -3,7 +3,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 14.4rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     min-width: 100%;
     height: 100%;
   }
@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   width: 14.4rem;
   /* height: 109.6rem; */
   margin-bottom: 1.2rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 0;
     width: 100vw;
   }
@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 export const RefundH1 = styled.h3`
   font-size: 0.4rem;
   margin-top: 1.42rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.8rem;
     margin: 0;
     font-weight: 900;
@@ -45,7 +45,7 @@ export const Top = styled.div`
   height: 1.09rem;
   background-image: url('/img/Refund/Refund1.png');
   background-size: 100% 100%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     display: none;
   }
 `;
@@ -54,7 +54,7 @@ export const H2 = styled.h3`
   font-size: 0.32rem;
   padding: 0.31rem 0.5rem;
   width: 14.4rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     background-color: ${({ theme }) => theme.palette.green};
     font-size: 0.45rem;
     color: white;
@@ -69,7 +69,7 @@ export const InputContainer = styled.div`
   width: 14.4rem;
   border-bottom: 0.01rem solid #289951;
   border-top: 0.01rem solid #289951;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     border-bottom: 0 solid #289951;
     border-top: 0 solid #289951;
     width: 95vw;
@@ -82,7 +82,7 @@ export const BtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 82vw;
   }
   > button {
@@ -93,7 +93,7 @@ export const BtnWrapper = styled.div`
     font-size: 0.24rem;
     font-weight: 400;
     line-height: 0.3rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       width: 40vw;
       height: 6vh;
     }
@@ -102,7 +102,7 @@ export const BtnWrapper = styled.div`
       font-weight: 700;
       font-size: 24px;
       color: #289951;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         font-size: 0.6rem;
       }
     }
@@ -111,7 +111,7 @@ export const BtnWrapper = styled.div`
       font-weight: 700;
       font-size: 24px;
       color: #ffffff;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         font-size: 0.6rem;
       }
       :disabled {
@@ -132,7 +132,7 @@ export const Table2 = styled.table`
     height: 0.71rem;
     border-top: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
     border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       text-align: left;
       padding: 3%;
     }
@@ -140,12 +140,12 @@ export const Table2 = styled.table`
     &:first-child,
     &:nth-child(2) {
       border-left: 0.01rem solid white;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         border-left: 0 solid white;
       }
     }
     border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       border-left: 0 solid ${({ theme }) => theme.palette.lightgray};
     }
     &:first-child {
@@ -158,7 +158,7 @@ export const Table2 = styled.table`
     &:first-child {
       background-color: #d4ebdc;
       border-top: 0.01rem solid #289951;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         background-color: white;
         border-top: 0 solid #289951;
       }
@@ -166,7 +166,7 @@ export const Table2 = styled.table`
         &:nth-child(2) {
           width: 1.2rem;
           border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-          @media screen and (max-width: 400px) {
+          @media screen and (max-width: 720px) {
             border-left: 0 solid ${({ theme }) => theme.palette.lightgray};
           }
         }
@@ -184,14 +184,14 @@ export const Table2 = styled.table`
     td {
       &:last-child {
         width: 2.05rem;
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 720px) {
           width: 70%;
         }
       }
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.43rem;
     width: 95vw;
     border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
@@ -221,7 +221,7 @@ export const Table = styled.table`
     background-color: #d4ebdc;
     width: 1.66rem;
     font-weight: normal;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       background-color: white;
       font-weight: 700;
       text-align: left;
@@ -239,7 +239,7 @@ export const Table = styled.table`
     border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
     padding: 0.2rem;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.43rem;
     width: 95vw;
     border-left: 0.01rem solid ${({ theme }) => theme.palette.lightgray};

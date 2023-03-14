@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     padding: 0;
     width: 100%;
   }
@@ -24,7 +24,7 @@ export const NoSearchItem = styled.div`
   border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
   font-size: 0.24rem;
   font-weight: 500;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 272%;
     margin-left: -85%;
     font-size: 0.5rem;
@@ -55,7 +55,7 @@ export const QnATitle = styled.div`
       flex-grow: 0.1;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     padding: 0;
     width: 80%;
     margin-top: 10%;
@@ -77,7 +77,7 @@ export const Select = styled.select`
   background-color: #fefefe;
   color: #686868;
   outline: none;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 29%;
     height: 300%;
     margin-right: 1%;
@@ -96,7 +96,7 @@ export const Container = styled.div`
   div {
     &:nth-child(1) {
       width: 1rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         display: none;
       }
     }
@@ -119,7 +119,7 @@ export const Container = styled.div`
         width: 3rem;
         text-align: right;
       }
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         ul {
           margin-top: 2%;
           &:nth-child(1) {
@@ -136,7 +136,7 @@ export const Container = styled.div`
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 80vw;
     display: grid;
     font-size: 0.4rem;

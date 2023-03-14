@@ -15,7 +15,7 @@ import { useMediaQuery } from 'react-responsive';
 const swal = withReactContent(Swal);
 
 export const RefundList = (props: any) => {
-    const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+    const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
     const { registDate2 } = useDateFormat();
     const { MoneyNumber } = useMoney();
 

@@ -17,7 +17,7 @@ import { useMediaQuery } from 'react-responsive';
 const swal = withReactContent(Swal);
 
 export const QnAPo = () => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   const { state } = useLocation();
   const navigate = useNavigate();
   const itemId = state.data;
