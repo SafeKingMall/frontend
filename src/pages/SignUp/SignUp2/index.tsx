@@ -246,11 +246,15 @@ export const SignUp2 = () => {
     color: timer ? '#289951' : '#a6a6a6',
   };
   return (
-    <>
+    <S.Container>
       <Header />
-      <S.Container>
+      <S.ContentContainer>
         <S.Wrapper>
-          <S.Top></S.Top>
+          <S.TopContainer>
+            <S.TopWrap>
+              <S.Top />
+            </S.TopWrap>
+          </S.TopContainer>
           <S.Mid>본인인증 정보</S.Mid>
           <S.InputContainer>
             <S.InputWrapper>
@@ -281,6 +285,7 @@ export const SignUp2 = () => {
             <S.InputWrapper>
               <label>휴대폰 번호</label>
               <input
+                className='smallInput'
                 placeholder='전화번호를 입력해주세요.'
                 value={phone}
                 onChange={(e) => onChangePhone(e.target.value)}
@@ -305,6 +310,8 @@ export const SignUp2 = () => {
             <S.InputWrapper>
               <label>인증번호</label>
               <input
+                className='smallInput'
+                placeholder='인증번호를 입력해주세요.'
                 value={code}
                 onChange={(e) => onChangeCode(e.target.value)}
                 maxLength={15}
@@ -340,7 +347,7 @@ export const SignUp2 = () => {
             </button>
           </S.BtnWrapper>
         </S.Wrapper>
-      </S.Container>
-    </>
+      </S.ContentContainer>
+    </S.Container>
   );
 };

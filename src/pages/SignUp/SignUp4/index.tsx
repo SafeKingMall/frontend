@@ -105,15 +105,19 @@ export const SignUp4 = () => {
   };
 
   return (
-    <>
+    <S.Container>
       <S.Background
         onClick={() => closeModal()}
         style={{ display: agToggle || perToggle ? '' : 'none' }}
       />
       <Header />
-      <S.Container>
+      <S.ContentContainer>
         <S.Wrapper>
-          <S.Top></S.Top>
+          <S.TopContainer>
+            <S.TopWrap>
+              <S.Top />
+            </S.TopWrap>
+          </S.TopContainer>
           <S.Mid>안전왕 쇼핑몰 약관</S.Mid>
           <S.AreaWrapper>
             <Agreement agToggle={agToggle} />
@@ -148,7 +152,7 @@ export const SignUp4 = () => {
             </button>
           </S.BtnWrapper>
         </S.Wrapper>
-      </S.Container>
-    </>
+      </S.ContentContainer>
+    </S.Container>
   );
 };

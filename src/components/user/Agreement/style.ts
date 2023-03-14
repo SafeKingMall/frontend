@@ -5,15 +5,19 @@ export const Wrapper = styled.div`
   width: 6.4rem;
   height: 2.72rem;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 0.2rem;
   line-height: 24px;
-
   color: #212121;
   border: 1px solid #efeff1;
   border-radius: 10px;
   padding: 0.2rem 0.24rem 0 0.24rem;
   white-space: pre-line;
   overflow-y: scroll;
+  @media (max-width: 720px) {
+    width: 100%;
+    height: 7rem;
+    font-size: 0.48rem;
+  }
 
   a,
   a.visited {

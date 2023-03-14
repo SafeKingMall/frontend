@@ -1,57 +1,100 @@
 import styled from 'styled-components';
 export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 14.4rem;
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
+`;
+export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    padding: 0 5%;
+  }
 `;
 export const Wrapper = styled.div`
   background-color: #fff;
-  width: 12.98rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  /* height: 109.6rem; */
+  width: 12.98rem;
   margin-bottom: 1.2rem;
+  @media (max-width: 720px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 `;
-export const ProcessBar = styled.div`
+export const TopContainer = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 100%;
+`;
+export const TopWrap = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 30%;
+  @media (max-width: 720px) {
+    width: 80%;
+  }
+`;
+export const Top = styled.img.attrs({
+  src: 'https://user-images.githubusercontent.com/91241596/213253660-d5f39637-aafc-43b1-b6a9-abb3978e5c15.png',
+})`
   margin: 1.04rem 0 1.04rem 0;
+  width: 100%;
+  height: 100%;
   font-size: 0.24rem;
   font-weight: 400;
   line-height: 0.3rem;
-  width: 4.01rem;
-  height: 0.99rem;
-  background-image: url('https://user-images.githubusercontent.com/91241596/213253660-d5f39637-aafc-43b1-b6a9-abb3978e5c15.png');
 `;
+// export const ProcessBar = styled.div`
+//   margin: 1.04rem 0 1.04rem 0;
+//   font-size: 0.24rem;
+//   font-weight: 400;
+//   line-height: 0.3rem;
+//   width: 4.01rem;
+//   height: 0.99rem;
+//   background-image: url('https://user-images.githubusercontent.com/91241596/213253660-d5f39637-aafc-43b1-b6a9-abb3978e5c15.png');
+// `;
 export const Mid = styled.div`
   margin-bottom: 0.16rem;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 0.24rem;
+  line-height: 0.29rem;
   color: #289951;
-  display: block;
-  align-items: left;
+  @media (max-width: 720px) {
+    margin-bottom: 0.32rem;
+    font-size: 0.52rem;
+    line-height: initial;
+  }
 `;
 export const InputContainer = styled.div`
   background-color: #fff;
   width: 6.4rem;
-  height: 7.04rem;
-  border: 1px solid #efeff1;
-  /* border: 0.1rem solid #fff; */
+  border: 0.01rem solid #cccccc;
   border-radius: 0.1rem;
   & > div:last-child {
     &::after {
       display: none;
     }
   }
+  @media (max-width: 720px) {
+    width: 100%;
+    border: none;
+  }
 `;
 export const InputWrapper = styled.div`
-  /* background-color: mistyrose; */
   height: 0.88rem;
   display: flex;
   align-items: center;
   position: relative;
+  @media (max-width: 720px) {
+    height: initial;
+    flex-direction: column;
+    margin-bottom: 0.7rem;
+    align-items: initial;
+  }
   & > label {
-    /* background-color: thistle; */
-    display: inline-block;
+    display: flex;
     width: 2rem;
     height: 0.17rem;
     font-size: 0.18rem;
@@ -63,6 +106,22 @@ export const InputWrapper = styled.div`
       font-size: 12px;
       line-height: 15px;
       color: #289951;
+      display: flex;
+      width: 0.2rem;
+      @media (max-width: 720px) {
+        width: 0.4rem;
+      }
+    }
+    @media (max-width: 720px) {
+      width: 100%;
+      height: 1rem;
+      font-size: 0.52rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 0;
+      line-height: initial;
+      margin-bottom: 0.2rem;
     }
   }
   & > button {
@@ -78,6 +137,15 @@ export const InputWrapper = styled.div`
     position: absolute;
     top: 0.25rem;
     right: 0.24rem;
+    @media (max-width: 720px) {
+      width: 25%;
+      height: 1.6rem;
+      top: 1.2rem;
+      right: 0;
+      font-size: 0.52rem;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+    }
   }
   & > input {
     background-color: #fff;
@@ -87,6 +155,13 @@ export const InputWrapper = styled.div`
     padding-left: 0.24rem;
     width: 4.2rem;
     height: 95%;
+    @media (max-width: 720px) {
+      width: 100%;
+      height: 1.6rem;
+      font-size: 0.52rem;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+    }
   }
   & > p {
     color: red;
@@ -118,9 +193,12 @@ export const InputWrapper = styled.div`
     left: 2rem;
     top: 0.34rem;
     width: 0.01rem;
-    background-color: #efeff1;
+    background-color: #cccccc;
     width: 0.01rem;
     height: 0.24rem;
+    @media (max-width: 720px) {
+      display: none;
+    }
   }
   &::after {
     content: '';
@@ -128,9 +206,24 @@ export const InputWrapper = styled.div`
     right: 0;
     bottom: 0;
     width: 0.01rem;
-    background-color: #efeff1;
+    background-color: #cccccc;
     width: 6.38rem;
     height: 0.01rem;
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+  .noEssential {
+    margin-left: 0.2rem;
+    @media (max-width: 720px) {
+      margin-left: 0;
+    }
+  }
+  .smallInput {
+    @media (max-width: 720px) {
+      width: 72.5%;
+      position: relative;
+    }
   }
 `;
 export const ErrMsg = styled.span`
@@ -161,8 +254,8 @@ export const BtnWrapper = styled.div`
     :first-child {
       border: 0.01rem solid #289951;
       font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 0.24rem;
+      line-height: 0.29rem;
       /* identical to box height */
 
       color: #289951;
@@ -170,26 +263,34 @@ export const BtnWrapper = styled.div`
     :last-child {
       background-color: #289951;
       font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
-      /* identical to box height */
-
+      font-size: 0.24rem;
+      line-height: 0.29rem;
       color: #ffffff;
       :disabled {
         background-color: #aaaaaa;
       }
     }
   }
-`;
-export const PostModal = styled.div`
-  z-index: 10;
-  position: fixed;
-  width: 5rem;
-  height: 8rem;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* background-color: '#ffffff'; */
+  @media (max-width: 720px) {
+    width: 100%;
+    margin-top: 1rem;
+    > button {
+      background-color: #fff;
+      border-radius: 1rem;
+      width: 47.5%;
+      height: 1.5rem;
+      :first-child {
+        border: 1px solid #289951;
+        font-size: 0.48rem;
+        line-height: initial;
+      }
+      :last-child {
+        background-color: #289951;
+        font-size: 0.48rem;
+        line-height: initial;
+      }
+    }
+  }
 `;
 export const DaumPostBackground = styled.div`
   width: 100%;
@@ -199,12 +300,23 @@ export const DaumPostBackground = styled.div`
   top: 0;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
 `;
 export const DaumPostDiv = styled.div`
+  width: 500px;
+  height: 460px;
   z-index: 200;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: '#ffffff';
+  @media (max-width: 720px) {
+    width: 95%;
+    height: 70%;
+    min-width: 328px;
+    max-width: 500px;
+  }
 `;

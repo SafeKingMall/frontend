@@ -143,8 +143,8 @@ export const SignUp3 = () => {
   };
 
   const postCodeStyle = {
-    width: '500px',
-    height: '460px',
+    width: '100%',
+    height: '100%',
     padding: '7px',
     backgroundColor: '#ffffff',
     borderRadius: '15px',
@@ -238,16 +238,20 @@ export const SignUp3 = () => {
     }
   };
   return (
-    <>
+    <S.Container>
       <Header />
-      <S.Container>
+      <S.ContentContainer>
         <S.Wrapper>
-          <S.ProcessBar></S.ProcessBar>
+          <S.TopContainer>
+            <S.TopWrap>
+              <S.Top />
+            </S.TopWrap>
+          </S.TopContainer>
           <S.Mid>회원정보 입력</S.Mid>
           <S.InputContainer>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 회사명
+                <span>*</span>회사명
               </label>
               <input
                 placeholder='* 표시는 필수 입력 정보입니다'
@@ -258,7 +262,7 @@ export const SignUp3 = () => {
             </S.InputWrapper>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 사업자등록번호
+                <span>*</span>사업자등록번호
               </label>
               <input
                 placeholder='* 표시는 필수 입력 정보입니다'
@@ -271,7 +275,7 @@ export const SignUp3 = () => {
             </S.InputWrapper>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 법인등록번호
+                <span>*</span>법인등록번호
               </label>
               <input
                 placeholder='* 표시는 필수 입력 정보입니다'
@@ -283,25 +287,30 @@ export const SignUp3 = () => {
               <S.ErrMsg>{beobinMsg}</S.ErrMsg>
             </S.InputWrapper>
             <S.InputWrapper>
-              <label>&ensp; &nbsp; 대표명</label>
-              <input onChange={onCeo} maxLength={50} />
+              <label className='noEssential'>대표명</label>
+              <input onChange={onCeo} maxLength={50} placeholder='대표자 이름을 입력해주세요.' />
             </S.InputWrapper>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 우편번호
+                <span>*</span>우편번호
               </label>
-              <input value={zipText} placeholder='주소찾기를 눌러주세요.' readOnly />
+              <input
+                value={zipText}
+                placeholder='주소찾기를 눌러주세요.'
+                readOnly
+                className='smallInput'
+              />
               <button onClick={() => openModal()}>주소찾기</button>
             </S.InputWrapper>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 기본주소
+                <span>*</span>기본주소
               </label>
               <input placeholder='주소찾기를 눌러주세요.' value={basicText} readOnly />
             </S.InputWrapper>
             <S.InputWrapper>
               <label>
-                <span>*</span> &nbsp; 상세주소
+                <span>*</span>상세주소
               </label>
               <input
                 placeholder='* 표시는 필수 입력 정보입니다'
@@ -311,8 +320,8 @@ export const SignUp3 = () => {
               <S.ErrMsg>{detailMsg}</S.ErrMsg>
             </S.InputWrapper>
             <S.InputWrapper>
-              <label>&ensp; &nbsp; 연락처</label>
-              <input onChange={onNumber} maxLength={50} />
+              <label className='noEssential'>연락처</label>
+              <input onChange={onNumber} maxLength={50} placeholder='연락처를 입력해주세요.' />
             </S.InputWrapper>
           </S.InputContainer>
           <S.BtnWrapper>
@@ -322,7 +331,7 @@ export const SignUp3 = () => {
             </button>
           </S.BtnWrapper>
         </S.Wrapper>
-      </S.Container>
+      </S.ContentContainer>
       {isOpenPost && (
         <S.DaumPostBackground onClick={() => closeModal()}>
           <S.DaumPostDiv>
@@ -330,6 +339,6 @@ export const SignUp3 = () => {
           </S.DaumPostDiv>
         </S.DaumPostBackground>
       )}
-    </>
+    </S.Container>
   );
 };
