@@ -3,47 +3,72 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 14.4rem;
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
 `;
 export const ContentContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    padding: 0 5%;
+  }
 `;
 export const Wrapper = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 12.98rem;
-  /* height: 109.6rem; */
   margin-bottom: 1.2rem;
+  @media (max-width: 720px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 `;
-export const Top = styled.div`
-  background-image: url('https://user-images.githubusercontent.com/91241596/213788582-b96fbd33-cbac-4b4c-8d28-588936cea9e7.png');
+export const TopContainer = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 100%;
+`;
+export const TopWrap = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 30%;
+  @media (max-width: 720px) {
+    width: 80%;
+  }
+`;
+export const Top = styled.img.attrs({
+  src: 'https://user-images.githubusercontent.com/91241596/213788582-b96fbd33-cbac-4b4c-8d28-588936cea9e7.png',
+})`
   margin: 1.04rem 0 1.04rem 0;
+  width: 100%;
+  height: 100%;
   font-size: 0.24rem;
   font-weight: 400;
   line-height: 0.3rem;
-  width: 4.01rem;
-  height: 0.99rem;
+  @media (max-width: 720px) {
+    /* margin: 0; */
+  }
 `;
 export const Mid = styled.div`
   margin: 0.22rem 0 0.16rem;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 0.24rem;
+  line-height: 0.29rem;
   color: #289951;
 `;
 export const InputContainer = styled.div`
   background-color: #fff;
   width: 6.4rem;
-  height: 3.52rem;
-  border: 1px solid #efeff1;
-  /* border: 0.1rem solid #fff; */
+  border: 0.01rem solid #cccccc;
   border-radius: 0.1rem;
   & > div:last-child {
     &::after {
       display: none;
     }
+  }
+  @media (max-width: 720px) {
+    width: 100%;
+    border: none;
   }
 `;
 export const InputWrapper = styled.div`
@@ -51,6 +76,12 @@ export const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  @media (max-width: 720px) {
+    height: initial;
+    flex-direction: column;
+    margin-bottom: 0.7rem;
+    align-items: initial;
+  }
   & > label {
     display: inline-block;
     width: 1.5rem;
@@ -58,10 +89,20 @@ export const InputWrapper = styled.div`
     font-size: 0.18rem;
     font-weight: 700;
     line-height: 0.22rem;
-    /* padding: 0.34rem 0 0 0.3rem; */
     padding-left: 0.3rem;
+    @media (max-width: 720px) {
+      width: 100%;
+      height: 1rem;
+      font-size: 0.52rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 0;
+      line-height: initial;
+      margin-bottom: 0.2rem;
+    }
   }
-  & > input {
+  & input {
     background-color: #fff;
     font-size: 0.18rem;
     font-weight: 400;
@@ -69,6 +110,13 @@ export const InputWrapper = styled.div`
     padding-left: 0.24rem;
     width: 3.2rem;
     height: 95%;
+    @media (max-width: 720px) {
+      width: 100%;
+      height: 1.6rem;
+      font-size: 0.52rem;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+    }
   }
   & > button {
     background-color: #fff;
@@ -83,33 +131,15 @@ export const InputWrapper = styled.div`
     position: absolute;
     top: 0.25rem;
     right: 0.16rem;
-  }
-  & > div {
-    /* background-color: lavenderblush;
-    width: 66rem;
-    height: 5.8rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    padding-left: 3.2rem;
-    font-size: 1.8rem;
-    font-weight: 400;
-    line-height: 2.2rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 1.6rem; */
-    position: absolute;
-    top: 0.31rem;
-    right: 1rem;
-    font-size: 0.28rem;
-    color: #a6a6a6;
-  }
-  & > p {
-    position: absolute;
-    top: 0.31rem;
-    right: 0.3rem;
-    font-size: 0.26rem;
-    color: #a6a6a6;
+    @media (max-width: 720px) {
+      width: 25%;
+      height: 1.6rem;
+      top: 1.2rem;
+      right: 0;
+      font-size: 0.52rem;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+    }
   }
   &::before {
     content: '';
@@ -117,9 +147,12 @@ export const InputWrapper = styled.div`
     left: 1.49rem;
     top: 0.34rem;
     width: 0.01rem;
-    background-color: #efeff1;
+    background-color: #cccccc;
     width: 0.01rem;
     height: 0.24rem;
+    @media (max-width: 720px) {
+      display: none;
+    }
   }
   &::after {
     content: '';
@@ -127,19 +160,64 @@ export const InputWrapper = styled.div`
     right: 0;
     bottom: 0;
     width: 0.01rem;
-    background-color: #efeff1;
+    background-color: #cccccc;
     width: 6.38rem;
     height: 0.01rem;
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+  .smallInput {
+    @media (max-width: 720px) {
+      width: 72.5%;
+      position: relative;
+    }
+  }
+  #id-check {
+    position: absolute;
+    top: 0.31rem;
+    right: 1rem;
+    font-size: 0.28rem;
+    color: #a6a6a6;
+    @media (max-width: 720px) {
+      ${({ theme }) => theme.common.flexCenter};
+      width: 1rem;
+      height: 1.6rem;
+      top: 1.2rem;
+      left: calc(72.5% - 1.1rem);
+      font-size: 0.8rem;
+    }
+  }
+  #pw-check {
+    position: absolute;
+    top: 0.31rem;
+    right: 0.3rem;
+    font-size: 0.26rem;
+    color: #a6a6a6;
+    @media (max-width: 720px) {
+      ${({ theme }) => theme.common.flexCenter};
+      width: 1rem;
+      height: 1.6rem;
+      top: 1.2rem;
+      left: calc(100% - 1.2rem);
+      font-size: 0.7rem;
+    }
   }
 `;
 export const ErrMsg = styled.span`
   font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 0.14rem;
+  line-height: 0.19rem;
   color: #ff003e;
   position: absolute;
   top: 0.61rem;
   left: 1.74rem;
+  @media (max-width: 720px) {
+    top: 3rem;
+    left: 0;
+    font-size: 0.4rem;
+    line-height: initial;
+  }
 `;
 
 export const BtnWrapper = styled.div`
@@ -161,8 +239,8 @@ export const BtnWrapper = styled.div`
     :first-child {
       border: 0.01rem solid #289951;
       font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 0.24rem;
+      line-height: 0.29rem;
       /* identical to box height */
 
       color: #289951;
@@ -170,11 +248,31 @@ export const BtnWrapper = styled.div`
     :last-child {
       background-color: #289951;
       font-weight: 700;
-      font-size: 24px;
-      line-height: 29px;
+      font-size: 0.24rem;
+      line-height: 0.29rem;
       color: #ffffff;
       :disabled {
         background-color: #aaaaaa;
+      }
+    }
+  }
+  @media (max-width: 720px) {
+    width: 100%;
+    margin-top: 1rem;
+    > button {
+      background-color: #fff;
+      border-radius: 1rem;
+      width: 47.5%;
+      height: 1.5rem;
+      :first-child {
+        border: 1px solid #289951;
+        font-size: 0.48rem;
+        line-height: initial;
+      }
+      :last-child {
+        background-color: #289951;
+        font-size: 0.48rem;
+        line-height: initial;
       }
     }
   }

@@ -96,7 +96,7 @@ export const SignUp1 = () => {
       setPwCheck(true);
     }
     if (text !== pwConfirm && pwConfirm.length !== 0) {
-      setPwConfirmVal('비밀번호가 일치하지않습니다.');
+      setPwConfirmVal('* 비밀번호가 일치하지않습니다.');
       setPwConfirmCheck(false);
     } else if (text === pwConfirm && pwConfirm.length !== 0) {
       setPwConfirmVal('');
@@ -108,7 +108,7 @@ export const SignUp1 = () => {
   //비밀번호확인 유효성검사
   const validationPwConfirm = (text: string) => {
     if (text !== pw) {
-      setPwConfirmVal('비밀번호가 일치하지않습니다.');
+      setPwConfirmVal('* 비밀번호가 일치하지않습니다.');
       setPwConfirmCheck(false);
     } else if (text === pw && pwCheck) {
       setPwConfirmVal('');
@@ -226,11 +226,16 @@ export const SignUp1 = () => {
       <Header />
       <S.ContentContainer>
         <S.Wrapper>
-          <S.Top></S.Top>
+          <S.TopContainer>
+            <S.TopWrap>
+              <S.Top />
+            </S.TopWrap>
+          </S.TopContainer>
           <S.InputContainer>
             <S.InputWrapper>
               <label>아이디</label>
               <input
+                className='smallInput'
                 placeholder='영어/숫자 조합 8자리 이상'
                 value={id}
                 onChange={(e) => onChangeId(e.target.value)}
@@ -240,7 +245,7 @@ export const SignUp1 = () => {
                 확인
               </button>
               <S.ErrMsg>{idVal}</S.ErrMsg>
-              <div>
+              <div id='id-check'>
                 <AiOutlineCheckCircle style={idCheckStyle} />
               </div>
             </S.InputWrapper>
@@ -255,7 +260,9 @@ export const SignUp1 = () => {
                 maxLength={20}
               />
               <S.ErrMsg>{pwVal}</S.ErrMsg>
-              <p>{pwCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}</p>
+              <div id='pw-check'>
+                {pwCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
+              </div>
             </S.InputWrapper>
             <S.InputWrapper>
               <label>비밀번호 확인</label>
@@ -268,11 +275,18 @@ export const SignUp1 = () => {
                 maxLength={20}
               />
               <S.ErrMsg>{pwConfirmVal}</S.ErrMsg>
-              <p>{pwConfirmCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}</p>
+              <div id='pw-check'>
+                {pwConfirmCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
+              </div>
             </S.InputWrapper>
             <S.InputWrapper>
               <label>이메일</label>
-              <input value={email} onChange={(e) => onChangeEmail(e.target.value)} maxLength={80} />
+              <input
+                placeholder='이메일을 입력해주세요.'
+                value={email}
+                onChange={(e) => onChangeEmail(e.target.value)}
+                maxLength={80}
+              />
               <S.ErrMsg>{emailVal}</S.ErrMsg>
             </S.InputWrapper>
           </S.InputContainer>
