@@ -18,7 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 const swal = withReactContent(Swal);
 
 export const MyPageOdDetail = () => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   const navigate = useNavigate();

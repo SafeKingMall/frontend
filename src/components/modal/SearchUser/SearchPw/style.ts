@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
   }
@@ -17,7 +17,7 @@ export const Top = styled.div`
   font-size: 0.2rem;
   text-align: center;
   color: #000000;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     font-size: 0.4rem;
     height: 100%;
@@ -33,7 +33,7 @@ export const Ladius = styled.div`
   margin-bottom: 0.48rem;
   display: flex;
   ${({ theme }) => theme.common.flexCenter}
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 32vw;
     height: 32vw;
     margin-top: 10%;
@@ -48,7 +48,7 @@ export const InputContainer = styled.div`
   border: 0.01rem solid #efeff1;
   /* border: 0.1rem solid #fff; */
   border-radius: 0.1rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 90%;
     height: 13vw;
   }
@@ -62,7 +62,7 @@ export const InputWrapper = styled.div`
   height: 0.88rem;
   position: relative;
   bottom: 0.45rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     height: 10vw;
     bottom: 0;
     top: 0.3vh;
@@ -75,7 +75,7 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     line-height: 0.22rem;
     padding: 0.34rem 0 0 0.5rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       width: 23%;
       height: 10vw;
       font-size: 0.5rem;
@@ -89,7 +89,7 @@ export const InputWrapper = styled.div`
     padding-left: 0.24rem;
     width: 70%;
     height: 95%;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       font-size: 0.4rem;
     }
   }
@@ -103,7 +103,7 @@ export const InputWrapper = styled.div`
     background-color: #efeff1;
     width: 0.01rem;
     height: 0.24rem;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       display: none;
     }
   }
@@ -143,7 +143,7 @@ export const ErrMsg = styled.span`
   position: absolute;
   bottom: 4.3rem;
   left: 2rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.35rem;
     bottom: 35.7%;
     left: 28%;
@@ -162,7 +162,7 @@ export const SearchBtn = styled.button`
   :disabled {
     background-color: #aaa;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 75%;
     height: 10vw;
@@ -212,7 +212,7 @@ export const LoginBtn = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 75%;
     height: 10vw;

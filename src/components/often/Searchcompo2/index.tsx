@@ -11,7 +11,7 @@ import '../../../css/alert.css';
 const swal = withReactContent(Swal);
 
 export const Searchcompo2 = (props: any) => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   //현재페이지
   const [currentPage, setCurrentPage] = useState(props.page + 1);
   //페이지당 보여지는 리스트

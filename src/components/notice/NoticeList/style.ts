@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     padding: 0;
     width: 100%;
   }
@@ -34,7 +34,7 @@ export const Container = styled.div`
       text-align: right;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     justify-content: space-between;
     width: 94%;
     margin-left: 3%;
@@ -51,7 +51,7 @@ export const Container = styled.div`
 
 export const DataList = styled.ul`
   margin-bottom: 1.04rem;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     /* margin-top: 10%; */
   }
 `;
@@ -81,7 +81,7 @@ export const NoticeTitle = styled.div`
       flex-grow: 0;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     padding: 0;
     width: 80%;
     margin-top: 10%;
@@ -103,7 +103,7 @@ export const Select = styled.select`
   background-color: #fefefe;
   color: #686868;
   outline: none;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 29%;
     height: 300%;
     margin-right: 1%;
@@ -120,7 +120,7 @@ export const NoticeButton = styled.button`
   font-size: 0.15rem;
   position: absolute;
   bottom: 18%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 61%;
     font-size: 0.5rem;
     width: 20vw;
@@ -135,7 +135,7 @@ export const NoSearchItem = styled.div`
   border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
   font-size: 0.24rem;
   font-weight: 500;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 272%;
     margin-left: -85%;
     font-size: 0.5rem;

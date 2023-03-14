@@ -10,7 +10,7 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 15%;
     margin-bottom: 7%;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
   }
@@ -38,7 +38,7 @@ export const QnAButton = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 17vw;
     height: 5vh;
     font-size: 0.45rem;
@@ -51,7 +51,7 @@ export const ButtonBox = styled.div`
   font-size: 0.24rem;
   margin: 1.2rem 0rem 0rem 11.7rem;
   display: flex;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 52%;
     margin-top: 0;
   }
@@ -64,7 +64,7 @@ export const NoticeButton1 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 16vw;
     height: 4.5vh;
     font-size: 0.45rem;
@@ -80,7 +80,7 @@ export const NoticeButton2 = styled.button`
   height: 0.7rem;
   font-size: 0.24rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 16vw;
     height: 4.5vh;
     font-size: 0.45rem;
@@ -92,7 +92,7 @@ export const PoBox = styled.div`
   font-size: 0.24rem;
   border-top: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   border-bottom: 0.011rem solid ${({ theme }) => theme.palette.txtgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 85%;
     border-top: 0.3vh solid ${({ theme }) => theme.palette.green};
     font-size: 0.45rem;
@@ -118,18 +118,18 @@ export const TitleDiv = styled.div`
       }
       div {
         font-size: 0.32rem;
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 720px) {
           font-size: 0.45rem;
         }
       }
     }
     &:nth-child(2) {
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         font-size: 0.35rem;
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -155,12 +155,12 @@ export const TitleDiv2 = styled.div`
     &:last-child {
       font-size: 0.16rem;
       color: ${({ theme }) => theme.palette.txtgray};
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         font-size: 0.3rem;
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -174,7 +174,7 @@ export const TitleDiv3 = styled.div`
   font-size: 0.32rem;
   justify-content: space-between;
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     font-size: 0.6rem;
   }
@@ -185,7 +185,7 @@ export const Content = styled.div`
   height: 100%;
   padding: 0.48rem 0.23rem 0.23rem 0.23rem;
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -198,7 +198,7 @@ export const Content2 = styled.div`
   height: 100%;
   padding: 0rem 0.23rem 0.32rem 0.23rem;
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.lightgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -223,7 +223,7 @@ export const TextDiv = styled.div`
     ::placeholder {
       color: ${({ theme }) => theme.palette.txtgray};
     }
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 720px) {
       width: 82%;
       font-size: 0.43rem;
       height: 9vh;
@@ -233,7 +233,7 @@ export const TextDiv = styled.div`
   textarea:focus {
     outline: none;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 10vh;
   }
@@ -253,7 +253,7 @@ export const QnAButton2 = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 69%;
     width: 13%;
     height: 8.2vh;
@@ -267,13 +267,13 @@ export const Comment = styled.div`
     &:first-child {
       padding: 0.48rem 0.1rem 0.16rem 0.1rem;
       font-size: 0.32rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         width: 100%;
         font-size: 0.6rem;
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     font-size: 0.6rem;
   }
@@ -292,7 +292,7 @@ export const FileDown = styled.div`
   div {
     &:nth-child(1) {
       width: 2rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         width: 28%;
         padding-left: 3%;
         border-right: 0.2vh solid white;
@@ -300,19 +300,19 @@ export const FileDown = styled.div`
     }
     &:nth-child(2) {
       width: 9.7rem;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         padding-left: 3%;
       }
     }
     &:nth-child(3) {
       width: 2rem;
       text-align: right;
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 720px) {
         padding-right: 3%;
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.45rem;
     height: 6vh;
   }

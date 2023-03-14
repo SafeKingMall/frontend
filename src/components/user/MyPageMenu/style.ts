@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
       margin-bottom: 0.5rem;
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     display: none;
   }
 `;

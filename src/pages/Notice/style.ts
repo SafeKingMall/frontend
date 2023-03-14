@@ -30,7 +30,7 @@ export const Banner = styled.div`
   font-weight: 900;
   background-image: url('/img/noticeBanner.png');
   background-size: 100% 100%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 15%;
   }

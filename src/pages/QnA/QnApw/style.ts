@@ -10,7 +10,7 @@ export const Banner = styled.div`
   text-align: center;
   padding-top: 2.3rem;
   color: white;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 15%;
   }
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   /* position: relative; */
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 100%;
     height: 100%;
   }
@@ -39,7 +39,7 @@ export const QnApwInput = styled.input`
   font-size: 0.24rem;
   padding: 0.1rem;
   border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 55vw;
     height: 5vh;
     font-size: 0.5rem;
@@ -47,7 +47,7 @@ export const QnApwInput = styled.input`
 `;
 
 export const DivWeight = styled.div`
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     font-weight: 600;
   }
@@ -64,7 +64,7 @@ export const PwBox = styled.div`
   margin-top: 1.78rem;
   border-top: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   border-bottom: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     width: 85%;
     font-size: 0.5rem;
     height: 30vh;
@@ -83,7 +83,7 @@ export const Ladius = styled.div`
   svg {
     margin-top: 0.2rem;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 32%;
     width: 20vw;
     height: 10vh;
@@ -94,7 +94,7 @@ export const QnABox = styled.div`
   margin-top: 0.48rem;
   margin-bottom: 1.2rem;
   display: flex;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-top: 10%;
     margin-bottom: 0;
   }
@@ -108,7 +108,7 @@ export const QnAButton = styled.button`
   align-items: center;
   margin-right: 0.08rem;
   border: 0.01rem solid ${({ theme }) => theme.palette.green};
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;
@@ -123,7 +123,7 @@ export const QnAButton2 = styled.button`
   width: 1.28rem;
   height: 0.56rem;
   align-items: center;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
     height: 5vh;

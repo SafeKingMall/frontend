@@ -13,7 +13,7 @@ interface SearchPwForm {
 
 }
 export const SearchPw = (props: any) => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   const setIsOpen = props.setIsOpen;
   const swal = withReactContent(Swal);
   //아이디 

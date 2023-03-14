@@ -10,7 +10,7 @@ import { Cookies } from 'react-cookie';
 import { useMediaQuery } from 'react-responsive';
 
 export const QnAList = (props: any) => {
-  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:400px)' });
+  const isDesktopOrMobile = useMediaQuery({ query: '(max-width:720px)' });
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   // 들어온 데이터 넣는것

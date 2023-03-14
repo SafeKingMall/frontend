@@ -25,7 +25,7 @@ export const QnAButton = styled.button`
   font-size: 0.15rem;
   position: absolute;
   bottom: 28%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     margin-left: 62%;
     font-size: 0.5rem;
     width: 20vw;
@@ -45,7 +45,7 @@ export const Banner = styled.div`
   font-weight: 900;
   background-image: url('/img/QnABannerImg.png');
   background-size: 100% 100%;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 720px) {
     font-size: 0.7rem;
     padding-top: 15%;
   }
