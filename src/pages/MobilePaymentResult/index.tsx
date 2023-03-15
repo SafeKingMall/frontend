@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 // import axios from 'axios';
 import { Cookies } from 'react-cookie';
+import axios from 'axios';
 
 export const MobilePaymentResult = () => {
   const [serchParams] = useSearchParams();
@@ -63,21 +64,49 @@ export const MobilePaymentResult = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const deleteCartItem = async () => {
-  //     let items = state.paymentDataId.map((itemId: any) => 'itemId=' + itemId + '&');
-  //     let itemsString = items.join('');
-  //     await axios({
-  //       method: 'delete',
-  //       url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
-  //       headers: {
-  //         Authorization: cookies.get('accessToken'),
-  //       },
-  //     });
-  //   };
-  //   deleteCartItem();
-  //   // eslint-disable-next-line
-  // }, [state]);
+  useEffect(() => {
+    const verification = async () => {
+      await axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_API_URL}/user/payment`,
+        headers: {
+          Authorization: cookies.get('accessToken'),
+        },
+        data: {
+          success: true,
+          imp_uid: serchParams.get('imp_uid'),
+          merchant_uid: serchParams.get('merchant_uid'),
+        },
+      });
+    };
+    const cartDel = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/user/order/orderItemIds/${serchParams.get(
+          'merchant_uid',
+        )}`,
+        headers: {
+          Authorization: cookies.get('accessToken'),
+        },
+      }).then(async (res) => {
+        let items = res.data.order_items;
+        items = items.map((el: any) => 'itemId=' + el.id + '&');
+        let itemsString = items.join('');
+        await axios({
+          method: 'delete',
+          url: `${process.env.REACT_APP_API_URL}/user/cartItem?${itemsString}`,
+          headers: {
+            Authorization: cookies.get('accessToken'),
+          },
+        });
+      });
+    };
+    if (success === '주문완료') {
+      verification();
+      cartDel();
+    }
+    // eslint-disable-next-line
+  }, [success]);
 
   return (
     <S.Container>
