@@ -221,7 +221,6 @@ export const ErrMsg = styled.span`
     bottom: -0.2rem;
     left: 5%;
     font-size: 0.4rem;
-    line-height: initial;
   }
 `;
 export const DaumPostBackground = styled.div`
