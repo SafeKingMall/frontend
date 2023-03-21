@@ -80,7 +80,7 @@ export const MyPagePw = () => {
       setNewPwCheck(true);
     }
     if (text !== newPwConfirm && newPwConfirm.length !== 0) {
-      setNewPwConfirmVal('비밀번호가 일치하지않습니다.');
+      setNewPwConfirmVal('* 비밀번호가 일치하지않습니다.');
       setNewPwConfirmCheck(false);
     } else if (text === newPwConfirm && newPwConfirm.length !== 0) {
       setNewPwConfirmVal('');
@@ -91,7 +91,7 @@ export const MyPagePw = () => {
   };
   const validationNewPwConfirm = (text: string) => {
     if (text !== newPw) {
-      setNewPwConfirmVal('비밀번호가 일치하지않습니다.');
+      setNewPwConfirmVal('* 비밀번호가 일치하지않습니다.');
       setNewPwConfirmCheck(false);
     } else if (text === newPw && newPwCheck) {
       setNewPwConfirmVal('');
@@ -170,9 +170,9 @@ export const MyPagePw = () => {
           <MyPageMenu />
         </div>
         <S.Wrapper>
-          <S.Top>내 정보</S.Top>
+          <S.Top>비밀번호 변경</S.Top>
           <S.BasicWrap>
-            <S.Mid>기본정보</S.Mid>
+            <S.Mid>비밀번호</S.Mid>
             <div>
               <label>기존 비밀번호</label>
               <input
