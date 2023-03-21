@@ -226,8 +226,8 @@ export const MyPage = () => {
     closeModal();
   };
   const postCodeStyle = {
-    width: '500px',
-    height: '460px',
+    width: '100%',
+    height: '100%',
     padding: '7px',
     backgroundColor: '#ffffff',
     borderRadius: '15px',
@@ -367,7 +367,7 @@ export const MyPage = () => {
             </S.InputWrap>
           </S.BasicWrap>
           <S.BasicWrap>
-            <S.Mid>회원정보</S.Mid>
+            <S.Mid id='profile'>회원정보</S.Mid>
             <S.InputWrap>
               <label>대표자명</label>
               <input value={ceo} onChange={(e) => onChangeCeo(e.target.value)} />
@@ -388,8 +388,10 @@ export const MyPage = () => {
             </S.InputWrap>
             <S.InputWrap>
               <label>우편번호</label>
-              <input value={zip} readOnly />
-              <button onClick={() => openModal()}>주소찾기</button>
+              <input id='short-input' value={zip} readOnly />
+              <button id='short-input-btn' onClick={() => openModal()}>
+                주소찾기
+              </button>
             </S.InputWrap>
             <S.InputWrap>
               <label>기본주소</label>
