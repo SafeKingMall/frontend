@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.p`
+export const Wrapper = styled.div`
   /* background-color: lavenderblush; */
   padding: 0.24rem;
   width: 9.92rem;
   height: 2.2rem;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 0.16rem;
   overflow-y: scroll;
   color: #000000;
   border: 1px solid #efeff1;
+  @media (max-width: 720px) {
+    width: 100%;
+    height: 5rem;
+    font-size: 0.48rem;
+  }
 
   html {
     -webkit-print-color-adjust: exact;
