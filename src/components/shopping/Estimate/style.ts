@@ -4,6 +4,9 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   min-width: 14.4rem;
+  @media (max-width: 720px) {
+    min-width: 100%;
+  }
 `;
 export const Wrap = styled.div`
   width: 100%;
@@ -20,6 +23,9 @@ export const BannerWrap = styled.div`
   align-items: center;
   position: relative;
   margin-bottom: 1.48rem;
+  @media (max-width: 720px) {
+    height: 7rem;
+  }
 `;
 export const Banner = styled.img.attrs({ src: 'img/EstimateBannerImg.png' })`
   width: 100%;
@@ -34,6 +40,9 @@ export const BannerText = styled.span`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media (max-width: 720px) {
+    font-size: 0.8rem;
+  }
 `;
 export const ContentWrap = styled.div`
   width: 10rem;
@@ -41,6 +50,10 @@ export const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 720px) {
+    width: 100%;
+    padding: 0 5%;
+  }
 `;
 export const GuideArea = styled.div`
   ${({ theme }) => theme.common.flexCenter};
@@ -51,6 +64,25 @@ export const Guidetext = styled.span`
   font-size: 0.24rem;
   font-weight: 400;
   color: #000000;
+  text-align: center;
+  @media (max-width: 720px) {
+    font-size: 0.48rem;
+    line-height: 0.64rem;
+    &:first-child {
+      margin-bottom: 0.3rem;
+    }
+  }
+  > br {
+    display: none;
+    @media (max-width: 720px) {
+      display: initial;
+    }
+  }
+  .space {
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
 `;
 export const Form = styled.form`
   width: 100%;
@@ -66,19 +98,31 @@ export const InputDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.32rem;
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 `;
 export const RequestInputDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.32rem;
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 `;
 export const TitleArea = styled.div`
   width: 25%;
-  height: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 export const Title = styled.span`
   display: flex;
@@ -86,6 +130,10 @@ export const Title = styled.span`
   font-size: 0.32rem;
   font-weight: 500;
   color: #212121;
+  @media (max-width: 720px) {
+    font-size: 0.48rem;
+    margin: 0.5rem 0;
+  }
 `;
 export const Essential = styled.span`
   height: 100%;
@@ -94,11 +142,17 @@ export const Essential = styled.span`
   color: ${({ theme }) => theme.palette.green};
   margin-left: 0.1rem;
   margin-top: 0.06rem;
+  @media (max-width: 720px) {
+    font-size: 0.48rem;
+  }
 `;
 export const InputArea = styled.div`
   width: 75%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 export const BasicInput = styled.input`
   width: 100%;
@@ -108,6 +162,11 @@ export const BasicInput = styled.input`
   font-weight: 400;
   color: #212121;
   padding: 0 0.4rem;
+  @media (max-width: 720px) {
+    height: 1.5rem;
+    font-size: 0.48rem;
+    border-radius: 5px;
+  }
 `;
 export const CategoryArea = styled.div`
   width: 38%;
@@ -132,12 +191,22 @@ export const Category = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  border: 0.01rem solid #999999;
+  background-color: #ffffff;
+  @media (max-width: 720px) {
+    height: 1.5rem;
+    font-size: 0.48rem;
+    border-radius: 5px;
+  }
 `;
 export const ItemInput = styled(BasicInput)`
   width: 60%;
 `;
 export const CountInput = styled(BasicInput)`
   width: 38%;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 export const RequestInput = styled.textarea`
   width: 100%;
@@ -148,6 +217,11 @@ export const RequestInput = styled.textarea`
   color: #212121;
   padding: 0.26rem 0.4rem;
   resize: none;
+  @media (max-width: 720px) {
+    height: 7rem;
+    font-size: 0.48rem;
+    border-radius: 5px;
+  }
 `;
 export const SubmitBtn = styled.button`
   width: 3.12rem;
@@ -158,4 +232,10 @@ export const SubmitBtn = styled.button`
   color: #ffffff;
   border-radius: 1rem;
   margin-top: 0.56rem;
+  @media (max-width: 720px) {
+    width: 50%;
+    height: 1.5rem;
+    font-size: 0.48rem;
+    margin: 1rem 0;
+  }
 `;
