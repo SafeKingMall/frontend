@@ -8,7 +8,6 @@ export const Container = styled.div`
   }
 `;
 export const Wrapper = styled.div`
-  /* background-color: #f7f7f7; */
   width: 10.56rem;
   margin-left: 0.2rem;
   display: flex;
@@ -35,7 +34,7 @@ export const Top = styled.div`
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
     font-size: 0.8rem;
-    font-weight: 900;
+    font-weight: 800;
     border-bottom: 1px solid ${({ theme }) => theme.palette.green};
   }
 `;
@@ -58,7 +57,7 @@ export const Mid = styled.h1`
   }
   @media (max-width: 720px) {
     margin-bottom: 0;
-    padding: 0.3rem 5%;
+    padding: 0.5rem 5%;
     width: 100vw;
     font-size: 0.56rem;
     line-height: initial;
