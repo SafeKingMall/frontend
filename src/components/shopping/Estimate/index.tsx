@@ -200,10 +200,16 @@ export const Estimate = () => {
         <S.ContentWrap>
           <S.GuideArea>
             <S.Guidetext>
-              안녕하세요. 안전왕쇼핑몰입니다. 항상 최고가 되기 위해 노력합니다.
+              안녕하세요. 안전왕쇼핑몰입니다.
+              <span className='space'>&nbsp;</span>
+              <br />
+              항상 최고가 되기 위해 노력합니다.
             </S.Guidetext>
             <S.Guidetext>
-              견적서 요청서를 작성해주시면 빠르고 신속하게 확인 후 연락드리겠습니다.
+              견적서 요청서를 작성해주시면 빠르고
+              <span className='space'>&nbsp;</span>
+              <br />
+              신속하게 확인 후 연락드리겠습니다.
             </S.Guidetext>
           </S.GuideArea>
           <S.Form
