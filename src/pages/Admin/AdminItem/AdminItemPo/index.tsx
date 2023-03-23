@@ -119,7 +119,7 @@ export const AdminItemPo = () => {
         confirmButtonColor: '#289951',
         width: 400,
       });
-    } else if (cateSelect === '') {
+    } else if (!cateSelect) {
       swal.fire({
         heightAuto: false,
         icon: 'warning',
