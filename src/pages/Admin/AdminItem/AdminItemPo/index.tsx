@@ -199,14 +199,14 @@ export const AdminItemPo = () => {
           if (result.isConfirmed) {
             if (cookies.get('refreshToken')) {
               modifyApi();
-              swal.fire({
-                heightAuto: false,
-                icon: 'success',
-                text: '상품이 수정되었습니다.',
-                confirmButtonText: '확인',
-                confirmButtonColor: '#289951',
-                width: 400,
-              });
+              // swal.fire({
+              //   heightAuto: false,
+              //   icon: 'success',
+              //   text: '상품이 수정되었습니다.',
+              //   confirmButtonText: '확인',
+              //   confirmButtonColor: '#289951',
+              //   width: 400,
+              // });
             } else {
               navigate('/sign-in');
               cookies.remove('accessToken');
