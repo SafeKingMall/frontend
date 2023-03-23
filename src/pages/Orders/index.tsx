@@ -301,7 +301,7 @@ export const Orders = () => {
           buyer_email: text[1],
           buyer_addr: `${text[4]} ${text[5]}`,
           buyer_postcode: text[3],
-          m_redirect_url: 'http://192.168.35.242:3000/mobile-payment-result',
+          m_redirect_url: 'https://safekingmall.com/mobile-payment-result',
         };
         reissuance();
         setTimeout(() => {
