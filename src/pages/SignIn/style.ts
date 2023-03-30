@@ -62,7 +62,7 @@ export const InputLine = styled.div`
     height: 1.5rem;
     &::after {
       width: 100%;
-      height: 0.01rem;
+      height: 0.02rem;
     }
   }
 `;

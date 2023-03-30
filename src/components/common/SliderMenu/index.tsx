@@ -5,6 +5,7 @@ import * as S from './style';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Cookies } from 'react-cookie';
+import { AiOutlineCaretDown } from 'react-icons/ai';
 
 export const SliderMenu = (props: any) => {
   const navigate = useNavigate();
@@ -14,6 +15,18 @@ export const SliderMenu = (props: any) => {
   const sliderToggle = props.sliderToggle;
   const setSliderToggle = props.setSliderToggle;
   const loginUser = useRef(cookies.get('loginUser'));
+
+  //openMenuToggle
+  const [itemListToggle, setItemListToggle] = useState(false);
+  const [mypageToggle, setMypageToggle] = useState(false);
+  const ItemListEvent = () => {
+    setItemListToggle(!itemListToggle);
+    setMypageToggle(false);
+  };
+  const mypageEvent = () => {
+    setMypageToggle(!mypageToggle);
+    setItemListToggle(false);
+  };
 
   const moveLocation = (path: string) => {
     if (path === location.pathname) {
@@ -61,11 +74,45 @@ export const SliderMenu = (props: any) => {
           <S.Logo />
         </S.LogoArea>
         <S.MenuUl>
-          <S.MenuLi onClick={() => moveLocation('/itemlist-1')}>예방상품리스트</S.MenuLi>
-          <S.MenuLi onClick={() => moveLocation('/notice')}>공지사항</S.MenuLi>
-          <S.MenuLi onClick={() => moveLocation('/qna')}>문의하기</S.MenuLi>
-          <S.MenuLi onClick={() => moveLocation('/estimate')}>견적서 요청</S.MenuLi>
-          <S.LogoutLi onClick={() => logout()} loginUser={loginUser.current}>로그아웃</S.LogoutLi>
+          {/* <S.SmallTitle>menu</S.SmallTitle>
+          <S.SmallTitleUnderLine /> */}
+          <S.MenuLi style={{ height: itemListToggle ? '6.8rem' : '2rem' }}>
+            <S.MenuText onClick={() => ItemListEvent()}>
+              <span>예방상품리스트</span>
+              <span style={{ transform: itemListToggle ? 'rotate(180deg)' : '' }}><AiOutlineCaretDown /></span>
+            </S.MenuText>
+            <S.OpenMenuUl>
+              <S.OpenMenuLi>- 중대사고예방</S.OpenMenuLi>
+              <S.OpenMenuLi>- 화재사고예방</S.OpenMenuLi>
+              <S.OpenMenuLi>- 누출사고예방</S.OpenMenuLi>
+              <S.OpenMenuLi>- 해양사고예방</S.OpenMenuLi>
+            </S.OpenMenuUl>
+          </S.MenuLi>
+          <S.MenuLi onClick={() => moveLocation('/notice')}>
+            <S.MenuText>공지사항</S.MenuText>
+          </S.MenuLi>
+          <S.MenuLi onClick={() => moveLocation('/qna')}>
+            <S.MenuText>문의하기</S.MenuText>
+          </S.MenuLi>
+          <S.MenuLi onClick={() => moveLocation('/estimate')}>
+            <S.MenuText>견적서 요청</S.MenuText>
+          </S.MenuLi>
+          <S.LoginLi style={{ height: mypageToggle ? '7.8rem' : '2rem' }} loginUser={loginUser.current}>
+            <S.MenuText onClick={() => mypageEvent()}>
+              <span>내 정보</span>
+              <span style={{ transform: mypageToggle ? 'rotate(180deg)' : '' }}><AiOutlineCaretDown /></span>
+            </S.MenuText>
+            <S.OpenMenuUl>
+              <S.OpenMenuLi onClick={() => moveLocation('/mypage')}>- 내 정보</S.OpenMenuLi>
+              <S.OpenMenuLi onClick={() => moveLocation('/mypage-od')}>- 주문내역</S.OpenMenuLi>
+              <S.OpenMenuLi onClick={() => moveLocation('/mypage-rf')}>- 환불내역</S.OpenMenuLi>
+              <S.OpenMenuLi onClick={() => moveLocation('/mypage-pw')}>- 비밀번호 변경</S.OpenMenuLi>
+              <S.OpenMenuLi onClick={() => moveLocation('/mypage-wd')}>- 회원 탈퇴</S.OpenMenuLi>
+            </S.OpenMenuUl>
+          </S.LoginLi>
+          <S.LoginLi onClick={() => logout()} loginUser={loginUser.current}>
+            <S.MenuText>로그아웃</S.MenuText>
+          </S.LoginLi>
         </S.MenuUl>
       </S.Container>
     </>

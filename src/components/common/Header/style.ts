@@ -21,6 +21,7 @@ export const MenuBtnArea = styled.div`
     align-items: center;
     height: 100%;
     width: 20%;
+    padding-left: 5vw;
   }
 `;
 export const LogoArea = styled.div`
@@ -59,6 +60,10 @@ export const UserContentArea = styled.div`
   width: 20%;
   height: 100%;
   ${({ theme }) => theme.common.flexCenter};
+  @media (max-width: 720px) {
+    padding-right: 5vw;
+    justify-content: flex-end;
+  }
 `;
 export const UserContentBox = styled.div`
   width: 2.4rem;
@@ -66,8 +71,8 @@ export const UserContentBox = styled.div`
   justify-content: space-around;
   align-items: center;
   @media (max-width: 720px) {
-    width: 75%;
-    margin-right: 0.8rem;
+    width: initial;
+    /* margin-right: 0.8rem; */
     /* justify-content: space-between; */
   }
 `;
@@ -77,7 +82,7 @@ export const IconBox = styled.div`
   justify-content: space-around;
   align-items: center;
   @media (max-width: 720px) {
-    width: 100%;
+    width: initial;
     justify-content: space-between;
   }
 `;
@@ -86,8 +91,11 @@ export const IconWrap = styled.div`
   height: 0.35rem;
   ${({ theme }) => theme.common.flexCenter};
   @media (max-width: 720px) {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.85rem;
+    height: 0.85rem;
+    :first-child {
+      display: none;
+    }
   }
 `;
 export const GreenBtn = styled.button`
@@ -99,8 +107,8 @@ export const GreenBtn = styled.button`
   font-weight: 500;
   color: #ffffff;
   @media (max-width: 720px) {
-    width: 1.8rem;
-    height: 0.8rem;
+    width: 2.2rem;
+    height: 0.9rem;
     border-radius: 0.1rem;
     font-size: 0.3rem;
   }
