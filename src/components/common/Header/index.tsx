@@ -54,8 +54,12 @@ export const Header = () => {
   return (
     <S.Container>
       <SliderMenu sliderToggle={sliderToggle} setSliderToggle={setSliderToggle} />
-      <S.MenuBtnArea onClick={() => openSlider()}>
-        <HiOutlineMenu size='1rem' color='#212121' style={{ marginLeft: '0.8rem' }} />
+      <S.MenuBtnArea>
+        <HiOutlineMenu
+          size='1rem'
+          color='#212121'
+          onClick={() => openSlider()}
+        />
       </S.MenuBtnArea>
       <S.LogoArea>
         <S.Logo onClick={() => moveLocation('/')} />
