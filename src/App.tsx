@@ -5,6 +5,7 @@ import theme from './styles/theme';
 import Router from './routes/Router';
 import { Refresh } from './components/common/hooks/Refresh';
 import { Footer } from './components/common/Footer';
+import CategoryStore from './store/categoryStore';
 
 function App() {
   function setScreenSize() {
@@ -22,9 +23,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-
       <div className='App'>
-        <Router />
+        <CategoryStore>
+          <Router />
+        </CategoryStore>
       </div>
       <Footer />
     </ThemeProvider>
