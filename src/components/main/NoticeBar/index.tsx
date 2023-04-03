@@ -22,18 +22,34 @@ export const NoticeBar = () => {
   }, []);
 
   const preNotice = () => {
-    if (count === 0) {
-      setCount(5);
+    if (noticeList.length > 6) {
+      if (count === 0) {
+        setCount(5);
+      } else {
+        setCount(count - 1);
+      }
     } else {
-      setCount(count - 1);
+      if (count === 0) {
+        setCount(noticeList.length - 1);
+      } else {
+        setCount(count - 1);
+      }
     }
   };
 
   const nextNotice = () => {
-    if (count === 5) {
-      setCount(0);
+    if (noticeList.length > 6) {
+      if (count === 5) {
+        setCount(0);
+      } else {
+        setCount(count + 1);
+      }
     } else {
-      setCount(count + 1);
+      if (count === noticeList.length - 1) {
+        setCount(0);
+      } else {
+        setCount(count + 1);
+      }
     }
   };
 
