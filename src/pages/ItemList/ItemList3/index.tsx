@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+/* eslint-disable */
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import * as S from '../style';
 import { Nav } from '../../../components/item/Nav';
 import axios from 'axios';
@@ -6,8 +7,10 @@ import { List } from '../../../components/item/List';
 import { Search } from '../../../components/item/Search';
 import { Header } from '../../../components/common/Header';
 import { TailSpin } from 'react-loader-spinner';
+import { categoryContext } from '../../../store/categoryStore';
 
 export const ItemList3 = () => {
+  const context: any = useContext(categoryContext);
   const [categoryList, setCategoryList] = useState([]);
   const [selectNav, setSelectNav] = useState('');
   const [itemList, setItemList] = useState([]);
@@ -22,29 +25,21 @@ export const ItemList3 = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let categoryName: string = '';
       setLoading(true);
       setPage(1);
+      setCategoryList(context);
+      setSelectNav(context[2]?.name);
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
-      }).then((res) => {
-        categoryName = res.data.content[2].name;
-        setCategoryList(res.data.content);
-        setSelectNav(categoryName);
-      });
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=0&${sort}&categoryName=${categoryName}&itemName=${searchWord.current}`,
+        url: `${process.env.REACT_APP_API_URL}/item/list?size=12&page=0&${sort}&categoryName=${context[2]?.name}&itemName=${searchWord.current}`,
       }).then((res) => {
         setItemList(res.data.content);
-        setReqData(`${sort}&categoryName=${categoryName}&itemName=${searchWord.current}`);
+        setReqData(`${sort}&categoryName=${context[2]?.name}&itemName=${searchWord.current}`);
         setTotalPages(res.data.totalPages);
         setLoading(false);
       });
     };
     const getGoBackData = async () => {
-      let categoryName: string = '';
       let goBackData: any = sessionStorage.getItem('itemList');
       let goBackPage: any = Number(sessionStorage.getItem('page'));
       let goBackTotalPages: any = Number(sessionStorage.getItem('totalPages'));
@@ -52,14 +47,8 @@ export const ItemList3 = () => {
       let goBackScroll: any = Number(sessionStorage.getItem('scroll'));
       let goBackSelectSort: any = sessionStorage.getItem('selectSort');
       let goBackSearchWord: any = sessionStorage.getItem('searchWord');
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
-      }).then((res) => {
-        categoryName = res.data.content[2].name;
-        setCategoryList(res.data.content);
-        setSelectNav(categoryName);
-      });
+      setCategoryList(context);
+      setSelectNav(context[2]?.name);
       setItemList(JSON.parse(goBackData));
       setPage(goBackPage);
       setTotalPages(goBackTotalPages);
@@ -70,12 +59,14 @@ export const ItemList3 = () => {
       window.scrollTo(0, goBackScroll);
       sessionStorage.removeItem('goBack');
     };
-    if (sessionStorage.getItem('goBack') === 'Y') {
-      getGoBackData();
-    } else {
-      getData();
+    if (context) {
+      if (sessionStorage.getItem('goBack') === 'Y') {
+        getGoBackData();
+      } else {
+        getData();
+      }
     }
-  }, [sort, searchItem]);
+  }, [sort, searchItem, context]);
 
   const loadingData = () => {
     if (loading === true) {

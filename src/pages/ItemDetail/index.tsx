@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { Nav } from '../../components/item/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,10 +13,12 @@ import { Cookies } from 'react-cookie';
 import history from '../../history';
 import { TailSpin } from 'react-loader-spinner';
 import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
+import { categoryContext } from '../../store/categoryStore';
 
 const swal = withReactContent(Swal);
 
 export const ItemDetail = () => {
+  const context = useContext(categoryContext);
   const { state } = useLocation();
   const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);
@@ -139,57 +141,53 @@ export const ItemDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios
-        .all([
-          axios({
-            method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/category/list?sort=sort,asc`,
-          }),
-          axios({ method: 'get', url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}` }),
-        ])
-        .then(
-          axios.spread((res1, res2) => {
-            setCategoryList(res1.data.content);
-            setItemData(res2.data);
-            if (res2.data.viewPrice === 1000000000) {
-              purchaseBtn.current = (
-                <S.estimateBtn
-                  onClick={() =>
-                    navigate('/estimate', {
-                      state: {
-                        categoryName: itemData.categoryName,
-                        itemName: itemData.name,
-                      },
-                    })
-                  }
-                >
-                  견적서 요청
-                </S.estimateBtn>
-              );
-            } else {
-              purchaseBtn.current = (
-                <S.PurchaseBtn
-                  onClick={() => moveOrders()}
-                  style={{
-                    color: itemData.quantity ? '' : '#aaaaaa',
-                    borderColor: itemData.quantity ? '' : '#aaaaaa',
-                  }}
-                  disabled={!itemData.quantity}
-                >
-                  구매하기
-                </S.PurchaseBtn>
-              );
-            }
-            viewedItem.current = {
-              id: res2.data.id,
-              name: res2.data.name,
-              fileName: res2.data.fileName,
-            };
-            setLoading(false);
-          }),
-        );
+      setCategoryList(context);
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+      }).then((res) => {
+        setItemData(res.data);
+        if (res.data.viewPrice === 1000000000) {
+          purchaseBtn.current = (
+            <S.estimateBtn
+              onClick={() =>
+                navigate('/estimate', {
+                  state: {
+                    categoryName: itemData.categoryName,
+                    itemName: itemData.name,
+                  },
+                })
+              }
+            >
+              견적서 요청
+            </S.estimateBtn>
+          );
+        } else {
+          purchaseBtn.current = (
+            <S.PurchaseBtn
+              onClick={() => moveOrders()}
+              style={{
+                color: itemData.quantity ? '' : '#aaaaaa',
+                borderColor: itemData.quantity ? '' : '#aaaaaa',
+              }}
+              disabled={!itemData.quantity}
+            >
+              구매하기
+            </S.PurchaseBtn>
+          );
+        }
+        viewedItem.current = {
+          id: res.data.id,
+          name: res.data.name,
+          fileName: res.data.fileName,
+          categoryName: res.data.categoryName,
+        };
+        setLoading(false);
+      });
     };
-    getData();
+    if (context) {
+      getData();
+    }
   }, [
     state.itemId,
     navigate,
@@ -199,6 +197,7 @@ export const ItemDetail = () => {
     itemData.fileName,
     itemData.categoryName,
     itemData.name,
+    context,
   ]);
 
   const desEvent = () => {

@@ -1,10 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import * as S from './style';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
+import { categoryContext } from '../../../store/categoryStore';
 
 export const ViewedItem = () => {
+  const context = useContext(categoryContext);
+  const categoryList = context.map((el: any) => el.name);
   const [count, setCount] = useState(1);
   const [idx, setIdx] = useState([0, 1, 2]);
   const [close, setClose] = useState(false);
@@ -40,10 +43,11 @@ export const ViewedItem = () => {
     }
   };
 
-  const moveDetail = (id: any) => {
+  const moveDetail = (id: number, categoryName: string) => {
     navigate('/itemDetail', {
       state: {
         itemId: id,
+        slideNavIdx: categoryList.indexOf(categoryName),
       },
     });
   };
@@ -58,7 +62,11 @@ export const ViewedItem = () => {
       </S.TitleArea>
       <S.ItemArea>
         {viewedItems.current[idx[0]] ? (
-          <S.ItemContent onClick={() => moveDetail(viewedItems.current[idx[0]].id)}>
+          <S.ItemContent
+            onClick={() =>
+              moveDetail(viewedItems.current[idx[0]].id, viewedItems.current[idx[0]].categoryName)
+            }
+          >
             <S.ItemImg
               src={`${process.env.REACT_APP_BASE_URL + viewedItems.current[idx[0]].fileName}`}
               alt={viewedItems.current[idx[0]].name}
@@ -71,7 +79,11 @@ export const ViewedItem = () => {
       </S.ItemArea>
       <S.ItemArea>
         {viewedItems.current[idx[1]] ? (
-          <S.ItemContent onClick={() => moveDetail(viewedItems.current[idx[1]].id)}>
+          <S.ItemContent
+            onClick={() =>
+              moveDetail(viewedItems.current[idx[1]].id, viewedItems.current[idx[1]].categoryName)
+            }
+          >
             <S.ItemImg
               src={`${process.env.REACT_APP_BASE_URL + viewedItems.current[idx[1]].fileName}`}
               alt={viewedItems.current[idx[1]].name}
@@ -84,7 +96,11 @@ export const ViewedItem = () => {
       </S.ItemArea>
       <S.ItemArea>
         {viewedItems.current[idx[2]] ? (
-          <S.ItemContent onClick={() => moveDetail(viewedItems.current[idx[2]].id)}>
+          <S.ItemContent
+            onClick={() =>
+              moveDetail(viewedItems.current[idx[2]].id, viewedItems.current[idx[2]].categoryName)
+            }
+          >
             <S.ItemImg
               src={`${process.env.REACT_APP_BASE_URL + viewedItems.current[idx[2]].fileName}`}
               alt={viewedItems.current[idx[2]].name}
