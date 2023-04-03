@@ -1,15 +1,18 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Cookies } from 'react-cookie';
+import { categoryContext } from '../../../store/categoryStore';
 
 const swal = withReactContent(Swal);
 
 export const CartsList = (props: any) => {
+  const context = useContext(categoryContext);
+  const categoryList = context.map((el: any) => el.name);
   const data = props.data;
   const setData = props.setData;
   const setResultList = props.setResultList;
@@ -203,6 +206,7 @@ export const CartsList = (props: any) => {
     navigate('/itemDetail', {
       state: {
         itemId: item.id,
+        slideNavIdx: categoryList.indexOf(item.categoryName),
       },
     });
   };
