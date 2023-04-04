@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 14.4rem;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -79,7 +80,7 @@ export const Select = styled.select`
   outline: none;
   @media screen and (max-width: 720px) {
     width: 29%;
-    height: 300%;
+    height: 100%;
     margin-right: 1%;
     font-size: 0.5rem;
   }
@@ -141,5 +142,26 @@ export const Container = styled.div`
     display: grid;
     font-size: 0.4rem;
     padding-left: 3%;
+  }
+`;
+export const QnAButtonArea = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+`;
+export const QnAButton = styled.button`
+  background-color: ${({ theme }) => theme.palette.green};
+  color: white;
+  width: 1.3rem;
+  height: 0.5rem;
+  font-size: 0.15rem;
+  position: absolute;
+  bottom: 2.9rem;
+  @media screen and (max-width: 720px) {
+    font-size: 0.5rem;
+    width: 20%;
+    height: 1.3rem;
+    position: unset;
   }
 `;

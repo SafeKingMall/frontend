@@ -139,6 +139,17 @@ export const QnAList = (props: any) => {
     }
   };
 
+  const refreshRoute = () => {
+    if (cookies.get('refreshToken')) {
+      navigate('/qna-wr');
+    } else {
+      navigate('/sign-in');
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+      cookies.remove('loginUser');
+    }
+  };
+
   return (
     <S.Wrapper>
       <Searchcompo2
@@ -154,6 +165,9 @@ export const QnAList = (props: any) => {
         setPage={setPage}
         totalPages={totalPages}
       />
+      <S.QnAButtonArea>
+        <S.QnAButton onClick={() => refreshRoute()}>글쓰기</S.QnAButton>
+      </S.QnAButtonArea>
     </S.Wrapper>
   );
 };

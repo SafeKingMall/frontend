@@ -4,14 +4,15 @@ export const PageNumbers = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  margin-bottom: 1.2rem;
   justify-content: center;
   @media screen and (max-width: 720px) {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 `;
 
 export const LiPageNumbers = styled.li`
+  display: flex;
+  align-items: center;
   padding: 0.1rem;
   cursor: pointer;
   &:active {
@@ -20,10 +21,10 @@ export const LiPageNumbers = styled.li`
 `;
 
 export const ButtonPageNumbers = styled.button`
+  height: 0.42rem;
   background-color: transparent;
   border: none;
   font-size: 0.17rem;
-  margin-bottom: 0.6rem;
   cursor: pointer;
   &:hover {
     color: black;
@@ -34,6 +35,7 @@ export const ButtonPageNumbers = styled.button`
   @media screen and (max-width: 720px) {
     margin-bottom: 0;
     font-size: 0.5rem;
+    height: 1.2rem;
   }
 `;
 

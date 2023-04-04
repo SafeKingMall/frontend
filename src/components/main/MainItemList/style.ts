@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  /* padding: 0 5rem; */
+  margin-bottom: 2rem;
 `;
 export const ItemArea = styled.div`
   height: 100%;
