@@ -14,9 +14,9 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  @media screen and (max-width: 720px) {
+  /* @media screen and (max-width: 720px) {
     width: 80%;
-  }
+  } */
 `;
 export const SearchArea = styled.div`
   width: 14.4rem;
@@ -24,6 +24,10 @@ export const SearchArea = styled.div`
   display: flex;
   justify-content: flex-end;
   /* margin-top: 10.2rem; */
+  @media screen and (max-width: 720px) {
+    width: 100%;
+    height: 1rem;
+  }
 `;
 export const Select = styled.select`
   margin-right: 0.08rem;
@@ -49,7 +53,7 @@ export const SearchBar = styled.input`
   outline: none;
   @media screen and (max-width: 720px) {
     width: 70%;
-    height: 300%;
+    height: 100%;
     font-size: 0.5rem;
   }
 `;
@@ -64,6 +68,6 @@ export const SearchButton = styled.button`
   justify-content: center;
   @media screen and (max-width: 720px) {
     width: 10%;
-    height: 4.6vh;
+    height: 1rem;
   }
 `;

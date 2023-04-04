@@ -14,26 +14,29 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-export const QnAButton = styled.button`
-  background-color: ${({ theme }) => theme.palette.green};
-  color: white;
-  margin-left: 13rem;
-  width: 1.3rem;
-  height: 0.5rem;
-  font-size: 0.15rem;
-  position: absolute;
-  bottom: 28%;
-  @media screen and (max-width: 720px) {
-    margin-left: 62%;
-    font-size: 0.5rem;
-    width: 20vw;
-    height: 5vh;
-    position: unset;
-    margin-bottom: 10%;
+  @media (max-width: 720px) {
+    padding: 0 5%;
   }
 `;
+
+// export const QnAButton = styled.button`
+//   background-color: ${({ theme }) => theme.palette.green};
+//   color: white;
+//   margin-left: 13rem;
+//   width: 1.3rem;
+//   height: 0.5rem;
+//   font-size: 0.15rem;
+//   position: absolute;
+//   bottom: 28%;
+//   @media screen and (max-width: 720px) {
+//     margin-left: 62%;
+//     font-size: 0.5rem;
+//     width: 20vw;
+//     height: 5vh;
+//     position: unset;
+//     margin-bottom: 10%;
+//   }
+// `;
 
 export const Banner = styled.div`
   height: 4.7rem;

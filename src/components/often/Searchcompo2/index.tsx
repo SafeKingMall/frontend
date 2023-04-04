@@ -66,7 +66,7 @@ export const Searchcompo2 = (props: any) => {
             {isDesktopOrMobile !== true ? (
               <AiOutlineSearch size='2.8rem' color='#ffffff' />
             ) : (
-              <AiOutlineSearch size='1rem' color='#ffffff' />
+              <AiOutlineSearch size='100%' color='#ffffff' />
             )}
           </S.SearchButton>
         </S.SearchArea>

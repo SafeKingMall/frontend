@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 14.4rem;
   height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 720px) {
-    padding: 0;
+  @media (max-width: 720px) {
     width: 100%;
+    padding: 0;
   }
 `;
 
@@ -34,13 +34,11 @@ export const Container = styled.div`
       text-align: right;
     }
   }
-  @media screen and (max-width: 720px) {
+  @media (max-width: 720px) {
     justify-content: space-between;
-    width: 94%;
-    margin-left: 3%;
+    width: 100%;
     font-size: 0.45rem;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding: 0.4rem 2%;
     div {
       &:first-child {
         display: none;
@@ -52,7 +50,7 @@ export const Container = styled.div`
 export const DataList = styled.ul`
   margin-bottom: 1.04rem;
   @media screen and (max-width: 720px) {
-    /* margin-top: 10%; */
+    width: 100%;
   }
 `;
 
@@ -83,8 +81,8 @@ export const NoticeTitle = styled.div`
   }
   @media screen and (max-width: 720px) {
     padding: 0;
-    width: 80%;
-    margin-top: 10%;
+    width: 100%;
+    margin-top: 0.8rem;
 
     div {
       display: none;
@@ -105,26 +103,31 @@ export const Select = styled.select`
   outline: none;
   @media screen and (max-width: 720px) {
     width: 29%;
-    height: 300%;
+    height: 100%;
     margin-right: 1%;
     font-size: 0.5rem;
   }
 `;
-
+export const NoticeButtonArea = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+`;
 export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin-left: 13rem;
+  /* margin-left: 13rem; */
   width: 1.3rem;
   height: 0.5rem;
   font-size: 0.15rem;
   position: absolute;
-  bottom: 18%;
+  bottom: 2.9rem;
   @media screen and (max-width: 720px) {
-    margin-left: 61%;
     font-size: 0.5rem;
-    width: 20vw;
-    height: 5vh;
+    width: 20%;
+    height: 1.3rem;
     position: unset;
   }
 `;

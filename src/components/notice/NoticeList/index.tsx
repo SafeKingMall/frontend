@@ -132,23 +132,25 @@ export const NoticeList = (props: any) => {
 
   return (
     <S.Wrapper>
-      <div>
-        <Searchcompo2
-          filter={filter}
-          optionList={OptionList}
-          size={size}
-          dataList2={DataList2}
-          TitleList={TitleList}
-          search={search}
-          setSearchText={setSearchText}
-          data={itemList}
-          page={page}
-          setPage={setPage}
-          totalPages={totalPages}
-        />
-      </div>
+      {/* <div> */}
+      <Searchcompo2
+        filter={filter}
+        optionList={OptionList}
+        size={size}
+        dataList2={DataList2}
+        TitleList={TitleList}
+        search={search}
+        setSearchText={setSearchText}
+        data={itemList}
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />
+      {/* </div> */}
       {loginUser === 'admin' ? (
-        <S.NoticeButton onClick={() => moveNoticewr()}>글쓰기</S.NoticeButton>
+        <S.NoticeButtonArea>
+          <S.NoticeButton onClick={() => moveNoticewr()}>글쓰기</S.NoticeButton>
+        </S.NoticeButtonArea>
       ) : (
         ''
       )}
