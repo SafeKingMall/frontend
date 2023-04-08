@@ -91,7 +91,7 @@ export const NoticeTitle = styled.div`
 `;
 
 export const Select = styled.select`
-  /* margin-right: 0.8rem; */
+  margin-right: 0.08rem;
   width: 1.25rem;
   height: 0.4rem;
   border: 0.01rem solid #ddd;
