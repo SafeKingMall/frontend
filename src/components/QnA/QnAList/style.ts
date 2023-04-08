@@ -16,6 +16,9 @@ export const Wrapper = styled.div`
 
 export const DataList = styled.ul`
   margin-bottom: 1.04rem;
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
 `;
 
 export const NoSearchItem = styled.div`
@@ -26,7 +29,7 @@ export const NoSearchItem = styled.div`
   font-size: 0.24rem;
   font-weight: 500;
   @media screen and (max-width: 720px) {
-    width: 272%;
+    width: 100%;
     margin-left: -85%;
     font-size: 0.5rem;
   }
@@ -58,7 +61,7 @@ export const QnATitle = styled.div`
   }
   @media screen and (max-width: 720px) {
     padding: 0;
-    width: 80%;
+    width: 100%;
     margin-top: 10%;
 
     div {
@@ -138,10 +141,10 @@ export const Container = styled.div`
     }
   }
   @media screen and (max-width: 720px) {
-    width: 80vw;
+    width: 100%;
     display: grid;
     font-size: 0.4rem;
-    padding-left: 3%;
+    padding: 0.24rem 0;
   }
 `;
 export const QnAButtonArea = styled.div`
