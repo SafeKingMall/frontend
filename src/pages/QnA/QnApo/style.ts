@@ -40,7 +40,7 @@ export const QnAButton = styled.button`
   align-items: center;
   @media screen and (max-width: 720px) {
     width: 17vw;
-    height: 5vh;
+    height: 1.4rem;
     font-size: 0.45rem;
     margin-left: 67%;
   }

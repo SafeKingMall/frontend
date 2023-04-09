@@ -43,7 +43,7 @@ export const NoticeButton = styled.button`
     margin: 5% 0 3% 95%;
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.4rem;
   }
 `;
 
