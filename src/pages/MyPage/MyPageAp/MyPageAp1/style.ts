@@ -36,7 +36,7 @@ export const RefundH1 = styled.h3`
     padding: 4% 0 4% 0;
     width: 100vw;
     text-align: center;
-    border-bottom: 0.3vh solid ${({ theme }) => theme.palette.green};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.green};
   }
 `;
 export const Top = styled.div`
@@ -95,7 +95,7 @@ export const BtnWrapper = styled.div`
     line-height: 0.3rem;
     @media screen and (max-width: 720px) {
       width: 40vw;
-      height: 6vh;
+      height: 1.4rem;
     }
     :first-child {
       border: 0.01rem solid #289951;

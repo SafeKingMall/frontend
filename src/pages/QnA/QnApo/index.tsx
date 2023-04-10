@@ -314,8 +314,8 @@ export const QnAPo = () => {
                 value={answerContents}
                 onChange={(e: any) => setAnswerContents(e.target.value)}
               />
+              <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
             </S.TextDiv>
-            <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
           </S.Comment>
         </S.PoBox>
         <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>

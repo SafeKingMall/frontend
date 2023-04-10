@@ -66,7 +66,7 @@ export const NoticeButton1 = styled.button`
   align-items: center;
   @media screen and (max-width: 720px) {
     width: 16vw;
-    height: 4.5vh;
+    height: 1.2rem;
     font-size: 0.45rem;
     margin-right: 3%;
   }
@@ -82,7 +82,7 @@ export const NoticeButton2 = styled.button`
   align-items: center;
   @media screen and (max-width: 720px) {
     width: 16vw;
-    height: 4.5vh;
+    height: 1.2rem;
     font-size: 0.45rem;
   }
 `;
@@ -94,7 +94,7 @@ export const PoBox = styled.div`
   border-bottom: 0.011rem solid ${({ theme }) => theme.palette.txtgray};
   @media screen and (max-width: 720px) {
     width: 85%;
-    border-top: 0.3vh solid ${({ theme }) => theme.palette.green};
+    border-top: 1px solid ${({ theme }) => theme.palette.green};
     font-size: 0.45rem;
   }
 `;
@@ -204,13 +204,16 @@ export const Content2 = styled.div`
 `;
 
 export const TextDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   width: 14.4rem;
   height: 2rem;
   font-size: 0.24rem;
   position: relative;
   margin-bottom: 0.48rem;
-  cursor: pointer;
+  padding-right: 0.3rem;
 
   textarea {
     padding: 0.3rem;
@@ -226,7 +229,7 @@ export const TextDiv = styled.div`
     @media screen and (max-width: 720px) {
       width: 82%;
       font-size: 0.43rem;
-      height: 9vh;
+      height: 2.8rem;
     }
   }
 
@@ -235,7 +238,7 @@ export const TextDiv = styled.div`
   }
   @media screen and (max-width: 720px) {
     width: 100%;
-    height: 10vh;
+    height: 3rem;
   }
 `;
 
@@ -246,18 +249,13 @@ export const QnAButton2 = styled.button`
   height: 1.6rem;
   font-size: 0.24rem;
   cursor: pointer;
-  margin-left: 12.65rem;
-  margin-top: -2.27rem;
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   @media screen and (max-width: 720px) {
-    margin-left: 69%;
     width: 13%;
-    height: 8.2vh;
-    margin-top: -11vh;
+    height: 2.4rem;
     font-size: 0.45rem;
   }
 `;

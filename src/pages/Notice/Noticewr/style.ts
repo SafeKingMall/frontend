@@ -110,7 +110,7 @@ export const NoticeButton = styled.button`
     margin-right: 5%;
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.4rem;
   }
 `;
 
@@ -124,7 +124,7 @@ export const NoticeButton2 = styled.button`
   @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.4rem;
   }
 `;
 

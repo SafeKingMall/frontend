@@ -42,7 +42,7 @@ export const Mid = styled.div`
     padding-left: 3%;
     padding-top: 3%;
     border-bottom: 0 solid #212121;
-    border-top: 0.3vh solid ${({ theme }) => theme.palette.green};
+    border-top: 1px solid ${({ theme }) => theme.palette.green};
 
     text-align: left;
     font-size: 0.45rem;
@@ -205,7 +205,7 @@ export const RefundBtn = styled.button`
     /* margin-left: 61%; */
     font-size: 0.4rem;
     width: 17vw;
-    height: 5vh;
+    height: 1.2rem;
     border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
     color: ${({ theme }) => theme.palette.txt};
   }
@@ -224,7 +224,7 @@ export const SearchBox = styled.div`
   justify-content: center;
   @media screen and (max-width: 720px) {
     width: 100vw;
-    height: 25vh;
+    height: initial;
     padding: 5%;
   }
 `;
@@ -238,7 +238,7 @@ export const DayButton = styled.button`
   margin-right: 0.08rem;
   @media screen and (max-width: 720px) {
     width: 40vw;
-    height: 5vh;
+    height: 1.2rem;
     font-size: 0.45rem;
     border: 0.02rem solid ${({ theme }) => theme.palette.txtgray};
     margin-right: 2%;
@@ -293,7 +293,7 @@ export const SearchInput = styled.input`
   font-size: 0.2rem;
   @media screen and (max-width: 720px) {
     width: 68vw;
-    height: 5vh;
+    height: 1.2rem;
     margin-right: 1%;
     margin-left: 1%;
     font-size: 0.45rem;
@@ -320,7 +320,7 @@ export const DayInput = styled.input`
   }
   @media screen and (max-width: 720px) {
     width: 30.6vw;
-    height: 5vh;
+    height: 1.2rem;
     font-size: 0.4rem;
     border: 0.03rem solid ${({ theme }) => theme.palette.lightgreen};
   }
@@ -348,7 +348,7 @@ export const DeliSelect = styled.select`
     width: 22vw;
     margin-top: 2.5%;
     margin-left: 2%;
-    height: 5vh;
+    height: 1.2rem;
   }
 `;
 
@@ -360,7 +360,7 @@ export const SearchButton = styled.button`
   color: white;
   @media screen and (max-width: 720px) {
     width: 21vw;
-    height: 5vh;
+    height: 1.2rem;
     font-size: 0.45rem;
     margin-left: 2%;
   }

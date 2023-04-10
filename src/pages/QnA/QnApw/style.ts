@@ -41,7 +41,7 @@ export const QnApwInput = styled.input`
   border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
   @media screen and (max-width: 720px) {
     width: 55vw;
-    height: 5vh;
+    height: 1.2rem;
     font-size: 0.5rem;
   }
 `;
@@ -57,8 +57,10 @@ export const PwBox = styled.div`
   /* position: absolute; */
   width: 14.4rem;
   /* height: 30rem; */
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   font-size: 0.24rem;
   text-align: center;
   margin-top: 1.78rem;
@@ -67,7 +69,6 @@ export const PwBox = styled.div`
   @media screen and (max-width: 720px) {
     width: 85%;
     font-size: 0.5rem;
-    height: 30vh;
   }
 `;
 
@@ -78,15 +79,13 @@ export const Ladius = styled.div`
   height: 1.48rem;
   margin-top: 0.72rem;
   margin-bottom: 0.48rem;
-  margin-left: 1.5rem;
 
   svg {
     margin-top: 0.2rem;
   }
   @media screen and (max-width: 720px) {
-    margin-left: 32%;
-    width: 20vw;
-    height: 10vh;
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
@@ -95,8 +94,8 @@ export const QnABox = styled.div`
   margin-bottom: 1.2rem;
   display: flex;
   @media screen and (max-width: 720px) {
-    margin-top: 10%;
-    margin-bottom: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -111,7 +110,7 @@ export const QnAButton = styled.button`
   @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.4rem;
     margin-right: 5%;
   }
 `;
@@ -126,6 +125,6 @@ export const QnAButton2 = styled.button`
   @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.4rem;
   }
 `;

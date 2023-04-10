@@ -43,16 +43,12 @@ export const BannerTextArea = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-export const EnText = styled.div<{ slide: boolean }>`
-  width: 1.5rem;
-  height: 0.45rem;
+export const BannerLogoArea = styled.div<{ slide: boolean }>`
+  width: 1.6rem;
+  padding-bottom: 12%;
   ${({ theme }) => theme.common.flexCenter};
-  border-radius: 0.05rem;
-  background-color: ${({ theme }) => theme.palette.green};
-  font-size: 0.32rem;
-  font-weight: 500;
   color: #ffffff;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0rem;
   ${(props) =>
     props.slide
       ? css`
@@ -66,11 +62,15 @@ export const EnText = styled.div<{ slide: boolean }>`
           transform: translateX(-1rem);
         `}
   @media (max-width: 720px) {
-    width: 2.2rem;
-    height: 0.6rem;
-    font-size: 0.48rem;
-    margin-bottom: 0.24rem;
+    width: 2.4rem;
   }
+`;
+export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png' })`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 // export const SmallText = styled.span<{ slide: boolean }>`
 //   font-size: 0.32rem;
@@ -109,7 +109,7 @@ export const BigText = styled.span<{ slide: boolean }>`
         `}
   @media (max-width: 720px) {
     font-size: 0.9rem;
-    margin-bottom: 0.24rem;
+    /* margin-bottom: 0.24rem; */
   }
 `;
 export const BigText2 = styled.span<{ slide: boolean }>`
@@ -130,41 +130,6 @@ export const BigText2 = styled.span<{ slide: boolean }>`
         `}
   @media (max-width: 720px) {
     font-size: 0.64rem;
+    margin-bottom: 0.5rem;
   }
 `;
-// const fadeIn = keyframes`
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// `;
-// export const SmallText = styled.span<{ slide: boolean }>`
-//   font-size: 0.32rem;
-//   font-weight: 700;
-//   color: #fdffaf;
-//   ${(props) =>
-//     props.slide
-//       ? css`
-//           animation: ${fadeIn};
-//           animation-duration: 3s;
-//         `
-//       : css`
-//           display: none;
-//         `}
-// `;
-// export const BigText = styled.span<{ slide: boolean }>`
-//   font-size: 0.64rem;
-//   font-weight: 700;
-//   color: #ffffff;
-//   ${(props) =>
-//     props.slide
-//       ? css`
-//           animation: ${fadeIn};
-//           animation-duration: 3s;
-//         `
-//       : css`
-//           display: none;
-//         `}
-// `;

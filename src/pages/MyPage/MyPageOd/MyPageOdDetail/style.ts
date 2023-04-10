@@ -49,8 +49,8 @@ export const Mid = styled.div`
     width: 100vw;
     padding: 3%;
     border-bottom: 0 solid #212121;
-    border-top: 0.3vh solid ${({ theme }) => theme.palette.green};
-    border-bottom: 0.1vh solid ${({ theme }) => theme.palette.lightgray};
+    border-top: 1px solid ${({ theme }) => theme.palette.green};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.lightgray};
     text-align: left;
     font-size: 0.45rem;
     margin-bottom: 0;
@@ -64,7 +64,7 @@ export const Section1Wrap = styled.div`
     justify-content: right;
     @media screen and (max-width: 720px) {
       display: flow-root;
-      border-bottom: 0.5vh solid ${({ theme }) => theme.palette.lightgray};
+      border-bottom: 10px solid ${({ theme }) => theme.palette.lightgray};
     }
   }
 `;
@@ -302,7 +302,7 @@ export const QnAButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   @media screen and (max-width: 720px) {
     width: 50vw;
-    height: 6vh;
+    height: 1.4rem;
     font-size: 0.5rem;
     border-radius: 10vw;
   }

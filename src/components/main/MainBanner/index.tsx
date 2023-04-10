@@ -32,7 +32,9 @@ export const MainBanner = () => {
         <S.BannerWrap>
           <S.Banner1 />
           <S.BannerTextArea>
-            <S.EnText slide={slide}>Safeking</S.EnText>
+            <S.BannerLogoArea slide={slide}>
+              <S.BannerLogo />
+            </S.BannerLogoArea>
             <S.BigText slide={slide}>스마트한 안전관리</S.BigText>
             <S.BigText2 slide={slide}>안전사고 예방을 위한 최고의 솔루션</S.BigText2>
           </S.BannerTextArea>
@@ -40,8 +42,9 @@ export const MainBanner = () => {
         <S.BannerWrap>
           <S.Banner2 />
           <S.BannerTextArea>
-            <S.EnText slide={slide}>Safeking</S.EnText>
-            {/* <S.SmallText slide={slide}>Safeking</S.SmallText> */}
+            <S.BannerLogoArea slide={slide}>
+              <S.BannerLogo />
+            </S.BannerLogoArea>
             <S.BigText slide={slide}>스마트한 안전관리</S.BigText>
             <S.BigText2 slide={slide}>누출사고 예방을 위한 최고의 솔루션</S.BigText2>
           </S.BannerTextArea>
@@ -49,8 +52,9 @@ export const MainBanner = () => {
         <S.BannerWrap>
           <S.Banner3 />
           <S.BannerTextArea>
-            <S.EnText slide={slide}>Safeking</S.EnText>
-            {/* <S.SmallText slide={slide}>Safeking</S.SmallText> */}
+            <S.BannerLogoArea slide={slide}>
+              <S.BannerLogo />
+            </S.BannerLogoArea>
             <S.BigText slide={slide}>스마트한 안전관리</S.BigText>
             <S.BigText2 slide={slide}>중대사고 예방을 위한 최고의 솔루션</S.BigText2>
           </S.BannerTextArea>
