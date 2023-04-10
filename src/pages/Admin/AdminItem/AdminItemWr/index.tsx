@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
@@ -12,10 +12,13 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { categoryContext } from '../../../../store/categoryStore';
 
 const swal = withReactContent(Swal);
 
 export const AdminItemWr = () => {
+  const context = useContext(categoryContext);
+  const categoryList = context.map((el: any) => el.name);
   const navigate = useNavigate();
   const [moneyNum2, setMoneyNum2] = useState('');
   const [quantityNum, setquantityNum2] = useState('');
@@ -331,6 +334,7 @@ export const AdminItemWr = () => {
         navigate('/itemdetail', {
           state: {
             itemId: res.data,
+            slideNavIdx: categoryList.indexOf(cateSelect),
           },
         });
       });
@@ -384,6 +388,7 @@ export const AdminItemWr = () => {
       navigate('/itemdetail', {
         state: {
           itemId: id,
+          slideNavIdx: categoryList.indexOf(cateSelect),
         },
       });
     });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +13,13 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
 import { Cookies } from 'react-cookie';
+import { categoryContext } from '../../../../store/categoryStore';
 
 const swal = withReactContent(Swal);
 
 export const AdminItemPo = () => {
+  const context = useContext(categoryContext);
+  const categoryList = context.map((el: any) => el.name);
   const { state } = useLocation();
   const itemId = state.data;
 
@@ -245,6 +248,7 @@ export const AdminItemPo = () => {
         navigate('/itemdetail', {
           state: {
             itemId: itemId,
+            slideNavIdx: categoryList.indexOf(cateSelect),
           },
         });
         window.location.reload();
@@ -305,6 +309,7 @@ export const AdminItemPo = () => {
         navigate('/itemdetail', {
           state: {
             itemId: itemId,
+            slideNavIdx: categoryList.indexOf(cateSelect),
           },
         });
       });
