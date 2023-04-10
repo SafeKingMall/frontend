@@ -256,7 +256,9 @@ export const AdminMemberList = (props: any) => {
           totalPages={totalPages}
         />
       </S.CenterContainer>
-      <S.QnAButton onClick={() => deleteMemberAlert()}>탈퇴</S.QnAButton>
+      <S.BtnArea>
+        <S.QnAButton onClick={() => deleteMemberAlert()}>탈퇴</S.QnAButton>
+      </S.BtnArea>
     </S.Wrapper>
   );
 };

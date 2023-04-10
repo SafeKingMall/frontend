@@ -118,7 +118,6 @@ export const NoticeButtonArea = styled.div`
 export const NoticeButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  /* margin-left: 13rem; */
   width: 1.3rem;
   height: 0.5rem;
   font-size: 0.15rem;

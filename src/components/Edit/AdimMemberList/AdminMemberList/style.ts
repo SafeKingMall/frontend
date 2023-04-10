@@ -14,17 +14,22 @@ export const CenterContainer = styled.div`
   width: 100%;
   height: 100%; */
 `;
-
+export const BtnArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 2rem;
+`;
 export const QnAButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin-left: 13.5rem;
+  /* margin-left: 13.5rem; */
   width: 0.64rem;
   height: 0.4rem;
   /* top: 79rem; */
   font-size: 0.15rem;
-  position: absolute;
-  bottom: 12.5%;
+  /* position: absolute;
+  bottom: 12.5%; */
 `;
 
 export const Select = styled.select`

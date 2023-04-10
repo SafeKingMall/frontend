@@ -105,16 +105,22 @@ export const AdminButton2 = styled.button`
   margin-right: 0.08rem;
   align-items: center;
 `;
-
+export const BtnArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-right: 0.24rem;
+`;
 export const QnAButton = styled.button`
   background-color: ${({ theme }) => theme.palette.green};
   color: white;
-  margin-left: 13rem;
+  /* margin-left: 13rem; */
   width: 0.64rem;
   height: 0.4rem;
   font-size: 0.15rem;
-  position: absolute;
-  bottom: 12.5%;
+  /* position: absolute;
+  bottom: 12.5%; */
 `;
 
 export const NoSearchItem = styled.div`
