@@ -252,7 +252,7 @@ export const OrderList = (props: any) => {
     const onChangeText = (e: any) => {
         setSearchText(e.target.value);
     };
-    const onKeyDownEnter = (e: any) => {
+    const onKeyPressEnter = (e: any) => {
         if (e.key === 'Enter') {
             search();
             e.target.blur();
@@ -351,7 +351,7 @@ export const OrderList = (props: any) => {
                             placeholder='Search for...'
                             onClick={searchClick}
                             onChange={(e: any) => onChangeText(e)}
-                            onKeyDown={(e: any) => onKeyDownEnter(e)}
+                            onKeyPress={(e: any) => onKeyPressEnter(e)}
                             autoComplete='off'
                         />
                         <S.DeliSelect value={deliStatus} onChange={(e: any) => setDeliStatus(e.target.value)}>
@@ -368,7 +368,7 @@ export const OrderList = (props: any) => {
                             placeholder='Search for...'
                             onClick={searchClick}
                             onChange={(e: any) => onChangeText(e)}
-                            onKeyDown={(e: any) => onKeyDownEnter(e)}
+                            onKeyPress={(e: any) => onKeyPressEnter(e)}
                             autoComplete='off'
                         />
 
