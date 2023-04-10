@@ -43,15 +43,11 @@ export const DetailImgArea = styled.div`
   }
 `;
 export const DetailImg = styled.img`
-  width: 7rem;
-  height: 7rem;
-  @media (max-width: 720px) {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 export const Soldout = styled.div`
   position: absolute;

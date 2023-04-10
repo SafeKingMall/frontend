@@ -14,13 +14,15 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 2rem;
   /* position: relative; */
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
+  /* position: absolute; */
+  /* top: 50%; */
+  /* transform: translate(0, -50%); */
   @media (max-width: 720px) {
-    top: 30%;
-    transform: translate(0, -30%);
+    position: absolute;
+    top: 20%;
+    transform: translate(0, -20%);
     padding: 0 5%;
   }
 `;
