@@ -12,13 +12,13 @@ import { useNavigate } from 'react-router-dom';
 
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
+const EMAIL = /^[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[a-zA-Z]+){1,2}$/;
 
 export const MyPage = () => {
   const swal = withReactContent(Swal);
   const navigate = useNavigate();
   const [userData, setUserData] = useState<any>({});
   const cookies = new Cookies();
-  // const jwt = cookies.get('accessToken');
 
   const [isOpenPost, setIsOpenPost] = useState(false);
   const [disable, setDisable] = useState(true);
@@ -28,6 +28,10 @@ export const MyPage = () => {
   const [nameCheck, setNameCheck] = useState(true);
 
   const [id, setId] = useState('');
+
+  const [email, setEmail] = useState('');
+  const [emailVal, setEmailVal] = useState('');
+  const [emailCheck, setEmailCheck] = useState(true);
 
   const [birth, setBirth] = useState('');
 
@@ -53,6 +57,10 @@ export const MyPage = () => {
   const onChangeName = (e: string) => {
     setName(e);
     validationName(e);
+  };
+  const onChangeEmail = (e: string) => {
+    setEmail(e);
+    validationEmail(e);
   };
   const onChangeCeo = (e: string) => {
     setCeo(e);
@@ -90,7 +98,15 @@ export const MyPage = () => {
       setNameCheck(false);
     }
   };
-
+  const validationEmail = (text: string) => {
+    if (!EMAIL.test(text)) {
+      setEmailVal('* 올바른 이메일 형식이 아닙니다. [예: Safeking@naver.com]');
+      setEmailCheck(false);
+    } else {
+      setEmailVal('');
+      setEmailCheck(true);
+    }
+  };
   const validationSaupja = (text: string) => {
     const autoSaupja = text.replace(/\D+/g, '');
     const saupjaLength = 10;
@@ -174,6 +190,7 @@ export const MyPage = () => {
           setUserData(res.data);
           setName(res.data.name);
           setId(res.data.username);
+          setEmail(res.data.email);
           setBirth(res.data.birth);
           setCeo(res.data.representativeName);
           setPhone(res.data.phoneNumber);
@@ -245,6 +262,7 @@ export const MyPage = () => {
     if (userData) {
       if (
         userData.name !== name ||
+        userData.email !== email ||
         userData.representativeName !== ceo ||
         userData.companyRegistrationNumber !== saupja ||
         userData.corporateRegistrationNumber !== beobin ||
@@ -252,7 +270,7 @@ export const MyPage = () => {
         userData.basicAddress !== basic ||
         userData.detailedAddress !== detail
       ) {
-        if (nameCheck && saupjaCheck && beobinCheck && detailCheck) {
+        if (nameCheck && emailCheck && saupjaCheck && beobinCheck && detailCheck) {
           setDisable(false);
         } else {
           setDisable(true);
@@ -271,6 +289,8 @@ export const MyPage = () => {
     detailCheck,
     name,
     nameCheck,
+    email,
+    emailCheck,
     saupja,
     saupjaCheck,
     zip,
@@ -305,6 +325,7 @@ export const MyPage = () => {
                 },
                 data: {
                   name: name,
+                  email: email,
                   birth: birth,
                   representativeName: ceo,
                   phoneNumber: phone,
@@ -337,6 +358,10 @@ export const MyPage = () => {
         });
     }
   };
+  const readOnlyStyle = {
+    backgroundColor: '#dddddd',
+    color: '#333333',
+  };
   return (
     <>
       <Header />
@@ -359,11 +384,16 @@ export const MyPage = () => {
             </S.InputWrap>
             <S.InputWrap>
               <label>아이디</label>
-              <input value={id} readOnly />
+              <input value={id} readOnly style={readOnlyStyle} />
+            </S.InputWrap>
+            <S.InputWrap>
+              <label>이메일</label>
+              <input value={email} onChange={(e) => onChangeEmail(e.target.value)} />
+              <S.ErrMsg>{emailVal}</S.ErrMsg>
             </S.InputWrap>
             <S.InputWrap>
               <label>생년월일</label>
-              <input value={birth} readOnly />
+              <input value={birth} readOnly style={readOnlyStyle} />
             </S.InputWrap>
           </S.BasicWrap>
           <S.BasicWrap>
@@ -374,7 +404,7 @@ export const MyPage = () => {
             </S.InputWrap>
             <S.InputWrap>
               <label>연락처</label>
-              <input value={phone} readOnly />
+              <input value={phone} readOnly style={readOnlyStyle} />
             </S.InputWrap>
             <S.InputWrap>
               <label>사업자등록번호</label>
@@ -397,7 +427,6 @@ export const MyPage = () => {
               <label>기본주소</label>
               <input value={basic} readOnly />
             </S.InputWrap>
-
             <S.InputWrap>
               <label>상세주소</label>
               <input value={detail} onChange={(e) => onChangeDetail(e.target.value)} />
