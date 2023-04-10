@@ -1,12 +1,15 @@
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Searchcompo2 } from '../../often/Searchcompo2';
 import { useState } from 'react';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
+import { categoryContext } from '../../../store/categoryStore';
 
 export const AdminItemList = (props: any) => {
+  const context = useContext(categoryContext);
+  const categoryList = context.map((el: any) => el.name);
   const cookies = new Cookies();
   const jwt = cookies.get('accessToken');
   const navigate = useNavigate();
@@ -25,10 +28,11 @@ export const AdminItemList = (props: any) => {
     }
   };
 
-  const moveItemDetail = (itemId: any) => {
+  const moveItemDetail = (itemId: any, categoryName: string) => {
     navigate('/itemdetail', {
       state: {
         itemId: itemId.id,
+        slideNavIdx: categoryList.indexOf(categoryName),
       },
     });
   };
@@ -133,9 +137,9 @@ export const AdminItemList = (props: any) => {
           data.map((el: any, index: any) => {
             return (
               <S.Container key={index}>
-                <div onClick={() => moveItemDetail(el)}>{el.id}</div>
-                <div onClick={() => moveItemDetail(el)}>{el.name}</div>
-                <div onClick={() => moveItemDetail(el)}>{el.categoryName}</div>
+                <div onClick={() => moveItemDetail(el, el.categoryName)}>{el.id}</div>
+                <div onClick={() => moveItemDetail(el, el.categoryName)}>{el.name}</div>
+                <div onClick={() => moveItemDetail(el, el.categoryName)}>{el.categoryName}</div>
                 <S.AdminButton onClick={() => moveAdminItemPo(el)}>수정</S.AdminButton>
                 {/* <S.AdminButton onClick={() => deleteItemAlert(el.id, el.name)}>삭제</S.AdminButton> */}
               </S.Container>
