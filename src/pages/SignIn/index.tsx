@@ -111,9 +111,10 @@ export const SignIn = () => {
     }
   };
 
-  const onKeyDownEnter = (e: any) => {
+  const onKeyPressEnter = (e: any) => {
     if (e.key === 'Enter') {
       login();
+      e.target.blur();
     }
   };
 
@@ -162,7 +163,7 @@ export const SignIn = () => {
                 <S.InputForm
                   type='password'
                   onChange={(e) => onChangePw(e.target.value)}
-                  onKeyDown={(e) => onKeyDownEnter(e)}
+                  onKeyPress={(e) => onKeyPressEnter(e)}
                 />
               </S.InputWrap>
             </S.InputLine>

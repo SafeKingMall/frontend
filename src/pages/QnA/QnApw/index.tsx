@@ -57,7 +57,7 @@ export const QnAPw = () => {
     }
   };
 
-  const onKeyDownEnter = (e: any) => {
+  const onKeyPressEnter = (e: any) => {
     if (e.key === 'Enter') {
       inputPass(passWord);
       e.target.blur();
@@ -80,7 +80,7 @@ export const QnAPw = () => {
             <div>비밀번호를 입력해주세요.</div>
           </S.DivWeight>
           <S.QnApwInput
-            onKeyDown={(e) => onKeyDownEnter(e)}
+            onKeyPress={(e) => onKeyPressEnter(e)}
             type='password'
             onChange={(e: any) => setPassWord(e.target.value)}
           />

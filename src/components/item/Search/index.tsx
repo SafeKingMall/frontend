@@ -41,7 +41,7 @@ export const Search = (props: any) => {
   const onChangeText = (e: any) => {
     setSearchText(e.target.value);
   };
-  const onKeyDownEnter = (e: any) => {
+  const onKeyPressEnter = (e: any) => {
     if (e.key === 'Enter') {
       search();
       e.target.blur();
@@ -70,7 +70,7 @@ export const Search = (props: any) => {
           defaultValue={searchWord.current}
           placeholder='검색어를 입력해주세요'
           onChange={(e) => onChangeText(e)}
-          onKeyDown={(e) => onKeyDownEnter(e)}
+          onKeyPress={(e) => onKeyPressEnter(e)}
         ></S.SearchBar>
         <S.SearchBtn onClick={() => search()}>
           <AiOutlineSearch size='2.8rem' color='#ffffff' />

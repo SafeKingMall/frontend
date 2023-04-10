@@ -35,7 +35,7 @@ export const Searchcompo2 = (props: any) => {
       props.setSearchText(e.target.value);
     }
   };
-  const onKeyDownEnter = (e: any) => {
+  const onKeyPressEnter = (e: any) => {
     if (e.key === 'Enter') {
       props.search();
       e.target.blur();
@@ -59,7 +59,7 @@ export const Searchcompo2 = (props: any) => {
             placeholder='Search for...'
             onClick={searchClick}
             onChange={(e) => onChangeText(e)}
-            onKeyDown={(e) => onKeyDownEnter(e)}
+            onKeyPress={(e) => onKeyPressEnter(e)}
             autoComplete='off'
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
