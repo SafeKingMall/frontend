@@ -208,7 +208,9 @@ export const AdminItemList = (props: any) => {
           totalPages={totalPages}
         />
       </div>
-      <S.QnAButton onClick={() => refreshRoute()}>등록</S.QnAButton>
+      <S.BtnArea>
+        <S.QnAButton onClick={() => refreshRoute()}>등록</S.QnAButton>
+      </S.BtnArea>
     </S.Wrapper>
   );
 };
