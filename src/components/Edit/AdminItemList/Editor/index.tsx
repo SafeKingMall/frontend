@@ -114,7 +114,7 @@ export const EditorWr = (props: any) => {
           quillRef.current = element;
         }}
         theme='snow'
-        placeholder='플레이스 홀더'
+        placeholder='내용을 입력해주세요.'
         value={props.descriptEdit || ''}
         onChange={(e: any) => props.setDescriptEdit(e)}
         modules={modules}

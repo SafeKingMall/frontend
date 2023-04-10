@@ -36,7 +36,7 @@ export const RefundH1 = styled.h3`
     padding: 4% 0 4% 0;
     width: 100vw;
     text-align: center;
-    border-bottom: 0.3vh solid ${({ theme }) => theme.palette.green};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.green};
   }
 `;
 export const Top = styled.div`
@@ -59,11 +59,12 @@ export const InputContainer = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   flex-direction: column;
   @media screen and (max-width: 720px) {
-    border-: 0.3vh solid ${({ theme }) => theme.palette.green};
-    border-bottom: 0.3vh solid ${({ theme }) => theme.palette.green};
+    border-: 1px solid ${({ theme }) => theme.palette.green};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.green};
     border-top: 0 solid #289951;
-    height: 30vh;
+    height: initial;
     width: 100vw;
+    padding: 1rem 0;
   }
 `;
 
@@ -128,7 +129,7 @@ export const BtnWrapper = styled.div`
     @media screen and (max-width: 720px) {
       width: 44vw;
       font-size: 0.5rem;
-      height: 6vh;
+      height: 1.4rem;
       margin-top: 4%;
     }
   }

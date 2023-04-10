@@ -46,13 +46,13 @@ export const Table = styled.table`
     &:first-child {
       height: 1.12rem;
       @media screen and (max-width: 720px) {
-        height: 7vh;
+        height: 1.8rem;
       }
     }
     &:nth-child(2) {
       height: 1.12rem;
       @media screen and (max-width: 720px) {
-        height: 7vh;
+        height: 1.8rem;
       }
     }
     td {
@@ -73,7 +73,7 @@ export const Table = styled.table`
     &:last-child {
       height: 1.12rem;
       @media screen and (max-width: 720px) {
-        height: 6vh;
+        height: 1.6rem;
       }
       td {
         &:last-child {
@@ -140,7 +140,7 @@ export const ChangeButton = styled.button`
   @media screen and (max-width: 720px) {
     margin-left: 75%;
     width: 15vw;
-    height: 4vh;
+    height: 1rem;
     font-size: 0.45rem;
     bottom: 18%;
   }
@@ -249,7 +249,7 @@ export const QnAButton = styled.button`
   border: 0.01rem solid ${({ theme }) => theme.palette.green};
   @media screen and (max-width: 720px) {
     width: 15vw;
-    height: 4vh;
+    height: 1.2rem;
     font-size: 0.45rem;
     margin-right: 3%;
   }
@@ -264,7 +264,7 @@ export const QnAButton2 = styled.button`
   align-items: center;
   @media screen and (max-width: 720px) {
     width: 15vw;
-    height: 4vh;
+    height: 1.2rem;
     font-size: 0.45rem;
   }
 `;

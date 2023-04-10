@@ -58,7 +58,7 @@ export const NoticeButton1 = styled.button`
     width: 50%;
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.2rem;
     margin-right: 3%;
   }
 `;
@@ -74,7 +74,7 @@ export const NoticeButton2 = styled.button`
   @media screen and (max-width: 720px) {
     font-size: 0.5rem;
     width: 20vw;
-    height: 5vh;
+    height: 1.2rem;
   }
 `;
 
