@@ -189,7 +189,10 @@ export const Container = styled.div`
         font-weight: 600;
       }
       &:nth-child(4) {
-        padding: 2% 0 2% 43%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 2% 0;
       }
     }
   }
@@ -204,7 +207,7 @@ export const RefundBtn = styled.button`
   @media screen and (max-width: 720px) {
     /* margin-left: 61%; */
     font-size: 0.4rem;
-    width: 17vw;
+    width: 17%;
     height: 1.2rem;
     border: 0.01rem solid ${({ theme }) => theme.palette.txtgray};
     color: ${({ theme }) => theme.palette.txt};
