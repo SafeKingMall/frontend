@@ -64,9 +64,9 @@ export const Searchcompo2 = (props: any) => {
           ></S.SearchBar>
           <S.SearchButton onClick={() => props.search()}>
             {isDesktopOrMobile !== true ? (
-              <AiOutlineSearch size='2.8rem' color='#ffffff' />
+              <AiOutlineSearch size='80%' color='#ffffff' />
             ) : (
-              <AiOutlineSearch size='100%' color='#ffffff' />
+              <AiOutlineSearch size='80%' color='#ffffff' />
             )}
           </S.SearchButton>
         </S.SearchArea>

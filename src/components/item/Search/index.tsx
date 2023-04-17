@@ -73,7 +73,7 @@ export const Search = (props: any) => {
           onKeyPress={(e) => onKeyPressEnter(e)}
         ></S.SearchBar>
         <S.SearchBtn onClick={() => search()}>
-          <AiOutlineSearch size='2.8rem' color='#ffffff' />
+          <AiOutlineSearch size='80%' color='#ffffff' />
         </S.SearchBtn>
       </S.SearchArea>
     </S.Container>
