@@ -7,6 +7,7 @@ export default createGlobalStyle`
   margin: 0;
   padding: 0;
   outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   /* 스크롤바 숨기기 */
   /* -ms-overflow-style: none;
   ::-webkit-scrollbar {
