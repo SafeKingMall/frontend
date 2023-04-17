@@ -209,9 +209,6 @@ export const PaymentInfo = (props: any) => {
             - 정확한 결제와 주문완료를 위하여 주문완료 페이지가 보여지기 전에 현재창과 결제창을
             닫지마십시오.
           </S.PaymentDes>
-          <S.PaymentDes>
-            - 결제창을 열고 15분 안에 결제를 진행해주세요. 15분 경과 시 자동으로 메인페이지로 이동됩니다.
-          </S.PaymentDes>
         </S.PaymentDesArea>
       </S.PaymentContainer>
     </S.Container>

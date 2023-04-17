@@ -304,9 +304,6 @@ export const Orders = () => {
           m_redirect_url: 'https://safekingmall.com/mobile-payment-result',
         };
         reissuance();
-        setTimeout(() => {
-          window.location.replace('/');
-        }, 15 * 60 * 1000);
         IMP.request_pay(paymentData, callBack);
       })
       .catch((err) => {
