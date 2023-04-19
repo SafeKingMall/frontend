@@ -103,6 +103,9 @@ export const MyPageWd = () => {
                   confirmButtonColor: '#289951',
                   width: 400,
                 });
+                cookies.remove('accessToken');
+                cookies.remove('refreshToken');
+                cookies.remove('loginUser');
                 navigate('/');
               });
             } catch (err: any) {
