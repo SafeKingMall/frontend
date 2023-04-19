@@ -23,6 +23,7 @@ export const BannerWrap = styled.div`
   height: 5.6rem;
   position: relative;
   ${({ theme }) => theme.common.flexCenter};
+  overflow: hidden;
   @media (max-width: 720px) {
     height: 7rem;
   }
@@ -45,7 +46,7 @@ export const BannerTextArea = styled.div`
 `;
 export const BannerLogoArea = styled.div<{ slide: boolean }>`
   width: 1.6rem;
-  padding-bottom: 12%;
+  padding-bottom: 0.85rem;
   ${({ theme }) => theme.common.flexCenter};
   color: #ffffff;
   margin-bottom: 0rem;
@@ -62,7 +63,8 @@ export const BannerLogoArea = styled.div<{ slide: boolean }>`
           transform: translateX(-1rem);
         `}
   @media (max-width: 720px) {
-    width: 2.4rem;
+    width: 2.6rem;
+    padding-bottom: 1.4rem;
   }
 `;
 export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png' })`

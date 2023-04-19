@@ -45,8 +45,8 @@ export const MainBanner = () => {
             <S.BannerLogoArea slide={slide}>
               <S.BannerLogo />
             </S.BannerLogoArea>
-            <S.BigText slide={slide}>스마트한 안전관리</S.BigText>
-            <S.BigText2 slide={slide}>누출사고 예방을 위한 최고의 솔루션</S.BigText2>
+            <S.BigText slide={slide}>건설/산업 현장</S.BigText>
+            <S.BigText2 slide={slide}>스마트한 안전장비 SAFEKING</S.BigText2>
           </S.BannerTextArea>
         </S.BannerWrap>
         <S.BannerWrap>
@@ -55,8 +55,8 @@ export const MainBanner = () => {
             <S.BannerLogoArea slide={slide}>
               <S.BannerLogo />
             </S.BannerLogoArea>
-            <S.BigText slide={slide}>스마트한 안전관리</S.BigText>
-            <S.BigText2 slide={slide}>중대사고 예방을 위한 최고의 솔루션</S.BigText2>
+            <S.BigText slide={slide}>중대사고예방 "안전왕"</S.BigText>
+            <S.BigText2 slide={slide}>솔루션 개발 전문업체 (주)리크텍 입니다.</S.BigText2>
           </S.BannerTextArea>
         </S.BannerWrap>
       </S.CustomSlider>
