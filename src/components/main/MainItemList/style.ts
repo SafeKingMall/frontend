@@ -94,3 +94,16 @@ export const Price = styled.p`
     font-size: 0.4rem;
   }
 `;
+export const NoSearchItem = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 100%;
+  height: 3rem;
+  border-top: 0.02rem solid ${({ theme }) => theme.palette.green};
+  border-bottom: 0.02rem solid ${({ theme }) => theme.palette.green};
+  font-size: 0.24rem;
+  font-weight: 500;
+  @media (max-width: 720px) {
+    height: 5rem;
+    font-size: 0.48rem;
+  }
+`;
