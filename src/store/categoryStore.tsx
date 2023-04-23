@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const categoryContext = createContext([]);
 
 const CategoryStore = (props: any) => {
+  const location = useLocation();
   const [categoryData, setCategoryData] = useState([]);
   useEffect(() => {
     const getCategoryData = async () => {
@@ -15,7 +17,7 @@ const CategoryStore = (props: any) => {
       });
     };
     getCategoryData();
-  }, []);
+  }, [location.pathname]);
   return <categoryContext.Provider value={categoryData}>{props.children}</categoryContext.Provider>;
 };
 

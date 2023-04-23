@@ -174,14 +174,37 @@ export const SignUp2 = () => {
         }
       });
     } catch (err: any) {
-      swal.fire({
-        heightAuto: false,
-        icon: 'warning',
-        text: err.response.data.message,
-        confirmButtonText: '확인',
-        confirmButtonColor: '#289951',
-        width: 400,
-      });
+      if (err.response.data.code === 1700) {
+        swal.fire({
+          heightAuto: false,
+          icon: 'warning',
+          text: '인증번호가 일치하지 않습니다. 인증번호를 다시 발송해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+        setCodeCheck(false);
+        setTimer(false);
+        setCode('');
+      } else if (err.response.data.code === 999) {
+        swal.fire({
+          heightAuto: false,
+          icon: 'warning',
+          text: '인증번호를 다시 발송해주세요.',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      } else {
+        swal.fire({
+          heightAuto: false,
+          icon: 'warning',
+          text: err.response.data.message,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#289951',
+          width: 400,
+        });
+      }
     }
   };
   //다음버튼 활성화 이벤트
