@@ -16,6 +16,7 @@ export const List = (props: any) => {
   const searchWord = props.searchWord;
   const slideNavIdx = props.slideNavIdx;
   const [scrollLoading, setScrollLoading] = useState(false);
+  const [noItem, setNoItem] = useState(false);
   const navigate = useNavigate();
 
   const moveDetail = (item: any) => {
@@ -59,10 +60,20 @@ export const List = (props: any) => {
     return () => window.removeEventListener('scroll', onScroll);
   });
 
+  useEffect(() => {
+    if (itemList.length === 0) {
+      setNoItem(true);
+    } else {
+      setNoItem(false);
+    }
+  }, [itemList])
+
   return (
     <S.Container>
       <S.ItemArea>
-        {itemList?.length ? (
+        {noItem ? (
+          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
+        ) : (
           itemList.map((item: any) => {
             return (
               <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
@@ -86,8 +97,6 @@ export const List = (props: any) => {
               </S.ItemContainer>
             );
           })
-        ) : (
-          <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
         )}
         <S.ScrollDiv>
           <TailSpin
