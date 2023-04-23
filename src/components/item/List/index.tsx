@@ -66,7 +66,7 @@ export const List = (props: any) => {
     } else {
       setNoItem(false);
     }
-  }, [itemList])
+  }, [itemList]);
 
   return (
     <S.Container>
