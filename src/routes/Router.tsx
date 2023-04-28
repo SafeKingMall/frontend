@@ -79,7 +79,6 @@ const Router = () => {
         <Route path='/mypage-ap1' element={<MyPageAp1 />} />
         <Route path='/mypage-ap2' element={<MyPageAp2 />} />
         <Route path='/mypage-ap3' element={<MyPageAp3 />} />
-
         <Route path='/mypage-od-detail' element={<MyPageOdDetail />} />
         <Route path='/mypage-rf' element={<MyPageRf />} />
         <Route path='/mypage-rf-detail' element={<MyPageRfDetail />} />
