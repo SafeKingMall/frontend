@@ -32,9 +32,18 @@ export const Banner = styled.img`
   width: 100%;
   height: 100%;
 `;
-export const Banner1 = styled(Banner).attrs({ src: 'img/MainBanner1.png' })``;
-export const Banner2 = styled(Banner).attrs({ src: 'img/MainBanner2.png' })``;
-export const Banner3 = styled(Banner).attrs({ src: 'img/MainBanner3.png' })``;
+export const Banner1 = styled(Banner).attrs({
+  src: 'img/MainBanner1.png',
+  alt: '안전왕 메인 배너1',
+})``;
+export const Banner2 = styled(Banner).attrs({
+  src: 'img/MainBanner2.png',
+  alt: '안전왕 메인 배너2',
+})``;
+export const Banner3 = styled(Banner).attrs({
+  src: 'img/MainBanner3.png',
+  alt: '안전왕 메인 배너3',
+})``;
 export const BannerTextArea = styled.div`
   display: flex;
   justify-content: center;
@@ -92,7 +101,7 @@ export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png' })`
 //           transform: translateX(-1rem);
 //         `}
 // `;
-export const BigText = styled.span<{ slide: boolean }>`
+export const BigText = styled.h1<{ slide: boolean }>`
   font-size: 0.64rem;
   font-weight: 700;
   color: #fdffaf;
@@ -114,7 +123,7 @@ export const BigText = styled.span<{ slide: boolean }>`
     /* margin-bottom: 0.24rem; */
   }
 `;
-export const BigText2 = styled.span<{ slide: boolean }>`
+export const BigText2 = styled.h2<{ slide: boolean }>`
   font-size: 0.48rem;
   font-weight: 700;
   color: #ffffff;
