@@ -49,19 +49,21 @@ export const MainPage = () => {
   }, [selectedCategory]);
 
   return (
-    <S.Container>
-      <ViewedItem />
-      <Header />
-      <S.BannerNoticeWrap>
-        <MainBanner />
-        <NoticeBar />
-      </S.BannerNoticeWrap>
-      <MainCategory
-        category={context}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <MainItemList itemList={itemList} slideNavIdx={context.map((el: any) => el.name).indexOf(selectedCategory)} />
-    </S.Container>
+    <>
+      <S.Container>
+        <ViewedItem />
+        <Header />
+        <S.BannerNoticeWrap>
+          <MainBanner />
+          <NoticeBar />
+        </S.BannerNoticeWrap>
+        <MainCategory
+          category={context}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+        <MainItemList itemList={itemList} slideNavIdx={context.map((el: any) => el.name).indexOf(selectedCategory)} />
+      </S.Container>
+    </>
   );
 };

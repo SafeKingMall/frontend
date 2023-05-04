@@ -8,15 +8,17 @@ export const Notice = () => {
   // const navigate = useNavigate();
 
   return (
-    <div>
-      <Header />
+    <>
       <div>
-        <S.Banner>공지사항</S.Banner>
+        <Header />
+        <div>
+          <S.Banner>공지사항</S.Banner>
+        </div>
+        <S.Wrapper>
+          <NoticeList />
+          {/* <S.NoticeButton onClick={() => navigate('/notice-wr')}>글쓰기</S.NoticeButton> */}
+        </S.Wrapper>
       </div>
-      <S.Wrapper>
-        <NoticeList />
-        {/* <S.NoticeButton onClick={() => navigate('/notice-wr')}>글쓰기</S.NoticeButton> */}
-      </S.Wrapper>
-    </div>
+    </>
   );
 };
