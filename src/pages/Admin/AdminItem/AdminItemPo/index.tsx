@@ -14,6 +14,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
 import { Cookies } from 'react-cookie';
 import { categoryContext } from '../../../../store/categoryStore';
+import { MetaTag } from '../../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -460,134 +461,143 @@ export const AdminItemPo = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <S.Container>
-        <EditMenu />
-        <S.Wrapper>
-          <S.Table>
-            <tbody>
-              <tr>
-                <td>제목</td>
-                <td>
-                  <S.TableInput
-                    placeholder='상품명을 입력해주세요'
-                    value={itemName}
-                    onChange={(e: any) => setItemName(e.target.value)}
-                  />
-                </td>
-                <td>카테고리</td>
-                <td>
-                  <S.Select onChange={selectChange} value={cateSelect} required>
-                    <S.NoneOption value='카테고리'>-카테고리-</S.NoneOption>
-                    {categoryId.map((el: any) => {
-                      return (
-                        <option value={el.name} key={el.id}>
-                          {el.name}
-                        </option>
-                      );
-                    })}
-                  </S.Select>
-                </td>
-              </tr>
-
-              <tr>
-                <td>상품가격</td>
-                <td colSpan={3}>
-                  <S.PayInput>
+    <>
+      <MetaTag
+        title={`상품수정 | 안전왕`}
+        description={`안전왕, 상품수정`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/admin-item-po'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 상품수정`}
+      />
+      <div>
+        <Header />
+        <S.Container>
+          <EditMenu />
+          <S.Wrapper>
+            <S.Table>
+              <tbody>
+                <tr>
+                  <td>제목</td>
+                  <td>
                     <S.TableInput
-                      name='moneyNum'
-                      placeholder='가격을 입력해주세요.'
-                      value={MoneyNumber2(moneyNum)}
-                      onChange={changeEnteredNum2}
+                      placeholder='상품명을 입력해주세요'
+                      value={itemName}
+                      onChange={(e: any) => setItemName(e.target.value)}
                     />
-                    <S.PayP>원</S.PayP>
-                    {hideBtn === false ? (
-                      <S.StyledInput
-                        defaultChecked
-                        onClick={clickHide}
-                        type='checkbox'
-                        id='Hide'
-                        name='Hide'
+                  </td>
+                  <td>카테고리</td>
+                  <td>
+                    <S.Select onChange={selectChange} value={cateSelect} required>
+                      <S.NoneOption value='카테고리'>-카테고리-</S.NoneOption>
+                      {categoryId.map((el: any) => {
+                        return (
+                          <option value={el.name} key={el.id}>
+                            {el.name}
+                          </option>
+                        );
+                      })}
+                    </S.Select>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>상품가격</td>
+                  <td colSpan={3}>
+                    <S.PayInput>
+                      <S.TableInput
+                        name='moneyNum'
+                        placeholder='가격을 입력해주세요.'
+                        value={MoneyNumber2(moneyNum)}
+                        onChange={changeEnteredNum2}
                       />
-                    ) : (
-                      <S.StyledInput onClick={clickHide} type='checkbox' id='Hide' name='Hide' />
-                    )}
-
-                    <S.StyledLabel htmlFor='Hide'>
-                      <S.StyledP>숨기기</S.StyledP>
-                    </S.StyledLabel>
-                  </S.PayInput>
-                  <S.CheckPay>*가격을 숨기고 싶으시다면 우측의 버튼을 클릭해주세요.</S.CheckPay>
-                  {moneyNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
-                </td>
-              </tr>
-              <tr>
-                <td>상품수량</td>
-                <td colSpan={3}>
-                  <S.TableInput
-                    name='quantityNum'
-                    placeholder='수량을 입력해주세요.'
-                    type='text'
-                    value={MoneyNumber2(quantityNum)}
-                    onChange={changeEnteredNum}
-                  />
-                  개{quantityNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
-                </td>
-              </tr>
-
-              <tr>
-                <td>썸네일 이미지</td>
-                <td colSpan={3}>
-                  <S.TableDiv>
-                    {selectedImages.length !== 0 || getFileName !== '' ? (
-                      getFileName !== '' ? (
-                        <S.DivImg>
-                          <div>{getFileName}</div>
-                          <button onClick={() => setGetFileName('')}>
-                            <VscClose size='30' />
-                          </button>
-                        </S.DivImg>
+                      <S.PayP>원</S.PayP>
+                      {hideBtn === false ? (
+                        <S.StyledInput
+                          defaultChecked
+                          onClick={clickHide}
+                          type='checkbox'
+                          id='Hide'
+                          name='Hide'
+                        />
                       ) : (
-                        <div>{attachFile}</div>
-                      )
-                    ) : (
-                      <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
-                    )}
+                        <S.StyledInput onClick={clickHide} type='checkbox' id='Hide' name='Hide' />
+                      )}
 
-                    <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
-                    {selectedImages.length !== 0 ? (
-                      ''
-                    ) : (
-                      <input
-                        type='file'
-                        name='images'
-                        onChange={onSelectFile}
-                        accept='.png, .jpg,image/*'
-                      />
-                    )}
-                  </S.TableDiv>
-                </td>
-              </tr>
-              <tr>
-                <td>설명</td>
-                <td colSpan={3}>
-                  <EditorWr
-                    targetId={itemId}
-                    type={adminItem}
-                    descriptEdit={descriptEdit}
-                    setDescriptEdit={setDescriptEdit}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </S.Table>
-          <S.QnABox>
-            <S.QnAButton onClick={() => registerAlert()}>수정</S.QnAButton>
-            <S.QnAButton2 onClick={() => backBtn()}>목록</S.QnAButton2>
-          </S.QnABox>
-        </S.Wrapper>
-      </S.Container>
-    </div>
+                      <S.StyledLabel htmlFor='Hide'>
+                        <S.StyledP>숨기기</S.StyledP>
+                      </S.StyledLabel>
+                    </S.PayInput>
+                    <S.CheckPay>*가격을 숨기고 싶으시다면 우측의 버튼을 클릭해주세요.</S.CheckPay>
+                    {moneyNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
+                  </td>
+                </tr>
+                <tr>
+                  <td>상품수량</td>
+                  <td colSpan={3}>
+                    <S.TableInput
+                      name='quantityNum'
+                      placeholder='수량을 입력해주세요.'
+                      type='text'
+                      value={MoneyNumber2(quantityNum)}
+                      onChange={changeEnteredNum}
+                    />
+                    개{quantityNum === '.' ? <S.RedDiv>숫자로 입력해주세요.</S.RedDiv> : ''}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>썸네일 이미지</td>
+                  <td colSpan={3}>
+                    <S.TableDiv>
+                      {selectedImages.length !== 0 || getFileName !== '' ? (
+                        getFileName !== '' ? (
+                          <S.DivImg>
+                            <div>{getFileName}</div>
+                            <button onClick={() => setGetFileName('')}>
+                              <VscClose size='30' />
+                            </button>
+                          </S.DivImg>
+                        ) : (
+                          <div>{attachFile}</div>
+                        )
+                      ) : (
+                        <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
+                      )}
+
+                      <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
+                      {selectedImages.length !== 0 ? (
+                        ''
+                      ) : (
+                        <input
+                          type='file'
+                          name='images'
+                          onChange={onSelectFile}
+                          accept='.png, .jpg,image/*'
+                        />
+                      )}
+                    </S.TableDiv>
+                  </td>
+                </tr>
+                <tr>
+                  <td>설명</td>
+                  <td colSpan={3}>
+                    <EditorWr
+                      targetId={itemId}
+                      type={adminItem}
+                      descriptEdit={descriptEdit}
+                      setDescriptEdit={setDescriptEdit}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </S.Table>
+            <S.QnABox>
+              <S.QnAButton onClick={() => registerAlert()}>수정</S.QnAButton>
+              <S.QnAButton2 onClick={() => backBtn()}>목록</S.QnAButton2>
+            </S.QnABox>
+          </S.Wrapper>
+        </S.Container>
+      </div>
+    </>
   );
 };

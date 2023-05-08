@@ -3,3 +3,9 @@ User-agent: *
 Allow:/
 Disallow: /admin*/
 Disallow: /mypage*/
+Disallow: /sign-up*/
+Disallow: /carts/
+Disallow: /orders/
+Disallow: /orderok/
+Disallow: /mobile-payment-result/
+Disallow: /qna-po/

@@ -8,6 +8,7 @@ import { Header } from '../../components/common/Header';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { SearchUser } from '../../components/modal/SearchUser';
+import { MetaTag } from '../../components/common/MetaTag';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -137,6 +138,13 @@ export const SignIn = () => {
 
   return (
     <>
+      <MetaTag
+        title={`로그인 | 안전왕`}
+        description={`안전왕, 로그인`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/sign-in'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 로그인`}
+      />
       <Header />
       <S.Container>
         <S.Wrapper>

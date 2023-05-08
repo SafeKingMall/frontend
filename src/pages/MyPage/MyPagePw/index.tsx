@@ -8,6 +8,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const PWREGEX = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{3,20}$/;
 const SYMBOL = /[^!@#$%^&*0-9a-zA-Z]/;
@@ -164,6 +165,13 @@ export const MyPagePw = () => {
 
   return (
     <>
+      <MetaTag
+        title={`비밀번호 변경 | 안전왕`}
+        description={`안전왕, 비밀번호 변경`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/mypage-pw'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 비밀번호 변경`}
+      />
       <Header />
       <S.Container>
         <div style={{ marginTop: 190 }}>

@@ -10,6 +10,7 @@ import * as S from './style';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 export const MyPageWd = () => {
   const cookies = new Cookies();
@@ -121,6 +122,13 @@ export const MyPageWd = () => {
 
   return (
     <>
+      <MetaTag
+        title={`회원탈퇴 | 안전왕`}
+        description={`안전왕, 회원탈퇴`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/mypage-wd'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 회원탈퇴`}
+      />
       <Header />
       <S.Container>
         <div style={{ marginTop: 190 }}>

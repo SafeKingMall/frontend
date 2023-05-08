@@ -9,6 +9,7 @@ import DaumPostcode from 'react-daum-postcode';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom';
+import { MetaTag } from '../../components/common/MetaTag';
 
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
@@ -364,6 +365,13 @@ export const MyPage = () => {
   };
   return (
     <>
+      <MetaTag
+        title={`내정보 | 안전왕`}
+        description={`안전왕, 내정보`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/mypage'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 내정보`}
+      />
       <Header />
       <S.Container>
         <div style={{ marginTop: 190 }}>

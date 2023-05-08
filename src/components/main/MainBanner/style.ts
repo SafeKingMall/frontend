@@ -76,7 +76,7 @@ export const BannerLogoArea = styled.div<{ slide: boolean }>`
     padding-bottom: 1.4rem;
   }
 `;
-export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png' })`
+export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png', alt: '안전왕 배너 로고' })`
   position: absolute;
   top: 0;
   left: 0;

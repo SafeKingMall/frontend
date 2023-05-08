@@ -9,6 +9,7 @@ import { MainItemList } from '../../components/main/MainItemList';
 import { ViewedItem } from '../../components/main/ViewedItem';
 import axios from 'axios';
 import { categoryContext } from '../../store/categoryStore';
+import { MetaTag } from '../../components/common/MetaTag';
 
 export const MainPage = () => {
   const context: any = useContext(categoryContext);
@@ -50,6 +51,13 @@ export const MainPage = () => {
 
   return (
     <>
+      <MetaTag
+        title='안전왕'
+        description='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.'
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/'
+        keywords='안전왕, 안전, 안전관리, 안전사고, 사고예방'
+      />
       <S.Container>
         <ViewedItem />
         <Header />

@@ -5,6 +5,7 @@ import { Header } from '../../components/common/Header';
 // import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import axios from 'axios';
+import { MetaTag } from '../../components/common/MetaTag';
 
 export const MobilePaymentResult = () => {
   const [serchParams] = useSearchParams();
@@ -109,25 +110,34 @@ export const MobilePaymentResult = () => {
   }, [success]);
 
   return (
-    <S.Container>
-      <Header />
-      <S.ContentContainer>
-        <S.TitleWrap>
-          <S.Title>{success}</S.Title>
-        </S.TitleWrap>
-        <S.Group>
-          <S.OrderInfoWrap>
-            <S.IconArea style={{ display: success === '결제실패' ? 'none' : '' }}>
-              <S.IconWrap>
-                <S.Icon />
-              </S.IconWrap>
-              <S.IconUnderLine />
-            </S.IconArea>
-            <S.TextArea>{resultText()}</S.TextArea>
-          </S.OrderInfoWrap>
-          <S.BtnArea>{resultBtn()}</S.BtnArea>
-        </S.Group>
-      </S.ContentContainer>
-    </S.Container>
+    <>
+      <MetaTag
+        title={`결제정보 | 안전왕`}
+        description={`안전왕, 결제정보`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/mobile-payment-result'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 결제정보`}
+      />
+      <S.Container>
+        <Header />
+        <S.ContentContainer>
+          <S.TitleWrap>
+            <S.Title>{success}</S.Title>
+          </S.TitleWrap>
+          <S.Group>
+            <S.OrderInfoWrap>
+              <S.IconArea style={{ display: success === '결제실패' ? 'none' : '' }}>
+                <S.IconWrap>
+                  <S.Icon />
+                </S.IconWrap>
+                <S.IconUnderLine />
+              </S.IconArea>
+              <S.TextArea>{resultText()}</S.TextArea>
+            </S.OrderInfoWrap>
+            <S.BtnArea>{resultBtn()}</S.BtnArea>
+          </S.Group>
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 };

@@ -7,6 +7,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Cookies } from 'react-cookie';
+import { MetaTag } from '../../common/MetaTag';
 
 export const Estimate = () => {
   const { state } = useLocation();
@@ -189,189 +190,198 @@ export const Estimate = () => {
     }, 1000);
   };
   return (
-    <S.Container>
-      <iframe name='frAttachFiles' title='iframe' style={{ display: 'none' }}></iframe>
-      <Header />
-      <S.BannerWrap>
-        <S.Banner />
-        <S.BannerText>견적서 요청</S.BannerText>
-      </S.BannerWrap>
-      <S.Wrap>
-        <S.ContentWrap>
-          <S.GuideArea>
-            <S.Guidetext>
-              안녕하세요. 안전왕쇼핑몰입니다.
-              <span className='space'>&nbsp;</span>
-              <br />
-              항상 최고가 되기 위해 노력합니다.
-            </S.Guidetext>
-            <S.Guidetext>
-              견적서 요청서를 작성해주시면 빠르고
-              <span className='space'>&nbsp;</span>
-              <br />
-              신속하게 확인 후 연락드리겠습니다.
-            </S.Guidetext>
-          </S.GuideArea>
-          <S.Form
-            method='POST'
-            target='frAttachFiles'
-            name='sendMail'
-            action='https://script.google.com/macros/s/AKfycby5d7O0uHm96ibalCt8OBPF6172CDfo9wSU7OQsE9OBVnOR5rp47155VPZrzF84HtFZ/exec'
-            autoComplete='off'
-          >
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  회사명<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.BasicInput
-                  name='회사명'
-                  placeholder='회사명을 입력해주세요.'
-                  value={company}
-                  onChange={(e) => onChangeCompany(e.target.value)}
-                  maxLength={50}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  이름<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.BasicInput
-                  name='이름'
-                  placeholder='이름을 입력해주세요.'
-                  value={name}
-                  onChange={(e) => onChangeName(e.target.value)}
-                  maxLength={50}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  이메일<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.BasicInput
-                  name='이메일'
-                  placeholder='이메일을 입력해주세요.'
-                  value={email}
-                  onChange={(e) => onChangeEmail(e.target.value)}
-                  maxLength={80}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  연락처<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.BasicInput
-                  name='연락처'
-                  placeholder='전화번호를 입력해주세요.'
-                  value={phone}
-                  onChange={(e) => onChangePhone(e.target.value)}
-                  maxLength={11}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>직급</S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.BasicInput
-                  name='직급'
-                  placeholder='직급을 입력해주세요.'
-                  value={rank}
-                  onChange={(e) => onChangeRank(e.target.value)}
-                  maxLength={10}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  상품<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.CategoryArea>
-                  <S.Arrow>▼</S.Arrow>
-                  <S.Category
-                    name='카테고리'
-                    value={category}
-                    onChange={(e) => onChangeCategory(e.target.value)}
-                    style={{ color: category ? '' : '#777777' }}
-                  >
-                    <option value=''>카테고리선택</option>
-                    {categoryList.map((category: any) => {
-                      return (
-                        <option key={category.id} value={category.name}>
-                          {category.name}
-                        </option>
-                      );
-                    })}
-                  </S.Category>
-                </S.CategoryArea>
-                <S.ItemInput
-                  name='상품'
-                  placeholder='상품명을 입력해주세요.'
-                  value={itemName}
-                  onChange={(e) => onChangeItemName(e.target.value)}
-                  maxLength={80}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.InputDiv>
-              <S.TitleArea>
-                <S.Title>
-                  수량<S.Essential>*</S.Essential>
-                </S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.CountInput
-                  name='수량'
-                  placeholder='수량을 입력해주세요.'
-                  value={count}
-                  onChange={(e) => onChangeCount(e.target.value)}
-                  maxLength={10}
-                />
-              </S.InputArea>
-            </S.InputDiv>
-            <S.RequestInputDiv>
-              <S.TitleArea>
-                <S.Title>요청사항</S.Title>
-              </S.TitleArea>
-              <S.InputArea>
-                <S.RequestInput
-                  name='요청사항'
-                  placeholder='요청사항을 입력해주세요.'
-                  value={request}
-                  onChange={(e) => onChangeRequest(e.target.value)}
-                  maxLength={1000}
-                />
-              </S.InputArea>
-            </S.RequestInputDiv>
-            <S.SubmitBtn
-              type='submit'
-              disabled={disable}
-              onClick={() => sendMail()}
-              style={{ backgroundColor: disable ? '#999999' : '' }}
+    <>
+      <MetaTag
+        title={`견적서 요청 | 안전왕`}
+        description={`안전왕, 견적서 요청`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/estimate'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 견적서 요청`}
+      />
+      <S.Container>
+        <iframe name='frAttachFiles' title='iframe' style={{ display: 'none' }}></iframe>
+        <Header />
+        <S.BannerWrap>
+          <S.Banner />
+          <S.BannerText>견적서 요청</S.BannerText>
+        </S.BannerWrap>
+        <S.Wrap>
+          <S.ContentWrap>
+            <S.GuideArea>
+              <S.Guidetext>
+                안녕하세요. 안전왕쇼핑몰입니다.
+                <span className='space'>&nbsp;</span>
+                <br />
+                항상 최고가 되기 위해 노력합니다.
+              </S.Guidetext>
+              <S.Guidetext>
+                견적서 요청서를 작성해주시면 빠르고
+                <span className='space'>&nbsp;</span>
+                <br />
+                신속하게 확인 후 연락드리겠습니다.
+              </S.Guidetext>
+            </S.GuideArea>
+            <S.Form
+              method='POST'
+              target='frAttachFiles'
+              name='sendMail'
+              action='https://script.google.com/macros/s/AKfycby5d7O0uHm96ibalCt8OBPF6172CDfo9wSU7OQsE9OBVnOR5rp47155VPZrzF84HtFZ/exec'
+              autoComplete='off'
             >
-              견적서 보내기
-            </S.SubmitBtn>
-          </S.Form>
-        </S.ContentWrap>
-      </S.Wrap>
-    </S.Container>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    회사명<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.BasicInput
+                    name='회사명'
+                    placeholder='회사명을 입력해주세요.'
+                    value={company}
+                    onChange={(e) => onChangeCompany(e.target.value)}
+                    maxLength={50}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    이름<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.BasicInput
+                    name='이름'
+                    placeholder='이름을 입력해주세요.'
+                    value={name}
+                    onChange={(e) => onChangeName(e.target.value)}
+                    maxLength={50}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    이메일<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.BasicInput
+                    name='이메일'
+                    placeholder='이메일을 입력해주세요.'
+                    value={email}
+                    onChange={(e) => onChangeEmail(e.target.value)}
+                    maxLength={80}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    연락처<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.BasicInput
+                    name='연락처'
+                    placeholder='전화번호를 입력해주세요.'
+                    value={phone}
+                    onChange={(e) => onChangePhone(e.target.value)}
+                    maxLength={11}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>직급</S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.BasicInput
+                    name='직급'
+                    placeholder='직급을 입력해주세요.'
+                    value={rank}
+                    onChange={(e) => onChangeRank(e.target.value)}
+                    maxLength={10}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    상품<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.CategoryArea>
+                    <S.Arrow>▼</S.Arrow>
+                    <S.Category
+                      name='카테고리'
+                      value={category}
+                      onChange={(e) => onChangeCategory(e.target.value)}
+                      style={{ color: category ? '' : '#777777' }}
+                    >
+                      <option value=''>카테고리선택</option>
+                      {categoryList.map((category: any) => {
+                        return (
+                          <option key={category.id} value={category.name}>
+                            {category.name}
+                          </option>
+                        );
+                      })}
+                    </S.Category>
+                  </S.CategoryArea>
+                  <S.ItemInput
+                    name='상품'
+                    placeholder='상품명을 입력해주세요.'
+                    value={itemName}
+                    onChange={(e) => onChangeItemName(e.target.value)}
+                    maxLength={80}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.InputDiv>
+                <S.TitleArea>
+                  <S.Title>
+                    수량<S.Essential>*</S.Essential>
+                  </S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.CountInput
+                    name='수량'
+                    placeholder='수량을 입력해주세요.'
+                    value={count}
+                    onChange={(e) => onChangeCount(e.target.value)}
+                    maxLength={10}
+                  />
+                </S.InputArea>
+              </S.InputDiv>
+              <S.RequestInputDiv>
+                <S.TitleArea>
+                  <S.Title>요청사항</S.Title>
+                </S.TitleArea>
+                <S.InputArea>
+                  <S.RequestInput
+                    name='요청사항'
+                    placeholder='요청사항을 입력해주세요.'
+                    value={request}
+                    onChange={(e) => onChangeRequest(e.target.value)}
+                    maxLength={1000}
+                  />
+                </S.InputArea>
+              </S.RequestInputDiv>
+              <S.SubmitBtn
+                type='submit'
+                disabled={disable}
+                onClick={() => sendMail()}
+                style={{ backgroundColor: disable ? '#999999' : '' }}
+              >
+                견적서 보내기
+              </S.SubmitBtn>
+            </S.Form>
+          </S.ContentWrap>
+        </S.Wrap>
+      </S.Container>
+    </>
   );
 };

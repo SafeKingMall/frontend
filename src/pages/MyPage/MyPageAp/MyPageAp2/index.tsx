@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
 import { useMediaQuery } from 'react-responsive';
+import { MetaTag } from '../../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -157,19 +158,27 @@ export const MyPageAp2 = () => {
 
 
     return (
-        <S.Container>
-            <Header />
-            <S.ContentContainer>
-                <S.Wrapper>
-                    {isDesktopOrMobile !== true ? (
-                        <S.RefundH1>환불신청</S.RefundH1>) : (<S.RefundH1>사유선택</S.RefundH1>)}
-                    <S.Top></S.Top>
-                    <S.Mid>
-                        <p>*</p>
-                        <h3>상품에 어떠한 문제가 있습니까?</h3>
-                    </S.Mid>
-                    <S.InputContainer>
-                        {/* <S.RefundReason>
+        <>
+            <MetaTag
+                title={`환불신청2 | 안전왕`}
+                description={`안전왕, 환불신청2`}
+                imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+                url='https://safekingmall.com/mypage-ap2'
+                keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 환불신청2`}
+            />
+            <S.Container>
+                <Header />
+                <S.ContentContainer>
+                    <S.Wrapper>
+                        {isDesktopOrMobile !== true ? (
+                            <S.RefundH1>환불신청</S.RefundH1>) : (<S.RefundH1>사유선택</S.RefundH1>)}
+                        <S.Top></S.Top>
+                        <S.Mid>
+                            <p>*</p>
+                            <h3>상품에 어떠한 문제가 있습니까?</h3>
+                        </S.Mid>
+                        <S.InputContainer>
+                            {/* <S.RefundReason>
                             <h3>단순변심</h3>
                             <div>
                                 <label htmlFor='test'>
@@ -227,30 +236,31 @@ export const MyPageAp2 = () => {
                                 </label>
                             </div>
                         </S.RefundReason> */}
-                        <S.RefundReason>
-                            <h3>직접입력</h3>
-                            <div>
-                                <label htmlFor='test'>
+                            <S.RefundReason>
+                                <h3>직접입력</h3>
+                                <div>
+                                    <label htmlFor='test'>
 
-                                    {/* <input type='checkbox' name='test' value='' onChange={(e) => checkOnlyOne(e.target)} /> */}
-                                    <input type='text' value={selfInput} onChange={(e: any) => {
-                                        setSelfInput(e.target.value)
-                                    }} placeholder='텍스트를 직접 입력해주세요.' />
-                                </label>
+                                        {/* <input type='checkbox' name='test' value='' onChange={(e) => checkOnlyOne(e.target)} /> */}
+                                        <input type='text' value={selfInput} onChange={(e: any) => {
+                                            setSelfInput(e.target.value)
+                                        }} placeholder='텍스트를 직접 입력해주세요.' />
+                                    </label>
 
-                            </div>
+                                </div>
 
-                        </S.RefundReason>
+                            </S.RefundReason>
 
-                    </S.InputContainer>
-                    <S.BtnWrapper>
-                        <button onClick={moveMypageAp1}>이전 단계</button>
-                        <button onClick={refundBtn}>
-                            환불 신청
-                        </button>
-                    </S.BtnWrapper>
-                </S.Wrapper>
-            </S.ContentContainer>
-        </S.Container>
+                        </S.InputContainer>
+                        <S.BtnWrapper>
+                            <button onClick={moveMypageAp1}>이전 단계</button>
+                            <button onClick={refundBtn}>
+                                환불 신청
+                            </button>
+                        </S.BtnWrapper>
+                    </S.Wrapper>
+                </S.ContentContainer>
+            </S.Container>
+        </>
     );
 }

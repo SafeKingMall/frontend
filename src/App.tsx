@@ -25,6 +25,7 @@ function App() {
     <>
       <Helmet>
         <title>안전왕</title>
+        <meta name='keywords' content='안전왕, 안전, 안전관리, 안전사고, 사고예방' />
         <meta name='description' content='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.' />
         <meta property='og:type' content='website' />
         <meta property='og:title' content='안전왕' />
@@ -32,9 +33,15 @@ function App() {
           property='og:description'
           content='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.'
         />
-        <meta property='og:image' content='https://safekingmall.com/img/HeaderLogo.png' />
         <meta property='og:url' content='https://safekingmall.com/' />
-        <meta name='keywords' content='안전왕, 안전, 안전관리, 안전사고, 사고예방' />
+        <meta property='og:image' content='https://safekingmall.com/img/HeaderLogo.png' />
+
+        <meta name='twitter:title' content='안전왕' />
+        <meta
+          name='twitter:description'
+          content='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.'
+        />
+        <meta name='twitter:image' content='https://safekingmall.com/img/HeaderLogo.png' />
       </Helmet>
       <ThemeProvider theme={theme}>
         <GlobalStyles />

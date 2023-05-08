@@ -10,6 +10,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -154,69 +155,78 @@ export const NoticePo = () => {
   const { registDate2 } = useDateFormat();
 
   return (
-    <div>
-      <Header />
+    <>
+      <MetaTag
+        title={`공지사항상세 | 안전왕`}
+        description={`안전왕, 공지사항상세`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/notice-po'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 공지사항상세`}
+      />
       <div>
-        <S.Banner>공지사항</S.Banner>
-      </div>
-      <S.Wrapper>
-        {loginUser === 'admin' ? (
-          <S.ButtonBox>
-            <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
-            <S.NoticeButton2 onClick={() => moveNoticeMo(itemId)}>수정</S.NoticeButton2>
-          </S.ButtonBox>
-        ) : (
-          ''
-        )}
+        <Header />
+        <div>
+          <S.Banner>공지사항</S.Banner>
+        </div>
+        <S.Wrapper>
+          {loginUser === 'admin' ? (
+            <S.ButtonBox>
+              <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
+              <S.NoticeButton2 onClick={() => moveNoticeMo(itemId)}>수정</S.NoticeButton2>
+            </S.ButtonBox>
+          ) : (
+            ''
+          )}
 
-        <S.PoBox>
-          <S.TitleDiv>
-            <div>{data.title}</div>
-            <div>{registDate2(data.lastModifiedDate)}</div>
-          </S.TitleDiv>
-          <S.Content>
-            <S.Description id='description' dangerouslySetInnerHTML={{ __html: data.contents }} />
-            {/* <div>{data.contents}</div> */}
-          </S.Content>
-          <S.NextPage>
-            <S.Table>
-              <tbody>
-                <tr>
-                  <td>
-                    {preData === '' ? (
-                      <S.NotPage2>이전글이 없습니다.</S.NotPage2>
-                    ) : (
-                      <div onClick={() => moveNoticepo(preData.id)}>
-                        <S.FirstDiv>
-                          <AiOutlineLeft size={15} />
-                          <div>이전글</div>
-                        </S.FirstDiv>
-                        <S.NextTitle>{preData.title}</S.NextTitle>
-                        <S.DateData>{registDate2(preData.lastModifiedDate)}</S.DateData>
-                      </div>
-                    )}
-                  </td>
-                  <td>
-                    {nextData === '' ? (
-                      <S.NotPage>다음글이 없습니다.</S.NotPage>
-                    ) : (
-                      <S.SecondDiv onClick={() => moveNoticepo(nextData.id)}>
-                        <S.FirstDiv>
-                          <div>다음글</div>
-                          <AiOutlineRight size={15} />
-                        </S.FirstDiv>
-                        <S.NextTitle>{nextData.title}</S.NextTitle>
-                        <S.DateData>{registDate2(nextData.lastModifiedDate)}</S.DateData>
-                      </S.SecondDiv>
-                    )}
-                  </td>
-                </tr>
-              </tbody>
-            </S.Table>
-          </S.NextPage>
-        </S.PoBox>
-        <S.NoticeButton onClick={() => navigate('/notice')}>목록</S.NoticeButton>
-      </S.Wrapper>
-    </div>
+          <S.PoBox>
+            <S.TitleDiv>
+              <div>{data.title}</div>
+              <div>{registDate2(data.lastModifiedDate)}</div>
+            </S.TitleDiv>
+            <S.Content>
+              <S.Description id='description' dangerouslySetInnerHTML={{ __html: data.contents }} />
+              {/* <div>{data.contents}</div> */}
+            </S.Content>
+            <S.NextPage>
+              <S.Table>
+                <tbody>
+                  <tr>
+                    <td>
+                      {preData === '' ? (
+                        <S.NotPage2>이전글이 없습니다.</S.NotPage2>
+                      ) : (
+                        <div onClick={() => moveNoticepo(preData.id)}>
+                          <S.FirstDiv>
+                            <AiOutlineLeft size={15} />
+                            <div>이전글</div>
+                          </S.FirstDiv>
+                          <S.NextTitle>{preData.title}</S.NextTitle>
+                          <S.DateData>{registDate2(preData.lastModifiedDate)}</S.DateData>
+                        </div>
+                      )}
+                    </td>
+                    <td>
+                      {nextData === '' ? (
+                        <S.NotPage>다음글이 없습니다.</S.NotPage>
+                      ) : (
+                        <S.SecondDiv onClick={() => moveNoticepo(nextData.id)}>
+                          <S.FirstDiv>
+                            <div>다음글</div>
+                            <AiOutlineRight size={15} />
+                          </S.FirstDiv>
+                          <S.NextTitle>{nextData.title}</S.NextTitle>
+                          <S.DateData>{registDate2(nextData.lastModifiedDate)}</S.DateData>
+                        </S.SecondDiv>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              </S.Table>
+            </S.NextPage>
+          </S.PoBox>
+          <S.NoticeButton onClick={() => navigate('/notice')}>목록</S.NoticeButton>
+        </S.Wrapper>
+      </div>
+    </>
   );
 };

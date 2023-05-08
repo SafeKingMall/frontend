@@ -13,6 +13,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../../css/alert.css';
+import { MetaTag } from '../../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -296,104 +297,113 @@ export const AdminOrderDe = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <S.Container>
-        <EditMenu />
-        <S.Wrapper>
-          <div key={data1.id}>
-            <S.OrderDiv>
-              <S.OrderH2>주문정보</S.OrderH2>
-            </S.OrderDiv>
-            <div>
-              <S.OrderDiv2>
-                <S.AdminWrapper>
-                  <h3>주문번호 | </h3>
-                  <div>{data1.merchant_uid || ''}</div>
-                </S.AdminWrapper>
-                <S.AdminWrapper>
-                  <h3>주문일시 | </h3>
-                  <div> {data1.date || ''}</div>
-                </S.AdminWrapper>
-              </S.OrderDiv2>
-              <S.Table2>
-                <tbody>
-                  <tr>
-                    <td colSpan={2}>상품명</td>
-                    <td>판매가</td>
-                    <td>수량</td>
-                    <td>주문금액</td>
-                    <td>결제상태</td>
-                    <td>배송상태</td>
-                    <td>배송료</td>
-                    <td>송장번호</td>
-                  </tr>
-                  {itemInfor.map((al: any, index: any) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          <img
-                            src={al === '' ? '' : process.env.REACT_APP_BASE_URL + al.thumbnail}
-                            width='70'
-                            height='70'
-                            alt={al.name}
-                            style={{ border: '1px solid #DDDDDD' }}
-                          />
-                        </td>
+    <>
+      <MetaTag
+        title={`주문관리상세 | 안전왕`}
+        description={`안전왕, 주문관리상세`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/admin-order-de'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 주문관리상세`}
+      />
+      <div>
+        <Header />
+        <S.Container>
+          <EditMenu />
+          <S.Wrapper>
+            <div key={data1.id}>
+              <S.OrderDiv>
+                <S.OrderH2>주문정보</S.OrderH2>
+              </S.OrderDiv>
+              <div>
+                <S.OrderDiv2>
+                  <S.AdminWrapper>
+                    <h3>주문번호 | </h3>
+                    <div>{data1.merchant_uid || ''}</div>
+                  </S.AdminWrapper>
+                  <S.AdminWrapper>
+                    <h3>주문일시 | </h3>
+                    <div> {data1.date || ''}</div>
+                  </S.AdminWrapper>
+                </S.OrderDiv2>
+                <S.Table2>
+                  <tbody>
+                    <tr>
+                      <td colSpan={2}>상품명</td>
+                      <td>판매가</td>
+                      <td>수량</td>
+                      <td>주문금액</td>
+                      <td>결제상태</td>
+                      <td>배송상태</td>
+                      <td>배송료</td>
+                      <td>송장번호</td>
+                    </tr>
+                    {itemInfor.map((al: any, index: any) => {
+                      return (
+                        <tr key={index}>
+                          <td>
+                            <img
+                              src={al === '' ? '' : process.env.REACT_APP_BASE_URL + al.thumbnail}
+                              width='70'
+                              height='70'
+                              alt={al.name}
+                              style={{ border: '1px solid #DDDDDD' }}
+                            />
+                          </td>
 
-                        <td>{al.name}</td>
-                        <td>{MoneyNumber(al.price) || ''}</td>
-                        <td>{al.count || ''}</td>
-                        <td>{MoneyNumber(al.price * al.count) || ''}</td>
-                        <td>{payValue(payMentStatus)}</td>
-                        <td>
-                          <DeliverySelect />
-                        </td>
+                          <td>{al.name}</td>
+                          <td>{MoneyNumber(al.price) || ''}</td>
+                          <td>{al.count || ''}</td>
+                          <td>{MoneyNumber(al.price * al.count) || ''}</td>
+                          <td>{payValue(payMentStatus)}</td>
+                          <td>
+                            <DeliverySelect />
+                          </td>
 
-                        <td>{MoneyNumber(deliInfor.cost)}</td>
-                        <td>
-                          <S.OrderSelect
-                            onChange={DeliComhandleSelect}
-                            required
-                            value={deliComStatus}
-                          >
-                            {deliComList.map((key: any) => (
-                              <option value={key || ''} key={key}>
-                                {key || ''}
-                              </option>
-                            ))}
-                          </S.OrderSelect>
-                          <S.OrderInput
-                            value={deliNumber || ''}
-                            onChange={(e: any) => {
-                              setDeliNumber(e.target.value);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </S.Table2>
+                          <td>{MoneyNumber(deliInfor.cost)}</td>
+                          <td>
+                            <S.OrderSelect
+                              onChange={DeliComhandleSelect}
+                              required
+                              value={deliComStatus}
+                            >
+                              {deliComList.map((key: any) => (
+                                <option value={key || ''} key={key}>
+                                  {key || ''}
+                                </option>
+                              ))}
+                            </S.OrderSelect>
+                            <S.OrderInput
+                              value={deliNumber || ''}
+                              onChange={(e: any) => {
+                                setDeliNumber(e.target.value);
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </S.Table2>
+              </div>
             </div>
-          </div>
-          <AdminOrderDetail2 />
-          <AdminOrderPayDetail />
-          <S.OrderDiv>
-            <S.OrderH2>관리자 메모</S.OrderH2>
-          </S.OrderDiv>
-          <S.AdminTextarea
-            value={adminMemo || ''}
-            onChange={(e: any) => {
-              setAdminMemo(e.target.value);
-            }}
-          />
-          <S.QnABox>
-            <S.QnAButton onClick={() => navigate('/admin-order')}>취소</S.QnAButton>
-            <S.QnAButton2 onClick={() => putItemAlert(itemId)}>저장하기</S.QnAButton2>
-          </S.QnABox>
-        </S.Wrapper>
-      </S.Container>
-    </div>
+            <AdminOrderDetail2 />
+            <AdminOrderPayDetail />
+            <S.OrderDiv>
+              <S.OrderH2>관리자 메모</S.OrderH2>
+            </S.OrderDiv>
+            <S.AdminTextarea
+              value={adminMemo || ''}
+              onChange={(e: any) => {
+                setAdminMemo(e.target.value);
+              }}
+            />
+            <S.QnABox>
+              <S.QnAButton onClick={() => navigate('/admin-order')}>취소</S.QnAButton>
+              <S.QnAButton2 onClick={() => putItemAlert(itemId)}>저장하기</S.QnAButton2>
+            </S.QnABox>
+          </S.Wrapper>
+        </S.Container>
+      </div>
+    </>
   );
 };

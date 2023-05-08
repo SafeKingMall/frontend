@@ -10,6 +10,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -365,78 +366,87 @@ export const QnAMo = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
+      <MetaTag
+        title={`문의하기 수정 | 안전왕`}
+        description={`안전왕, 문의하기 수정`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/qna-mo'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방`}
+      />
       <div>
-        <S.Banner>문의하기</S.Banner>
+        <Header />
+        <div>
+          <S.Banner>문의하기</S.Banner>
+        </div>
+        <S.Wrapper>
+          <S.Table>
+            <tbody>
+              <tr>
+                <td>제목</td>
+                <td>
+                  <S.TableInput
+                    value={title}
+                    placeholder='제목을 입력해주세요.'
+                    onChange={(e: any) => {
+                      setTitle(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>비밀번호</td>
+                <td>
+                  <S.TableInput
+                    placeholder='비밀번호를 입력해주세요.'
+                    type='password'
+                    onChange={(e: any) => setPassword(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>내용</td>
+                <td>
+                  <S.TableTextarea
+                    value={contents}
+                    placeholder='내용을 입력해주세요.'
+                    onChange={(e: any) => {
+                      setContents(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>첨부파일</td>
+                <td>
+                  <S.TableDiv>
+                    {selectedImages.length !== 0 ? (
+                      <div>{attachFile}</div>
+                    ) : (
+                      <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
+                    )}
+                    <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
+                    {selectedImages.length !== 0 ? (
+                      ''
+                    ) : (
+                      <input
+                        type='file'
+                        name='images'
+                        onChange={onSelectFile}
+                        accept='.png, .jpg,image/*'
+                      />
+                    )}
+                  </S.TableDiv>
+                </td>
+              </tr>
+            </tbody>
+          </S.Table>
+          <S.QnABox>
+            <S.QnAButton onClick={() => cancelBtn()}>취소</S.QnAButton>
+            <S.QnAButton2 onClick={() => registAlert()}>수정</S.QnAButton2>
+          </S.QnABox>
+        </S.Wrapper>
       </div>
-      <S.Wrapper>
-        <S.Table>
-          <tbody>
-            <tr>
-              <td>제목</td>
-              <td>
-                <S.TableInput
-                  value={title}
-                  placeholder='제목을 입력해주세요.'
-                  onChange={(e: any) => {
-                    setTitle(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>비밀번호</td>
-              <td>
-                <S.TableInput
-                  placeholder='비밀번호를 입력해주세요.'
-                  type='password'
-                  onChange={(e: any) => setPassword(e.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>내용</td>
-              <td>
-                <S.TableTextarea
-                  value={contents}
-                  placeholder='내용을 입력해주세요.'
-                  onChange={(e: any) => {
-                    setContents(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>첨부파일</td>
-              <td>
-                <S.TableDiv>
-                  {selectedImages.length !== 0 ? (
-                    <div>{attachFile}</div>
-                  ) : (
-                    <S.NotDownload>파일을 첨부할 수 있습니다.</S.NotDownload>
-                  )}
-                  <S.ChangeButton onClick={SwalInput}>업로드</S.ChangeButton>
-                  {selectedImages.length !== 0 ? (
-                    ''
-                  ) : (
-                    <input
-                      type='file'
-                      name='images'
-                      onChange={onSelectFile}
-                      accept='.png, .jpg,image/*'
-                    />
-                  )}
-                </S.TableDiv>
-              </td>
-            </tr>
-          </tbody>
-        </S.Table>
-        <S.QnABox>
-          <S.QnAButton onClick={() => cancelBtn()}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => registAlert()}>수정</S.QnAButton2>
-        </S.QnABox>
-      </S.Wrapper>
-    </div>
+    </>
   );
 };

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../../css/alert.css';
 import { CiLock } from 'react-icons/ci';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -65,31 +66,40 @@ export const QnAPw = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
+      <MetaTag
+        title={`비밀번호 입력 | 안전왕`}
+        description={`안전왕, 비밀번호 입력`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/qna-pw'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방`}
+      />
       <div>
-        <S.Banner>문의하기</S.Banner>
+        <Header />
+        <div>
+          <S.Banner>문의하기</S.Banner>
+        </div>
+        <S.Wrapper>
+          <S.PwBox>
+            <S.Ladius>
+              <CiLock size='80%' color='white' fontWeight='900' />
+            </S.Ladius>
+            <S.DivWeight>
+              <div>비공개 게시글입니다.</div>
+              <div>비밀번호를 입력해주세요.</div>
+            </S.DivWeight>
+            <S.QnApwInput
+              onKeyPress={(e) => onKeyPressEnter(e)}
+              type='password'
+              onChange={(e: any) => setPassWord(e.target.value)}
+            />
+          </S.PwBox>
+          <S.QnABox>
+            <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
+            <S.QnAButton2 onClick={() => inputPass(passWord)}>확인</S.QnAButton2>
+          </S.QnABox>
+        </S.Wrapper>
       </div>
-      <S.Wrapper>
-        <S.PwBox>
-          <S.Ladius>
-            <CiLock size='80%' color='white' fontWeight='900' />
-          </S.Ladius>
-          <S.DivWeight>
-            <div>비공개 게시글입니다.</div>
-            <div>비밀번호를 입력해주세요.</div>
-          </S.DivWeight>
-          <S.QnApwInput
-            onKeyPress={(e) => onKeyPressEnter(e)}
-            type='password'
-            onChange={(e: any) => setPassWord(e.target.value)}
-          />
-        </S.PwBox>
-        <S.QnABox>
-          <S.QnAButton onClick={() => navigate('/qna')}>취소</S.QnAButton>
-          <S.QnAButton2 onClick={() => inputPass(passWord)}>확인</S.QnAButton2>
-        </S.QnABox>
-      </S.Wrapper>
-    </div>
+    </>
   );
 };

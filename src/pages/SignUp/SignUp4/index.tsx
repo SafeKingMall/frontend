@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 export const SignUp4 = () => {
   const navigate = useNavigate();
@@ -105,54 +106,63 @@ export const SignUp4 = () => {
   };
 
   return (
-    <S.Container>
-      <S.Background
-        onClick={() => closeModal()}
-        style={{ display: agToggle || perToggle ? '' : 'none' }}
+    <>
+      <MetaTag
+        title={`회원가입4 | 안전왕`}
+        description={`안전왕, 회원가입4`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/sign-up4'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 회원가입4`}
       />
-      <Header />
-      <S.ContentContainer>
-        <S.Wrapper>
-          <S.TopContainer>
-            <S.TopWrap>
-              <S.Top />
-            </S.TopWrap>
-          </S.TopContainer>
-          <S.Mid>안전왕 쇼핑몰 약관</S.Mid>
-          <S.AreaWrapper>
-            <Agreement agToggle={agToggle} />
-            <S.AreaText>
+      <S.Container>
+        <S.Background
+          onClick={() => closeModal()}
+          style={{ display: agToggle || perToggle ? '' : 'none' }}
+        />
+        <Header />
+        <S.ContentContainer>
+          <S.Wrapper>
+            <S.TopContainer>
+              <S.TopWrap>
+                <S.Top />
+              </S.TopWrap>
+            </S.TopContainer>
+            <S.Mid>안전왕 쇼핑몰 약관</S.Mid>
+            <S.AreaWrapper>
+              <Agreement agToggle={agToggle} />
+              <S.AreaText>
+                <label>
+                  <input type='checkbox' checked={check1} onChange={onAgreeCheck} />
+                  안전왕 쇼핑몰 이용약관
+                </label>
+                <button onClick={() => setAgToggle(true)}>자세히 보기</button>
+              </S.AreaText>
+            </S.AreaWrapper>
+            <S.AreaWrapper>
+              <PersonalInfo perToggle={perToggle} />
+              <S.AreaText>
+                <label>
+                  <input type='checkbox' checked={check2} onChange={onPersonalCheck} />
+                  개인정보 수집·이용에 대한 동의
+                </label>
+                <button onClick={() => setPerToggle(true)}>자세히 보기</button>
+              </S.AreaText>
+            </S.AreaWrapper>
+            <S.AllAgree>
               <label>
-                <input type='checkbox' checked={check1} onChange={onAgreeCheck} />
-                안전왕 쇼핑몰 이용약관
+                <input type='checkbox' checked={allCheck} onChange={onAllCheck} />
+                (전체동의) 위의 내용을 모두 읽었으며 이에 동의합니다.
               </label>
-              <button onClick={() => setAgToggle(true)}>자세히 보기</button>
-            </S.AreaText>
-          </S.AreaWrapper>
-          <S.AreaWrapper>
-            <PersonalInfo perToggle={perToggle} />
-            <S.AreaText>
-              <label>
-                <input type='checkbox' checked={check2} onChange={onPersonalCheck} />
-                개인정보 수집·이용에 대한 동의
-              </label>
-              <button onClick={() => setPerToggle(true)}>자세히 보기</button>
-            </S.AreaText>
-          </S.AreaWrapper>
-          <S.AllAgree>
-            <label>
-              <input type='checkbox' checked={allCheck} onChange={onAllCheck} />
-              (전체동의) 위의 내용을 모두 읽었으며 이에 동의합니다.
-            </label>
-          </S.AllAgree>
-          <S.BtnWrapper>
-            <button onClick={() => navigate(-1)}>이전</button>
-            <button disabled={disabled} onClick={onSubmit}>
-              계정 생성
-            </button>
-          </S.BtnWrapper>
-        </S.Wrapper>
-      </S.ContentContainer>
-    </S.Container>
+            </S.AllAgree>
+            <S.BtnWrapper>
+              <button onClick={() => navigate(-1)}>이전</button>
+              <button disabled={disabled} onClick={onSubmit}>
+                계정 생성
+              </button>
+            </S.BtnWrapper>
+          </S.Wrapper>
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 };

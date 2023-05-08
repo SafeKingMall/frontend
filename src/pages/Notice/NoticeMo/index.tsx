@@ -11,6 +11,7 @@ import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
 import { EditorWr } from '../../../components/Edit/AdminItemList/Editor';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -118,44 +119,53 @@ export const NoticeMo = () => {
     });
   };
   return (
-    <div>
-      <Header />
+    <>
+      <MetaTag
+        title={`공지사항 수정 | 안전왕`}
+        description={`안전왕, 공지사항 수정`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/notice-Mo'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방`}
+      />
       <div>
-        <S.Banner>공지사항</S.Banner>
+        <Header />
+        <div>
+          <S.Banner>공지사항</S.Banner>
+        </div>
+        <S.Wrapper>
+          <S.Table>
+            <tbody>
+              <tr>
+                <td>제목</td>
+                <td>
+                  <S.TableInput
+                    value={title}
+                    placeholder='제목을 입력해주세요.'
+                    onChange={(e: any) => {
+                      setTitle(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>내용</td>
+                <td>
+                  <EditorWr
+                    targetId={itemId}
+                    type={noticeContent}
+                    descriptEdit={content}
+                    setDescriptEdit={setContent}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </S.Table>
+          <S.NoticeBox>
+            <S.NoticeButton onClick={() => moveNoticepo(itemId)}>취소</S.NoticeButton>
+            <S.NoticeButton2 onClick={() => putItemAlert()}>수정</S.NoticeButton2>
+          </S.NoticeBox>
+        </S.Wrapper>
       </div>
-      <S.Wrapper>
-        <S.Table>
-          <tbody>
-            <tr>
-              <td>제목</td>
-              <td>
-                <S.TableInput
-                  value={title}
-                  placeholder='제목을 입력해주세요.'
-                  onChange={(e: any) => {
-                    setTitle(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>내용</td>
-              <td>
-                <EditorWr
-                  targetId={itemId}
-                  type={noticeContent}
-                  descriptEdit={content}
-                  setDescriptEdit={setContent}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </S.Table>
-        <S.NoticeBox>
-          <S.NoticeButton onClick={() => moveNoticepo(itemId)}>취소</S.NoticeButton>
-          <S.NoticeButton2 onClick={() => putItemAlert()}>수정</S.NoticeButton2>
-        </S.NoticeBox>
-      </S.Wrapper>
-    </div>
+    </>
   );
 };
