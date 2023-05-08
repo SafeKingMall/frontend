@@ -13,6 +13,7 @@ import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
 import { Cookies, useCookies } from 'react-cookie';
 import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
+import { MetaTag } from '../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 declare global {
@@ -372,36 +373,46 @@ export const Orders = () => {
   };
 
   return (
-    <S.Container>
-      <Header />
-      <S.ContentContainer>
-        <OrdersStep stepTitle={stepTitle} />
-        <OrdersList data={data} />
-        <AddressInfo
-          userData={userData}
-          text={text}
-          setText={setText}
-          receiverVal={receiverVal}
-          setReceiverVal={setReceiverVal}
-          emailVal={emailVal}
-          setEmailVal={setEmailVal}
-          phoneVal={phoneVal}
-          setPhoneVal={setPhoneVal}
-        />
-        <S.ExchangeInfoArea>{ExchangeInfoContent()}</S.ExchangeInfoArea>
-        <PaymentInfo paymentState={paymentState} setPaymentState={setPaymentState} />
-        <TotalPrice resultList={data} />
-        <S.CheckArea>
-          <S.CheckBox checked={checkToggle} onChange={() => changeCheckToggle()} />
-          <S.CheckText>
-            주문하실 제품, 가격, 배송정보, 할인내역등을 최종확인하였으며, 구매에 동의 하시겠습니까?
-          </S.CheckText>
-        </S.CheckArea>
-        <S.BtnArea>
-          <S.WhiteBtn onClick={() => navigate(-1)}>취소</S.WhiteBtn>
-          <S.GreenBtn onClick={() => paymentBtnEvent()}>결제하기</S.GreenBtn>
-        </S.BtnArea>
-      </S.ContentContainer>
-    </S.Container>
+    <>
+      <MetaTag
+        title={`주문·결제 | 안전왕`}
+        description={`안전왕, 주문·결제`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/orders'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 주문·결제`}
+      />
+      <S.Container>
+        <Header />
+        <S.ContentContainer>
+          <OrdersStep stepTitle={stepTitle} />
+          <OrdersList data={data} />
+          <AddressInfo
+            userData={userData}
+            text={text}
+            setText={setText}
+            receiverVal={receiverVal}
+            setReceiverVal={setReceiverVal}
+            emailVal={emailVal}
+            setEmailVal={setEmailVal}
+            phoneVal={phoneVal}
+            setPhoneVal={setPhoneVal}
+          />
+          <S.ExchangeInfoArea>{ExchangeInfoContent()}</S.ExchangeInfoArea>
+          <PaymentInfo paymentState={paymentState} setPaymentState={setPaymentState} />
+          <TotalPrice resultList={data} />
+          <S.CheckArea>
+            <S.CheckBox checked={checkToggle} onChange={() => changeCheckToggle()} />
+            <S.CheckText>
+              주문하실 제품, 가격, 배송정보, 할인내역등을 최종확인하였으며, 구매에 동의
+              하시겠습니까?
+            </S.CheckText>
+          </S.CheckArea>
+          <S.BtnArea>
+            <S.WhiteBtn onClick={() => navigate(-1)}>취소</S.WhiteBtn>
+            <S.GreenBtn onClick={() => paymentBtnEvent()}>결제하기</S.GreenBtn>
+          </S.BtnArea>
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 };

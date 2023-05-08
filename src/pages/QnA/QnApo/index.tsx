@@ -13,6 +13,7 @@ import '../../../css/alert.css';
 import { Header } from '../../../components/common/Header';
 import { Cookies } from 'react-cookie';
 import { useMediaQuery } from 'react-responsive';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -261,65 +262,74 @@ export const QnAPo = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
+      <MetaTag
+        title={`문의하기 상세 | 안전왕`}
+        description={`안전왕, 문의하기 상세`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/qna-po'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방`}
+      />
       <div>
-        <S.Banner>문의하기</S.Banner>
+        <Header />
+        <div>
+          <S.Banner>문의하기</S.Banner>
+        </div>
+        <S.Wrapper>
+          <S.ButtonBox>
+            <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
+            <S.NoticeButton2 onClick={() => moveNoticepo(itemId)}>수정</S.NoticeButton2>
+          </S.ButtonBox>
+          <S.PoBox>
+            <S.TitleDiv>
+              <div>
+                <div>{data.title}</div>
+                <TfiLock color='#D9D9D9' />
+              </div>
+              <div>작성자 : {data.memberId}</div>
+            </S.TitleDiv>
+            <S.Content>
+              <S.DivContent>{data.contents}</S.DivContent>
+              {qnaFile.map((el: any) => {
+                return (
+                  <S.FileDown key={el.id}>
+                    <div>첨부파일</div>
+                    <div>{el.orgFileName}</div>
+                    <div>
+                      <a
+                        href={process.env.REACT_APP_BASE_URL + el.filePath + el.fileName}
+                        download
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        {isDesktopOrMobile !== true ? (
+                          <AiOutlineDownload size='30' />
+                        ) : (
+                          <AiOutlineDownload size='20' />
+                        )}
+                      </a>
+                    </div>
+                  </S.FileDown>
+                );
+              })}
+            </S.Content>
+            <S.TitleDiv3>댓글</S.TitleDiv3>
+            <div>{data.answer !== undefined ? answer2(answer) : ''}</div>
+            <S.Comment>
+              <div>댓글쓰기</div>
+              <S.TextDiv>
+                <textarea
+                  placeholder='댓글을 입력해주세요.'
+                  value={answerContents}
+                  onChange={(e: any) => setAnswerContents(e.target.value)}
+                />
+                <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
+              </S.TextDiv>
+            </S.Comment>
+          </S.PoBox>
+          <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>
+        </S.Wrapper>
       </div>
-      <S.Wrapper>
-        <S.ButtonBox>
-          <S.NoticeButton1 onClick={() => deleteItemAlert(itemId)}>삭제</S.NoticeButton1>
-          <S.NoticeButton2 onClick={() => moveNoticepo(itemId)}>수정</S.NoticeButton2>
-        </S.ButtonBox>
-        <S.PoBox>
-          <S.TitleDiv>
-            <div>
-              <div>{data.title}</div>
-              <TfiLock color='#D9D9D9' />
-            </div>
-            <div>작성자 : {data.memberId}</div>
-          </S.TitleDiv>
-          <S.Content>
-            <S.DivContent>{data.contents}</S.DivContent>
-            {qnaFile.map((el: any) => {
-              return (
-                <S.FileDown key={el.id}>
-                  <div>첨부파일</div>
-                  <div>{el.orgFileName}</div>
-                  <div>
-                    <a
-                      href={process.env.REACT_APP_BASE_URL + el.filePath + el.fileName}
-                      download
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      {isDesktopOrMobile !== true ? (
-                        <AiOutlineDownload size='30' />
-                      ) : (
-                        <AiOutlineDownload size='20' />
-                      )}
-                    </a>
-                  </div>
-                </S.FileDown>
-              );
-            })}
-          </S.Content>
-          <S.TitleDiv3>댓글</S.TitleDiv3>
-          <div>{data.answer !== undefined ? answer2(answer) : ''}</div>
-          <S.Comment>
-            <div>댓글쓰기</div>
-            <S.TextDiv>
-              <textarea
-                placeholder='댓글을 입력해주세요.'
-                value={answerContents}
-                onChange={(e: any) => setAnswerContents(e.target.value)}
-              />
-              <S.QnAButton2 onClick={() => answerAlert()}>등록</S.QnAButton2>
-            </S.TextDiv>
-          </S.Comment>
-        </S.PoBox>
-        <S.QnAButton onClick={() => navigate('/qna')}>목록</S.QnAButton>
-      </S.Wrapper>
-    </div>
+    </>
   );
 };

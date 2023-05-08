@@ -8,6 +8,7 @@ import { Search } from '../../../components/item/Search';
 import { Header } from '../../../components/common/Header';
 import { TailSpin } from 'react-loader-spinner';
 import { categoryContext } from '../../../store/categoryStore';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 export const ItemList4 = () => {
   const context: any = useContext(categoryContext);
@@ -100,17 +101,26 @@ export const ItemList4 = () => {
   };
 
   return (
-    <S.Container>
-      <Header />
-      <Nav categoryList={categoryList} selectNav={selectNav} slideNavIdx={3} />
-      <Search
-        setSort={setSort}
-        selectSort={selectSort}
-        setSelectSort={setSelectSort}
-        setSearchItem={setSearchItem}
-        searchWord={searchWord}
+    <>
+      <MetaTag
+        title={`${selectNav} | 안전왕`}
+        description={`안전왕, ${selectNav}상품 리스트`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/itemlist-4'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, ${selectNav}`}
       />
-      {loadingData()}
-    </S.Container>
+      <S.Container>
+        <Header />
+        <Nav categoryList={categoryList} selectNav={selectNav} slideNavIdx={3} />
+        <Search
+          setSort={setSort}
+          selectSort={selectSort}
+          setSelectSort={setSelectSort}
+          setSearchItem={setSearchItem}
+          searchWord={searchWord}
+        />
+        {loadingData()}
+      </S.Container>
+    </>
   );
 };

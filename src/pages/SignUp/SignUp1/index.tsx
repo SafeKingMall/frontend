@@ -8,6 +8,7 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const NUMEN = /[^0-9a-zA-Z]/;
 const IDREGEX = /^(?=.*[a-zA-z])(?=.*[0-9]).{2,20}$/;
@@ -222,82 +223,95 @@ export const SignUp1 = () => {
     color: idCheck ? '#289951' : '#a6a6a6',
   };
   return (
-    <S.Container>
-      <Header />
-      <S.ContentContainer>
-        <S.Wrapper>
-          <S.TopContainer>
-            <S.TopWrap>
-              <S.Top />
-            </S.TopWrap>
-          </S.TopContainer>
-          <S.InputContainer>
-            <S.InputWrapper>
-              <label>아이디</label>
-              <input
-                className='smallInput'
-                placeholder='영어/숫자 조합 8자리 이상'
-                value={id}
-                onChange={(e) => onChangeId(e.target.value)}
-                maxLength={20}
-              />
-              <button style={idConfirmStyle} onClick={() => idConfirmEvent()} disabled={!idConfirm}>
-                확인
+    <>
+      <MetaTag
+        title={`회원가입1 | 안전왕`}
+        description={`안전왕, 회원가입1`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/sign-up1'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 회원가입1`}
+      />
+      <S.Container>
+        <Header />
+        <S.ContentContainer>
+          <S.Wrapper>
+            <S.TopContainer>
+              <S.TopWrap>
+                <S.Top />
+              </S.TopWrap>
+            </S.TopContainer>
+            <S.InputContainer>
+              <S.InputWrapper>
+                <label>아이디</label>
+                <input
+                  className='smallInput'
+                  placeholder='영어/숫자 조합 8자리 이상'
+                  value={id}
+                  onChange={(e) => onChangeId(e.target.value)}
+                  maxLength={20}
+                />
+                <button
+                  style={idConfirmStyle}
+                  onClick={() => idConfirmEvent()}
+                  disabled={!idConfirm}
+                >
+                  확인
+                </button>
+                <S.ErrMsg>{idVal}</S.ErrMsg>
+                <div id='id-check'>
+                  <AiOutlineCheckCircle style={idCheckStyle} />
+                </div>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>비밀번호</label>
+                <input
+                  type='password'
+                  placeholder='8~20자리 영문/숫자/특수문자 조합'
+                  autoComplete='off'
+                  value={pw}
+                  onChange={(e) => onChangePw(e.target.value)}
+                  maxLength={20}
+                />
+                <S.ErrMsg>{pwVal}</S.ErrMsg>
+                <div id='pw-check'>
+                  {pwCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
+                </div>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>비밀번호 확인</label>
+                <input
+                  type='password'
+                  placeholder='8~20자리 영문/숫자/특수문자 조합'
+                  autoComplete='off'
+                  value={pwConfirm}
+                  onChange={(e) => onChangePwConfirm(e.target.value)}
+                  maxLength={20}
+                />
+                <S.ErrMsg>{pwConfirmVal}</S.ErrMsg>
+                <div id='pw-check'>
+                  {pwConfirmCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
+                </div>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>이메일</label>
+                <input
+                  placeholder='이메일을 입력해주세요.'
+                  value={email}
+                  onChange={(e) => onChangeEmail(e.target.value)}
+                  maxLength={80}
+                />
+                <S.ErrMsg>{emailVal}</S.ErrMsg>
+              </S.InputWrapper>
+            </S.InputContainer>
+            <S.BtnWrapper>
+              <button onClick={() => navigate(-1)}>취소</button>
+              <button disabled={disable} onClick={() => nextBtnEvent()}>
+                다음
               </button>
-              <S.ErrMsg>{idVal}</S.ErrMsg>
-              <div id='id-check'>
-                <AiOutlineCheckCircle style={idCheckStyle} />
-              </div>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>비밀번호</label>
-              <input
-                type='password'
-                placeholder='8~20자리 영문/숫자/특수문자 조합'
-                autoComplete='off'
-                value={pw}
-                onChange={(e) => onChangePw(e.target.value)}
-                maxLength={20}
-              />
-              <S.ErrMsg>{pwVal}</S.ErrMsg>
-              <div id='pw-check'>
-                {pwCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
-              </div>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>비밀번호 확인</label>
-              <input
-                type='password'
-                placeholder='8~20자리 영문/숫자/특수문자 조합'
-                autoComplete='off'
-                value={pwConfirm}
-                onChange={(e) => onChangePwConfirm(e.target.value)}
-                maxLength={20}
-              />
-              <S.ErrMsg>{pwConfirmVal}</S.ErrMsg>
-              <div id='pw-check'>
-                {pwConfirmCheck ? <TfiLock style={{ color: '#289951' }} /> : <TfiUnlock />}
-              </div>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>이메일</label>
-              <input
-                placeholder='이메일을 입력해주세요.'
-                value={email}
-                onChange={(e) => onChangeEmail(e.target.value)}
-                maxLength={80}
-              />
-              <S.ErrMsg>{emailVal}</S.ErrMsg>
-            </S.InputWrapper>
-          </S.InputContainer>
-          <S.BtnWrapper>
-            <button onClick={() => navigate(-1)}>취소</button>
-            <button disabled={disable} onClick={() => nextBtnEvent()}>
-              다음
-            </button>
-          </S.BtnWrapper>
-        </S.Wrapper>
-      </S.ContentContainer>
-    </S.Container>
+            </S.BtnWrapper>
+          </S.Wrapper>
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 };

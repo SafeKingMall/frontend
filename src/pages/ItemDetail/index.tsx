@@ -14,6 +14,7 @@ import history from '../../history';
 import { TailSpin } from 'react-loader-spinner';
 import { ExchangeInfoContent } from '../../components/common/ExchangeInfoContent';
 import { categoryContext } from '../../store/categoryStore';
+import { MetaTag } from '../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -296,127 +297,136 @@ export const ItemDetail = () => {
   };
 
   return (
-    <S.Container>
-      <Header />
-      <Nav categoryList={categoryList} selectNav={itemData.categoryName} slideNavIdx={state.slideNavIdx} />
-      <S.DetailContainer>
-        {loading ? (
-          <S.LoadingBox>
-            <TailSpin
-              height='100'
-              width='100'
-              color='#289951'
-              ariaLabel='tail-spin-loading'
-              radius='1'
-              visible={true}
-            />
-          </S.LoadingBox>
-        ) : (
-          <S.DetailArea>
-            <S.DetailImgArea>
-              <S.DetailImg
-                src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
-                alt={itemData.name}
+    <>
+      <MetaTag
+        title={`${itemData.name} | 안전왕`}
+        description={`안전왕, ${itemData.name}`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/itemDetail'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, ${itemData.name}`}
+      />
+      <S.Container>
+        <Header />
+        <Nav categoryList={categoryList} selectNav={itemData.categoryName} slideNavIdx={state.slideNavIdx} />
+        <S.DetailContainer>
+          {loading ? (
+            <S.LoadingBox>
+              <TailSpin
+                height='100'
+                width='100'
+                color='#289951'
+                ariaLabel='tail-spin-loading'
+                radius='1'
+                visible={true}
               />
-              <S.Soldout
-                style={{
-                  backgroundColor: itemData.quantity ? '' : 'rgba(33, 33, 33, 0.5)',
-                  display: itemData.quantity ? 'none' : '',
-                }}
-              >
-                해당 상품은 품절된 상품입니다.
-              </S.Soldout>
-            </S.DetailImgArea>
-            <S.ItemTextArea>
-              <S.Category>{itemData.categoryName}</S.Category>
-              <S.ItemName>{itemData.name}</S.ItemName>
-              <S.ItemNameLine />
-              <S.PriceArea>
-                <S.Price>
-                  {itemData.viewPrice !== 1000000000
-                    ? itemData.viewPrice
-                      ?.toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
-                    : '<가격관련 관리자 문의>'}
-                </S.Price>
-              </S.PriceArea>
-              <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
-                <S.TotalPriceWrap>
-                  <S.TotalPriceArea>
-                    <S.CountBox>
-                      <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
-                      <S.CountInput
-                        id={state.itemId}
-                        type='text'
-                        onChange={(e) => countInput(e.target.value)}
-                        onBlur={(e) => countInputBlur(e.target.value)}
-                        value={count}
-                      />
-                      <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
-                    </S.CountBox>
-                    <S.TotalPriceBox>
-                      <S.TotalPriceTitle>합계</S.TotalPriceTitle>
-                      <S.TotalPrice>
-                        {(itemData.viewPrice * count)
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                        원
-                      </S.TotalPrice>
-                    </S.TotalPriceBox>
-                  </S.TotalPriceArea>
-                </S.TotalPriceWrap>
-              </div>
-              <S.BtnArea style={{ justifyContent: itemData.viewPrice === 1000000000 ? 'flex-end' : 'space-between' }}>
-                <S.BasketBtn
+            </S.LoadingBox>
+          ) : (
+            <S.DetailArea>
+              <S.DetailImgArea>
+                <S.DetailImg
+                  src={itemData === '' ? '' : process.env.REACT_APP_BASE_URL + itemData.fileName}
+                  alt={itemData.name}
+                />
+                <S.Soldout
                   style={{
-                    // visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible',
-                    display: itemData.viewPrice === 1000000000 ? 'none' : '',
-                    backgroundColor: itemData.quantity ? '' : '#aaaaaa',
+                    backgroundColor: itemData.quantity ? '' : 'rgba(33, 33, 33, 0.5)',
+                    display: itemData.quantity ? 'none' : '',
                   }}
-                  disabled={!itemData.quantity}
-                  onClick={() => addCart()}
                 >
-                  장바구니
-                </S.BasketBtn>
-                {purchaseBtn.current}
-              </S.BtnArea>
-            </S.ItemTextArea>
-          </S.DetailArea>
-        )}
-      </S.DetailContainer>
-      <S.DesWrap>
-        <S.DesLine />
-        {loading ? (
-          <S.DesLoadingBox>
-            <TailSpin
-              height='100'
-              width='100'
-              color='#289951'
-              ariaLabel='tail-spin-loading'
-              radius='1'
-              visible={true}
-            />
-          </S.DesLoadingBox>
-        ) : (
-          <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : '1.94rem' }}>
-            <S.Description
-              id='description'
-              dangerouslySetInnerHTML={{ __html: itemData.description }}
-            >
-            </S.Description>
-            <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
-          </S.DesContainer>
-        )}
-        <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
-          <S.ShowDesBtn onClick={() => desEvent()}>
-            <span>상세페이지 더보기</span>
-            <AiOutlineDown style={{ width: 28, height: 24 }} />
-          </S.ShowDesBtn>
-        </S.ShowDesBtnContainer>
-        <S.ExchangeInfoArea>
-          {ExchangeInfoContent()}
-        </S.ExchangeInfoArea>
-      </S.DesWrap>
-    </S.Container>
+                  해당 상품은 품절된 상품입니다.
+                </S.Soldout>
+              </S.DetailImgArea>
+              <S.ItemTextArea>
+                <S.Category>{itemData.categoryName}</S.Category>
+                <S.ItemName>{itemData.name}</S.ItemName>
+                <S.ItemNameLine />
+                <S.PriceArea>
+                  <S.Price>
+                    {itemData.viewPrice !== 1000000000
+                      ? itemData.viewPrice
+                        ?.toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
+                      : '<가격관련 관리자 문의>'}
+                  </S.Price>
+                </S.PriceArea>
+                <div style={{ display: itemData.viewPrice === 1000000000 ? 'none' : '' }}>
+                  <S.TotalPriceWrap>
+                    <S.TotalPriceArea>
+                      <S.CountBox>
+                        <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
+                        <S.CountInput
+                          id={state.itemId}
+                          type='text'
+                          onChange={(e) => countInput(e.target.value)}
+                          onBlur={(e) => countInputBlur(e.target.value)}
+                          value={count}
+                        />
+                        <S.CountBtn onClick={() => countPlus(count)}>+</S.CountBtn>
+                      </S.CountBox>
+                      <S.TotalPriceBox>
+                        <S.TotalPriceTitle>합계</S.TotalPriceTitle>
+                        <S.TotalPrice>
+                          {(itemData.viewPrice * count)
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                          원
+                        </S.TotalPrice>
+                      </S.TotalPriceBox>
+                    </S.TotalPriceArea>
+                  </S.TotalPriceWrap>
+                </div>
+                <S.BtnArea style={{ justifyContent: itemData.viewPrice === 1000000000 ? 'flex-end' : 'space-between' }}>
+                  <S.BasketBtn
+                    style={{
+                      // visibility: itemData.viewPrice === 1000000000 ? 'hidden' : 'visible',
+                      display: itemData.viewPrice === 1000000000 ? 'none' : '',
+                      backgroundColor: itemData.quantity ? '' : '#aaaaaa',
+                    }}
+                    disabled={!itemData.quantity}
+                    onClick={() => addCart()}
+                  >
+                    장바구니
+                  </S.BasketBtn>
+                  {purchaseBtn.current}
+                </S.BtnArea>
+              </S.ItemTextArea>
+            </S.DetailArea>
+          )}
+        </S.DetailContainer>
+        <S.DesWrap>
+          <S.DesLine />
+          {loading ? (
+            <S.DesLoadingBox>
+              <TailSpin
+                height='100'
+                width='100'
+                color='#289951'
+                ariaLabel='tail-spin-loading'
+                radius='1'
+                visible={true}
+              />
+            </S.DesLoadingBox>
+          ) : (
+            <S.DesContainer style={{ height: desHeight, marginBottom: desToggle ? '' : '1.94rem' }}>
+              <S.Description
+                id='description'
+                dangerouslySetInnerHTML={{ __html: itemData.description }}
+              >
+              </S.Description>
+              <S.DesGradation style={{ display: desToggle ? 'inherit' : 'none' }} />
+            </S.DesContainer>
+          )}
+          <S.ShowDesBtnContainer style={{ display: desToggle ? 'flex' : 'none' }}>
+            <S.ShowDesBtn onClick={() => desEvent()}>
+              <span>상세페이지 더보기</span>
+              <AiOutlineDown style={{ width: 28, height: 24 }} />
+            </S.ShowDesBtn>
+          </S.ShowDesBtnContainer>
+          <S.ExchangeInfoArea>
+            {ExchangeInfoContent()}
+          </S.ExchangeInfoArea>
+        </S.DesWrap>
+      </S.Container>
+    </>
   );
 };

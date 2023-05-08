@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import '../../css/alert.css';
 import { Cookies } from 'react-cookie';
+import { MetaTag } from '../../components/common/MetaTag';
 
 const swal = withReactContent(Swal);
 
@@ -162,5 +163,16 @@ export const Carts = () => {
         </S.BtnContainer>
       </S.Container>
     );
-  return itemInCart;
+  return (
+    <>
+      <MetaTag
+        title={`장바구니 | 안전왕`}
+        description={`안전왕, 장바구니`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/carts'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 장바구니`}
+      />
+      {itemInCart}
+    </>
+  );
 };

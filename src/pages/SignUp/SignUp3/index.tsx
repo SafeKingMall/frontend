@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 export const SignUp3 = () => {
   const navigate = useNavigate();
@@ -238,107 +239,116 @@ export const SignUp3 = () => {
     }
   };
   return (
-    <S.Container>
-      <Header />
-      <S.ContentContainer>
-        <S.Wrapper>
-          <S.TopContainer>
-            <S.TopWrap>
-              <S.Top />
-            </S.TopWrap>
-          </S.TopContainer>
-          <S.Mid>회원정보 입력</S.Mid>
-          <S.InputContainer>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>회사명
-              </label>
-              <input
-                placeholder='* 표시는 필수 입력 정보입니다'
-                onChange={onCompany}
-                maxLength={50}
-              />
-              <S.ErrMsg>{companyMsg}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>사업자등록번호
-              </label>
-              <input
-                placeholder='* 표시는 필수 입력 정보입니다'
-                onChange={onSaupja}
-                value={saupja}
-                ref={saupjaRef}
-                max='10'
-              />
-              <S.ErrMsg>{saupjaMsg}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>법인등록번호
-              </label>
-              <input
-                placeholder='* 표시는 필수 입력 정보입니다'
-                onChange={onBeobin}
-                value={beobin}
-                ref={beobinRef}
-                max='13'
-              />
-              <S.ErrMsg>{beobinMsg}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label className='noEssential'>대표명</label>
-              <input onChange={onCeo} maxLength={50} placeholder='대표자 이름을 입력해주세요.' />
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>우편번호
-              </label>
-              <input
-                value={zipText}
-                placeholder='주소찾기를 눌러주세요.'
-                readOnly
-                className='smallInput'
-              />
-              <button onClick={() => openModal()}>주소찾기</button>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>기본주소
-              </label>
-              <input placeholder='주소찾기를 눌러주세요.' value={basicText} readOnly />
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>
-                <span>*</span>상세주소
-              </label>
-              <input
-                placeholder='* 표시는 필수 입력 정보입니다'
-                onChange={onDetail}
-                maxLength={50}
-              />
-              <S.ErrMsg>{detailMsg}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label className='noEssential'>연락처</label>
-              <input onChange={onNumber} maxLength={50} placeholder='연락처를 입력해주세요.' />
-            </S.InputWrapper>
-          </S.InputContainer>
-          <S.BtnWrapper>
-            <button onClick={() => navigate(-1)}>이전</button>
-            <button disabled={disabled} onClick={onSubmit}>
-              다음
-            </button>
-          </S.BtnWrapper>
-        </S.Wrapper>
-      </S.ContentContainer>
-      {isOpenPost && (
-        <S.DaumPostBackground onClick={() => closeModal()}>
-          <S.DaumPostDiv>
-            <DaumPostcode style={postCodeStyle} autoClose={false} onComplete={onCompletePost} />
-          </S.DaumPostDiv>
-        </S.DaumPostBackground>
-      )}
-    </S.Container>
+    <>
+      <MetaTag
+        title={`회원가입3 | 안전왕`}
+        description={`안전왕, 회원가입3`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/sign-up3'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 회원가입3`}
+      />
+      <S.Container>
+        <Header />
+        <S.ContentContainer>
+          <S.Wrapper>
+            <S.TopContainer>
+              <S.TopWrap>
+                <S.Top />
+              </S.TopWrap>
+            </S.TopContainer>
+            <S.Mid>회원정보 입력</S.Mid>
+            <S.InputContainer>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>회사명
+                </label>
+                <input
+                  placeholder='* 표시는 필수 입력 정보입니다'
+                  onChange={onCompany}
+                  maxLength={50}
+                />
+                <S.ErrMsg>{companyMsg}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>사업자등록번호
+                </label>
+                <input
+                  placeholder='* 표시는 필수 입력 정보입니다'
+                  onChange={onSaupja}
+                  value={saupja}
+                  ref={saupjaRef}
+                  max='10'
+                />
+                <S.ErrMsg>{saupjaMsg}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>법인등록번호
+                </label>
+                <input
+                  placeholder='* 표시는 필수 입력 정보입니다'
+                  onChange={onBeobin}
+                  value={beobin}
+                  ref={beobinRef}
+                  max='13'
+                />
+                <S.ErrMsg>{beobinMsg}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label className='noEssential'>대표명</label>
+                <input onChange={onCeo} maxLength={50} placeholder='대표자 이름을 입력해주세요.' />
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>우편번호
+                </label>
+                <input
+                  value={zipText}
+                  placeholder='주소찾기를 눌러주세요.'
+                  readOnly
+                  className='smallInput'
+                />
+                <button onClick={() => openModal()}>주소찾기</button>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>기본주소
+                </label>
+                <input placeholder='주소찾기를 눌러주세요.' value={basicText} readOnly />
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>
+                  <span>*</span>상세주소
+                </label>
+                <input
+                  placeholder='* 표시는 필수 입력 정보입니다'
+                  onChange={onDetail}
+                  maxLength={50}
+                />
+                <S.ErrMsg>{detailMsg}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label className='noEssential'>연락처</label>
+                <input onChange={onNumber} maxLength={50} placeholder='연락처를 입력해주세요.' />
+              </S.InputWrapper>
+            </S.InputContainer>
+            <S.BtnWrapper>
+              <button onClick={() => navigate(-1)}>이전</button>
+              <button disabled={disabled} onClick={onSubmit}>
+                다음
+              </button>
+            </S.BtnWrapper>
+          </S.Wrapper>
+        </S.ContentContainer>
+        {isOpenPost && (
+          <S.DaumPostBackground onClick={() => closeModal()}>
+            <S.DaumPostDiv>
+              <DaumPostcode style={postCodeStyle} autoClose={false} onComplete={onCompletePost} />
+            </S.DaumPostDiv>
+          </S.DaumPostBackground>
+        )}
+      </S.Container>
+    </>
   );
 };

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Timer } from '../../../components/user/Timer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { MetaTag } from '../../../components/common/MetaTag';
 
 const KREN = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z ]/;
 const KRVAL = /[ㄱ-ㅎㅏ-ㅣ]/;
@@ -269,108 +270,117 @@ export const SignUp2 = () => {
     color: timer ? '#289951' : '#a6a6a6',
   };
   return (
-    <S.Container>
-      <Header />
-      <S.ContentContainer>
-        <S.Wrapper>
-          <S.TopContainer>
-            <S.TopWrap>
-              <S.Top />
-            </S.TopWrap>
-          </S.TopContainer>
-          <S.Mid>본인인증 정보</S.Mid>
-          <S.InputContainer>
-            <S.InputWrapper>
-              <label>이름</label>
-              <input
-                placeholder='이름을 입력해주세요.'
-                value={name}
-                onChange={(e) => {
-                  onChangeName(e.target.value);
-                }}
-                onBlur={(e) => {
-                  blurName(e.target.value);
-                }}
-                maxLength={50}
-              />
-              <S.ErrMsg>{nameVal}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>생년월일</label>
-              <input
-                placeholder='생년월일 8자리'
-                value={birth}
-                onChange={(e) => onChangeBirth(e.target.value)}
-                maxLength={8}
-              />
-              <S.ErrMsg>{birthVal}</S.ErrMsg>
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>휴대폰 번호</label>
-              <input
-                className='smallInput'
-                placeholder='전화번호를 입력해주세요.'
-                value={phone}
-                onChange={(e) => onChangePhone(e.target.value)}
-                maxLength={11}
-                disabled={codeCheck}
-              />
-              <S.ErrMsg>{phoneVal}</S.ErrMsg>
-              {timer ? (
-                <S.SendBtn style={sendBtnStyle} onClick={() => resend()} disabled={!phoneCheck}>
-                  재발송
-                </S.SendBtn>
-              ) : (
-                <S.SendBtn
-                  style={sendBtnStyle}
-                  onClick={() => sendPhoneAuth()}
-                  disabled={!phoneCheck || codeCheck}
-                >
-                  인증번호 발송
-                </S.SendBtn>
-              )}
-            </S.InputWrapper>
-            <S.InputWrapper>
-              <label>인증번호</label>
-              <input
-                className='smallInput'
-                placeholder='인증번호를 입력해주세요.'
-                value={code}
-                onChange={(e) => onChangeCode(e.target.value)}
-                maxLength={15}
-                disabled={codeCheck}
-              />
-              <S.AuthTimer>
+    <>
+      <MetaTag
+        title={`회원가입2 | 안전왕`}
+        description={`안전왕, 회원가입2`}
+        imgsrc='https://safekingmall.com/img/HeaderLogo.png'
+        url='https://safekingmall.com/sign-up2'
+        keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, 회원가입2`}
+      />
+      <S.Container>
+        <Header />
+        <S.ContentContainer>
+          <S.Wrapper>
+            <S.TopContainer>
+              <S.TopWrap>
+                <S.Top />
+              </S.TopWrap>
+            </S.TopContainer>
+            <S.Mid>본인인증 정보</S.Mid>
+            <S.InputContainer>
+              <S.InputWrapper>
+                <label>이름</label>
+                <input
+                  placeholder='이름을 입력해주세요.'
+                  value={name}
+                  onChange={(e) => {
+                    onChangeName(e.target.value);
+                  }}
+                  onBlur={(e) => {
+                    blurName(e.target.value);
+                  }}
+                  maxLength={50}
+                />
+                <S.ErrMsg>{nameVal}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>생년월일</label>
+                <input
+                  placeholder='생년월일 8자리'
+                  value={birth}
+                  onChange={(e) => onChangeBirth(e.target.value)}
+                  maxLength={8}
+                />
+                <S.ErrMsg>{birthVal}</S.ErrMsg>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>휴대폰 번호</label>
+                <input
+                  className='smallInput'
+                  placeholder='전화번호를 입력해주세요.'
+                  value={phone}
+                  onChange={(e) => onChangePhone(e.target.value)}
+                  maxLength={11}
+                  disabled={codeCheck}
+                />
+                <S.ErrMsg>{phoneVal}</S.ErrMsg>
                 {timer ? (
-                  <Timer
-                    minutes={minutes}
-                    setMinutes={setMinutes}
-                    seconds={seconds}
-                    setSeconds={setSeconds}
-                    timer={timer}
-                    setTimer={setTimer}
-                  />
+                  <S.SendBtn style={sendBtnStyle} onClick={() => resend()} disabled={!phoneCheck}>
+                    재발송
+                  </S.SendBtn>
                 ) : (
-                  ''
+                  <S.SendBtn
+                    style={sendBtnStyle}
+                    onClick={() => sendPhoneAuth()}
+                    disabled={!phoneCheck || codeCheck}
+                  >
+                    인증번호 발송
+                  </S.SendBtn>
                 )}
-              </S.AuthTimer>
-              <S.CheckBtn
-                style={confirmBtnStyle}
-                onClick={() => phoneAuthConfirm()}
-                disabled={!timer}
-              >
-                확인
-              </S.CheckBtn>
-            </S.InputWrapper>
-          </S.InputContainer>
-          <S.BtnWrapper>
-            <button onClick={() => navigate(-1)}>이전</button>
-            <button disabled={disable} onClick={() => nextBtnEvent()}>
-              다음
-            </button>
-          </S.BtnWrapper>
-        </S.Wrapper>
-      </S.ContentContainer>
-    </S.Container>
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <label>인증번호</label>
+                <input
+                  className='smallInput'
+                  placeholder='인증번호를 입력해주세요.'
+                  value={code}
+                  onChange={(e) => onChangeCode(e.target.value)}
+                  maxLength={15}
+                  disabled={codeCheck}
+                />
+                <S.AuthTimer>
+                  {timer ? (
+                    <Timer
+                      minutes={minutes}
+                      setMinutes={setMinutes}
+                      seconds={seconds}
+                      setSeconds={setSeconds}
+                      timer={timer}
+                      setTimer={setTimer}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </S.AuthTimer>
+                <S.CheckBtn
+                  style={confirmBtnStyle}
+                  onClick={() => phoneAuthConfirm()}
+                  disabled={!timer}
+                >
+                  확인
+                </S.CheckBtn>
+              </S.InputWrapper>
+            </S.InputContainer>
+            <S.BtnWrapper>
+              <button onClick={() => navigate(-1)}>이전</button>
+              <button disabled={disable} onClick={() => nextBtnEvent()}>
+                다음
+              </button>
+            </S.BtnWrapper>
+          </S.Wrapper>
+        </S.ContentContainer>
+      </S.Container>
+    </>
   );
 };
