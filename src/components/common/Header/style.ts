@@ -32,7 +32,10 @@ export const LogoArea = styled.div`
     width: 30%;
   }
 `;
-export const Logo = styled.img.attrs({ src: 'img/HeaderLogo.png', alt: '안전왕' })`
+export const Logo = styled.img.attrs({
+  src: 'https://safekingmall.com/img/HeaderLogo.png',
+  alt: '안전왕',
+})`
   width: 1.56rem;
   height: 0.75rem;
   cursor: pointer;

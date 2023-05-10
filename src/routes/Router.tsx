@@ -64,7 +64,7 @@ const Router = () => {
         <Route path='/admin-order' element={<AdminOrder />} />
         <Route path='/admin-order-de' element={<AdminOrderDe />} />
         <Route path='/admin-category' element={<AdminCategory />} />
-        <Route path='/itemdetail' element={<ItemDetail />} />
+        <Route path='/itemdetail/:id' element={<ItemDetail />} />
         <Route path='/itemlist-1' element={<ItemList1 />} />
         <Route path='/itemlist-2' element={<ItemList2 />} />
         <Route path='/itemlist-3' element={<ItemList3 />} />

@@ -29,7 +29,10 @@ export const LogoArea = styled.div`
     height: 2rem;
   }
 `;
-export const Logo = styled.img.attrs({ src: 'img/FooterLogo.png' })`
+export const Logo = styled.img.attrs({
+  src: 'https://safekingmall.com/img/FooterLogo.png',
+  alt: '안전왕 푸터 로고',
+})`
   width: 2.26rem;
   height: 1.09rem;
   position: absolute;

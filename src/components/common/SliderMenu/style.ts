@@ -58,7 +58,7 @@ export const LogoArea = styled.div`
   width: 100%;
   height: 1.8rem;
 `;
-export const Logo = styled.img.attrs({ src: 'img/HeaderLogo.png' })`
+export const Logo = styled.img.attrs({ src: 'https://safekingmall.com/img/HeaderLogo.png' })`
   width: 3.12rem;
   height: 1.5rem;
   cursor: pointer;

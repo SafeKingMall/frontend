@@ -44,7 +44,7 @@ export const ViewedItem = () => {
   };
 
   const moveDetail = (id: number, categoryName: string) => {
-    navigate('/itemDetail', {
+    navigate(`/itemDetail/${id}`, {
       state: {
         itemId: id,
         slideNavIdx: categoryList.indexOf(categoryName),
