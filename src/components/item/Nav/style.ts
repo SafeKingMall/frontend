@@ -18,7 +18,9 @@ export const BannerWrap = styled.div`
     height: 7rem;
   }
 `;
-export const Banner = styled.img.attrs({ src: 'img/ItemListBannerImg.png' })`
+export const Banner = styled.img.attrs({
+  src: 'https://safekingmall.com/img/ItemListBannerImg.png',
+})`
   width: 100%;
   height: 100%;
   display: block;

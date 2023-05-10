@@ -21,6 +21,7 @@ const swal = withReactContent(Swal);
 export const ItemDetail = () => {
   const context = useContext(categoryContext);
   const { state } = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);
   const [itemData, setItemData] = useState<any>('');
@@ -31,6 +32,7 @@ export const ItemDetail = () => {
   const purchaseBtn = useRef(<div />);
   const viewedItem = useRef<any>({});
   const cookies = new Cookies();
+  const itemId = location.pathname.replace('/itemDetail/', '')
 
   //구매하기
   const moveOrders = useCallback(() => {
@@ -65,7 +67,7 @@ export const ItemDetail = () => {
             if (result.isConfirmed) {
               await axios({
                 method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+                url: `${process.env.REACT_APP_API_URL}/item/${itemId}`,
               }).then((res) => {
                 navigate('/orders', {
                   state: {
@@ -76,7 +78,7 @@ export const ItemDetail = () => {
                         itemName: res.data.name,
                         itemPrice: res.data.viewPrice,
                         itemQuantity: Number(
-                          (document.getElementById(state.itemId) as HTMLInputElement).value,
+                          (document.getElementById(itemId) as HTMLInputElement).value,
                         ),
                         thumbNail: res.data.fileName,
                       },
@@ -145,7 +147,7 @@ export const ItemDetail = () => {
       setCategoryList(context);
       await axios({
         method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/item/${state.itemId}`,
+        url: `${process.env.REACT_APP_API_URL}/item/${itemId}`,
       }).then((res) => {
         setItemData(res.data);
         if (res.data.viewPrice === 1000000000) {
@@ -190,7 +192,7 @@ export const ItemDetail = () => {
       getData();
     }
   }, [
-    state.itemId,
+    // state.itemId,
     navigate,
     moveOrders,
     itemData.quantity,
@@ -243,7 +245,7 @@ export const ItemDetail = () => {
           Authorization: cookies.get('accessToken'),
         },
         data: {
-          itemId: state.itemId,
+          itemId: itemId,
           count: count,
         },
       })
@@ -302,12 +304,12 @@ export const ItemDetail = () => {
         title={`${itemData.name} | 안전왕`}
         description={`안전왕, ${itemData.name}`}
         imgsrc='https://safekingmall.com/img/HeaderLogo.png'
-        url='https://safekingmall.com/itemDetail'
+        url={`https://safekingmall.com/itemDetail/${itemId}`}
         keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, ${itemData.name}`}
       />
       <S.Container>
         <Header />
-        <Nav categoryList={categoryList} selectNav={itemData.categoryName} slideNavIdx={state.slideNavIdx} />
+        <Nav categoryList={categoryList} selectNav={itemData.categoryName} slideNavIdx={state ? state.slideNavIdx : 1} />
         <S.DetailContainer>
           {loading ? (
             <S.LoadingBox>
@@ -355,7 +357,7 @@ export const ItemDetail = () => {
                       <S.CountBox>
                         <S.CountBtn onClick={() => countMinus(count)}>-</S.CountBtn>
                         <S.CountInput
-                          id={state.itemId}
+                          id={itemId}
                           type='text'
                           onChange={(e) => countInput(e.target.value)}
                           onBlur={(e) => countInputBlur(e.target.value)}

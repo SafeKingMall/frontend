@@ -246,7 +246,7 @@ export const AdminItemPo = () => {
           viewYn: hideBtn === false ? 'N' : 'Y',
         },
       }).then((res) => {
-        navigate('/itemdetail', {
+        navigate(`/itemDetail/${itemId}`, {
           state: {
             itemId: itemId,
             slideNavIdx: categoryList.indexOf(cateSelect),
@@ -307,7 +307,7 @@ export const AdminItemPo = () => {
         },
         data: formData,
       }).then((res) => {
-        navigate('/itemdetail', {
+        navigate(`/itemDetail/${itemId}`, {
           state: {
             itemId: itemId,
             slideNavIdx: categoryList.indexOf(cateSelect),
