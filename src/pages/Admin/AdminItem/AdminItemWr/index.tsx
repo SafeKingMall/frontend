@@ -332,7 +332,7 @@ export const AdminItemWr = () => {
           viewYn: sendhide,
         },
       }).then((res) => {
-        navigate(`/itemDetail/${res.data}`, {
+        navigate(`/itemdetail/${res.data}`, {
           state: {
             itemId: res.data,
             slideNavIdx: categoryList.indexOf(cateSelect),
@@ -386,7 +386,7 @@ export const AdminItemWr = () => {
       },
       data: formData,
     }).then((res) => {
-      navigate(`/itemDetail/${id}`, {
+      navigate(`/itemdetail/${id}`, {
         state: {
           itemId: id,
           slideNavIdx: categoryList.indexOf(cateSelect),

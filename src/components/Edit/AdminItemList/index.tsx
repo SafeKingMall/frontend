@@ -29,7 +29,7 @@ export const AdminItemList = (props: any) => {
   };
 
   const moveItemDetail = (itemId: any, categoryName: string) => {
-    navigate(`/itemDetail/${itemId.id}`, {
+    navigate(`/itemdetail/${itemId.id}`, {
       state: {
         itemId: itemId.id,
         slideNavIdx: categoryList.indexOf(categoryName),

@@ -203,7 +203,7 @@ export const CartsList = (props: any) => {
 
   //썸네일 또는 아이템이름 클릭시 ItemDetail로 이동
   const moveDetail = (item: any) => {
-    navigate(`/itemDetail/${item.id}`, {
+    navigate(`/itemdetail/${item.id}`, {
       state: {
         itemId: item.id,
         slideNavIdx: categoryList.indexOf(item.categoryName),

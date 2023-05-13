@@ -8,7 +8,7 @@ export const MainItemList = (props: any) => {
   const [noItem, setNoItem] = useState(false);
   const navigate = useNavigate();
   // const moveDetail = (item: any) => {
-  //   navigate('/itemDetail', {
+  //   navigate('/itemdetail', {
   //     state: {
   //       itemId: item.id,
   //       slideNavIdx: slideNavIdx,
@@ -16,7 +16,7 @@ export const MainItemList = (props: any) => {
   //   });
   // };
   const moveDetail = (item: any) => {
-    navigate(`/itemDetail/${item.id}`, {
+    navigate(`/itemdetail/${item.id}`, {
       state: {
         itemId: item.id,
         slideNavIdx: slideNavIdx,
