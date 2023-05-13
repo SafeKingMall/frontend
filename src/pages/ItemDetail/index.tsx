@@ -32,7 +32,7 @@ export const ItemDetail = () => {
   const purchaseBtn = useRef(<div />);
   const viewedItem = useRef<any>({});
   const cookies = new Cookies();
-  const itemId = location.pathname.replace('/itemDetail/', '')
+  const itemId = location.pathname.replace('/itemdetail/', '')
 
   //구매하기
   const moveOrders = useCallback(() => {
@@ -304,7 +304,7 @@ export const ItemDetail = () => {
         title={`${itemData.name} | 안전왕`}
         description={`안전왕, ${itemData.name}`}
         imgsrc='https://safekingmall.com/img/HeaderLogo.png'
-        url={`https://safekingmall.com/itemDetail/${itemId}`}
+        url={`https://safekingmall.com/itemdetail/${itemId}`}
         keywords={`안전왕, 안전, 안전관리, 안전사고, 사고예방, ${itemData.name}`}
       />
       <S.Container>
