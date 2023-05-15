@@ -57,7 +57,26 @@
     "eject": "react-scripts eject",
     "server": "json-server-auth --watch db.json --port 8000",
     "sitemap": "babel-node ./sitemapGenerator.js",
-    "predeploy": "npm run sitemap"
+    "predeploy": "npm run sitemap",
+    "postbuild": "react-snap"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/itemlist-1",
+      "/itemlist-2",
+      "/itemlist-3",
+      "/itemlist-4",
+      "/itemlist-5",
+      "/itemlist-6",
+      "/itemlist-7",
+      "/qna",
+      "/notice",
+      "/sign-in",
+      "/estimate",
+      "/privacy-policy",
+      "/terms-of-service"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -78,6 +97,7 @@
     ]
   },
   "devDependencies": {
+    "react-snap": "^1.23.0",
     "slick-carousel": "^1.8.1"
   }
 }
