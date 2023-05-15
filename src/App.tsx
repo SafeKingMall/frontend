@@ -6,7 +6,7 @@ import Router from './routes/Router';
 import { Refresh } from './components/common/hooks/Refresh';
 import { Footer } from './components/common/Footer';
 import CategoryStore from './store/categoryStore';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
 function App() {
   function setScreenSize() {
@@ -23,7 +23,7 @@ function App() {
   Refresh();
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>안전왕</title>
         <meta name='keywords' content='안전왕, 안전, 안전관리, 안전사고, 사고예방' />
         <meta name='description' content='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.' />
@@ -42,7 +42,7 @@ function App() {
           content='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.'
         />
         <meta name='twitter:image' content='https://safekingmall.com/img/HeaderLogo.png' />
-      </Helmet>
+      </Helmet> */}
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <div className='App'>
