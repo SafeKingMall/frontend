@@ -76,7 +76,7 @@ export const BannerLogoArea = styled.div<{ slide: boolean }>`
     padding-bottom: 1.4rem;
   }
 `;
-export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png', alt: '안전왕 배너 로고' })`
+export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png', alt: '안전왕' })`
   position: absolute;
   top: 0;
   left: 0;
@@ -101,7 +101,7 @@ export const BannerLogo = styled.img.attrs({ src: '/img/HeaderLogo.png', alt: '�
 //           transform: translateX(-1rem);
 //         `}
 // `;
-export const BigText = styled.h1<{ slide: boolean }>`
+export const BigText = styled.h2<{ slide: boolean }>`
   font-size: 0.64rem;
   font-weight: 700;
   color: #fdffaf;
@@ -123,7 +123,7 @@ export const BigText = styled.h1<{ slide: boolean }>`
     /* margin-bottom: 0.24rem; */
   }
 `;
-export const BigText2 = styled.h2<{ slide: boolean }>`
+export const BigText2 = styled.h3<{ slide: boolean }>`
   font-size: 0.48rem;
   font-weight: 700;
   color: #ffffff;
