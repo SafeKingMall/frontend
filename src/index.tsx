@@ -8,26 +8,37 @@ import { HelmetProvider } from 'react-helmet-async';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(container);
-if (container.hasChildNodes()) {
-  ReactDOM.hydrateRoot(
-    container,
-    <BrowserRouter>
-      <ScrollToTop />
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </BrowserRouter>,
-  );
-} else {
-  root.render(
-    <BrowserRouter>
-      <ScrollToTop />
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </BrowserRouter>,
-  );
-}
+root.render(
+  <BrowserRouter>
+    <ScrollToTop />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </BrowserRouter>,
+);
+
+// const container = document.getElementById('root') as HTMLElement;
+// const root = ReactDOM.createRoot(container);
+// if (container.hasChildNodes()) {
+//   ReactDOM.hydrateRoot(
+//     container,
+//     <BrowserRouter>
+//       <ScrollToTop />
+//       <HelmetProvider>
+//         <App />
+//       </HelmetProvider>
+//     </BrowserRouter>,
+//   );
+// } else {
+//   root.render(
+//     <BrowserRouter>
+//       <ScrollToTop />
+//       <HelmetProvider>
+//         <App />
+//       </HelmetProvider>
+//     </BrowserRouter>,
+//   );
+// }
 
 // React17버전
 // const rootElement = document.getElementById('root') as HTMLElement;
