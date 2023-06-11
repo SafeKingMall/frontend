@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -24,13 +25,18 @@ export const MenuBtnArea = styled.div`
     padding-left: 5vw;
   }
 `;
-export const LogoArea = styled.div`
+export const LogoArea = styled.h1`
   width: 20%;
   height: 100%;
   ${({ theme }) => theme.common.flexCenter};
   @media (max-width: 720px) {
     width: 30%;
   }
+`;
+export const StyledLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+  ${({ theme }) => theme.common.flexCenter};
 `;
 export const Logo = styled.img.attrs({
   src: 'https://safekingmall.com/img/HeaderLogo.png',
@@ -44,7 +50,7 @@ export const Logo = styled.img.attrs({
     height: 1.5rem;
   }
 `;
-export const NavArea = styled.div`
+export const NavArea = styled.ul`
   width: 60%;
   height: 100%;
   display: flex;
@@ -54,9 +60,11 @@ export const NavArea = styled.div`
     display: none;
   }
 `;
-export const Nav = styled.div`
+export const Nav = styled.li`
   ${({ theme }) => theme.common.flexCenter};
   cursor: pointer;
+`;
+export const NavLink = styled(Link)`
   padding: 0.2rem 0.3rem;
 `;
 export const UserContentArea = styled.div`
