@@ -53,7 +53,7 @@ export const MainPage = () => {
     <>
       <MetaTag
         title='안전왕'
-        description='안전왕, 안전관리 솔루션을 제공하는 쇼핑몰입니다.'
+        description='안전관리 솔루션을 제공하는 쇼핑몰 안전왕입니다. 중대사고예방, 화재사고예방, 누출사고예방, 해양사고예방에 대한 안전관리 솔루션을 제공합니다.'
         imgsrc='https://safekingmall.com/img/HeaderLogo.png'
         url='https://safekingmall.com/'
         keywords='안전왕, 안전, 안전관리, 안전사고, 사고예방'
