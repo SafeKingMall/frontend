@@ -61,7 +61,7 @@ export const List = (props: any) => {
   });
 
   useEffect(() => {
-    if (itemList.length === 0) {
+    if (itemList?.length === 0) {
       setNoItem(true);
     } else {
       setNoItem(false);
