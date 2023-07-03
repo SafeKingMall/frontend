@@ -6,9 +6,14 @@ import Router from './routes/Router';
 import { Refresh } from './components/common/hooks/Refresh';
 import { Footer } from './components/common/Footer';
 import CategoryStore from './store/categoryStore';
+import { useLocation } from 'react-router-dom';
 // import { Helmet } from 'react-helmet-async';
 
 function App() {
+  const location = useLocation();
+  if (location.pathname.indexOf('itemlist') === -1) {
+    sessionStorage.removeItem('goBack');
+  }
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
