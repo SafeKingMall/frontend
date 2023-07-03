@@ -74,7 +74,7 @@ export const List = (props: any) => {
         {noItem ? (
           <S.NoSearchItem>검색 결과가 없습니다.</S.NoSearchItem>
         ) : (
-          itemList.map((item: any) => {
+          itemList?.map((item: any) => {
             return (
               <S.ItemContainer key={item.id} onClick={() => moveDetail(item)}>
                 <S.ItemImgWrap>
